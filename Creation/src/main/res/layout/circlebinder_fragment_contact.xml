@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+    >
+
+    <Button
+        android:id="@+id/circlebinder_fragment_contact_send"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:minWidth="240dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/circlebinder_spacer_middle"
+        android:layout_marginRight="@dimen/circlebinder_spacer_middle"
+        android:layout_marginBottom="@dimen/circlebinder_spacer_middle"
+        android:layout_marginLeft="@dimen/circlebinder_spacer_middle"
+        android:text="@string/circlebinder_navigation_send_feedback_with_mail"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/circlebinder_spacer_middle"
+        android:paddingLeft="@dimen/circlebinder_spacer_middle"
+        android:paddingRight="@dimen/circlebinder_spacer_middle"
+        android:text="@string/circlebinder_navigation_contact_description"
+        />
+
+    <TextView
+        style="@style/CircleBinderSectionHeadTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/circlebinder_twitter_official_account_label"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/circlebinder_spacer_small"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/circlebinder_spacer_small"
+            android:text="@string/circlebinder_twitter_official_account_label"
+            />
+
+        <TextView
+            android:id="@+id/circlebinder_twitter_official_account_screen_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/circlebinder_twitter_official_account_screen_name"
+            android:autoLink="web"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/circlebinder_spacer_small"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/circlebinder_spacer_small"
+            android:text="@string/circlebinder_twitter_official_hash_tag_label"
+            />
+
+        <TextView
+            android:id="@+id/circlebinder_twitter_official_hash_tag_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/circlebinder_twitter_official_hash_tag_name"
+            android:autoLink="web"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

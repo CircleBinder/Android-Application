@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CreationBinder</string>
+    <string name="app_scheme">creationbinder</string>
+    <string name="circlebinder_app_checklist_picker_title">お気に入り</string>
+    <string name="circlebinder_title_activity_checklist">ChecklistActivity</string>
+    <string name="circlebinder_action_checklist">お気に入り</string>
+    <string name="circlebinder_action_checklist_unset">はずす</string>
+    <string name="circlebinder_action_open_browser">WEBブラウザで開く</string>
+    <string name="circlebinder_action_share">シェアする</string>
+    <string name="circlebinder_app_event_location">http://www.creation.gr.jp/common/coming.html#sunshine</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="circlebinder_tutorial_initialize_progress">初期化しています</string>
+    <string name="circlebinder_tutorial_initialize_complete">お気に入りサークルを探す！</string>
+
+    <!-- Preference -->
+    <string name="circlebinder_pref_app_storage">pref_app_storage</string>
+    <string name="circlebinder_pref_app_storage_is_initialize">pref_app_storage_is_initialize</string>
+
+</resources>

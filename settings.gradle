@@ -1,0 +1,2 @@
+include ':vendor:Common:Library', 'Creation'
+include ':vendor:activeandroid', ':vendor:LicenseCreditView:library'

@@ -1,0 +1,21 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="@style/Theme.AppCompat.Light">
+        <item name="android:actionBarStyle">@style/CircleBinderActionBar</item>
+        <item name="actionBarStyle">@style/CircleBinderActionBar</item>
+    </style>
+
+    <style name="AppNoActionBarTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <color name="circlebinder_actionbar_background">#70b025</color>
+    <style name="CircleBinderActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/circlebinder_actionbar_background</item>
+        <item name="background">@color/circlebinder_actionbar_background</item>
+        <item name="android:backgroundSplit">@color/circlebinder_actionbar_background</item>
+        <item name="backgroundSplit">@color/circlebinder_actionbar_background</item>
+    </style>
+
+</resources>

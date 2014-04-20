@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:id="@+id/circlebinder_actionbar_circle_detail_space"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="あー01a"
+        android:textColor="#ffffff"
+        android:textSize="12sp"
+        />
+
+    <TextView
+        android:id="@+id/circlebinder_actionbar_circle_detail_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="サークル名"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:ellipsize="end"
+        />
+
+</LinearLayout>

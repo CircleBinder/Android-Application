@@ -1,0 +1,107 @@
+apply plugin: 'android-sdk-manager'
+apply plugin: 'android'
+apply plugin: 'android-power-assert'
+apply from: '../vendor/Common/gradle/common.gradle'
+
+android {
+    compileSdkVersion androidSdkVersion
+    buildToolsVersion androidBuildToolsVersion
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion androidSdkVersion
+        versionCode 7
+        versionName '0.4'
+
+        buildConfigField "String", "CRASH_REPORTER_KEY", "\"${project.properties.crashReporterKey}\""
+    }
+
+    signingConfigs {
+        release {
+            storeFile file(project.properties.storeFile)
+            storePassword project.properties.storePassword
+            keyAlias project.properties.storeAlias
+            keyPassword project.properties.keyPassword
+        }
+    }
+
+    buildTypes {
+        release {
+            debuggable false
+            runProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.release
+
+            applicationIdSuffix ''
+            versionNameSuffix ''
+        }
+
+        debug {
+            debuggable true
+            runProguard false
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-debug'
+        }
+    }
+
+    dexOptions {
+        incremental false
+        preDexLibraries true
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'src/main/libs', include: '*.jar')
+    compile project(':vendor:Common:Library')
+    compile project(':vendor:LicenseCreditView:library')
+    compile project(':vendor:activeandroid')
+    compile 'am.ik.ltsv4j:ltsv4j:0.9.0'
+    compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
+    compile 'se.emilsjolander:stickylistheaders:2.1.4'
+
+    // :vendor:Common:Library:build.gradle と同じバージョンに合わせないとダメ。
+    // TODO: 共通化
+    compile 'com.android.support:appcompat-v7:19.1.0'
+}
+
+
+android.applicationVariants.all { variant ->
+    def resourceDir = new File("Creation/src/${variant.buildType.name}/res/values")
+    def resourceFile = new File(resourceDir, "_app.xml")
+    def appName = project.properties.appName + variant.buildType.versionNameSuffix;
+
+    resourceDir.mkdirs()
+    writeResources(resourceFile, [
+            "app_name": appName,
+    ])
+}
+
+apply plugin: 'deploygate'
+
+// アップロード時のメッセージは /Creation/STAGE を利用している
+deploygate {
+    userName = project.properties.deployGateUserName
+    token = project.properties.deployGateToken
+    def buildMessage = {
+        return file("STAGE").readLines()[0]
+    }
+
+    def apkDir = project.projectDir.getAbsolutePath() + "/build/outputs/apk"
+    apks {
+        Release {
+            sourceFile = file("${apkDir}/Creation-release.apk")
+            message = buildMessage()
+        }
+
+        Debug {
+            sourceFile = file("${apkDir}/Creation-debug-unaligned.apk")
+            message = buildMessage()
+        }
+    }
+}
+uploadDeployGateRelease.dependsOn ':Creation:assembleRelease'
+uploadDeployGateDebug.dependsOn ':Creation:assembleDebug'
