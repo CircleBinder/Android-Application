@@ -1,7 +1,6 @@
 package circlebinder.creation.event;
 
 import android.database.Cursor;
-import android.util.Log;
 
 import com.activeandroid.Cache;
 import com.activeandroid.Model;
@@ -10,7 +9,7 @@ import com.activeandroid.annotation.Table;
 import com.activeandroid.query.From;
 import com.activeandroid.query.Select;
 
-import net.ichigotake.common.database.SqlQueryBuilder;
+import net.ichigotake.common.database.ConditionQueryBuilder;
 
 import circlebinder.Legacy;
 import circlebinder.common.checklist.ChecklistColor;
@@ -70,18 +69,22 @@ public final class CircleTable extends Model implements Legacy {
 
     public static Cursor get(CircleSearchOption searchOption) {
         From query = new Select("*, " + CircleTable.Field.ID + " AS _id").from(CircleTable.class);
-        SqlQueryBuilder.Where where = SqlQueryBuilder.where();
+        ConditionQueryBuilder where = new ConditionQueryBuilder();
         if (searchOption.hasKeyword()) {
-            where.like(CircleTable.Field.NAME, "%" + searchOption.getKeyword() + "%");
+            where.and(
+                    ConditionQueryBuilder
+                            .where(Field.NAME + " LIKE ?", "%" + searchOption.getKeyword() + "%")
+                            .or(Field.PEN_NAME + " LIKE ?", "%" + searchOption.getKeyword() + "%")
+            );
         }
         if (searchOption.hasBlock() && searchOption.getBlock().getId() > 0) {
-            where.and(Field.BLOCK_ID, searchOption.getBlock().getId());
+            where.and(Field.BLOCK_ID + " = ?", searchOption.getBlock().getId());
         }
         if (searchOption.hasChecklist()) {
             if (ChecklistColor.isChecklist(searchOption.getChecklist())) {
-                where.and(Field.CHECKLIST_ID, searchOption.getChecklist().getId());
+                where.and(Field.CHECKLIST_ID + " = ?", searchOption.getChecklist().getId());
             } else {
-                where.and(Field.CHECKLIST_ID, ">", 0);
+                where.and(Field.CHECKLIST_ID + " > ?", 0);
             }
         }
         query.where(where.getQuery(), where.getArguments());
