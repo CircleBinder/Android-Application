@@ -128,7 +128,7 @@ public final class HomeActivity extends BaseActivity implements Legacy {
                     R.dimen.circlebinder_spacer_small
             ));
             pager.setPageMarginDrawable(new ColorDrawable(
-                    getResources().getColor(R.color.circlebinder_app_card_item_background)
+                    getResources().getColor(R.color.circlebinder_app_card_container_background)
             ));
             pager.setAdapter(pagerAdapter);
             PagerSlidingTabStrip strip =

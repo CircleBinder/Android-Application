@@ -83,7 +83,7 @@ public final class CircleDetailPagerActivity extends BaseActivity implements Leg
                 R.dimen.circlebinder_spacer_small
         ));
         pager.setPageMarginDrawable(new ColorDrawable(
-                getResources().getColor(R.color.circlebinder_app_card_item_background)
+                getResources().getColor(R.color.circlebinder_app_card_container_background)
         ));
         pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
