@@ -2,14 +2,13 @@ package circlebinder.creation.system;
 
 import android.content.Context;
 
-import circlebinder.common.dashboard.SectionHeaderItemAdapter;
+import circlebinder.common.changelog.ChangeLogFeedAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 
-public final class ListItemAdapter extends SectionHeaderItemAdapter
+public final class ChangeLogFeedHeaderAdapter extends ChangeLogFeedAdapter
         implements StickyListHeadersAdapter {
 
-    public ListItemAdapter(Context context) {
+    public ChangeLogFeedHeaderAdapter(Context context) {
         super(context);
     }
-
 }
