@@ -65,6 +65,12 @@ public final class WebViewFragment extends BaseFragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        getSupportActivity().getSupportActionBar().setTitle(R.string.circlebinder_event_name);
+    }
+
+    @Override
     public void onDestroy() {
         if (container != null) {
             container.onDestroy();
