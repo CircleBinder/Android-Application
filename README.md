@@ -1,21 +1,23 @@
 CircleBinder
 ============
 
-同人イベントのチェックリストを作成・管理するAndroidアプリ
+サンシャインクリエイションのチェックリストを作成するAndroidアプリ
 
 
 このアプリについて
 ------------
 
-**当プロジェクトは「COMIC１準備会」とは一切関係ありません。** 当アプリに関するお問い合わせは「COMIC１準備会」へは送らないようご協力お願いします。
+**当プロジェクトは「クリエイション事務局」とは一切関係ありません。**
 
-アプリ内の出展サークル情報は[公式サイトで公開されているもの](http://www.comic1.jp/CM8_circle_list2.htm)を元に作成しております。
+当アプリに関するお問い合わせは「クリエイション事務局」へは送らないようご協力お願いします。
+
+アプリ内の出展サークル情報は[公式サイト](http://www.creation.gr.jp/)で公開されているものを元に作成しております。
 
 
 関連リンク
 ------------
 
-- [COMIC１ 公式サイト](http://www.comic1.jp/index.htm)
+- [クリエイション公式Web](http://www.creation.gr.jp/)
 - [CircleBinder 公式ブログ](http://circlebinder.blog.jp/)
 - [CircleBinder/CircleBinder](https://github.com/CircleBinder/CircleBinder)
 
