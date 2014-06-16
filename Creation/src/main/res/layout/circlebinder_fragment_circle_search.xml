@@ -29,7 +29,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/circlebinder_spacer_small"
+        android:layout_marginTop="4dp"
         android:background="@color/circlebinder_app_card_item_background"
         >
 
