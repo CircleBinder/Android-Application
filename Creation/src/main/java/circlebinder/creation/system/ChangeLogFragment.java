@@ -8,9 +8,10 @@ import android.view.ViewGroup;
 
 import net.ichigotake.common.app.FragmentFactory;
 
+import java.io.IOException;
+
 import circlebinder.Legacy;
 import circlebinder.common.app.FragmentTripper;
-import circlebinder.common.dashboard.DashboardItem;
 import circlebinder.creation.BaseFragment;
 import circlebinder.creation.R;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
@@ -40,47 +41,12 @@ public final class ChangeLogFragment extends BaseFragment implements Legacy {
         StickyListHeadersListView changeLogsView = (StickyListHeadersListView)view.findViewById(
                 R.id.circlebinder_fragment_changelog_list
         );
-        ListItemAdapter adapter = new ListItemAdapter(getActivity());
-        //TODO: 更新履歴を管理する用の仕組みを何か作る
-        String sectionHeaderAsHistory = "2014-06-14 バージョン 0.4";
-        adapter.add(
-                new DashboardItem.Builder()
-                        .setLabel("公式HPへのリンクを追加")
-                        .setSectionTitle(sectionHeaderAsHistory)
-                        .setSectionTitleId(sectionHeaderAsHistory.hashCode())
-                        .build()
-        );
-        sectionHeaderAsHistory = "2014-06-08 バージョン 0.3";
-        adapter.add(
-                new DashboardItem.Builder()
-                        .setLabel("サンシャインクリエイション 64のサークルデータを更新")
-                        .setSectionTitle(sectionHeaderAsHistory)
-                        .setSectionTitleId(sectionHeaderAsHistory.hashCode())
-                        .build()
-        );
-        sectionHeaderAsHistory = "2014-06-08 バージョン 0.2";
-        adapter.add(
-                new DashboardItem.Builder()
-                        .setLabel("出展ブロックによる絞り込みを実装")
-                        .setSectionTitle(sectionHeaderAsHistory)
-                        .setSectionTitleId(sectionHeaderAsHistory.hashCode())
-                        .build()
-        );
-        adapter.add(
-                new DashboardItem.Builder()
-                        .setLabel("キーワード検索のリアルタイム絞り込みを実装")
-                        .setSectionTitle(sectionHeaderAsHistory)
-                        .setSectionTitleId(sectionHeaderAsHistory.hashCode())
-                        .build()
-        );
-        sectionHeaderAsHistory = "2014-05-06 バージョン 0.1";
-        adapter.add(
-                new DashboardItem.Builder()
-                        .setLabel("プレビュー版の公開")
-                        .setSectionTitle(sectionHeaderAsHistory)
-                        .setSectionTitleId(sectionHeaderAsHistory.hashCode())
-                        .build()
-        );
+        ChangeLogFeedHeaderAdapter adapter = new ChangeLogFeedHeaderAdapter(getActivity());
+        try {
+            adapter.addAll(new ChangeLogLoader(getActivity()).load());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         changeLogsView.setAdapter(adapter);
 
         return view;
