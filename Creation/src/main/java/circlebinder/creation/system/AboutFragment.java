@@ -66,4 +66,10 @@ public final class AboutFragment extends BaseFragment implements Legacy {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getSupportActivity().getSupportActionBar().setTitle(R.string.circlebinder_navigation_about);
+    }
+
 }

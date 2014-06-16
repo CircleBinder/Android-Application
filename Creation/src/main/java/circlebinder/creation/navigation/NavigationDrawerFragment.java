@@ -123,7 +123,8 @@ public final class NavigationDrawerFragment extends BaseFragment implements Lega
                 R.id.circlebinder_fragment_dashboard_header_event_name
         );
         final String url = "http://www.creation.gr.jp/";
-        eventNameView.setText(Html.fromHtml("<a href=\"" + url + "\">サンシャインクリエイション64</a>"));
+        final String eventName = getString(R.string.circlebinder_event_name);
+        eventNameView.setText(Html.fromHtml("<a href=\"" + url + "\">" + eventName + "</a>"));
         eventNameView.setOnClickListener(new OnClickToTrip(WebViewActivity.tripper(getActivity(), url)));
         ((TextView)locationView.findViewById(R.id.circlebinder_fragment_dashboard_header_event_date))
                 .setText("2014年6月22日(日)");
