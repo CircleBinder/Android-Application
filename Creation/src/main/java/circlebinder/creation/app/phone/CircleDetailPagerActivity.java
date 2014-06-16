@@ -3,6 +3,7 @@ package circlebinder.creation.app.phone;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -78,6 +79,12 @@ public final class CircleDetailPagerActivity extends BaseActivity implements Leg
                 new CircleDetailPagerItem(searchOption)
         );
         pager.setAdapter(pagerAdapter);
+        pager.setPageMargin(getResources().getDimensionPixelSize(
+                R.dimen.circlebinder_spacer_small
+        ));
+        pager.setPageMarginDrawable(new ColorDrawable(
+                getResources().getColor(R.color.circlebinder_app_card_item_background)
+        ));
         pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
             @Override public void onPageScrollStateChanged(int state) {}

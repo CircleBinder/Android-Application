@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
@@ -123,6 +124,12 @@ public final class HomeActivity extends BaseActivity implements Legacy {
                     getSupportFragmentManager(),
                     new HomePagerItem()
             );
+            pager.setPageMargin(getResources().getDimensionPixelSize(
+                    R.dimen.circlebinder_spacer_small
+            ));
+            pager.setPageMarginDrawable(new ColorDrawable(
+                    getResources().getColor(R.color.circlebinder_app_card_item_background)
+            ));
             pager.setAdapter(pagerAdapter);
             PagerSlidingTabStrip strip =
                     (PagerSlidingTabStrip)actionBar.getCustomView().findViewById(R.id.activity_home_tab);
