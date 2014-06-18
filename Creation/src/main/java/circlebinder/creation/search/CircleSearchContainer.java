@@ -34,4 +34,7 @@ public final class CircleSearchContainer {
         adapter.getFilter().filter("");
     }
 
+    public void setPosition(int position) {
+        holder.getCircles().setSelection(position);
+    }
 }

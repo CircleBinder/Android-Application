@@ -1,6 +1,5 @@
 package circlebinder.creation.app.phone;
 
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.ColorDrawable;
@@ -9,9 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
-import net.ichigotake.common.app.ActivityFactory;
 import net.ichigotake.common.app.ActivityNavigation;
-import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.FragmentPagerAdapter;
 import net.ichigotake.common.app.FragmentPagerItem;
 import net.ichigotake.common.os.RestoreBundle;
@@ -25,41 +22,12 @@ import circlebinder.creation.circle.CircleDetailFragment;
 import circlebinder.creation.event.CircleTable;
 import circlebinder.creation.search.CircleCursorCreator;
 
-/**
- * TODO: Activityを閉じた時に元の画面にpositionを渡したい
- */
 public final class CircleDetailPagerActivity extends BaseActivity implements Legacy {
 
-    public static ActivityTripper tripper(Context context, CircleSearchOption searchOption,
-                                          int position) {
-        return new ActivityTripper(context, factory(searchOption, position));
-    }
+    public static final int REQUEST_CODE_CALLBACK = 0;
+    public static final String EXTRA_KEY_SEARCH_OPTION = "search_option";
+    public static final String EXTRA_KEY_POSITION = "position";
 
-    public static ActivityFactory factory(CircleSearchOption circleSearchOption, int currentPosition) {
-        return new CircleDetailPagerActivityFactory(circleSearchOption, currentPosition);
-    }
-
-    private static class CircleDetailPagerActivityFactory implements ActivityFactory {
-
-        private final CircleSearchOption searchOption;
-        private final int currentPosition;
-
-        private CircleDetailPagerActivityFactory(CircleSearchOption circleSearchOption, int currentPosition) {
-            searchOption = circleSearchOption;
-            this.currentPosition = currentPosition;
-        }
-
-        @Override
-        public Intent create(Context context) {
-            Intent intent =  new Intent(context, CircleDetailPagerActivity.class);
-            intent.putExtra(KEY_SEARCH_OPTION, searchOption);
-            intent.putExtra(KEY_CURRENT_POSITION, currentPosition);
-            return intent;
-        }
-    }
-
-    private static final String KEY_SEARCH_OPTION = "searchOption";
-    private static final String KEY_CURRENT_POSITION = "currentPosition";
     private CircleSearchOption searchOption;
     private int currentPosition;
 
@@ -69,9 +37,9 @@ public final class CircleDetailPagerActivity extends BaseActivity implements Leg
         restoreActionBar();
         setContentView(R.layout.circlebinder_activity_view_pager);
 
-        RestoreBundle restoreBundle = new RestoreBundle(getIntent(), savedInstanceState);
-        searchOption = restoreBundle.getParcelable(KEY_SEARCH_OPTION);
-        currentPosition = restoreBundle.getInt(KEY_CURRENT_POSITION);
+        final RestoreBundle restoreBundle = new RestoreBundle(getIntent(), savedInstanceState);
+        searchOption = restoreBundle.getParcelable(EXTRA_KEY_SEARCH_OPTION);
+        currentPosition = restoreBundle.getInt(EXTRA_KEY_POSITION);
 
         final ViewPager pager = (ViewPager) findViewById(R.id.circlebinder_activity_view_pager);
         final FragmentPagerAdapter pagerAdapter = new FragmentPagerAdapter(
@@ -93,6 +61,14 @@ public final class CircleDetailPagerActivity extends BaseActivity implements Leg
             public void onPageSelected(int position) {
                 currentPosition = position;
                 pagerAdapter.reload(position);
+                Bundle callbackArgs = restoreBundle.getBundle();
+                callbackArgs.putInt(EXTRA_KEY_POSITION, position);
+                Intent callbackIntent = getIntent();
+                if (callbackIntent == null) {
+                    callbackIntent = new Intent();
+                }
+                callbackIntent.putExtras(callbackArgs);
+                setResult(REQUEST_CODE_CALLBACK, callbackIntent);
             }
         });
         pagerAdapter.reload(currentPosition);
@@ -116,8 +92,8 @@ public final class CircleDetailPagerActivity extends BaseActivity implements Leg
         if (outState == null) {
             outState = new Bundle();
         }
-        outState.putParcelable(KEY_SEARCH_OPTION, searchOption);
-        outState.putInt(KEY_CURRENT_POSITION, currentPosition);
+        outState.putParcelable(EXTRA_KEY_SEARCH_OPTION, searchOption);
+        outState.putInt(EXTRA_KEY_POSITION, currentPosition);
         super.onSaveInstanceState(outState);
     }
     

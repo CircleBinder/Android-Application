@@ -1,5 +1,6 @@
 package circlebinder.creation.search;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
@@ -79,9 +80,16 @@ public final class CircleSearchFragment extends BaseFragment implements Pane {
         searchContainer.getViewHolder().getCircles().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CircleDetailPagerActivity.tripper(
-                        getActivity(), searchOptionBuilder.build(), position
-                ).trip();
+                Intent intent = new Intent(getActivity(), CircleDetailPagerActivity.class);
+                Bundle args = new Bundle();
+                args.putParcelable(CircleDetailPagerActivity.EXTRA_KEY_SEARCH_OPTION, searchOptionBuilder.build());
+                args.putInt(CircleDetailPagerActivity.EXTRA_KEY_POSITION, position);
+                intent.putExtras(args);
+                getActivity().startActivityFromFragment(
+                        CircleSearchFragment.this,
+                        intent,
+                        CircleDetailPagerActivity.REQUEST_CODE_CALLBACK
+                );
             }
         });
 
@@ -130,6 +138,21 @@ public final class CircleSearchFragment extends BaseFragment implements Pane {
             } else {
                 searchContainer.reload();
             }
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        boolean doesPositionCallback = searchContainer != null
+                && requestCode == CircleDetailPagerActivity.REQUEST_CODE_CALLBACK;
+        if (doesPositionCallback
+                && data != null && data.hasExtra(CircleDetailPagerActivity.EXTRA_KEY_POSITION)) {
+            int callbackPosition = data.getIntExtra(CircleDetailPagerActivity.EXTRA_KEY_POSITION, -1);
+            if (callbackPosition >= 0) {
+                searchContainer.setPosition(callbackPosition);
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
