@@ -61,6 +61,12 @@
             android:configChanges="orientation|screenSize"
             />
 
+        <activity
+            android:name=".app.phone.DatabaseInitializeActivity"
+            android:label="@string/app_name"
+            android:configChanges="orientation|screenSize"
+            />
+
         <service
             android:name="circlebinder.creation.initialize.DatabaseInitializeService"
             android:process=":service"
