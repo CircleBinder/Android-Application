@@ -1,14 +1,10 @@
 package circlebinder.creation.app.phone;
 
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.os.RemoteException;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -31,10 +27,6 @@ import circlebinder.creation.BaseActivity;
 import circlebinder.creation.R;
 import circlebinder.creation.checklist.ChecklistFragment;
 import circlebinder.creation.initialize.AppStorage;
-import circlebinder.creation.initialize.DatabaseInitializeService;
-import circlebinder.creation.initialize.IInitializeBindService;
-import circlebinder.creation.initialize.IInitializeFragment;
-import circlebinder.creation.initialize.IInitializeServiceCallback;
 import circlebinder.creation.navigation.NavigationDrawerFragment;
 import circlebinder.creation.search.CircleSearchFragment;
 
@@ -59,40 +51,9 @@ public final class HomeActivity extends BaseActivity implements Legacy {
         }
     }
 
-    private final String FRAGMENT_TAG_INITIALIZE = "initialize";
     private final String KEY_CURRENT_PAGE_ITEM = "current_page_item";
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private CharSequence mTitle;
-
-    private IInitializeBindService mService;
-    private IInitializeServiceCallback callback = new IInitializeServiceCallback.Stub() {
-        @Override
-        public void initializeCompleted() throws RemoteException {
-            Fragment callback = getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG_INITIALIZE);
-            if (callback instanceof IInitializeServiceCallback) {
-                ((IInitializeServiceCallback)callback).initializeCompleted();
-            } else {
-                throw new IllegalStateException("not implements");
-            }
-        }
-    };
-    private ServiceConnection serviceConnection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            mService = IInitializeBindService.Stub.asInterface(service);
-            try {
-                mService.setObserver(callback);
-                mService.AsyncStart();
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            mService = null;
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,19 +106,12 @@ public final class HomeActivity extends BaseActivity implements Legacy {
             strip.setViewPager(pager);
             strip.setTextColor(0xffffffff);
         } else {
-            setContentView(R.layout.circlebinder_activity_basic);
-            serviceBind = true;
-            bindService(new Intent(this, DatabaseInitializeService.class), serviceConnection, 0);
-            IInitializeFragment
-                    .tripper(getSupportFragmentManager())
-                    .setAddBackStack(false)
-                    .setLayoutId(R.id.activity_fragment_content)
-                    .setTag(FRAGMENT_TAG_INITIALIZE)
+            DatabaseInitializeActivity.tripper(this)
+                    .withFinish()
                     .trip();
         }
     }
 
-    private boolean serviceBind;
     private ViewPagerStateStore viewPagerStateStore;
 
     private ViewPagerStateStore getViewPagerStateStore(Context context) {
@@ -218,15 +172,6 @@ public final class HomeActivity extends BaseActivity implements Legacy {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onDestroy() {
-        if (serviceBind) {
-            unbindService(serviceConnection);
-            serviceBind = false;
-        }
-        super.onDestroy();
     }
 
     private static class HomePagerItem implements FragmentPagerItem {

@@ -1,5 +1,6 @@
 package circlebinder.creation.checklist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.SearchView;
@@ -105,9 +106,16 @@ public final class ChecklistFragment extends BaseFragment implements Pane {
         favoritesContainer.getViewHolder().getCircles().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CircleDetailPagerActivity.tripper(
-                        getActivity(), searchOptionBuilder.build(), position
-                ).trip();
+                Intent intent = new Intent(getActivity(), CircleDetailPagerActivity.class);
+                Bundle args = new Bundle();
+                args.putParcelable(CircleDetailPagerActivity.EXTRA_KEY_SEARCH_OPTION, searchOptionBuilder.build());
+                args.putInt(CircleDetailPagerActivity.EXTRA_KEY_POSITION, position);
+                intent.putExtras(args);
+                getActivity().startActivityFromFragment(
+                        ChecklistFragment.this,
+                        intent,
+                        CircleDetailPagerActivity.REQUEST_CODE_CALLBACK
+                );
             }
         });
 
@@ -157,6 +165,21 @@ public final class ChecklistFragment extends BaseFragment implements Pane {
             } else {
                 favoritesContainer.reload();
             }
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        boolean doesPositionCallback = favoritesContainer != null
+                && requestCode == CircleDetailPagerActivity.REQUEST_CODE_CALLBACK;
+        if (doesPositionCallback
+                && data != null && data.hasExtra(CircleDetailPagerActivity.EXTRA_KEY_POSITION)) {
+            int callbackPosition = data.getIntExtra(CircleDetailPagerActivity.EXTRA_KEY_POSITION, -1);
+            if (callbackPosition >= 0) {
+                favoritesContainer.setPosition(callbackPosition);
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
