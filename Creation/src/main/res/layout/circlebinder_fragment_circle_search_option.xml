@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <View
+        android:id="@+id/circlebinder_fragment_circle_search_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_card_border"
+        android:layout_margin="@dimen/circlebinder_spacer_small"
+        android:padding="@dimen/circlebinder_spacer_small"
+        android:orientation="vertical"
+        android:clickable="true"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <Spinner
+                android:id="@+id/circlebinder_fragment_circle_search_option_selector"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                />
+
+            <TextView
+                android:id="@+id/circlebinder_fragment_circle_search_option_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/circlebinder_spacer_middle"
+                android:padding="@dimen/circlebinder_spacer_small"
+                android:text="@string/circlebinder_circle_search_window_close"
+                />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/circlebinder_fragment_circle_search_keyword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingTop="4dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="4dp"
+            android:hint="@string/circlebinder_circle_search_keyword_hint"
+            android:inputType="text"
+            android:imeOptions="actionSearch"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -3,30 +3,23 @@ package circlebinder.creation.checklist;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Spinner;
 
 import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.app.Pane;
 import net.ichigotake.common.os.RestoreBundle;
-import net.ichigotake.common.widget.OnItemSelectedEventListener;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
+import net.ichigotake.common.widget.OnItemClickEventListener;
 
 import circlebinder.common.app.FragmentTripper;
 import circlebinder.common.checklist.ChecklistColor;
-import circlebinder.common.checklist.ChecklistSelectorContainer;
+import circlebinder.common.checklist.ChecklistPopupSelector;
 import circlebinder.common.search.CircleOrder;
 import circlebinder.common.search.CircleSearchOptionBuilder;
-import circlebinder.common.search.CircleSearchOptionContainer;
-import circlebinder.common.search.PaneUpdateOnSearchActionListener;
 import circlebinder.creation.BaseFragment;
 import circlebinder.creation.R;
 import circlebinder.creation.app.phone.CircleDetailPagerActivity;
@@ -71,7 +64,6 @@ public final class ChecklistFragment extends BaseFragment implements Pane {
     }
 
     private final static String KEY_SEARCH_OPTION_BUILDER = "search_option_builder";
-    private CircleSearchOptionContainer searchOptionContainer;
     private CircleSearchContainer favoritesContainer;
     private CircleSearchOptionBuilder searchOptionBuilder;
 
@@ -119,32 +111,27 @@ public final class ChecklistFragment extends BaseFragment implements Pane {
             }
         });
 
-        SearchView searchView = (SearchView) view.findViewById(R.id.circlebinder_fragment_circle_search_keyword);
-        searchOptionContainer = new CircleSearchOptionContainer(
-                searchView,
-                new PaneUpdateOnSearchActionListener(this)
+        final ImageView searchOptionView = (ImageView) view.findViewById(
+                R.id.circlebinder_fragment_circle_search_option
         );
-
-        List<ChecklistColor> checklists = new CopyOnWriteArrayList<ChecklistColor>();
-        checklists.add(ChecklistColor.ALL);
-        Collections.addAll(checklists, ChecklistColor.checklists());
-        ChecklistSelectorContainer selectorContainer = new ChecklistSelectorContainer(
-                (Spinner) view.findViewById(R.id.circlebinder_fragment_circle_search_selector),
-                checklists,
-                ChecklistColor.ALL
-        );
-        selectorContainer.addOnItemSelectedListener(new OnItemSelectedEventListener<ChecklistColor>() {
+        final ChecklistPopupSelector popupSelector = new ChecklistPopupSelector(getActivity(), searchOptionView);
+        popupSelector.setOnItemClickListener(new OnItemClickEventListener<ChecklistColor>() {
             @Override
-            public void onItemSelected(ChecklistColor item) {
-                searchOptionBuilder.setKeyword(searchOptionContainer.getQuery());
+            public void onItemClick(ChecklistColor item) {
                 searchOptionBuilder.setChecklist(item);
-                favoritesContainer.reload(searchOptionBuilder.build());
+                popupSelector.dismiss();
                 tap();
+                searchOptionView.setImageDrawable(getResources().getDrawable(item.getColorDrawable()));
             }
-
+        });
+        searchOptionView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onNothingSelected() {
-
+            public void onClick(View v) {
+                if (popupSelector.isShowing()) {
+                    popupSelector.dismiss();
+                } else {
+                    popupSelector.show();
+                }
             }
         });
     }
@@ -158,13 +145,7 @@ public final class ChecklistFragment extends BaseFragment implements Pane {
     @Override
     public void tap() {
         if (favoritesContainer != null) {
-            if (searchOptionContainer != null) {
-                favoritesContainer.reload(
-                        searchOptionBuilder.setKeyword(searchOptionContainer.getQuery()).build()
-                );
-            } else {
-                favoritesContainer.reload();
-            }
+            favoritesContainer.reload(searchOptionBuilder.build());
         }
     }
 

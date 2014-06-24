@@ -2,38 +2,28 @@ package circlebinder.creation.search;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Spinner;
 
 import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.app.Pane;
 import net.ichigotake.common.os.RestoreBundle;
-import net.ichigotake.common.widget.OnItemSelectedEventListener;
 
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-
-import circlebinder.common.checklist.BlockSelectorContainer;
-import circlebinder.common.event.AllBlock;
-import circlebinder.common.event.Block;
-import circlebinder.common.event.BlockBuilder;
+import circlebinder.common.search.CircleSearchOption;
 import circlebinder.common.search.CircleSearchOptionBuilder;
-import circlebinder.common.search.CircleSearchOptionContainer;
-import circlebinder.common.search.PaneUpdateOnSearchActionListener;
 import circlebinder.creation.BaseFragment;
 import circlebinder.creation.R;
 import circlebinder.creation.app.phone.CircleDetailPagerActivity;
-import circlebinder.creation.event.BlockTable;
 
 /**
  * サークルの検索をする
  */
-public final class CircleSearchFragment extends BaseFragment implements Pane {
+public final class CircleSearchFragment extends BaseFragment
+        implements Pane, OnCircleSearchOptionListener {
 
     public static FragmentFactory<CircleSearchFragment> factory() {
         return new CircleSearchFragmentFactory();
@@ -47,14 +37,12 @@ public final class CircleSearchFragment extends BaseFragment implements Pane {
     }
 
     private final String KEY_SEARCH_OPTION_BUILDER = "search_option_builder";
-    private CircleSearchContainer searchContainer;
-    private CircleSearchOptionContainer searchOptionContainer;
     private CircleSearchOptionBuilder searchOptionBuilder;
+    private CircleSearchContainer searchContainer;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
         searchOptionBuilder = new RestoreBundle(this, savedInstanceState)
                 .getParcelable(KEY_SEARCH_OPTION_BUILDER);
         if (searchOptionBuilder == null) {
@@ -93,33 +81,20 @@ public final class CircleSearchFragment extends BaseFragment implements Pane {
             }
         });
 
-        List<Block> blocks = new CopyOnWriteArrayList<Block>();
-        blocks.add(new BlockBuilder().setName("全").setId(-1).build());
-        blocks.addAll(BlockTable.get());
-        BlockSelectorContainer selectorContainer = new BlockSelectorContainer(
-                (Spinner)view.findViewById(R.id.circlebinder_fragment_circle_search_selector),
-                blocks
+        ImageView searchOptionView = (ImageView) view.findViewById(
+                R.id.circlebinder_fragment_circle_search_option
         );
-        selectorContainer.setSelection(new AllBlock(getActivity()));
-        selectorContainer.addOnItemSelectedListener(new OnItemSelectedEventListener<Block>() {
+        searchOptionView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(Block item) {
-                searchOptionBuilder.setKeyword(searchOptionContainer.getQuery());
-                searchOptionBuilder.setBlock(item);
-                searchContainer.reload(searchOptionBuilder.build());
-                tap();
-            }
-
-            @Override
-            public void onNothingSelected() {
-
+            public void onClick(View v) {
+                CircleSearchOptionFragment.tripper(
+                        getFragmentManager(),
+                        CircleSearchFragment.this,
+                        searchOptionBuilder.build()
+                ).trip();
             }
         });
-
-        searchOptionContainer = new CircleSearchOptionContainer(
-                (SearchView)view.findViewById(R.id.circlebinder_fragment_circle_search_keyword),
-                new PaneUpdateOnSearchActionListener(this)
-        );
+        searchOptionView.setImageResource(R.drawable.ic_search_option);
     }
 
     @Override
@@ -131,13 +106,7 @@ public final class CircleSearchFragment extends BaseFragment implements Pane {
     @Override
     public void tap() {
         if (searchContainer != null) {
-            if (searchOptionContainer != null) {
-                searchContainer.reload(
-                        searchOptionBuilder.setKeyword(searchOptionContainer.getQuery()).build()
-                );
-            } else {
-                searchContainer.reload();
-            }
+            searchContainer.reload(searchOptionBuilder.build());
         }
     }
 
@@ -158,11 +127,14 @@ public final class CircleSearchFragment extends BaseFragment implements Pane {
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        if (outState == null) {
-            outState = new Bundle();
-        }
-        outState.putParcelable(KEY_SEARCH_OPTION_BUILDER, searchOptionBuilder);
         super.onSaveInstanceState(outState);
+        outState.putParcelable(KEY_SEARCH_OPTION_BUILDER, searchOptionBuilder);
+    }
+
+    @Override
+    public void setSearchOption(CircleSearchOption searchOption) {
+        searchOptionBuilder.set(searchOption);
+        tap();
     }
 
 }
