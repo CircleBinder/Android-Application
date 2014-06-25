@@ -16,6 +16,7 @@ import com.astuetz.PagerSlidingTabStrip;
 
 import net.ichigotake.common.app.ActivityFactory;
 import net.ichigotake.common.app.ActivityTripper;
+import net.ichigotake.common.app.FragmentOnPageChangeListener;
 import net.ichigotake.common.app.FragmentPagerAdapter;
 import net.ichigotake.common.app.FragmentPagerItem;
 import net.ichigotake.common.os.RestoreBundle;
@@ -105,6 +106,10 @@ public final class HomeActivity extends BaseActivity implements Legacy {
             strip.setUnderlineColor(0xffffffff);
             strip.setViewPager(pager);
             strip.setTextColor(0xffffffff);
+
+            pager.setOnPageChangeListener(
+                    new FragmentOnPageChangeListener(pagerAdapter, presetPageNo)
+            );
         } else {
             DatabaseInitializeActivity.tripper(this)
                     .withFinish()

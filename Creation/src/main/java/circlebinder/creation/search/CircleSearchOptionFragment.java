@@ -37,6 +37,13 @@ public final class CircleSearchOptionFragment extends BaseFragment {
     private static final String KEY_FRAGMENT_TAG = CircleSearchOptionFragment.class.getName();
     private static final String KEY_SEARCH_OPTION_BUILDER = "search_option_builder";
 
+    public static void remove(FragmentManager fragmentManager) {
+        Fragment fragment = fragmentManager.findFragmentByTag(KEY_FRAGMENT_TAG);
+        if (fragment != null && fragment instanceof CircleSearchOptionFragment) {
+            ((CircleSearchOptionFragment)fragment).dismiss();
+        }
+    }
+
     @SuppressWarnings("unchecked")
     public static <T extends Fragment & OnCircleSearchOptionListener> FragmentTripper tripper(
             FragmentManager fragmentManager,

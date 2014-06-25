@@ -17,7 +17,6 @@ import net.ichigotake.common.app.ActionSendFilterActionProvider;
 import net.ichigotake.common.app.ActionViewActivityFactory;
 import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.FragmentFactory;
-import net.ichigotake.common.app.Pane;
 import net.ichigotake.common.os.RestoreBundle;
 
 import circlebinder.Legacy;
@@ -33,7 +32,7 @@ import circlebinder.creation.event.CircleTable;
 import circlebinder.creation.checklist.UpdateChecklistListener;
 
 public final class CircleDetailFragment extends BaseFragment
-        implements UpdateChecklistListener, Pane, Legacy {
+        implements UpdateChecklistListener, Legacy {
 
     public static FragmentFactory<CircleDetailFragment> factory(Circle circle) {
         return new CircleDetailFragmentFactory(circle);
@@ -134,10 +133,6 @@ public final class CircleDetailFragment extends BaseFragment
     @Override
     public void onResume() {
         super.onResume();
-    }
-
-    @Override
-    public void tap() {
         ActionBar actionBar =  getSupportActivity().getSupportActionBar();
         actionBar.setCustomView(R.layout.circlebinder_actionbar_circle_detail);
         actionBar.setDisplayShowCustomEnabled(true);

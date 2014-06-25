@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import net.ichigotake.common.app.FragmentFactory;
-import net.ichigotake.common.app.Pane;
+import net.ichigotake.common.app.OnPageChangeListener;
 import net.ichigotake.common.os.RestoreBundle;
 import net.ichigotake.common.widget.OnItemClickEventListener;
 
@@ -29,7 +29,7 @@ import circlebinder.creation.search.CircleSearchViewHolder;
 /**
  * チェックリスト
  */
-public final class ChecklistFragment extends BaseFragment implements Pane {
+public final class ChecklistFragment extends BaseFragment implements OnPageChangeListener {
 
     public static FragmentFactory<ChecklistFragment> factory() {
         return factory(ChecklistColor.BLUE);
@@ -120,7 +120,7 @@ public final class ChecklistFragment extends BaseFragment implements Pane {
             public void onItemClick(ChecklistColor item) {
                 searchOptionBuilder.setChecklist(item);
                 popupSelector.dismiss();
-                tap();
+                active();
                 searchOptionView.setImageDrawable(getResources().getDrawable(item.getColorDrawable()));
             }
         });
@@ -139,14 +139,19 @@ public final class ChecklistFragment extends BaseFragment implements Pane {
     @Override
     public void onResume() {
         super.onResume();
-        tap();
+        active();
     }
 
     @Override
-    public void tap() {
+    public void active() {
         if (favoritesContainer != null) {
             favoritesContainer.reload(searchOptionBuilder.build());
         }
+    }
+
+    @Override
+    public void inactive() {
+
     }
 
     @Override
