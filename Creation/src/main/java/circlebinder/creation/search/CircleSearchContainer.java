@@ -15,7 +15,7 @@ public final class CircleSearchContainer {
         this.holder = holder;
         this.adapter = new CircleAdapter(
                 context,
-                CircleTable.get(),
+                null,
                 new CircleCursorCreator());
         this.holder.getCircles().setAdapter(adapter);
         holder.getCircles().setEmptyView(holder.getEmptyView());

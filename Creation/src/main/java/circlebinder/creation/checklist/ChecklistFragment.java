@@ -32,7 +32,7 @@ import circlebinder.creation.search.CircleSearchViewHolder;
 public final class ChecklistFragment extends BaseFragment implements OnPageChangeListener {
 
     public static FragmentFactory<ChecklistFragment> factory() {
-        return factory(ChecklistColor.BLUE);
+        return factory(ChecklistColor.ALL);
     }
 
     public static FragmentFactory<ChecklistFragment> factory(ChecklistColor checklist) {
