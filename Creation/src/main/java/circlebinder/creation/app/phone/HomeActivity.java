@@ -59,62 +59,58 @@ public final class HomeActivity extends BaseActivity implements Legacy {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //役割的にはアクティビティを分けた方がいいとは思う
-        //でも普段の起動では少しでもシームレス感を出したい
-        //ので、アクティビティ分割をせずにこの条件分岐はこのままにしておく
-        if (new AppStorage(getApplicationContext()).isInitialized()) {
-            setContentView(R.layout.circlebinder_activity_home);
-
-            mNavigationDrawerFragment = (NavigationDrawerFragment)
-                    getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-
-            ActionBar actionBar = getSupportActionBar();
-            actionBar.setDisplayShowCustomEnabled(true);
-            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM, ActionBar.DISPLAY_SHOW_CUSTOM);
-            actionBar.setCustomView(R.layout.circlebinder_actionbar_pagr_tab);
-            mTitle = actionBar.getTitle();
-            mNavigationDrawerFragment.setUp(
-                    R.id.navigation_drawer,
-                    (DrawerLayout) findViewById(R.id.drawer_layout));
-
-            ViewPager pager = getPager();
-            int presetPageNo = new RestoreBundle(getIntent(), savedInstanceState)
-                    .getInt(KEY_CURRENT_PAGE_ITEM);
-            pager.setCurrentItem(presetPageNo);
-            final FragmentPagerAdapter pagerAdapter = new FragmentPagerAdapter(
-                    getSupportFragmentManager(),
-                    new HomePagerItem()
-            );
-            pager.setPageMargin(getResources().getDimensionPixelSize(
-                    R.dimen.circlebinder_spacer_small
-            ));
-            pager.setPageMarginDrawable(new ColorDrawable(
-                    getResources().getColor(R.color.circlebinder_app_card_container_background)
-            ));
-            pager.setAdapter(pagerAdapter);
-            PagerSlidingTabStrip strip =
-                    (PagerSlidingTabStrip)actionBar.getCustomView().findViewById(R.id.activity_home_tab);
-            strip.setShouldExpand(true);
-
-            //TODO: リソースで指定するべき
-            strip.setIndicatorHeight(8);
-            strip.setUnderlineHeight(0);
-
-            //TODO: 色はリソースに置こう
-            strip.setIndicatorColor(0xffffffff);
-            strip.setUnderlineColor(0xffffffff);
-            strip.setViewPager(pager);
-            strip.setTextColor(0xffffffff);
-
-            pager.setOnPageChangeListener(
-                    new FragmentOnPageChangeListener(pagerAdapter, presetPageNo)
-            );
-        } else {
+        if (!new AppStorage(getApplicationContext()).isInitialized()) {
             DatabaseInitializeActivity.tripper(this)
                     .withFinish()
                     .trip();
+            return ;
         }
+
+        setContentView(R.layout.circlebinder_activity_home);
+
+        mNavigationDrawerFragment = (NavigationDrawerFragment)
+                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM, ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setCustomView(R.layout.circlebinder_actionbar_pagr_tab);
+        mTitle = actionBar.getTitle();
+        mNavigationDrawerFragment.setUp(
+                R.id.navigation_drawer,
+                (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        ViewPager pager = getPager();
+        int presetPageNo = new RestoreBundle(getIntent(), savedInstanceState)
+                .getInt(KEY_CURRENT_PAGE_ITEM);
+        pager.setCurrentItem(presetPageNo);
+        final FragmentPagerAdapter pagerAdapter = new FragmentPagerAdapter(
+                getSupportFragmentManager(),
+                new HomePagerItem()
+        );
+        pager.setOnPageChangeListener(
+                new FragmentOnPageChangeListener(pagerAdapter, presetPageNo)
+        );
+        pager.setPageMargin(getResources().getDimensionPixelSize(
+                R.dimen.circlebinder_spacer_small
+        ));
+        pager.setPageMarginDrawable(new ColorDrawable(
+                getResources().getColor(R.color.circlebinder_app_card_container_background)
+        ));
+        pager.setAdapter(pagerAdapter);
+        PagerSlidingTabStrip strip =
+                (PagerSlidingTabStrip)actionBar.getCustomView().findViewById(R.id.activity_home_tab);
+        strip.setShouldExpand(true);
+
+        //TODO: リソースで指定するべき
+        strip.setIndicatorHeight(8);
+        strip.setUnderlineHeight(0);
+
+        //TODO: 色はリソースに置こう
+        strip.setIndicatorColor(0xffffffff);
+        strip.setUnderlineColor(0xffffffff);
+        strip.setViewPager(pager);
+        strip.setTextColor(0xffffffff);
     }
 
     private ViewPagerStateStore viewPagerStateStore;
