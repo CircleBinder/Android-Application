@@ -44,8 +44,8 @@ public final class AboutFragment extends BaseFragment implements Legacy {
         ListView menuView = (ListView)view.findViewById(R.id.circlebinder_fragment_about_list);
         menuView.setAdapter(new ArrayAdapter<String>(
                 getActivity(),
-                android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,
+                R.layout.circlebinder_list_item,
+                R.id.circlebinder_list_item,
                 new String[]{
                         getString(R.string.circlebinder_navigation_open_source_license),
                 }

@@ -4,10 +4,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="@dimen/circlebinder_material_list_key_line_container_padding_horizontal"
     android:paddingTop="@dimen/circlebinder_spacer_small"
-    android:paddingRight="@dimen/circlebinder_spacer_middle"
+    android:paddingRight="@dimen/circlebinder_material_list_key_line_container_padding_horizontal"
     android:paddingBottom="@dimen/circlebinder_spacer_small"
-    android:paddingLeft="@dimen/circlebinder_spacer_middle"
     android:clickable="true"
     >
 
@@ -15,8 +15,9 @@
         android:id="@+id/circlebinder_fragment_dashboard_header_event_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
+        android:textSize="@dimen/circlebinder_material_font_subhead"
         android:lineSpacingMultiplier="1.4"
+        android:text="@string/app_name"
         />
 
     <LinearLayout
@@ -29,13 +30,15 @@
             android:id="@+id/circlebinder_fragment_dashboard_header_event_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/circlebinder_spacer_small"
+            android:text=""
+            android:textSize="@dimen/circlebinder_material_font_body"
             />
 
         <TextView
             android:id="@+id/circlebinder_fragment_dashboard_header_event_countdown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/circlebinder_material_font_body"
             />
 
     </LinearLayout>
@@ -45,6 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/circlebinder_spacer_small"
+        android:textSize="@dimen/circlebinder_material_font_body"
         />
 
     <TextView
@@ -52,6 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:lineSpacingMultiplier="1.4"
+        android:textSize="@dimen/circlebinder_material_font_body"
         />
 
 </LinearLayout>

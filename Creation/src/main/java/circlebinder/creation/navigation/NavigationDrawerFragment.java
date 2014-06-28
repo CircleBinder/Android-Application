@@ -92,8 +92,8 @@ public final class NavigationDrawerFragment extends BaseFragment implements Lega
         ListView mDrawerListView = (ListView) view.findViewById(R.id.fragment_navigation_drawer_menu_list);
         mDrawerListView.setAdapter(new ArrayAdapter<String>(
                 getActivity(),
-                android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,
+                R.layout.circlebinder_list_item,
+                R.id.circlebinder_list_item,
                 new String[]{
                         getString(R.string.circlebinder_navigation_change_log),
                         getString(R.string.circlebinder_navigation_wish_me_luck),
