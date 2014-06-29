@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical|center_horizontal"
-            android:text="出展サークルを探す"
+            android:text="@string/circlebinder_search_circle"
             android:drawablePadding="8dp"
             android:drawableLeft="@drawable/ic_menu_search"
             />

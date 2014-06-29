@@ -115,7 +115,14 @@ public final class ChecklistFragment extends BaseFragment {
     }
 
     private void reload() {
-        if (favoritesContainer != null) {
+        if (searchOptionBuilder != null
+                && getActivity() != null && getActivity().getActionBar() != null) {
+            ChecklistColor checklistColor = searchOptionBuilder.build().getChecklist();
+            getActivity().getActionBar().setTitle(
+                    checklistColor != null ? checklistColor.getName() : ""
+            );
+        }
+        if (favoritesContainer != null && searchOptionBuilder != null) {
             favoritesContainer.reload(searchOptionBuilder.build());
         }
     }

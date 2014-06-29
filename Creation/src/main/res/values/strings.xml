@@ -6,6 +6,7 @@
     <string name="circlebinder_event_name">サンシャインクリエイション64</string>
     <string name="circlebinder_app_checklist_picker_title">お気に入り</string>
     <string name="circlebinder_title_activity_checklist">ChecklistActivity</string>
+    <string name="circlebinder_search_circle">出展サークルを探す</string>
     <string name="circlebinder_action_checklist">お気に入り</string>
     <string name="circlebinder_action_checklist_unset">はずす</string>
     <string name="circlebinder_action_open_browser">WEBブラウザで開く</string>
