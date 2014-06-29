@@ -15,6 +15,7 @@ import net.ichigotake.common.app.ActionSendFilterActionProvider;
 import net.ichigotake.common.app.ActionViewActivityFactory;
 import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.FragmentFactory;
+import net.ichigotake.common.app.OnPageChangeListener;
 import net.ichigotake.common.os.RestoreBundle;
 
 import circlebinder.Legacy;
@@ -30,7 +31,7 @@ import circlebinder.creation.event.CircleTable;
 import circlebinder.creation.checklist.UpdateChecklistListener;
 
 public final class CircleDetailFragment extends BaseFragment
-        implements UpdateChecklistListener, Legacy {
+        implements UpdateChecklistListener, OnPageChangeListener, Legacy {
 
     public static FragmentFactory<CircleDetailFragment> factory(Circle circle) {
         return new CircleDetailFragmentFactory(circle);
@@ -128,18 +129,6 @@ public final class CircleDetailFragment extends BaseFragment
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        ActionBar actionBar =  getActivity().getActionBar();
-        actionBar.setCustomView(R.layout.circlebinder_actionbar_circle_detail);
-        actionBar.setDisplayShowCustomEnabled(true);
-        CircleDetailViewHolder viewHolder = new CircleDetailViewHolder(actionBar.getCustomView());
-        viewHolder.getName().setText(circle.getPenName() + "/" + circle.getName());
-        viewHolder.getSpace().setText(circle.getSpace().getName());
-        getActivity().invalidateOptionsMenu();
-    }
-
-    @Override
     public void onSaveInstanceState(Bundle outState) {
         if (outState == null) {
             outState = new Bundle();
@@ -154,6 +143,32 @@ public final class CircleDetailFragment extends BaseFragment
         circle = new CircleBuilder(circle)
                 .setChecklistColor(checklistColor)
                 .build();
+    }
+
+    @Override
+    public void active() {
+        if (getActivity() != null && getActivity().getActionBar() != null) {
+            restoreActionBar();
+        }
+    }
+
+    @Override
+    public void inactive() {
+
+    }
+
+    private void restoreActionBar() {
+        if (getActivity() != null && getActivity().getActionBar() != null) {
+            ActionBar actionBar =  getActivity().getActionBar();
+            actionBar.setCustomView(R.layout.circlebinder_actionbar_circle_detail);
+            actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowCustomEnabled(true);
+            CircleDetailViewHolder viewHolder = new CircleDetailViewHolder(actionBar.getCustomView());
+            viewHolder.getName().setText(circle.getPenName() + "/" + circle.getName());
+            viewHolder.getSpace().setText(circle.getSpace().getName());
+            getActivity().invalidateOptionsMenu();
+        }
     }
 
     @Override

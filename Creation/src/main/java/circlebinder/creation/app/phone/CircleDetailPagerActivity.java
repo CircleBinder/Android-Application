@@ -34,7 +34,8 @@ public final class CircleDetailPagerActivity extends BaseActivity implements Leg
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        restoreActionBar();
+        getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        getActionBar().setTitle("");
         setContentView(R.layout.circlebinder_activity_view_pager);
 
         final RestoreBundle restoreBundle = new RestoreBundle(getIntent(), savedInstanceState);
@@ -84,25 +85,20 @@ public final class CircleDetailPagerActivity extends BaseActivity implements Leg
     @Override
     public void onResume() {
         super.onResume();
-        restoreActionBar();
+        ViewPager pager = (ViewPager) findViewById(R.id.circlebinder_activity_view_pager);
+        if (pager != null) {
+            FragmentPagerAdapter pagerAdapter = (FragmentPagerAdapter) pager.getAdapter();
+            pagerAdapter.reload(currentPosition);
+        }
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        if (outState == null) {
-            outState = new Bundle();
-        }
+        super.onSaveInstanceState(outState);
         outState.putParcelable(EXTRA_KEY_SEARCH_OPTION, searchOption);
         outState.putInt(EXTRA_KEY_POSITION, currentPosition);
-        super.onSaveInstanceState(outState);
     }
     
-    private void restoreActionBar() {
-        ActionBar actionBar = getActionBar();
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-    }
-
     private static class CircleDetailPagerItem implements FragmentPagerItem {
 
         private final CircleCursorConverter cursorCreator;
