@@ -26,7 +26,7 @@ import circlebinder.creation.R;
 import circlebinder.creation.event.BlockTable;
 import circlebinder.creation.event.CircleTable;
 
-public final class CircleCursorCreator implements CursorItemConverter<Circle>, Legacy {
+public final class CircleCursorConverter implements CursorItemConverter<Circle>, Legacy {
 
     private final CircleBuilder circleBuilder = new CircleBuilder();
     private final SpaceBuilder spaceBuilder = new SpaceBuilder();

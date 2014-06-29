@@ -1,23 +1,19 @@
 package circlebinder.creation.checklist;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 
 import net.ichigotake.common.app.FragmentFactory;
-import net.ichigotake.common.app.OnPageChangeListener;
 import net.ichigotake.common.os.RestoreBundle;
-import net.ichigotake.common.widget.OnItemClickEventListener;
 
 import circlebinder.common.app.FragmentTripper;
 import circlebinder.common.checklist.ChecklistColor;
-import circlebinder.common.checklist.ChecklistPopupSelector;
 import circlebinder.common.search.CircleOrder;
 import circlebinder.common.search.CircleSearchOptionBuilder;
 import circlebinder.creation.BaseFragment;
@@ -29,7 +25,7 @@ import circlebinder.creation.search.CircleSearchViewHolder;
 /**
  * チェックリスト
  */
-public final class ChecklistFragment extends BaseFragment implements OnPageChangeListener {
+public final class ChecklistFragment extends BaseFragment {
 
     public static FragmentFactory<ChecklistFragment> factory() {
         return factory(ChecklistColor.ALL);
@@ -92,8 +88,6 @@ public final class ChecklistFragment extends BaseFragment implements OnPageChang
                 (ListView)view.findViewById(R.id.fragment_circle_search_list),
                 getActivity().getLayoutInflater().inflate(R.layout.circlebinder_fragment_checklist_empty, null)
         );
-        ((ViewGroup)view.findViewById(R.id.circlebinder_fragment_circle_search_item_container))
-                .addView(viewHolder.getEmptyView());
         favoritesContainer = new CircleSearchContainer(getActivity(), viewHolder);
         favoritesContainer.getViewHolder().getCircles().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -111,47 +105,19 @@ public final class ChecklistFragment extends BaseFragment implements OnPageChang
             }
         });
 
-        final ImageView searchOptionView = (ImageView) view.findViewById(
-                R.id.circlebinder_fragment_circle_search_option
-        );
-        final ChecklistPopupSelector popupSelector = new ChecklistPopupSelector(getActivity(), searchOptionView);
-        popupSelector.setOnItemClickListener(new OnItemClickEventListener<ChecklistColor>() {
-            @Override
-            public void onItemClick(ChecklistColor item) {
-                searchOptionBuilder.setChecklist(item);
-                popupSelector.dismiss();
-                active();
-                searchOptionView.setImageDrawable(getResources().getDrawable(item.getColorDrawable()));
-            }
-        });
-        searchOptionView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (popupSelector.isShowing()) {
-                    popupSelector.dismiss();
-                } else {
-                    popupSelector.show();
-                }
-            }
-        });
+        view.findViewById(R.id.circlebinder_fragment_circle_search_option).setVisibility(View.GONE);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        active();
+        reload();
     }
 
-    @Override
-    public void active() {
+    private void reload() {
         if (favoritesContainer != null) {
             favoritesContainer.reload(searchOptionBuilder.build());
         }
-    }
-
-    @Override
-    public void inactive() {
-
     }
 
     @Override

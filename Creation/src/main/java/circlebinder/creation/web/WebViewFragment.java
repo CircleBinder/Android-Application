@@ -1,7 +1,7 @@
 package circlebinder.creation.web;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
+import android.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,7 +67,7 @@ public final class WebViewFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        getSupportActivity().getSupportActionBar().setTitle(R.string.circlebinder_event_name);
+        getActivity().getActionBar().setTitle(R.string.circlebinder_event_name);
     }
 
     @Override

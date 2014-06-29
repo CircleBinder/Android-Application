@@ -8,28 +8,20 @@
     android:layout_height="match_parent"
     >
 
-    <LinearLayout
-        android:id="@+id/circlebinder_fragment_circle_search_item_container"
+    <ListView
+        style="@style/CircleBinderCardList"
+        android:id="@+id/fragment_circle_search_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:background="@color/circlebinder_app_card_item_background"
-        >
-
-        <ListView
-            style="@style/CircleBinderCardList"
-            android:id="@+id/fragment_circle_search_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/circlebinder_circle_list_item"
-            />
-
-    </LinearLayout>
+        android:fastScrollEnabled="true"
+        android:fastScrollAlwaysVisible="true"
+        tools:listitem="@layout/circlebinder_circle_list_item"
+        />
 
     <ImageView
         android:id="@+id/circlebinder_fragment_circle_search_option"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginRight="32dp"
         android:layout_marginBottom="32dp"
         android:layout_alignParentBottom="true"

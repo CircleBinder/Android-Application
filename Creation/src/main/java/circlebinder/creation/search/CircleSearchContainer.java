@@ -4,7 +4,6 @@ import android.content.Context;
 
 import circlebinder.common.circle.CircleAdapter;
 import circlebinder.common.search.CircleSearchOption;
-import circlebinder.creation.event.CircleTable;
 
 public final class CircleSearchContainer {
 
@@ -16,7 +15,7 @@ public final class CircleSearchContainer {
         this.adapter = new CircleAdapter(
                 context,
                 null,
-                new CircleCursorCreator());
+                new CircleCursorConverter());
         this.holder.getCircles().setAdapter(adapter);
         holder.getCircles().setEmptyView(holder.getEmptyView());
     }

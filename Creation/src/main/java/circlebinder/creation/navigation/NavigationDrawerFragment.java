@@ -1,13 +1,12 @@
 package circlebinder.creation.navigation;
 
+import android.app.ActionBar;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -162,7 +161,7 @@ public final class NavigationDrawerFragment extends BaseFragment implements Lega
         mFragmentContainerView = getActivity().findViewById(fragmentId);
         mDrawerLayout = drawerLayout;
 
-        ActionBar actionBar = getActionBar();
+        ActionBar actionBar = getActivity().getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
 
@@ -182,8 +181,8 @@ public final class NavigationDrawerFragment extends BaseFragment implements Lega
                     return;
                 }
 
-                getActivity().supportInvalidateOptionsMenu(); // calls onPrepareOptionsMenu()
-                getSupportActivity().getSupportActionBar().setDisplayShowCustomEnabled(true);
+                getActivity().invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
+                getActivity().getActionBar().setDisplayShowCustomEnabled(true);
             }
 
             @Override
@@ -202,8 +201,8 @@ public final class NavigationDrawerFragment extends BaseFragment implements Lega
                     sp.edit().putBoolean(PREF_USER_LEARNED_DRAWER, true).apply();
                 }
 
-                getActivity().supportInvalidateOptionsMenu(); // calls onPrepareOptionsMenu()
-                getSupportActivity().getSupportActionBar().setDisplayShowCustomEnabled(false);
+                getActivity().invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
+                getActivity().getActionBar().setDisplayShowCustomEnabled(false);
             }
         };
 
@@ -257,14 +256,10 @@ public final class NavigationDrawerFragment extends BaseFragment implements Lega
      * 'context', rather than just what's in the current screen.
      */
     private void showGlobalContextActionBar() {
-        ActionBar actionBar = getActionBar();
+        ActionBar actionBar = getActivity().getActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setTitle(R.string.app_name);
-    }
-
-    private ActionBar getActionBar() {
-        return ((ActionBarActivity) getActivity()).getSupportActionBar();
     }
 
 }

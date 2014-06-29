@@ -41,9 +41,9 @@ public final class WebViewActivity extends BaseActivity {
         setContentView(R.layout.circlebinder_activity_basic);
         url = new RestoreBundle(getIntent(), savedInstanceState).getString(KEY_URL);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         WebViewFragment
-                .tripper(getSupportFragmentManager(), url)
+                .tripper(getFragmentManager(), url)
                 .setAddBackStack(false)
                 .setLayoutId(R.id.activity_fragment_content)
                 .trip();

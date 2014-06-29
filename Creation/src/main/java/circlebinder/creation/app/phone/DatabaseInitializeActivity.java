@@ -1,5 +1,6 @@
 package circlebinder.creation.app.phone;
 
+import android.app.Fragment;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -7,7 +8,6 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.support.v4.app.Fragment;
 
 import net.ichigotake.common.app.ActivityFactory;
 import net.ichigotake.common.app.ActivityTripper;
@@ -44,7 +44,7 @@ public final class DatabaseInitializeActivity extends BaseActivity {
     private IInitializeServiceCallback callback = new IInitializeServiceCallback.Stub() {
         @Override
         public void initializeCompleted() throws RemoteException {
-            Fragment callback = getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG_INITIALIZE);
+            Fragment callback = getFragmentManager().findFragmentByTag(FRAGMENT_TAG_INITIALIZE);
             if (callback instanceof IInitializeServiceCallback) {
                 ((IInitializeServiceCallback)callback).initializeCompleted();
             } else {
@@ -77,7 +77,7 @@ public final class DatabaseInitializeActivity extends BaseActivity {
         serviceBind = true;
         bindService(new Intent(this, DatabaseInitializeService.class), serviceConnection, 0);
         IInitializeFragment
-                .tripper(getSupportFragmentManager())
+                .tripper(getFragmentManager())
                 .setAddBackStack(false)
                 .setLayoutId(R.id.activity_fragment_content)
                 .setTag(FRAGMENT_TAG_INITIALIZE)

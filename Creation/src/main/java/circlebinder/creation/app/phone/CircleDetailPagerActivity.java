@@ -1,11 +1,11 @@
 package circlebinder.creation.app.phone;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
 import net.ichigotake.common.app.ActivityNavigation;
@@ -20,7 +20,7 @@ import circlebinder.creation.BaseActivity;
 import circlebinder.creation.R;
 import circlebinder.creation.circle.CircleDetailFragment;
 import circlebinder.creation.event.CircleTable;
-import circlebinder.creation.search.CircleCursorCreator;
+import circlebinder.creation.search.CircleCursorConverter;
 
 public final class CircleDetailPagerActivity extends BaseActivity implements Legacy {
 
@@ -43,7 +43,7 @@ public final class CircleDetailPagerActivity extends BaseActivity implements Leg
 
         final ViewPager pager = (ViewPager) findViewById(R.id.circlebinder_activity_view_pager);
         final FragmentPagerAdapter pagerAdapter = new FragmentPagerAdapter(
-                getSupportFragmentManager(),
+                getFragmentManager(),
                 new CircleDetailPagerItem(searchOption)
         );
         pager.setAdapter(pagerAdapter);
@@ -98,18 +98,18 @@ public final class CircleDetailPagerActivity extends BaseActivity implements Leg
     }
     
     private void restoreActionBar() {
-        ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar = getActionBar();
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     private static class CircleDetailPagerItem implements FragmentPagerItem {
 
-        private final CircleCursorCreator cursorCreator;
+        private final CircleCursorConverter cursorCreator;
         private final Cursor cursor;
 
         public CircleDetailPagerItem(CircleSearchOption circleSearchOption) {
-            cursorCreator = new CircleCursorCreator();
+            cursorCreator = new CircleCursorConverter();
             cursor = CircleTable.get(circleSearchOption);
         }
 

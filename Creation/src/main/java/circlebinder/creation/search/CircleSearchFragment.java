@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import net.ichigotake.common.app.FragmentFactory;
-import net.ichigotake.common.app.OnPageChangeListener;
 import net.ichigotake.common.os.RestoreBundle;
 
 import circlebinder.common.search.CircleSearchOption;
@@ -22,8 +21,7 @@ import circlebinder.creation.app.phone.CircleDetailPagerActivity;
 /**
  * サークルの検索をする
  */
-public final class CircleSearchFragment extends BaseFragment
-        implements OnPageChangeListener, OnCircleSearchOptionListener {
+public final class CircleSearchFragment extends BaseFragment implements OnCircleSearchOptionListener {
 
     public static FragmentFactory<CircleSearchFragment> factory() {
         return new CircleSearchFragmentFactory();
@@ -100,19 +98,13 @@ public final class CircleSearchFragment extends BaseFragment
     @Override
     public void onResume() {
         super.onResume();
-        active();
+        reload();
     }
 
-    @Override
-    public void active() {
+    public void reload() {
         if (searchContainer != null) {
             searchContainer.reload(searchOptionBuilder.build());
         }
-    }
-
-    @Override
-    public void inactive() {
-        CircleSearchOptionFragment.remove(getFragmentManager());
     }
 
     @Override
@@ -139,7 +131,7 @@ public final class CircleSearchFragment extends BaseFragment
     @Override
     public void setSearchOption(CircleSearchOption searchOption) {
         searchOptionBuilder.set(searchOption);
-        active();
+        reload();
     }
 
 }

@@ -1,7 +1,7 @@
 package circlebinder.creation;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 
-public abstract class BaseActivity extends ActionBarActivity {
+public abstract class BaseActivity extends Activity {
 
 }

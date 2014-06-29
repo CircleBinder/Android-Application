@@ -1,7 +1,7 @@
 package circlebinder.creation.system;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
+import android.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +44,6 @@ public final class OpenSourceLicenseCreditFragment extends BaseFragment {
         credits.addCredit(new CreditEntry("CircleBinder Common Library", "ichigotake", 2014, CreditEntry.LicenseType.APACHE_V2));
         credits.addCredit(new CreditEntry("LicenseCreditView", "KeithYokoma", 2014, CreditEntry.LicenseType.APACHE_V2));
         credits.addCredit(new CreditEntry("ltsv4j", "making", 2013, CreditEntry.LicenseType.APACHE_V2));
-        credits.addCredit(new CreditEntry("PagerSlidingTabStrip", "Andreas Stuetz", 2013, CreditEntry.LicenseType.APACHE_V2));
         credits.addCredit(new CreditEntry("StickyListHeaders", "emilsjolander", 2013, CreditEntry.LicenseType.APACHE_V2));
 
         return view;
@@ -53,7 +52,7 @@ public final class OpenSourceLicenseCreditFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        getSupportActivity().getSupportActionBar().setTitle(
+        getActivity().getActionBar().setTitle(
                 R.string.circlebinder_navigation_open_source_license);
     }
 }

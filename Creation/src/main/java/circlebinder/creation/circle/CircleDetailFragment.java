@@ -1,10 +1,8 @@
 package circlebinder.creation.circle;
 
+import android.app.ActionBar;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.internal.view.SupportMenuInflater;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -83,19 +81,17 @@ public final class CircleDetailFragment extends BaseFragment
             webContainer.loadUrl(circle.getLinks().get(0));
         }
 
-        checklistMenu = new ChecklistMenu(getSupportActivity(), this);
+        checklistMenu = new ChecklistMenu(getActivity(), this);
 
         return view;
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        new SupportMenuInflater(getSupportActivity());
         inflater.inflate(R.menu.circle_web, menu);
         inflater.inflate(R.menu.circle_links, menu);
         MenuItem shareItem = menu.findItem(R.id.circlebinder_menu_circle_web_share);
-        MenuItemCompat.setActionProvider(
-                shareItem,
+        shareItem.setActionProvider(
                 new ActionSendFilterActionProvider(getActivity(), webContainer.getCurrentUrl())
         );
 
@@ -103,7 +99,8 @@ public final class CircleDetailFragment extends BaseFragment
             for (CircleLink link : circle.getLinks().toList()) {
                 MenuItem menuItem = menu.findItem(link.getType().getMenuItemId());
                 menuItem.setVisible(true);
-                MenuItemCompat.setActionProvider(menuItem, new ReloadWebViewActionProvider(
+                menuItem.setActionProvider(
+                        new ReloadWebViewActionProvider(
                                 getActivity(),
                                 webContainer,
                                 link.getUri()
@@ -133,13 +130,13 @@ public final class CircleDetailFragment extends BaseFragment
     @Override
     public void onResume() {
         super.onResume();
-        ActionBar actionBar =  getSupportActivity().getSupportActionBar();
+        ActionBar actionBar =  getActivity().getActionBar();
         actionBar.setCustomView(R.layout.circlebinder_actionbar_circle_detail);
         actionBar.setDisplayShowCustomEnabled(true);
         CircleDetailViewHolder viewHolder = new CircleDetailViewHolder(actionBar.getCustomView());
         viewHolder.getName().setText(circle.getPenName() + "/" + circle.getName());
         viewHolder.getSpace().setText(circle.getSpace().getName());
-        getSupportActivity().supportInvalidateOptionsMenu();
+        getActivity().invalidateOptionsMenu();
     }
 
     @Override

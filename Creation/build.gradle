@@ -1,5 +1,5 @@
 apply plugin: 'android-sdk-manager'
-apply plugin: 'android'
+apply plugin: 'com.android.application'
 apply plugin: 'android-power-assert'
 apply from: '../vendor/Common/gradle/common.gradle'
 
@@ -8,7 +8,7 @@ android {
     buildToolsVersion androidBuildToolsVersion
 
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion androidSdkVersion
         versionCode 10
         versionName '0.7'
@@ -29,7 +29,7 @@ android {
         release {
             debuggable false
             runProguard true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            proguardFiles 'proguard-rules.txt'
             signingConfig signingConfigs.release
 
             applicationIdSuffix ''
@@ -60,12 +60,7 @@ dependencies {
     compile project(':vendor:LicenseCreditView:library')
     compile project(':vendor:activeandroid')
     compile 'am.ik.ltsv4j:ltsv4j:0.9.0'
-    compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile 'se.emilsjolander:stickylistheaders:2.1.4'
-
-    // :vendor:Common:Library:build.gradle と同じバージョンに合わせないとダメ。
-    // TODO: 共通化
-    compile 'com.android.support:appcompat-v7:19.1.0'
 }
 
 

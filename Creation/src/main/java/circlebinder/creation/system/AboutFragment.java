@@ -1,7 +1,7 @@
 package circlebinder.creation.system;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
+import android.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,7 +69,7 @@ public final class AboutFragment extends BaseFragment implements Legacy {
     @Override
     public void onResume() {
         super.onResume();
-        getSupportActivity().getSupportActionBar().setTitle(R.string.circlebinder_navigation_about);
+        getActivity().getActionBar().setTitle(R.string.circlebinder_navigation_about);
     }
 
 }

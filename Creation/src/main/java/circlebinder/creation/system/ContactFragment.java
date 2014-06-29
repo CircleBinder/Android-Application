@@ -1,9 +1,9 @@
 package circlebinder.creation.system;
 
+import android.app.ActionBar;
+import android.app.FragmentManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.ActionBar;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -98,7 +98,7 @@ public final class ContactFragment extends BaseFragment implements Legacy {
     }
 
     private void restoreActionBar() {
-        ActionBar actionBar = getSupportActivity().getSupportActionBar();
+        ActionBar actionBar = getActivity().getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(R.string.circlebinder_navigation_wish_me_luck);
     }

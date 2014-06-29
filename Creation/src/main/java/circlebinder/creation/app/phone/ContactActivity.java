@@ -34,7 +34,7 @@ public final class ContactActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.circlebinder_activity_basic);
         FragmentTripper.firstTrip(
-                getSupportFragmentManager(),
+                getFragmentManager(),
                 ContactFragment.factory()
         ).trip();
     }

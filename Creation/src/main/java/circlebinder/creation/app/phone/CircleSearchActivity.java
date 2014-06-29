@@ -12,39 +12,38 @@ import net.ichigotake.common.app.ActivityTripper;
 import circlebinder.common.app.FragmentTripper;
 import circlebinder.creation.BaseActivity;
 import circlebinder.creation.R;
-import circlebinder.creation.system.AboutFragment;
+import circlebinder.creation.search.CircleSearchFragment;
 
-public final class AboutActivity extends BaseActivity {
+public final class CircleSearchActivity extends BaseActivity {
 
     public static ActivityTripper tripper(Context context) {
-        return new ActivityTripper(context, factory());
+        return new ActivityTripper(context, new CircleSearchActivityFactory());
     }
 
-    public static ActivityFactory factory() {
-        return new ActivityFactory() {
-            @Override
-            public Intent create(Context context) {
-                return new Intent(context, AboutActivity.class);
-            }
-        };
+    private static class CircleSearchActivityFactory implements ActivityFactory {
+
+        @Override
+        public Intent create(Context context) {
+            return new Intent(context, CircleSearchActivity.class);
+        }
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.circlebinder_activity_basic);
-
-        FragmentTripper
-                .firstTrip(getFragmentManager(), AboutFragment.factory())
+        new FragmentTripper(getFragmentManager(), CircleSearchFragment.factory())
+                .setAddBackStack(false)
                 .setLayoutId(R.id.activity_fragment_content)
                 .trip();
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return ActivityNavigation.back(this, item)
-                || super.onOptionsItemSelected(item);
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        return ActivityNavigation.back(this, menuItem)
+                || super.onOptionsItemSelected(menuItem);
     }
 
 }
