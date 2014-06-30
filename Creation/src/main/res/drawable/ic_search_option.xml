@@ -19,7 +19,7 @@
     </item>
 
     <item>
-        <bitmap android:src="@drawable/ic_menu_search"/>
+        <bitmap android:src="@drawable/ic_action_search"/>
     </item>
 
 </layer-list>
