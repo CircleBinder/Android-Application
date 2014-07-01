@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="circlebinder.creation.circle.CircleDetailFragment"
     >
 
     <WebView
@@ -10,10 +13,20 @@
         android:layout_height="match_parent"
         />
 
-    <FrameLayout
-        android:id="@+id/activity_fragment_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <TextView
+        android:id="@+id/circlebinder_circle_detail_checklist"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical|center_horizontal"
+        android:textColor="#ffffff"
+        android:textSize="26sp"
+        android:background="@drawable/ic_checklist_blue"
+        android:clickable="true"
+        tools:text="+"
         />
 
-</FrameLayout>
+</RelativeLayout>
