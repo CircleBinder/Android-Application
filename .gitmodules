@@ -7,6 +7,3 @@
 [submodule "vendor/Common"]
 	path = vendor/Common
 	url = git@github.com:CircleBinder/Android-CommonLibrary.git
-[submodule "vendor/LisenceCreditView"]
-	path = vendor/LisenceCreditView
-	url = git@github.com:KeithYokoma/LicenseCreditView.git
