@@ -5,10 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <se.emilsjolander.stickylistheaders.StickyListHeadersListView
+    <ListView
+        style="@style/CircleBinderCardList"
         android:id="@+id/circlebinder_fragment_changelog_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:dividerHeight="1dp"
         />
 
 </LinearLayout>

@@ -6,13 +6,12 @@
     android:layout_height="match_parent"
     >
 
-    <jp.yokomark.widget.license.LicenseCreditView
+    <ListView
+        style="@style/CircleBinderCardList"
         android:id="@+id/circlebinder_fragment_open_source_license_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/circlebinder_spacer_small"
-        android:clipToPadding="false"
-        android:scrollbarStyle="outsideOverlay"
+        android:dividerHeight="@dimen/circlebinder_spacer_small"
         />
 
 </LinearLayout>

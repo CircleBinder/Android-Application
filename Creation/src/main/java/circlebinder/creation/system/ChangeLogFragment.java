@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import net.ichigotake.common.app.FragmentFactory;
 
@@ -14,7 +15,6 @@ import circlebinder.Legacy;
 import circlebinder.common.app.FragmentTripper;
 import circlebinder.creation.BaseFragment;
 import circlebinder.creation.R;
-import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 public final class ChangeLogFragment extends BaseFragment implements Legacy {
 
@@ -38,7 +38,7 @@ public final class ChangeLogFragment extends BaseFragment implements Legacy {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.circlebinder_fragment_changelog, parent, false);
-        StickyListHeadersListView changeLogsView = (StickyListHeadersListView)view.findViewById(
+        ListView changeLogsView = (ListView)view.findViewById(
                 R.id.circlebinder_fragment_changelog_list
         );
         ChangeLogFeedHeaderAdapter adapter = new ChangeLogFeedHeaderAdapter(getActivity());
