@@ -18,10 +18,19 @@ public final class ChecklistItemViewHolder {
         labelBackground = convertView.findViewById(R.id.circlebinder_checklist_item_label_background);
         labelName = (TextView) convertView.findViewById(R.id.circlebinder_checklist_item_label_name);
         circles = new CopyOnWriteArrayList<TextView>();
-        circles.add((TextView)convertView.findViewById(R.id.circlebinder_checklist_item_circle_label1));
-        circles.add((TextView)convertView.findViewById(R.id.circlebinder_checklist_item_circle_label2));
-        circles.add((TextView)convertView.findViewById(R.id.circlebinder_checklist_item_circle_label3));
-        circles.add((TextView)convertView.findViewById(R.id.circlebinder_checklist_item_circle_label4));
+        int circleItemLabelId = R.id.circlebinder_checklist_item_circle_label;
+        circles.add((TextView)
+                convertView.findViewById(R.id.circlebinder_checklist_item_circle_label1).findViewById(circleItemLabelId)
+        );
+        circles.add((TextView)
+                convertView.findViewById(R.id.circlebinder_checklist_item_circle_label2).findViewById(circleItemLabelId)
+        );
+        circles.add((TextView)
+                convertView.findViewById(R.id.circlebinder_checklist_item_circle_label3).findViewById(circleItemLabelId)
+        );
+        circles.add((TextView)
+                convertView.findViewById(R.id.circlebinder_checklist_item_circle_label4).findViewById(circleItemLabelId)
+        );
     }
 
     public View getLabelBackground() {

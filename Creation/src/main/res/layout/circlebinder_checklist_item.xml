@@ -48,21 +48,29 @@
         <include
             layout="@layout/circlebinder_checklist_item_circle_label"
             android:id="@+id/circlebinder_checklist_item_circle_label1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             />
 
         <include
             layout="@layout/circlebinder_checklist_item_circle_label"
             android:id="@+id/circlebinder_checklist_item_circle_label2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             />
 
         <include
             layout="@layout/circlebinder_checklist_item_circle_label"
             android:id="@+id/circlebinder_checklist_item_circle_label3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             />
 
         <include
             layout="@layout/circlebinder_checklist_item_circle_label"
             android:id="@+id/circlebinder_checklist_item_circle_label4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             />
 
     </LinearLayout>
