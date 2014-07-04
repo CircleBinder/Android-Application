@@ -28,6 +28,7 @@
         android:layout_alignParentRight="true"
         android:background="@drawable/ic_checklist_none"
         android:gravity="center_horizontal|center_vertical"
+        android:contentDescription="@string/circlebinder_search_circle_option"
         />
 
 </RelativeLayout>

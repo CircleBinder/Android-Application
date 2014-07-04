@@ -2,5 +2,6 @@
 <resources>
 
     <color name="circlebinder_app_head_background">#70b025</color>
+    <color name="circlebinder_actionbar_background">#70b025</color>
 
 </resources>

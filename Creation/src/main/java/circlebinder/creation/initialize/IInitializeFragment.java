@@ -43,15 +43,7 @@ public final class IInitializeFragment extends BaseFragment
         return new FragmentTripper(fragmentManager, from());
     }
 
-    private View progressView;
-    private View finishedView;
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            progressView.setVisibility(View.GONE);
-            finishedView.setVisibility(View.VISIBLE);
-        }
-    };
+    private Handler handler;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -93,11 +85,15 @@ public final class IInitializeFragment extends BaseFragment
                         new ActionViewActivityFactory(Uri.parse(twitterScreenNameUrl)))
         ));
 
-        progressView = view.findViewById(R.id.circlebinder_fragment_initialize_progress);
-        finishedView = view.findViewById(R.id.circlebinder_fragment_initialize_finished);
+        View finishedView = view.findViewById(R.id.circlebinder_fragment_initialize_finished);
         finishedView.setOnClickListener(new OnClickToTrip(
                 HomeActivity.tripper(getActivity()).withFinish()
         ));
+        handler = new InitializeHandler(
+                view.findViewById(R.id.circlebinder_fragment_initialize_progress),
+                finishedView
+        );
+
         getActivity().startService(new Intent(getActivity(), DatabaseInitializeService.class));
     }
 
@@ -111,4 +107,22 @@ public final class IInitializeFragment extends BaseFragment
     public IBinder asBinder() {
         return null;
     }
+
+    private static class InitializeHandler extends Handler {
+
+        private final View progressView;
+        private final View finishedView;
+
+        private InitializeHandler(View progressView, View finishedView) {
+            this.progressView = progressView;
+            this.finishedView = finishedView;
+        }
+
+        @Override
+        public void handleMessage(Message message) {
+            progressView.setVisibility(View.GONE);
+            finishedView.setVisibility(View.VISIBLE);
+        }
+    }
+
 }

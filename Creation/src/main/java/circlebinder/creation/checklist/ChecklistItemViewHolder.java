@@ -6,7 +6,7 @@ import android.widget.TextView;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import circlebinder.common.R;
+import circlebinder.creation.R;
 
 public final class ChecklistItemViewHolder {
 
@@ -22,7 +22,6 @@ public final class ChecklistItemViewHolder {
         circles.add((TextView)convertView.findViewById(R.id.circlebinder_checklist_item_circle_label2));
         circles.add((TextView)convertView.findViewById(R.id.circlebinder_checklist_item_circle_label3));
         circles.add((TextView)convertView.findViewById(R.id.circlebinder_checklist_item_circle_label4));
-        circles.add((TextView)convertView.findViewById(R.id.circlebinder_checklist_item_circle_label5));
     }
 
     public View getLabelBackground() {

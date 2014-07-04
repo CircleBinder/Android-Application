@@ -60,7 +60,7 @@ public final class CircleSearchFragment extends BaseFragment implements OnCircle
         ViewGroup view = (ViewGroup) getView();
         CircleSearchViewHolder viewHolder = new CircleSearchViewHolder(
                 (ListView)view.findViewById(R.id.fragment_circle_search_list),
-                getActivity().getLayoutInflater().inflate(R.layout.circlebinder_fragment_checklist_empty, null)
+                getActivity().getLayoutInflater().inflate(R.layout.circlebinder_fragment_checklist_empty, view, false)
         );
         searchContainer = new CircleSearchContainer(getActivity(), viewHolder);
         searchContainer.getViewHolder().getCircles().setOnItemClickListener(new AdapterView.OnItemClickListener() {

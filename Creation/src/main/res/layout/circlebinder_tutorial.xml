@@ -21,6 +21,7 @@
             android:layout_marginRight="@dimen/circlebinder_spacer_middle"
             android:adjustViewBounds="true"
             android:src="@drawable/tutorial_circle_search"
+            android:contentDescription="@string/circlebinder_tutorial_welcome_search_circle"
             />
 
         <ImageView
@@ -28,6 +29,7 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:src="@drawable/tutorial_swipe_on_circle_detail"
+            android:contentDescription="@string/circlebinder_tutorial_welcome_swipe_to_paging"
             />
 
     </LinearLayout>
@@ -46,6 +48,7 @@
             android:layout_marginRight="@dimen/circlebinder_spacer_middle"
             android:adjustViewBounds="true"
             android:src="@drawable/tutorial_add_checklist"
+            android:contentDescription="@string/circlebinder_tutorial_welcome_add_checklist"
             />
 
 
@@ -54,6 +57,7 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:src="@drawable/tutorial_checklist"
+            android:contentDescription="@string/circlebinder_tutorial_welcome_show_checklist"
             />
 
     </LinearLayout>

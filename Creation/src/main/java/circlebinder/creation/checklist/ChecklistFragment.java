@@ -86,7 +86,7 @@ public final class ChecklistFragment extends BaseFragment {
         ViewGroup view = (ViewGroup) getView();
         CircleSearchViewHolder viewHolder = new CircleSearchViewHolder(
                 (ListView)view.findViewById(R.id.fragment_circle_search_list),
-                getActivity().getLayoutInflater().inflate(R.layout.circlebinder_fragment_checklist_empty, null)
+                getActivity().getLayoutInflater().inflate(R.layout.circlebinder_fragment_checklist_empty, view, false)
         );
         favoritesContainer = new CircleSearchContainer(getActivity(), viewHolder);
         favoritesContainer.getViewHolder().getCircles().setOnItemClickListener(new AdapterView.OnItemClickListener() {

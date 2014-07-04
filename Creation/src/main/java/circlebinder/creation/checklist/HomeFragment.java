@@ -124,7 +124,7 @@ public final class HomeFragment extends BaseFragment {
                             .build()
             );
             cursor.moveToFirst();
-            for (int i=0; i<5; i++) {
+            for (int i=0; i<4; i++) {
                 if (cursor.move(i)) {
                     circleList.add(converter.create(cursor));
                 } else {
@@ -138,4 +138,5 @@ public final class HomeFragment extends BaseFragment {
 
         return new CopyOnWriteArrayList<Checklist>(checklistList);
     }
+
 }

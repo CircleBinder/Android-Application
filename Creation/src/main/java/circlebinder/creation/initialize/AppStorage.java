@@ -1,5 +1,6 @@
 package circlebinder.creation.initialize;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -23,9 +24,10 @@ public final class AppStorage {
         return pref.getBoolean(context.getString(R.string.circlebinder_pref_app_storage_is_initialize), false);
     }
 
+    @SuppressLint("CommitPrefEdits")
     public void setInitialized(boolean complete) {
         pref.edit()
                 .putBoolean(context.getString(R.string.circlebinder_pref_app_storage_is_initialize), complete)
-                .commit();
+                .apply();
     }
 }

@@ -73,7 +73,7 @@
                 style="@style/CircleBinderSectionHeadTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ようこそ！"
+                android:text="@string/circlebinder_tutorial_welcome_label"
                 />
 
             <include
@@ -87,7 +87,7 @@
                 style="@style/CircleBinderSectionHeadTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="このアプリについて"
+                android:text="@string/circlebinder_tutorial_initialize_about"
                 />
 
             <TextView

@@ -10,11 +10,17 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
-    <color name="circlebinder_actionbar_background">#70b025</color>
     <style name="CircleBinderActionBar" parent="android:Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@color/circlebinder_actionbar_background</item>
         <item name="android:backgroundSplit">@color/circlebinder_actionbar_background</item>
         <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="ActionBarCircleDetail">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">@dimen/circlebinder_material_list_key_line_container_padding_horizontal</item>
+        <item name="android:paddingRight">@dimen/circlebinder_material_list_key_line_container_padding_horizontal</item>
+        <item name="android:background">@color/circlebinder_actionbar_background</item>
     </style>
 
 </resources>

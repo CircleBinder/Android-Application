@@ -2,13 +2,10 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ActionBarCircleDetail"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="48dp"
-    android:gravity="center_vertical"
-    android:paddingLeft="@dimen/circlebinder_material_list_key_line_container_padding_horizontal"
-    android:paddingRight="@dimen/circlebinder_material_list_key_line_container_padding_horizontal"
-    android:background="@color/circlebinder_actionbar_background"
     >
 
     <TextView
