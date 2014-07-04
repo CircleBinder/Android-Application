@@ -61,7 +61,6 @@ public final class CircleCursorConverter implements CursorItemConverter<Circle>,
                 c.getInt(CircleTable.Field.CHECKLIST_ID)
         );
 
-        //TODO: リンクの種類毎のアイコンを用意する
         List<CircleLink> linkList = new CopyOnWriteArrayList<CircleLink>();
         String homepageUrl = c.getString(CircleTable.Field.HOMEPAGE_URL);
         if (!TextUtils.isEmpty(homepageUrl)) {
@@ -72,17 +71,6 @@ public final class CircleCursorConverter implements CursorItemConverter<Circle>,
                     .build();
             linkList.add(link);
         }
-        /*
-        String pixivId = c.getString(CircleTable.Field.PIXIV_ID);
-        if (!TextUtils.isEmpty(pixivId)) {
-            CircleLink link = new CircleLinkBuilder()
-                    .setIcon(R.drawable.ic_action_attach)
-                    .setUri(Uri.parse("http://www.pixiv.net/member.php?id=" + pixivId))
-                    .setType(CircleLinkType.PIXIV)
-                    .build();
-            linkList.add(link);
-        }
-        */
 
         circleBuilder.setLink(new CircleLinks(linkList));
 

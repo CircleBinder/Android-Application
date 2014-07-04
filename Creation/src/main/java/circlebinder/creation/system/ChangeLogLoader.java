@@ -28,27 +28,40 @@ public final class ChangeLogLoader {
     }
 
     public List<ChangeLogFeed> load() throws IOException {
-        InputStream inputStream = resources.openRawResource(R.raw.change_log_ltsv);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         List<ChangeLogFeed> changeLogFeeds = new CopyOnWriteArrayList<ChangeLogFeed>();
-        String line;
-        while ((line = reader.readLine()) != null) {
-            if (TextUtils.isEmpty(line)) {
-                continue;
+        InputStream inputStream = null;
+        BufferedReader reader = null;
+        try {
+            inputStream = resources.openRawResource(R.raw.change_log_ltsv);
+            reader = new BufferedReader(new InputStreamReader(inputStream));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (TextUtils.isEmpty(line)) {
+                    continue;
+                }
+                Map<String, String> values = LTSV.parser().parseLine(line);
+                changeLogFeeds.add(
+                        new ChangeLogFeed(
+                                Integer.parseInt(values.get("versionCode")),
+                                values.get("versionName"),
+                                ChangeLogFeedType.valueOf(values.get("type").toUpperCase(Locale.US)),
+                                new PublishDate.Builder()
+                                        .setTimestamp(Long.parseLong(values.get("publishDate")))
+                                        .setFormattedDate("yyyy-MM-dd")
+                                        .build(),
+                                values.get("title")
+                        )
+                );
             }
-            Map<String, String> values = LTSV.parser().parseLine(line);
-            changeLogFeeds.add(
-                    new ChangeLogFeed(
-                            Integer.parseInt(values.get("versionCode")),
-                            values.get("versionName"),
-                            ChangeLogFeedType.valueOf(values.get("type").toUpperCase(Locale.US)),
-                            new PublishDate.Builder()
-                                    .setTimestamp(Long.parseLong(values.get("publishDate")))
-                                    .setFormattedDate("yyyy-MM-dd")
-                                    .build(),
-                            values.get("title")
-                    )
-            );
+        } catch (IOException e) {
+            throw e;
+        } finally {
+            if (inputStream != null) {
+                inputStream.close();
+            }
+            if (reader != null) {
+                reader.close();
+            }
         }
         return changeLogFeeds;
     }

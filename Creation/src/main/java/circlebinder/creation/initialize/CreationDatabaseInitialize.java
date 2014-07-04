@@ -54,50 +54,61 @@ abstract class CreationDatabaseInitialize implements Runnable, Legacy {
 
     private void initBlock() throws IOException {
         InputStream inputStream = resources.openRawResource(R.raw.creation_spaces);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        String line;
-        while ((line = reader.readLine()) != null) {
-            Map<String, String> space = LTSV.parser().parseLine(line);
-            if (TextUtils.isEmpty(space.get("block"))) {
-                continue;
-            }
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new InputStreamReader(inputStream));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                Map<String, String> space = LTSV.parser().parseLine(line);
+                if (TextUtils.isEmpty(space.get("block"))) {
+                    continue;
+                }
 
-            BlockTable blockTable = new BlockTable();
-            blockTable.name = space.get("block");
-            blockTable.save();
+                BlockTable blockTable = new BlockTable();
+                blockTable.name = space.get("block");
+                blockTable.save();
+            }
+        } catch (IOException e) {
+            throw e;
+        } finally {
+            if (reader != null) {
+                reader.close();
+            }
         }
     }
 
     private void initCircle() throws IOException {
         InputStream inputStream = resources.openRawResource(R.raw.creation_circles);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        String line;
-        SpaceFactory spaceFactory = new SpaceFactory();
-        while ((line = reader.readLine()) != null) {
-            Map<String, String> circle = LTSV.parser().parseLine(line);
-            if (TextUtils.isEmpty(circle.get("circle_name"))) {
-                continue;
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new InputStreamReader(inputStream));
+            String line;
+            SpaceFactory spaceFactory = new SpaceFactory();
+            while ((line = reader.readLine()) != null) {
+                Map<String, String> circle = LTSV.parser().parseLine(line);
+                if (TextUtils.isEmpty(circle.get("circle_name"))) {
+                    continue;
+                }
+
+                builder.clear();
+
+                Space space = spaceFactory.from(circle.get("space"));
+                CircleTable circleTable = new CircleTable();
+                circleTable.blockId = BlockTable.get(space.getBlockName()).getId();
+                circleTable.checklistId = 0;
+                circleTable.name = circle.get("circle_name");
+                circleTable.penName = circle.get("pen_name");
+                circleTable.homepageUrl = circle.get("circle_url");
+                circleTable.spaceNo = space.getNo();
+                circleTable.spaceNoSub = "a".equals(space.getNoSub()) ? 0 : 1;
+                circleTable.save();
             }
-
-            builder.clear();
-
-            Space space = spaceFactory.from(circle.get("space"));
-            CircleTable circleTable = new CircleTable();
-            circleTable.blockId = BlockTable.get(space.getBlockName()).getId();
-            circleTable.checklistId = 0;
-            circleTable.name = circle.get("circle_name");
-            circleTable.penName = circle.get("pen_name");
-            circleTable.homepageUrl = circle.get("circle_url");
-            circleTable.spaceNo = space.getNo();
-            circleTable.spaceNoSub = "a".equals(space.getNoSub()) ? 0 : 1;
-            circleTable.save();
-
-            //for (String url : circle.get("circle_url").split(",")) {
-            //if (url.startsWith("http://www.pixiv.net/member.php?id=")) {
-            //    circleTable.pixivId = url.replace("http://www.pixiv.net/member.php?id=", "");
-            //} else {
-            //}
-            //}
+        } catch (IOException e) {
+            throw e;
+        } finally {
+            if (reader != null) {
+                reader.close();
+            }
         }
     }
 

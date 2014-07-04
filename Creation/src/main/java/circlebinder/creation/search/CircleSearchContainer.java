@@ -17,7 +17,6 @@ public final class CircleSearchContainer {
                 null,
                 new CircleCursorConverter());
         this.holder.getCircles().setAdapter(adapter);
-        holder.getCircles().setEmptyView(holder.getEmptyView());
     }
 
     public CircleSearchViewHolder getViewHolder() {
@@ -26,10 +25,6 @@ public final class CircleSearchContainer {
 
     public void reload(CircleSearchOption searchOption) {
         adapter.setFilterQueryProvider(new CircleQueryProvider(searchOption));
-        adapter.getFilter().filter("");
-    }
-
-    public void reload() {
         adapter.getFilter().filter("");
     }
 

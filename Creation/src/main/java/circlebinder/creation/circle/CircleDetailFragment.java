@@ -26,10 +26,9 @@ import circlebinder.common.event.CircleBuilder;
 import circlebinder.creation.BaseFragment;
 import circlebinder.creation.R;
 import circlebinder.creation.event.CircleTable;
-import circlebinder.creation.checklist.UpdateChecklistListener;
 
 public final class CircleDetailFragment extends BaseFragment
-        implements UpdateChecklistListener, OnPageChangeListener, Legacy {
+        implements OnPageChangeListener, Legacy {
 
     public static FragmentFactory<CircleDetailFragment> factory(Circle circle) {
         return new CircleDetailFragmentFactory(circle);
@@ -122,7 +121,7 @@ public final class CircleDetailFragment extends BaseFragment
         checklistSelector.setOnItemClickListener(new OnItemClickEventListener<ChecklistColor>() {
             @Override
             public void onItemClick(ChecklistColor item) {
-                update(item);
+                updateChecklist(item);
                 checklistSelector.dismiss();
             }
         });
@@ -134,8 +133,7 @@ public final class CircleDetailFragment extends BaseFragment
         outState.putParcelable(KEY_CIRCLE, circle);
     }
 
-    @Override
-    public void update(ChecklistColor checklistColor) {
+    public void updateChecklist(ChecklistColor checklistColor) {
         checklistView.setBackgroundResource(circle.getChecklistColor().getDrawableResource());
         CircleTable.setChecklist(circle, checklistColor);
         circle = new CircleBuilder(circle)

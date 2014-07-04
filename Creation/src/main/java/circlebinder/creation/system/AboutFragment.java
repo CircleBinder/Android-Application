@@ -16,9 +16,6 @@ import circlebinder.common.app.FragmentTripper;
 import circlebinder.creation.BaseFragment;
 import circlebinder.creation.R;
 
-/**
- * TODO: シンプルなCollectionContainerクラスを作る
- */
 public final class AboutFragment extends BaseFragment implements Legacy {
 
     public static FragmentTripper tripper(FragmentManager fragmentManager) {
@@ -60,6 +57,7 @@ public final class AboutFragment extends BaseFragment implements Legacy {
                                 .setLayoutId(R.id.activity_fragment_content)
                                 .trip();
                         break;
+                    default:
                 }
             }
         });

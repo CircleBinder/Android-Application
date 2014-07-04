@@ -34,7 +34,7 @@ public final class CircleSearchFragment extends BaseFragment implements OnCircle
         }
     }
 
-    private final String KEY_SEARCH_OPTION_BUILDER = "search_option_builder";
+    private static final String KEY_SEARCH_OPTION_BUILDER = "search_option_builder";
     private CircleSearchOptionBuilder searchOptionBuilder;
     private CircleSearchContainer searchContainer;
 
@@ -58,10 +58,12 @@ public final class CircleSearchFragment extends BaseFragment implements OnCircle
         super.onActivityCreated(savedInstanceState);
 
         ViewGroup view = (ViewGroup) getView();
+        View emptyView = getActivity().getLayoutInflater()
+                .inflate(R.layout.circlebinder_fragment_checklist_empty, view, false);
         CircleSearchViewHolder viewHolder = new CircleSearchViewHolder(
-                (ListView)view.findViewById(R.id.fragment_circle_search_list),
-                getActivity().getLayoutInflater().inflate(R.layout.circlebinder_fragment_checklist_empty, view, false)
+                (ListView)view.findViewById(R.id.fragment_circle_search_list)
         );
+        viewHolder.getCircles().setEmptyView(emptyView);
         searchContainer = new CircleSearchContainer(getActivity(), viewHolder);
         searchContainer.getViewHolder().getCircles().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
