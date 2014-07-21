@@ -22,6 +22,7 @@ import circlebinder.common.event.Circle;
 import circlebinder.common.search.CircleSearchOptionBuilder;
 import circlebinder.creation.BaseFragment;
 import circlebinder.R;
+import circlebinder.creation.app.phone.ChecklistActivity;
 import circlebinder.creation.app.phone.CircleSearchActivity;
 import circlebinder.creation.event.CircleTable;
 import circlebinder.creation.search.CircleCursorConverter;
@@ -69,10 +70,7 @@ public final class HomeFragment extends BaseFragment {
         listener.addOnItemClickEventListener(new OnItemClickEventListener<Checklist>() {
             @Override
             public void onItemClick(Checklist item) {
-                ChecklistFragment
-                        .tripper(getFragmentManager(), item.getChecklistColor())
-                        .setLayoutId(R.id.activity_fragment_content)
-                        .trip();
+                ChecklistActivity.tripper(getActivity(), item.getChecklistColor()).trip();
             }
         });
         checklistsView.setOnItemClickListener(listener);

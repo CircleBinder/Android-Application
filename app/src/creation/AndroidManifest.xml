@@ -36,6 +36,12 @@
             />
 
         <activity
+            android:name="circlebinder.creation.app.phone.ChecklistActivity"
+            android:label=""
+            android:configChanges="orientation|screenSize"
+            />
+        
+        <activity
             android:name="circlebinder.creation.app.phone.AboutActivity"
             android:label="@string/circlebinder_navigation_about"
             android:configChanges="orientation|screenSize"
