@@ -1,0 +1,114 @@
+public String capitalize(String a){
+    String s = a.substring(1)
+    return "${a[0].toUpperCase()}${s.toLowerCase()}"
+}
+
+rootProject.ext.properties.each { key, value ->
+    if (!project.ext.has(key)) {
+        project.ext.set(key, value)
+    }
+}
+
+apply plugin: 'android-sdk-manager'
+apply plugin: 'com.android.application'
+apply plugin: 'android-power-assert'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "20.0.0"
+
+    signingConfigs {
+        release {
+            storeFile file(project.properties.storeFile)
+            storePassword project.properties.storePassword
+            keyAlias project.properties.storeAlias
+            keyPassword project.properties.keyPassword
+        }
+    }
+
+    productFlavors {
+        creation {
+            applicationId = "circlebinder.creation"
+        }
+    }
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 19
+        versionCode 10
+        versionName '0.7'
+
+        buildConfigField "String", "CRASH_REPORTER_KEY", "\"${project.properties.crashReporterKey}\""
+    }
+
+    buildTypes {
+        release {
+            debuggable false
+            runProguard true
+            proguardFiles 'proguard-rules.txt'
+            signingConfig signingConfigs.release
+
+            applicationIdSuffix ''
+            versionNameSuffix ''
+            zipAlign true
+        }
+
+        debug {
+            debuggable true
+            runProguard false
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-debug'
+        }
+    }
+
+    dexOptions {
+        incremental true
+        preDexLibraries true
+    }
+
+    lintOptions {
+        abortOnError true
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'src/libs/', include: '*.jar')
+    compile project(':vendor:activeandroid')
+    compile 'com.android.support:support-v13:18.0.+'
+    compile 'am.ik.ltsv4j:ltsv4j:0.9.0'
+}
+
+
+android.applicationVariants.all { variant ->
+    def resourceDir = new File("app/src/${variant.buildType.name}/res/values")
+    def resourceFile = new File(resourceDir, "_app.xml")
+    def appName = project.properties.appName + variant.buildType.versionNameSuffix;
+
+    resourceDir.mkdirs()
+    writeResources(resourceFile, [
+            "app_name": appName,
+    ])
+}
+
+apply plugin: 'deploygate'
+
+// アップロード時のメッセージは /CirceBinder/STAGE を利用している
+deploygate {
+    userName = project.properties.deployGateUserName
+    token = project.properties.deployGateToken
+}
+def buildMessage = file("STAGE").readLines()[0]
+def apkDir = project.projectDir.getAbsolutePath() + "/build/outputs/apk"
+android.applicationVariants.all { variant ->
+    if (variant.buildType.name == "release") {
+        def flavor = variant.productFlavors[0].name
+        deploygate.apks {
+            "${capitalize(flavor)}" {
+                sourceFile = file("${apkDir}/app-${flavor}-${variant.buildType.name}.apk")
+                message = buildMessage
+            }
+        }
+        task("uploadDeployGate${capitalize(flavor)}Release").dependsOn ':app:assembleRelease'
+    }
+}
+
