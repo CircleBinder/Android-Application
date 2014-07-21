@@ -52,4 +52,7 @@
     <string name="circlebinder_pref_app_storage">pref_app_storage</string>
     <string name="circlebinder_pref_app_storage_is_initialize">pref_app_storage_is_initialize</string>
 
+    <!-- Fragment -->
+    <string name="fragment_tag_data_initialize">fragment_tag_data_initialize</string>
+
 </resources>

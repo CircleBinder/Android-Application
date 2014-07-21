@@ -9,10 +9,8 @@ import net.ichigotake.common.app.ActivityFactory;
 import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.app.ActivityTripper;
 
-import circlebinder.common.app.FragmentTripper;
 import circlebinder.creation.BaseActivity;
 import circlebinder.R;
-import circlebinder.creation.system.ContactFragment;
 
 public final class ContactActivity extends BaseActivity {
 
@@ -32,11 +30,7 @@ public final class ContactActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.circlebinder_activity_basic);
-        FragmentTripper.firstTrip(
-                getFragmentManager(),
-                ContactFragment.factory()
-        ).trip();
+        setContentView(R.layout.activity_contact);
     }
 
     @Override

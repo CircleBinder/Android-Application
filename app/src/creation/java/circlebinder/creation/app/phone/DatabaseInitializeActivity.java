@@ -16,7 +16,6 @@ import circlebinder.creation.BaseActivity;
 import circlebinder.R;
 import circlebinder.creation.initialize.DatabaseInitializeService;
 import circlebinder.creation.initialize.IInitializeBindService;
-import circlebinder.creation.initialize.IInitializeFragment;
 import circlebinder.creation.initialize.IInitializeServiceCallback;
 
 public final class DatabaseInitializeActivity extends BaseActivity {
@@ -37,14 +36,13 @@ public final class DatabaseInitializeActivity extends BaseActivity {
         }
     }
 
-
-    private final String FRAGMENT_TAG_INITIALIZE = "initialize";
     private boolean serviceBind;
     private IInitializeBindService mService;
     private IInitializeServiceCallback callback = new IInitializeServiceCallback.Stub() {
         @Override
         public void initializeCompleted() throws RemoteException {
-            Fragment callback = getFragmentManager().findFragmentByTag(FRAGMENT_TAG_INITIALIZE);
+            Fragment callback = getFragmentManager()
+                    .findFragmentByTag(getString(R.string.fragment_tag_data_initialize));
             if (callback instanceof IInitializeServiceCallback) {
                 ((IInitializeServiceCallback)callback).initializeCompleted();
             } else {
@@ -73,15 +71,9 @@ public final class DatabaseInitializeActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.circlebinder_activity_basic);
+        setContentView(R.layout.activity_data_initialize);
         serviceBind = true;
         bindService(new Intent(this, DatabaseInitializeService.class), serviceConnection, 0);
-        IInitializeFragment
-                .tripper(getFragmentManager())
-                .setAddBackStack(false)
-                .setLayoutId(R.id.activity_fragment_content)
-                .setTag(FRAGMENT_TAG_INITIALIZE)
-                .trip();
     }
 
 

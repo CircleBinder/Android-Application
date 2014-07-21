@@ -31,12 +31,7 @@ public final class CircleSearchActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.circlebinder_activity_basic);
-        new FragmentTripper(getFragmentManager(), CircleSearchFragment.factory())
-                .setAddBackStack(false)
-                .setLayoutId(R.id.activity_fragment_content)
-                .trip();
-
+        setContentView(R.layout.activity_circle_search);
         getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 

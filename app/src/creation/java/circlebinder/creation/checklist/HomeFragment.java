@@ -4,9 +4,6 @@ import android.app.FragmentManager;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
@@ -25,12 +22,7 @@ import circlebinder.common.event.Circle;
 import circlebinder.common.search.CircleSearchOptionBuilder;
 import circlebinder.creation.BaseFragment;
 import circlebinder.R;
-import circlebinder.creation.app.TripActionProvider;
-import circlebinder.creation.app.phone.AboutActivity;
-import circlebinder.creation.app.phone.ChangeLogActivity;
 import circlebinder.creation.app.phone.CircleSearchActivity;
-import circlebinder.creation.app.phone.ContactActivity;
-import circlebinder.creation.app.phone.WebViewActivity;
 import circlebinder.creation.event.CircleTable;
 import circlebinder.creation.search.CircleCursorConverter;
 
@@ -58,34 +50,12 @@ public final class HomeFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
         getActivity().getActionBar().setDisplayShowTitleEnabled(false);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.circlebinder_fragment_checklist, parent, false);
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.home, menu);
-        MenuItem openWebBrowserItem = menu.findItem(R.id.circlebinder_menu_home_open_official_site);
-        openWebBrowserItem.setActionProvider(
-                new TripActionProvider(getActivity(), WebViewActivity.tripper(getActivity(), "http://www.creation.gr.jp/"))
-        );
-        MenuItem contactItem = menu.findItem(R.id.circlebinder_menu_home_wish_me_luck);
-        contactItem.setActionProvider(
-                new TripActionProvider(getActivity(), ContactActivity.tripper(getActivity()))
-        );
-        MenuItem changeLogItem = menu.findItem(R.id.circlebinder_menu_home_change_log);
-        changeLogItem.setActionProvider(
-                new TripActionProvider(getActivity(), ChangeLogActivity.tripper(getActivity()))
-        );
-        MenuItem aboutForApplicationItem = menu.findItem(R.id.circlebinder_menu_home_about);
-        aboutForApplicationItem.setActionProvider(
-                new TripActionProvider(getActivity(), AboutActivity.tripper(getActivity()))
-        );
     }
 
     @Override

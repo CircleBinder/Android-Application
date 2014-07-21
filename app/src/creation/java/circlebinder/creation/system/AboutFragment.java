@@ -54,7 +54,6 @@ public final class AboutFragment extends BaseFragment implements Legacy {
                     case 0:
                         OpenSourceLicenseCreditFragment
                                 .tripper(getFragmentManager())
-                                .setLayoutId(R.id.activity_fragment_content)
                                 .trip();
                         break;
                     default:

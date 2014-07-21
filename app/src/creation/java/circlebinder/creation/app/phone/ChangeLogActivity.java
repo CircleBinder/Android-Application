@@ -32,12 +32,8 @@ public final class ChangeLogActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.circlebinder_activity_basic);
+        setContentView(R.layout.activity_change_log);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        FragmentTripper
-                .firstTrip(getFragmentManager(), ChangeLogFragment.factory())
-                .setLayoutId(R.id.activity_fragment_content)
-                .trip();
     }
 
     @Override

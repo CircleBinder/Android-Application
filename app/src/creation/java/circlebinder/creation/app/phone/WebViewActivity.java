@@ -38,14 +38,14 @@ public final class WebViewActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.circlebinder_activity_basic);
+        setContentView(R.layout.activity_web_view);
         url = BundleMerger.merge(getIntent(), savedInstanceState).getString(KEY_URL);
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
         WebViewFragment
                 .tripper(getFragmentManager(), url)
                 .setAddBackStack(false)
-                .setLayoutId(R.id.activity_fragment_content)
+                .setLayoutId(R.id.activity_web_view_container)
                 .trip();
     }
 

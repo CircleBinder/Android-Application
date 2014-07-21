@@ -5,12 +5,15 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context="circlebinder.creation.app.phone.DatabaseInitializeActivity"
     >
 
-    <ListView
-        android:id="@+id/circlebinder_fragment_about_list"
+    <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/circlebinder_list_item" />
+        android:name="circlebinder.creation.initialize.IInitializeFragment"
+        android:tag="@string/fragment_tag_data_initialize"
+        tools:layout="@layout/circlebinder_fragment_initialize"
+        />
 
 </LinearLayout>

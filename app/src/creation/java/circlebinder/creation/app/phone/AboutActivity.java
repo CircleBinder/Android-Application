@@ -33,12 +33,7 @@ public final class AboutActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        setContentView(R.layout.circlebinder_activity_basic);
-
-        FragmentTripper
-                .firstTrip(getFragmentManager(), AboutFragment.factory())
-                .setLayoutId(R.id.activity_fragment_content)
-                .trip();
+        setContentView(R.layout.activity_about);
     }
 
     @Override

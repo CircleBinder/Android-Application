@@ -61,11 +61,6 @@ android {
         }
     }
 
-    dexOptions {
-        incremental true
-        preDexLibraries true
-    }
-
     lintOptions {
         abortOnError true
     }
