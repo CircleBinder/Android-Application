@@ -49,7 +49,6 @@ public final class OpenSourceLicenseCreditFragment extends BaseFragment {
             e.printStackTrace();
         }
         adapter.add(new OpenSourceLicenseCredit("ActiveAndroid", "Michael Pardo", 2010, licenseBody));
-        adapter.add(new OpenSourceLicenseCredit("CircleBinder Common Library", "ichigotake", 2014, licenseBody));
         adapter.add(new OpenSourceLicenseCredit("ltsv4j", "making", 2013, licenseBody));
 
         ListView credits = (ListView)view.findViewById(

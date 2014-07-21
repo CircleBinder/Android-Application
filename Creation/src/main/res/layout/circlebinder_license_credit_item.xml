@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/CircleBinderCardItem"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:id="@+id/circlebinder_license_credit_item_name"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="@dimen/circlebinder_spacer_middle"
+        android:layout_marginRight="@dimen/circlebinder_spacer_middle"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/circlebinder_material_font_title"
+        tools:text="CircleBinder Common Library"
+        />
+
+    <TextView
+        android:id="@+id/circlebinder_license_credit_item_copyright"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="@dimen/circlebinder_spacer_middle"
+        android:layout_marginRight="@dimen/circlebinder_spacer_middle"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/circlebinder_material_font_subhead"
+        tools:text="©Copyright 2014 ichigotake"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/circlebinder_spacer_small"
+        android:layout_marginRight="@dimen/circlebinder_spacer_small"
+        android:background="@color/circlebinder_app_card_container_background"
+        />
+
+    <TextView
+        android:id="@+id/circlebinder_license_credit_item_license_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/circlebinder_spacer_middle"
+        android:autoLink="web"
+        tools:text="@string/license_cretit_body_apache_v2"
+        />
+
+</LinearLayout>

@@ -4,6 +4,3 @@
 [submodule "vendor/activeandroid"]
 	path = vendor/activeandroid
 	url = git@github.com:pardom/ActiveAndroid.git
-[submodule "vendor/Common"]
-	path = vendor/Common
-	url = git@github.com:CircleBinder/Android-CommonLibrary.git

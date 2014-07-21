@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/circlebinder_list_sub_header"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:paddingLeft="@dimen/circlebinder_material_list_key_line_container_padding_horizontal"
+    android:paddingRight="@dimen/circlebinder_material_list_key_line_container_padding_horizontal"
+    android:gravity="center_vertical"
+    android:background="@color/circlebinder_app_card_container_background"
+    android:clickable="true"
+    tools:text="あ"
+    />
+

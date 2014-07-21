@@ -188,4 +188,5 @@ public final class CircleDetailPagerActivity extends BaseActivity
             return cursor.getCount();
         }
     }
+
 }

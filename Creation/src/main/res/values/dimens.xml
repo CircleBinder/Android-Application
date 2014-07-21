@@ -1,4 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <dimen name="circlebinder_head_section_text_size">18sp</dimen>
+    <dimen name="circlebinder_head_section_padding_vertical">4dp</dimen>
+    <dimen name="circlebinder_head_section_padding_horizontal">8dp</dimen>
+    <dimen name="circlebinder_spacer_small">8dp</dimen>
+    <dimen name="circlebinder_spacer_middle">16dp</dimen>
+    <dimen name="circlebinder_spacer_large">24dp</dimen>
+    <dimen name="circlebinder_icon_border">1dp</dimen>
+
+    <!-- SEE ALSO: http://www.google.com/design/spec/style/typography.html -->
+    <dimen name="circlebinder_material_font_display4">112sp</dimen>
+    <dimen name="circlebinder_material_font_display3">56sp</dimen>
+    <dimen name="circlebinder_material_font_display2">45sp</dimen>
+    <dimen name="circlebinder_material_font_display1">34sp</dimen>
+    <dimen name="circlebinder_material_font_headline">24sp</dimen>
+    <dimen name="circlebinder_material_font_title">20sp</dimen>
+    <dimen name="circlebinder_material_font_subhead">16sp</dimen>
+    <dimen name="circlebinder_material_font_body">14sp</dimen>
+    <dimen name="circlebinder_material_font_caption">12sp</dimen>
+    <dimen name="circlebinder_material_font_menu">14sp</dimen>
+    <dimen name="circlebinder_material_font_button">14sp</dimen>
+
+    <!-- SEE ALSO: http://www.google.com/design/spec/components/lists.html#lists-keylines -->
+    <dimen name="circlebinder_material_list_key_line_container_padding_horizontal">16dp</dimen>
+    <dimen name="circlebinder_material_list_key_line_label_padding_horizontal">56dp</dimen>
+    <dimen name="circlebinder_material_list_item_height">48dp</dimen>
+    <dimen name="circlebinder_material_list_item_font_size">16sp</dimen>
+
 </resources>

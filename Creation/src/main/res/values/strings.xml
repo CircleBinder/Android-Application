@@ -19,6 +19,35 @@
     <string name="circlebinder_circle_search_keyword_hint">サークル名 or ペンネーム</string>
     <string name="circlebinder_checklist_empty">まだお気に入りサークルはありません</string>
 
+    <string name="circlebinder_common_all">全て</string>
+    <string name="circlebinder_circle_link">リンク</string>
+    <string name="circlebinder_circle_link_homepage">ホームページ</string>
+    <string name="circlebinder_circle_link_pixiv">pixiv</string>
+
+    <!-- その他・アプリ情報など(本筋の機能とは直接関係のないもの) -->
+    <string name="circlebinder_navigation_change_log">更新履歴</string>
+    <string name="circlebinder_navigation_about">このアプリについて</string>
+    <string name="circlebinder_navigation_wish_me_luck">応援する</string>
+    <string name="circlebinder_navigation_send_feedback">意見・感想を送る！</string>
+    <string name="circlebinder_navigation_send_feedback_with_mail">メールで意見を送る！</string>
+    <string name="circlebinder_navigation_contact_description">メールアプリからご意見,ご感想,不具合報告など、お気軽にお寄せください。
+今後のアップデートの参考にさせていただきます！</string>
+    <string name="circlebinder_twitter_official_account_label">公式アカウント</string>
+    <string name="circlebinder_twitter_official_account_screen_name">\@circlebinder</string>
+    <string name="circlebinder_twitter_official_account_url">https://twitter.com/circlebinder</string>
+    <string name="circlebinder_twitter_official_hash_tag_label">ハッシュタグ</string>
+    <string name="circlebinder_twitter_official_hash_tag_name">\#circlebinder</string>
+    <string name="circlebinder_twitter_official_hash_tag_url">https://twitter.com/search?q=%23circlebinder&amp;src=typd</string>
+    <string name="circlebinder_navigation_open_source_license">オープンソースライセンス</string>
+    <string-array name="circlebinder_navigation_contact_mail_addresses">
+        <item >circlebinder@gmail.com</item>
+    </string-array>
+    <string name="circlebinder_change_log_publish_date_format">%1$s バージョン%2$s</string>
+    <string name="circlebinder_contact_mail_subject">【ご意見・ご要望】%sに関して</string>
+    <string name="circlebinder_contact_mail_body"></string>
+
+    <string name="license_cretit_body_apache_v2">Apache License</string>
+
     <!-- Preference -->
     <string name="circlebinder_pref_app_storage">pref_app_storage</string>
     <string name="circlebinder_pref_app_storage_is_initialize">pref_app_storage_is_initialize</string>

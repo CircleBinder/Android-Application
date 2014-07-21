@@ -1,2 +1,2 @@
-include ':vendor:Common:Library', 'Creation'
+include 'Creation'
 include ':vendor:activeandroid'

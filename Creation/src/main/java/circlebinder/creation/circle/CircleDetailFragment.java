@@ -85,6 +85,7 @@ public final class CircleDetailFragment extends BaseFragment
         );
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -132,8 +133,8 @@ public final class CircleDetailFragment extends BaseFragment
         outState.putParcelable(KEY_CIRCLE, circle);
     }
 
-    public void updateChecklist(ChecklistColor checklistColor) {
-        checklistView.setBackgroundResource(circle.getChecklistColor().getDrawableResource());
+    private void updateChecklist(ChecklistColor checklistColor) {
+        checklistView.setBackgroundResource(checklistColor.getDrawableResource());
         CircleTable.setChecklist(circle, checklistColor);
         circle = new CircleBuilder(circle)
                 .setChecklistColor(checklistColor)
