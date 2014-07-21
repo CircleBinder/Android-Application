@@ -93,7 +93,8 @@ public final class ChecklistFragment extends BaseFragment {
         favoritesContainer.getViewHolder().getCircles().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CircleDetailPagerActivity.tripper(getActivity(), searchOptionBuilder.build(), position);
+                CircleDetailPagerActivity.tripper(getActivity(), searchOptionBuilder.build(), position)
+                        .trip();
             }
         });
 
