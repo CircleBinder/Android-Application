@@ -68,16 +68,8 @@ public final class CircleSearchFragment extends BaseFragment implements OnCircle
         searchContainer.getViewHolder().getCircles().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), CircleDetailPagerActivity.class);
-                Bundle args = new Bundle();
-                args.putParcelable(CircleDetailPagerActivity.EXTRA_KEY_SEARCH_OPTION, searchOptionBuilder.build());
-                args.putInt(CircleDetailPagerActivity.EXTRA_KEY_POSITION, position);
-                intent.putExtras(args);
-                getActivity().startActivityFromFragment(
-                        CircleSearchFragment.this,
-                        intent,
-                        CircleDetailPagerActivity.REQUEST_CODE_CALLBACK
-                );
+                CircleDetailPagerActivity.tripper(getActivity(), searchOptionBuilder.build(), position)
+                        .trip();
             }
         });
 
@@ -109,21 +101,6 @@ public final class CircleSearchFragment extends BaseFragment implements OnCircle
         }
         if (searchContainer != null) {
             searchContainer.reload(searchOptionBuilder.build());
-        }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        boolean doesPositionCallback = searchContainer != null
-                && requestCode == CircleDetailPagerActivity.REQUEST_CODE_CALLBACK;
-        if (doesPositionCallback
-                && data != null && data.hasExtra(CircleDetailPagerActivity.EXTRA_KEY_POSITION)) {
-            int callbackPosition = data.getIntExtra(CircleDetailPagerActivity.EXTRA_KEY_POSITION, -1);
-            if (callbackPosition >= 0) {
-                searchContainer.setPosition(callbackPosition);
-            }
-        } else {
-            super.onActivityResult(requestCode, resultCode, data);
         }
     }
 

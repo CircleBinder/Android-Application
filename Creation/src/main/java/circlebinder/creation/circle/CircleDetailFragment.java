@@ -98,16 +98,22 @@ public final class CircleDetailFragment extends BaseFragment
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        checklistView = getView().findViewById(R.id.circlebinder_circle_detail_checklist);
+        final ChecklistPopupSelector checklistSelector =
+                new ChecklistPopupSelector(getActivity(), checklistView);
+        checklistView.setBackgroundResource(circle.getChecklistColor().getDrawableResource());
+        checklistSelector.setOnItemClickListener(new OnItemClickEventListener<ChecklistColor>() {
+            @Override
+            public void onItemClick(ChecklistColor item) {
+                updateChecklist(item);
+                checklistSelector.dismiss();
+            }
+        });
         if (circle.getLinks().isEmpty()) {
             webContainer.load(circle);
         } else {
             webContainer.loadUrl(circle.getLinks().get(0));
         }
-
-        checklistView = getView().findViewById(R.id.circlebinder_circle_detail_checklist);
-        final ChecklistPopupSelector checklistSelector =
-                new ChecklistPopupSelector(getActivity(), checklistView);
-        checklistView.setBackgroundResource(circle.getChecklistColor().getDrawableResource());
         checklistView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,13 +122,6 @@ public final class CircleDetailFragment extends BaseFragment
                 } else {
                     checklistSelector.show();
                 }
-            }
-        });
-        checklistSelector.setOnItemClickListener(new OnItemClickEventListener<ChecklistColor>() {
-            @Override
-            public void onItemClick(ChecklistColor item) {
-                updateChecklist(item);
-                checklistSelector.dismiss();
             }
         });
     }

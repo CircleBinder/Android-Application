@@ -25,7 +25,6 @@
         android:textColor="#ffffff"
         android:textSize="26sp"
         android:background="@drawable/ic_checklist_blue"
-        android:clickable="true"
         tools:text="+"
         />
 
