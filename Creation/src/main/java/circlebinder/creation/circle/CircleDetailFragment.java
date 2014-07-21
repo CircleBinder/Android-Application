@@ -14,7 +14,7 @@ import net.ichigotake.common.app.ActionSendFilterActionProvider;
 import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.app.OnPageChangeListener;
 import net.ichigotake.common.app.WebBrowserTripper;
-import net.ichigotake.common.os.RestoreBundle;
+import net.ichigotake.common.os.BundleMerger;
 import net.ichigotake.common.widget.OnItemClickEventListener;
 
 import circlebinder.Legacy;
@@ -65,7 +65,7 @@ public final class CircleDetailFragment extends BaseFragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        circle = new RestoreBundle(this, savedInstanceState).getParcelable(KEY_CIRCLE);
+        circle = BundleMerger.merge(getArguments(), savedInstanceState).getParcelable(KEY_CIRCLE);
     }
 
     @Override

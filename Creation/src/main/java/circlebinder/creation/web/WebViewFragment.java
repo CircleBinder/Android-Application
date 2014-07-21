@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 
 import net.ichigotake.common.app.FragmentFactory;
-import net.ichigotake.common.os.RestoreBundle;
+import net.ichigotake.common.os.BundleMerger;
 
 import circlebinder.common.app.FragmentTripper;
 import circlebinder.common.circle.CircleWebContainer;
@@ -46,7 +46,7 @@ public final class WebViewFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String restoredUrl = new RestoreBundle(this, savedInstanceState).getString(KEY_URL);
+        String restoredUrl = BundleMerger.merge(getArguments(), savedInstanceState).getString(KEY_URL);
         url = (restoredUrl != null) ? restoredUrl : "https://google.co.jp";
     }
 

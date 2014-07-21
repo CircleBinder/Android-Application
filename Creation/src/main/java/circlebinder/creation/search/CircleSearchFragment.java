@@ -1,6 +1,5 @@
 package circlebinder.creation.search;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import net.ichigotake.common.app.FragmentFactory;
-import net.ichigotake.common.os.RestoreBundle;
+import net.ichigotake.common.os.BundleMerger;
 
 import circlebinder.common.search.CircleSearchOption;
 import circlebinder.common.search.CircleSearchOptionBuilder;
@@ -41,7 +40,7 @@ public final class CircleSearchFragment extends BaseFragment implements OnCircle
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        searchOptionBuilder = new RestoreBundle(this, savedInstanceState)
+        searchOptionBuilder = BundleMerger.merge(getArguments(), savedInstanceState)
                 .getParcelable(KEY_SEARCH_OPTION_BUILDER);
         if (searchOptionBuilder == null) {
             searchOptionBuilder = new CircleSearchOptionBuilder();

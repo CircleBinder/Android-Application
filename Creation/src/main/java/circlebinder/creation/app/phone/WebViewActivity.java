@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import net.ichigotake.common.app.ActivityFactory;
 import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.app.ActivityTripper;
-import net.ichigotake.common.os.RestoreBundle;
+import net.ichigotake.common.os.BundleMerger;
 
 import circlebinder.creation.BaseActivity;
 import circlebinder.creation.R;
@@ -39,7 +39,7 @@ public final class WebViewActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.circlebinder_activity_basic);
-        url = new RestoreBundle(getIntent(), savedInstanceState).getString(KEY_URL);
+        url = BundleMerger.merge(getIntent(), savedInstanceState).getString(KEY_URL);
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
         WebViewFragment

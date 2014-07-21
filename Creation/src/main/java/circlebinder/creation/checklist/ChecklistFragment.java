@@ -9,7 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import net.ichigotake.common.app.FragmentFactory;
-import net.ichigotake.common.os.RestoreBundle;
+import net.ichigotake.common.os.BundleMerger;
 
 import circlebinder.common.app.FragmentTripper;
 import circlebinder.common.checklist.ChecklistColor;
@@ -66,7 +66,7 @@ public final class ChecklistFragment extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        searchOptionBuilder = new RestoreBundle(this, savedInstanceState)
+        searchOptionBuilder = BundleMerger.merge(getArguments(), savedInstanceState)
                 .getParcelable(KEY_SEARCH_OPTION_BUILDER);
         if (searchOptionBuilder == null) {
             searchOptionBuilder = new CircleSearchOptionBuilder();

@@ -16,7 +16,7 @@ import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.FragmentPagerAdapter;
 import net.ichigotake.common.app.FragmentPagerItem;
-import net.ichigotake.common.os.RestoreBundle;
+import net.ichigotake.common.os.BundleMerger;
 
 import circlebinder.Legacy;
 import circlebinder.common.event.Circle;
@@ -78,9 +78,9 @@ public final class CircleDetailPagerActivity extends BaseActivity
 
         headerView = findViewById(R.id.circlebinder_activity_view_pager_header);
 
-        RestoreBundle restoreBundle = new RestoreBundle(getIntent(), savedInstanceState);
-        searchOption = restoreBundle.getParcelable(EXTRA_KEY_SEARCH_OPTION);
-        currentPosition = restoreBundle.getInt(EXTRA_KEY_POSITION);
+        Bundle bundle = BundleMerger.merge(getIntent(), savedInstanceState);
+        searchOption = bundle.getParcelable(EXTRA_KEY_SEARCH_OPTION);
+        currentPosition = bundle.getInt(EXTRA_KEY_POSITION);
 
         pager = (ViewPager) findViewById(R.id.circlebinder_activity_view_pager);
         pagerAdapter = new FragmentPagerAdapter(

@@ -14,7 +14,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import net.ichigotake.common.app.FragmentFactory;
-import net.ichigotake.common.os.RestoreBundle;
+import net.ichigotake.common.os.BundleMerger;
 import net.ichigotake.common.view.inputmethod.SoftInput;
 import net.ichigotake.common.widget.OnItemSelectedEventListener;
 
@@ -77,7 +77,7 @@ public final class CircleSearchOptionFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        searchOptionBuilder = new RestoreBundle(this, savedInstanceState)
+        searchOptionBuilder = BundleMerger.merge(getArguments(), savedInstanceState)
                 .getParcelable(KEY_SEARCH_OPTION_BUILDER);
         if (searchOptionBuilder == null) {
             searchOptionBuilder = new CircleSearchOptionBuilder();
