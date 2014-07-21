@@ -73,7 +73,6 @@ android {
 
 dependencies {
     compile fileTree(dir: 'src/libs/', include: '*.jar')
-    compile project(':vendor:activeandroid')
     compile 'com.android.support:support-v13:18.0.+'
     compile 'am.ik.ltsv4j:ltsv4j:0.9.0'
 }
