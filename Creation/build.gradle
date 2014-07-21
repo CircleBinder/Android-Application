@@ -46,7 +46,7 @@ android {
     }
 
     dexOptions {
-        incremental false
+        incremental true
         preDexLibraries true
     }
 
