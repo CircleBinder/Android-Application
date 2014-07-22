@@ -1,5 +1,6 @@
 package circlebinder.creation.app.phone;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,11 +11,14 @@ import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.app.ActivityTripper;
 
 import circlebinder.common.app.FragmentTripper;
+import circlebinder.common.search.CircleSearchOption;
 import circlebinder.creation.BaseActivity;
 import circlebinder.R;
+import circlebinder.creation.circle.OnCirclePageChangeListener;
 import circlebinder.creation.search.CircleSearchFragment;
+import circlebinder.creation.search.OnCircleSearchOptionListener;
 
-public final class CircleSearchActivity extends BaseActivity {
+public final class CircleSearchActivity extends BaseActivity implements OnCircleSearchOptionListener {
 
     public static ActivityTripper tripper(Context context) {
         return new ActivityTripper(context, new CircleSearchActivityFactory());
@@ -39,6 +43,14 @@ public final class CircleSearchActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         return ActivityNavigation.back(this, menuItem)
                 || super.onOptionsItemSelected(menuItem);
+    }
+
+    @Override
+    public void setSearchOption(CircleSearchOption searchOption) {
+        Fragment fragment = getFragmentManager().findFragmentById(R.id.activity_circle_search_container);
+        if (fragment != null && fragment.isResumed() && fragment instanceof OnCircleSearchOptionListener) {
+            ((OnCircleSearchOptionListener)fragment).setSearchOption(searchOption);
+        }
     }
 
 }

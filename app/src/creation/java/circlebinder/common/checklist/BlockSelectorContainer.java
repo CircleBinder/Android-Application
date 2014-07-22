@@ -36,7 +36,7 @@ public final class BlockSelectorContainer {
         } else if (block.getId() > 0) {
             position = (int)block.getId();
         } else {
-            position = 1;
+            position = 0;
         }
         selector.setSelection(position);
     }

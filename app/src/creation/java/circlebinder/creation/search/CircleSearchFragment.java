@@ -5,12 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 
 import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.os.BundleMerger;
 
+import circlebinder.common.event.BlockBuilder;
 import circlebinder.common.search.CircleSearchOption;
 import circlebinder.common.search.CircleSearchOptionBuilder;
 import circlebinder.creation.BaseFragment;
@@ -43,20 +43,14 @@ public final class CircleSearchFragment extends BaseFragment implements OnCircle
         searchOptionBuilder = BundleMerger.merge(getArguments(), savedInstanceState)
                 .getParcelable(KEY_SEARCH_OPTION_BUILDER);
         if (searchOptionBuilder == null) {
-            searchOptionBuilder = new CircleSearchOptionBuilder();
+            searchOptionBuilder = new CircleSearchOptionBuilder()
+                    .setBlock(new BlockBuilder().setName("全").setId(-1).build());
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.circlebinder_fragment_circle_search, parent, false);
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        ViewGroup view = (ViewGroup) getView();
+        ViewGroup view = (ViewGroup)inflater.inflate(R.layout.fragment_circle_search, parent, false);
         View emptyView = getActivity().getLayoutInflater()
                 .inflate(R.layout.circlebinder_fragment_checklist_empty, view, false);
         CircleSearchViewHolder viewHolder = new CircleSearchViewHolder(
@@ -71,36 +65,16 @@ public final class CircleSearchFragment extends BaseFragment implements OnCircle
                         .trip();
             }
         });
-
-        ImageView searchOptionView = (ImageView) view.findViewById(
-                R.id.circlebinder_fragment_circle_search_option
-        );
-        searchOptionView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CircleSearchOptionFragment.tripper(
-                        getFragmentManager(),
-                        CircleSearchFragment.this,
-                        searchOptionBuilder.build()
-                ).trip();
-            }
-        });
-        searchOptionView.setImageResource(R.drawable.ic_search_option);
+        return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        reload();
-    }
-
-    public void reload() {
         if (getActivity() != null && getActivity().getActionBar() != null) {
             getActivity().getActionBar().setTitle(R.string.circlebinder_search_circle);
         }
-        if (searchContainer != null) {
-            searchContainer.reload(searchOptionBuilder.build());
-        }
+        setSearchOption(searchOptionBuilder.build());
     }
 
     @Override
@@ -112,7 +86,9 @@ public final class CircleSearchFragment extends BaseFragment implements OnCircle
     @Override
     public void setSearchOption(CircleSearchOption searchOption) {
         searchOptionBuilder.set(searchOption);
-        reload();
+        if (searchContainer != null) {
+            searchContainer.reload(searchOptionBuilder.build());
+        }
     }
 
 }

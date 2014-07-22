@@ -1,9 +1,10 @@
 package circlebinder.creation.search;
 
-import android.app.Fragment;
+import android.app.Activity;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import net.ichigotake.common.os.BundleMerger;
 import net.ichigotake.common.view.inputmethod.SoftInput;
 import net.ichigotake.common.widget.OnItemSelectedEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -34,29 +36,25 @@ import circlebinder.creation.event.BlockTable;
 
 public final class CircleSearchOptionFragment extends BaseFragment {
 
-    private static final String KEY_FRAGMENT_TAG = CircleSearchOptionFragment.class.getName();
     private static final String KEY_SEARCH_OPTION_BUILDER = "search_option_builder";
 
     @SuppressWarnings("unchecked")
-    public static <T extends Fragment & OnCircleSearchOptionListener> FragmentTripper tripper(
+    public static FragmentTripper tripper(
             FragmentManager fragmentManager,
-            T callback,
             CircleSearchOption searchOption
     ) {
         return new FragmentTripper(
                 fragmentManager,
-                new CircleSearchOptionFragmentFactory(callback, searchOption)
-        ).setTag(KEY_FRAGMENT_TAG);
+                new CircleSearchOptionFragmentFactory(searchOption)
+        );
     }
 
-    private static class CircleSearchOptionFragmentFactory<T extends Fragment & OnCircleSearchOptionListener>
+    private static class CircleSearchOptionFragmentFactory
             implements FragmentFactory<CircleSearchOptionFragment> {
 
-        private final T callback;
         private final CircleSearchOption searchOption;
 
-        public CircleSearchOptionFragmentFactory(T callback, CircleSearchOption searchOption) {
-            this.callback = callback;
+        public CircleSearchOptionFragmentFactory(CircleSearchOption searchOption) {
             this.searchOption = searchOption;
         }
 
@@ -66,13 +64,13 @@ public final class CircleSearchOptionFragment extends BaseFragment {
             Bundle args = new Bundle();
             args.putParcelable(KEY_SEARCH_OPTION_BUILDER, new CircleSearchOptionBuilder(searchOption));
             fragment.setArguments(args);
-            fragment.setTargetFragment(callback, 0);
             return fragment;
         }
     }
 
     private CircleSearchOptionBuilder searchOptionBuilder;
     private EditText searchTextView;
+    private TextView searchOptionLabelView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -86,14 +84,7 @@ public final class CircleSearchOptionFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.circlebinder_fragment_circle_search_option, parent, false);
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        View view = getView();
+        View view = inflater.inflate(R.layout.circlebinder_fragment_circle_search_option, parent, false);
 
         List<Block> blocks = new CopyOnWriteArrayList<Block>();
         blocks.add(new BlockBuilder().setName("全").setId(-1).build());
@@ -132,8 +123,13 @@ public final class CircleSearchOptionFragment extends BaseFragment {
             }
         });
         searchTextView.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override public void afterTextChanged(Editable s) {}
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -148,23 +144,24 @@ public final class CircleSearchOptionFragment extends BaseFragment {
                 return false;
             }
         });
-
+        searchOptionLabelView = (TextView) view.findViewById(R.id.fragment_circle_search_option_label);
+        final View searchOptionContainer = view.findViewById(R.id.fragment_circle_search_option_container);
         view.findViewById(R.id.circlebinder_fragment_circle_search_option_cancel)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        dismiss();
+                        searchOptionLabelView.setVisibility(View.VISIBLE);
+                        searchOptionContainer.setVisibility(View.GONE);
                     }
-                });
-    }
-
-    private void dismiss() {
-        reloadTargetFragment(searchOptionBuilder.build());
-        SoftInput.hide(getView());
-        getFragmentManager().beginTransaction()
-                .remove(this)
-                .commit();
-        getFragmentManager().popBackStack();
+        });
+        searchOptionLabelView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchOptionLabelView.setVisibility(View.GONE);
+                searchOptionContainer.setVisibility(View.VISIBLE);
+            }
+        });
+        return view;
     }
 
     private void onEditTextFocused() {
@@ -182,8 +179,18 @@ public final class CircleSearchOptionFragment extends BaseFragment {
     }
 
     private void reloadTargetFragment(CircleSearchOption searchOption) {
-        Fragment targetFragment = getTargetFragment();
-        ((OnCircleSearchOptionListener)targetFragment).setSearchOption(searchOption);
+        Activity activity = getActivity();
+        if (activity != null) {
+            ((OnCircleSearchOptionListener) activity).setSearchOption(searchOption);
+        }
+        if (searchOptionLabelView != null) {
+            List<String> labels = new ArrayList<String>();
+            labels.add(searchOption.getBlock().getName() + " ブロック");
+            if (searchOption.hasKeyword()) {
+                labels.add("キーワード: " + searchOption.getKeyword());
+            }
+            searchOptionLabelView.setText(TextUtils.join(",", labels));
+        }
     }
 
 }

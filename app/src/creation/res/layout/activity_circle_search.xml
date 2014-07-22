@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="circlebinder.creation.app.phone.CircleSearchActivity"
     >
+
+    <fragment
+        android:id="@+id/activity_circle_search_option_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="circlebinder.creation.search.CircleSearchOptionFragment"
+        tools:layout="@layout/circlebinder_fragment_circle_search_option"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#aaaaaa"
+        />
+
 
     <fragment
         android:id="@+id/activity_circle_search_container"
@@ -15,4 +31,4 @@
         tools:layout="@layout/circlebinder_fragment_checklist_empty"
         />
 
-</RelativeLayout>
+</LinearLayout>

@@ -7,60 +7,77 @@
     android:orientation="vertical"
     >
 
-    <View
-        android:id="@+id/circlebinder_fragment_circle_search_overlay"
+    <TextView
+        android:id="@+id/fragment_circle_search_option_label"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:minHeight="40dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:drawableRight="@drawable/ic_action_light_expand"
+        android:drawablePadding="8dp"
+        android:background="@color/circlebinder_app_card_item_background"
         />
 
     <LinearLayout
+        android:id="@+id/fragment_circle_search_option_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_card_border"
-        android:layout_margin="@dimen/circlebinder_spacer_small"
-        android:padding="@dimen/circlebinder_spacer_small"
+        android:background="@color/circlebinder_app_card_item_background"
         android:orientation="vertical"
         android:clickable="true"
+        android:visibility="gone"
         >
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_height="40dp"
             >
+
+            <TextView
+                android:id="@+id/fragment_circle_search_option_selector_label"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="@dimen/circlebinder_spacer_small"
+                android:text="ブロック"
+                />
 
             <Spinner
                 android:id="@+id/circlebinder_fragment_circle_search_option_selector"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                />
-
-            <TextView
-                android:id="@+id/circlebinder_fragment_circle_search_option_cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/circlebinder_spacer_middle"
-                android:padding="@dimen/circlebinder_spacer_small"
-                android:text="@string/circlebinder_circle_search_window_close"
+                android:layout_marginLeft="@dimen/circlebinder_spacer_small"
+                android:layout_marginRight="@dimen/circlebinder_spacer_small"
+                android:layout_toRightOf="@+id/fragment_circle_search_option_selector_label"
                 />
 
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/circlebinder_fragment_circle_search_option_cancel"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/circlebinder_spacer_middle"
+                android:padding="@dimen/circlebinder_spacer_small"
+                android:src="@drawable/ic_action_light_collapse"
+                />
+
+        </RelativeLayout>
 
         <EditText
             android:id="@+id/circlebinder_fragment_circle_search_keyword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="8dp"
-            android:paddingTop="4dp"
-            android:paddingRight="8dp"
-            android:paddingBottom="4dp"
+            android:layout_marginLeft="@dimen/circlebinder_spacer_small"
+            android:layout_marginRight="@dimen/circlebinder_spacer_small"
             android:hint="@string/circlebinder_circle_search_keyword_hint"
             android:inputType="text"
             android:imeOptions="actionSearch"
             />
 
     </LinearLayout>
+
 
 </LinearLayout>
