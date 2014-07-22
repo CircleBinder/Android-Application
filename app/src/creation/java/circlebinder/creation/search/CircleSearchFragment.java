@@ -119,9 +119,6 @@ public final class CircleSearchFragment extends BaseFragment implements OnCircle
     @Override
     public void onResume() {
         super.onResume();
-        if (getActivity() != null && getActivity().getActionBar() != null) {
-            getActivity().getActionBar().setTitle(R.string.circlebinder_search_circle);
-        }
         setSearchOption(searchOptionBuilder.build());
     }
 

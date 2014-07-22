@@ -10,12 +10,9 @@ import net.ichigotake.common.app.ActivityFactory;
 import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.app.ActivityTripper;
 
-import circlebinder.common.app.FragmentTripper;
 import circlebinder.common.search.CircleSearchOption;
 import circlebinder.creation.BaseActivity;
 import circlebinder.R;
-import circlebinder.creation.circle.OnCirclePageChangeListener;
-import circlebinder.creation.search.CircleSearchFragment;
 import circlebinder.creation.search.OnCircleSearchOptionListener;
 
 public final class CircleSearchActivity extends BaseActivity implements OnCircleSearchOptionListener {
@@ -37,6 +34,7 @@ public final class CircleSearchActivity extends BaseActivity implements OnCircle
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_circle_search);
         getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setTitle(R.string.circlebinder_search_circle);
     }
 
     @Override

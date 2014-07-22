@@ -50,9 +50,10 @@ public final class ChecklistActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acticity_checklist);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
         checklistColor = (ChecklistColor) BundleMerger.merge(getIntent(), savedInstanceState)
                 .getSerializable(KEY_CHECKLIST_COLOR);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setTitle(checklistColor.getName());
         CircleSearchOption searchOption = new CircleSearchOptionBuilder()
                 .setChecklist(checklistColor).build();
         FragmentTripper.firstTrip(
