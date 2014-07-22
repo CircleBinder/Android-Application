@@ -6,7 +6,7 @@ import android.widget.FilterQueryProvider;
 import circlebinder.common.search.CircleSearchOption;
 import circlebinder.creation.event.CircleTable;
 
-final class CircleQueryProvider implements FilterQueryProvider {
+public final class CircleQueryProvider implements FilterQueryProvider {
 
     private final CircleSearchOption circleSearchOption;
 

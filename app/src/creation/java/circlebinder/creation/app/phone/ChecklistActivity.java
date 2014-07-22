@@ -12,9 +12,12 @@ import net.ichigotake.common.app.Tripper;
 import net.ichigotake.common.os.BundleMerger;
 
 import circlebinder.R;
+import circlebinder.common.app.FragmentTripper;
 import circlebinder.common.checklist.ChecklistColor;
+import circlebinder.common.search.CircleSearchOption;
+import circlebinder.common.search.CircleSearchOptionBuilder;
 import circlebinder.creation.BaseActivity;
-import circlebinder.creation.checklist.ChecklistFragment;
+import circlebinder.creation.search.CircleSearchFragment;
 
 public final class ChecklistActivity extends BaseActivity {
 
@@ -50,11 +53,14 @@ public final class ChecklistActivity extends BaseActivity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
         checklistColor = (ChecklistColor) BundleMerger.merge(getIntent(), savedInstanceState)
                 .getSerializable(KEY_CHECKLIST_COLOR);
-        ChecklistFragment
-                .tripper(getFragmentManager(), checklistColor)
-                .setLayoutId(R.id.activity_checklist_container)
-                .setAddBackStack(false)
-                .trip();
+        CircleSearchOption searchOption = new CircleSearchOptionBuilder()
+                .setChecklist(checklistColor).build();
+        FragmentTripper.firstTrip(
+                getFragmentManager(),
+                CircleSearchFragment.factory(searchOption)
+        )
+        .setLayoutId(R.id.activity_checklist_container)
+        .trip();
     }
 
     @Override

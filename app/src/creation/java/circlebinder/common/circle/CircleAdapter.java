@@ -14,14 +14,21 @@ import net.ichigotake.common.widget.SectionHeaderAdapter;
 import circlebinder.common.event.Circle;
 import circlebinder.R;
 
-public class CircleAdapter extends CursorAdapter<Circle, CircleViewHolder>
+public final class CircleAdapter extends CursorAdapter<Circle, CircleViewHolder>
         implements SectionHeaderAdapter {
 
     private final LayoutInflater inflater;
+    private final OnCircleItemClickListener onCircleItemClickListener;
 
-    public CircleAdapter(Context context, Cursor cursor, CursorItemConverter<Circle> converter) {
+    public CircleAdapter(
+            Context context,
+            Cursor cursor,
+            CursorItemConverter<Circle> converter,
+            OnCircleItemClickListener onCircleItemClickListener
+    ) {
         super(context, cursor, converter);
         this.inflater = LayoutInflater.from(context);
+        this.onCircleItemClickListener = onCircleItemClickListener;
     }
 
     @Override
@@ -35,10 +42,16 @@ public class CircleAdapter extends CursorAdapter<Circle, CircleViewHolder>
     }
 
     @Override
-    public void bindView(int position, Circle item, CircleViewHolder tag) {
+    public void bindView(final int position, final Circle item, final CircleViewHolder tag) {
         tag.getCircleName().setText(item.getName());
         tag.getPenName().setText(item.getPenName());
 
+        tag.getSpaceContainer().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onCircleItemClickListener.onSpaceClick(tag, position, item);
+            }
+        });
         tag.getSpace().setCompoundDrawablesWithIntrinsicBounds(
                 0,
                 item.getChecklistColor().getDrawableResource(),
@@ -64,5 +77,12 @@ public class CircleAdapter extends CursorAdapter<Circle, CircleViewHolder>
     @Override
     public long getHeaderId(int i) {
         return  getItem(i).getSpace().getBlockName().charAt(0);
+    }
+
+    /**
+     * TODO: {@link Cursor#requery} はDeprecated
+     */
+    public void reload() {
+        getCursor().requery();
     }
 }

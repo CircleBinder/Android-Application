@@ -13,6 +13,7 @@ public final class CircleViewHolder {
     private final TextView penName;
     private final TextView genre;
     private final TextView space;
+    private final View spaceContainer;
 
     public CircleViewHolder(View container) {
         this.container = container;
@@ -20,6 +21,7 @@ public final class CircleViewHolder {
         this.penName = (TextView)container.findViewById(R.id.checklist_item_pen_name);
         this.genre = (TextView)container.findViewById(R.id.checklist_item_genre);
         this.space = (TextView)container.findViewById(R.id.checklist_item_space);
+        this.spaceContainer = container.findViewById(R.id.checklist_item_space_container);
     }
 
     public View getContainer() {
@@ -40,6 +42,10 @@ public final class CircleViewHolder {
 
     public TextView getSpace() {
         return space;
+    }
+
+    public View getSpaceContainer() {
+        return spaceContainer;
     }
 
 }
