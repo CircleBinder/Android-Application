@@ -3,8 +3,10 @@ package circlebinder.creation.app.phone;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import net.ichigotake.common.app.ActivityFactory;
+import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.Tripper;
 import net.ichigotake.common.os.BundleMerger;
@@ -45,6 +47,7 @@ public final class ChecklistActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acticity_checklist);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         checklistColor = (ChecklistColor) BundleMerger.merge(getIntent(), savedInstanceState)
                 .getSerializable(KEY_CHECKLIST_COLOR);
         ChecklistFragment
@@ -52,6 +55,12 @@ public final class ChecklistActivity extends BaseActivity {
                 .setLayoutId(R.id.activity_checklist_container)
                 .setAddBackStack(false)
                 .trip();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        return ActivityNavigation.back(this, menuItem)
+                || super.onOptionsItemSelected(menuItem);
     }
 
     @Override
