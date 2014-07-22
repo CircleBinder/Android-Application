@@ -2,6 +2,7 @@ package circlebinder.common.search;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
 
 import circlebinder.common.checklist.ChecklistColor;
 import circlebinder.common.event.Block;
@@ -24,7 +25,7 @@ public class CircleSearchOption implements Parcelable {
     }
 
     public boolean hasKeyword() {
-        return keyword != null;
+        return !TextUtils.isEmpty(keyword);
     }
 
     public String getKeyword() {
