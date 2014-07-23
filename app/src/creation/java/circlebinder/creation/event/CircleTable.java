@@ -11,7 +11,7 @@ import com.activeandroid.query.Select;
 
 import net.ichigotake.common.database.ConditionQueryBuilder;
 
-import circlebinder.Legacy;
+import circlebinder.common.Legacy;
 import circlebinder.common.checklist.ChecklistColor;
 import circlebinder.common.event.Circle;
 import circlebinder.common.search.CircleOrder;

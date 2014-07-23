@@ -1,6 +1,6 @@
 package circlebinder.common.checklist;
 
-import circlebinder.Legacy;
+import circlebinder.common.Legacy;
 import circlebinder.R;
 
 //TODO: インターフェースをすっきりさせたい

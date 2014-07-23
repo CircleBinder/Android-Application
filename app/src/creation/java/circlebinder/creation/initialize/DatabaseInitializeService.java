@@ -8,7 +8,7 @@ import android.os.RemoteException;
 
 import net.ichigotake.common.os.RunnableAsyncTask;
 
-import circlebinder.Legacy;
+import circlebinder.common.Legacy;
 
 public final class DatabaseInitializeService extends Service implements Legacy {
 

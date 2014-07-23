@@ -13,7 +13,7 @@ import java.io.InputStreamReader;
 import java.util.Map;
 
 import am.ik.ltsv4j.LTSV;
-import circlebinder.Legacy;
+import circlebinder.common.Legacy;
 import circlebinder.common.event.CircleBuilder;
 import circlebinder.common.event.Space;
 import circlebinder.common.event.SpaceFactory;

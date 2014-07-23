@@ -18,7 +18,7 @@ import net.ichigotake.common.app.FragmentPagerAdapter;
 import net.ichigotake.common.app.FragmentPagerItem;
 import net.ichigotake.common.os.BundleMerger;
 
-import circlebinder.Legacy;
+import circlebinder.common.Legacy;
 import circlebinder.common.event.Circle;
 import circlebinder.common.search.CircleSearchOption;
 import circlebinder.creation.BaseActivity;

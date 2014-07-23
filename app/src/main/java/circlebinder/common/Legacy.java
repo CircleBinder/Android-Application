@@ -1,4 +1,4 @@
-package circlebinder;
+package circlebinder.common;
 
 public interface Legacy {
 }

@@ -3,7 +3,7 @@ package circlebinder.common.owner;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import circlebinder.Legacy;
+import circlebinder.common.Legacy;
 
 import java.util.UUID;
 

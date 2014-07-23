@@ -8,7 +8,7 @@ import com.activeandroid.query.Select;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import circlebinder.Legacy;
+import circlebinder.common.Legacy;
 import circlebinder.common.event.Block;
 import circlebinder.common.event.BlockBuilder;
 

@@ -11,7 +11,7 @@ import net.ichigotake.common.app.FragmentFactory;
 
 import java.io.IOException;
 
-import circlebinder.Legacy;
+import circlebinder.common.Legacy;
 import circlebinder.common.app.FragmentTripper;
 import circlebinder.creation.BaseFragment;
 import circlebinder.R;

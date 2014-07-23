@@ -10,7 +10,7 @@ import net.ichigotake.common.widget.CursorItemConverter;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import circlebinder.Legacy;
+import circlebinder.common.Legacy;
 import circlebinder.R;
 import circlebinder.common.checklist.ChecklistColor;
 import circlebinder.common.event.Block;

@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import net.ichigotake.common.app.ActivityFactory;
 import net.ichigotake.common.app.ActivityTripper;
 
-import circlebinder.Legacy;
+import circlebinder.common.Legacy;
 import circlebinder.creation.BaseActivity;
 import circlebinder.R;
 import circlebinder.creation.app.TripActionProvider;

@@ -3,7 +3,7 @@ package circlebinder.creation.circle;
 import android.view.View;
 import android.widget.TextView;
 
-import circlebinder.Legacy;
+import circlebinder.common.Legacy;
 import circlebinder.R;
 
 public final class CircleDetailViewHolder implements Legacy {

@@ -17,7 +17,7 @@ import net.ichigotake.common.app.WebBrowserTripper;
 import net.ichigotake.common.os.BundleMerger;
 import net.ichigotake.common.widget.OnItemClickEventListener;
 
-import circlebinder.Legacy;
+import circlebinder.common.Legacy;
 import circlebinder.common.checklist.ChecklistColor;
 import circlebinder.common.checklist.ChecklistPopupSelector;
 import circlebinder.common.circle.CircleWebContainer;

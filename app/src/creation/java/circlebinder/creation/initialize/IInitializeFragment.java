@@ -18,7 +18,7 @@ import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.app.OnClickToTrip;
 
-import circlebinder.Legacy;
+import circlebinder.common.Legacy;
 import circlebinder.common.app.FragmentTripper;
 import circlebinder.creation.BaseFragment;
 import circlebinder.R;
