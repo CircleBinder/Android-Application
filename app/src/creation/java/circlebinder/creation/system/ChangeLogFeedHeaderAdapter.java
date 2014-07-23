@@ -21,12 +21,12 @@ public final class ChangeLogFeedHeaderAdapter
 
     @Override
     protected SectionHeaderViewHolder generateHeaderTag(int position, ChangeLogFeed item, View convertView) {
-        return new SectionHeaderViewHolder((TextView) convertView.findViewById(R.id.circlebinder_list_sub_header));
+        return new SectionHeaderViewHolder((TextView) convertView.findViewById(R.id.common_section_sub_header));
     }
 
     @Override
     protected View generateHeaderView(int position, ChangeLogFeed changeLogFeed, LayoutInflater inflater, ViewGroup parent) {
-        return inflater.inflate(R.layout.circlebinder_list_sub_header, parent, false);
+        return inflater.inflate(R.layout.common_section_sub_header, parent, false);
     }
 
     @Override
@@ -42,7 +42,7 @@ public final class ChangeLogFeedHeaderAdapter
 
     @Override
     protected View generateView(int position, ChangeLogFeed item, LayoutInflater inflater, ViewGroup parent) {
-        return inflater.inflate(R.layout.circlebinder_list_item, parent, false);
+        return inflater.inflate(R.layout.common_list_item, parent, false);
     }
 
     @Override

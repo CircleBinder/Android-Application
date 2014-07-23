@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.List;
 
 import circlebinder.common.app.FragmentTripper;
-import circlebinder.creation.BaseFragment;
+import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
 
 public final class OpenSourceLicenseCreditFragment extends BaseFragment {
@@ -39,11 +39,11 @@ public final class OpenSourceLicenseCreditFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.circlebinder_fragment_open_source_license, parent, false);
+        View view = inflater.inflate(R.layout.fragment_open_source_license, parent, false);
         OpenSourceLicenseCreditAdapter adapter = new OpenSourceLicenseCreditAdapter(getActivity());
         String licenseBody = "";
         try {
-            List<String> lines = new RawResources(getResources()).getText(R.raw.license_apache_v2);
+            List<String> lines = new RawResources(getResources()).getText(R.raw.common_license_apache_v2);
             licenseBody = TextUtils.join("\n", lines);
         } catch (IOException e) {
             e.printStackTrace();
@@ -51,9 +51,7 @@ public final class OpenSourceLicenseCreditFragment extends BaseFragment {
         adapter.add(new OpenSourceLicenseCredit("ActiveAndroid", "Michael Pardo", 2010, licenseBody));
         adapter.add(new OpenSourceLicenseCredit("ltsv4j", "making", 2013, licenseBody));
 
-        ListView credits = (ListView)view.findViewById(
-                R.id.circlebinder_fragment_open_source_license_list
-        );
+        ListView credits = (ListView)view.findViewById(R.id.fragment_open_source_license_list);
         credits.setAdapter(adapter);
         return view;
     }
@@ -62,6 +60,6 @@ public final class OpenSourceLicenseCreditFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         getActivity().getActionBar().setTitle(
-                R.string.circlebinder_navigation_open_source_license);
+                R.string.common_open_source_license);
     }
 }

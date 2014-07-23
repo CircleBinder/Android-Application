@@ -15,21 +15,21 @@ public final class ChecklistItemViewHolder {
     private final List<TextView> circles;
 
     public ChecklistItemViewHolder(View convertView) {
-        labelBackground = convertView.findViewById(R.id.circlebinder_checklist_item_label_background);
-        labelName = (TextView) convertView.findViewById(R.id.circlebinder_checklist_item_label_name);
+        labelBackground = convertView.findViewById(R.id.checklist_item_label_background);
+        labelName = (TextView) convertView.findViewById(R.id.checklist_item_label_name);
         circles = new CopyOnWriteArrayList<TextView>();
-        int circleItemLabelId = R.id.circlebinder_checklist_item_circle_label;
+        int circleItemLabelId = R.id.checklist_item_circle_label;
         circles.add((TextView)
-                convertView.findViewById(R.id.circlebinder_checklist_item_circle_label1).findViewById(circleItemLabelId)
+                convertView.findViewById(R.id.checklist_item_circle_label1).findViewById(circleItemLabelId)
         );
         circles.add((TextView)
-                convertView.findViewById(R.id.circlebinder_checklist_item_circle_label2).findViewById(circleItemLabelId)
+                convertView.findViewById(R.id.checklist_item_circle_label2).findViewById(circleItemLabelId)
         );
         circles.add((TextView)
-                convertView.findViewById(R.id.circlebinder_checklist_item_circle_label3).findViewById(circleItemLabelId)
+                convertView.findViewById(R.id.checklist_item_circle_label3).findViewById(circleItemLabelId)
         );
         circles.add((TextView)
-                convertView.findViewById(R.id.circlebinder_checklist_item_circle_label4).findViewById(circleItemLabelId)
+                convertView.findViewById(R.id.checklist_item_circle_label4).findViewById(circleItemLabelId)
         );
     }
 

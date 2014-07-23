@@ -17,17 +17,17 @@ public final class AppStorage {
     public AppStorage(Context context) {
         this.context = context;
         this.pref = context.getSharedPreferences(
-                context.getString(R.string.circlebinder_pref_app_storage), Context.MODE_MULTI_PROCESS);
+                context.getString(R.string.app_pref_app_storage), Context.MODE_MULTI_PROCESS);
     }
 
     public boolean isInitialized() {
-        return pref.getBoolean(context.getString(R.string.circlebinder_pref_app_storage_is_initialize), false);
+        return pref.getBoolean(context.getString(R.string.app_pref_app_storage_is_initialize), false);
     }
 
     @SuppressLint("CommitPrefEdits")
     public void setInitialized(boolean complete) {
         pref.edit()
-                .putBoolean(context.getString(R.string.circlebinder_pref_app_storage_is_initialize), complete)
+                .putBoolean(context.getString(R.string.app_pref_app_storage_is_initialize), complete)
                 .apply();
     }
 }

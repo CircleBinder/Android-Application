@@ -13,7 +13,7 @@ import net.ichigotake.common.app.FragmentFactory;
 
 import circlebinder.common.Legacy;
 import circlebinder.common.app.FragmentTripper;
-import circlebinder.creation.BaseFragment;
+import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
 
 public final class AboutFragment extends BaseFragment implements Legacy {
@@ -37,14 +37,14 @@ public final class AboutFragment extends BaseFragment implements Legacy {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanseState) {
-        View view = inflater.inflate(R.layout.circlebinder_fragment_about, parent, false);
-        ListView menuView = (ListView)view.findViewById(R.id.circlebinder_fragment_about_list);
+        View view = inflater.inflate(R.layout.fragment_about, parent, false);
+        ListView menuView = (ListView)view.findViewById(R.id.fragment_about_list);
         menuView.setAdapter(new ArrayAdapter<String>(
                 getActivity(),
-                R.layout.circlebinder_list_item,
-                R.id.circlebinder_list_item,
+                R.layout.common_list_item,
+                R.id.common_list_item,
                 new String[]{
-                        getString(R.string.circlebinder_navigation_open_source_license),
+                        getString(R.string.common_open_source_license),
                 }
         ));
         menuView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -66,7 +66,7 @@ public final class AboutFragment extends BaseFragment implements Legacy {
     @Override
     public void onResume() {
         super.onResume();
-        getActivity().getActionBar().setTitle(R.string.circlebinder_navigation_about);
+        getActivity().getActionBar().setTitle(R.string.common_about);
     }
 
 }

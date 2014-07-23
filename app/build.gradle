@@ -105,7 +105,7 @@ android.applicationVariants.all { variant ->
                 message = buildMessage
             }
         }
-        task("uploadDeployGate${capitalize(flavor)}Release").dependsOn ':app:assembleRelease'
+        task("uploadDeployGate${capitalize(flavor)}Release").dependsOn ':app:assemble${capitalize(flavor)}Release'
     }
 }
 

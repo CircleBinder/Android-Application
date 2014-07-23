@@ -13,7 +13,7 @@ import java.io.IOException;
 
 import circlebinder.common.Legacy;
 import circlebinder.common.app.FragmentTripper;
-import circlebinder.creation.BaseFragment;
+import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
 
 public final class ChangeLogFragment extends BaseFragment implements Legacy {
@@ -37,10 +37,8 @@ public final class ChangeLogFragment extends BaseFragment implements Legacy {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.circlebinder_fragment_changelog, parent, false);
-        ListView changeLogsView = (ListView)view.findViewById(
-                R.id.circlebinder_fragment_changelog_list
-        );
+        View view = inflater.inflate(R.layout.fragment_change_log, parent, false);
+        ListView changeLogsView = (ListView)view.findViewById(R.id.fragment_change_log_list);
         ChangeLogFeedHeaderAdapter adapter = new ChangeLogFeedHeaderAdapter(getActivity());
         try {
             adapter.addAll(new ChangeLogLoader(getActivity()).load());
@@ -51,12 +49,5 @@ public final class ChangeLogFragment extends BaseFragment implements Legacy {
 
         return view;
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        getActivity().getActionBar().setTitle(R.string.circlebinder_navigation_change_log);
-    }
-
 
 }

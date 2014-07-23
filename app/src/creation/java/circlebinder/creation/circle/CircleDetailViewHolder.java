@@ -12,8 +12,8 @@ public final class CircleDetailViewHolder implements Legacy {
     private final TextView name;
 
     public CircleDetailViewHolder(View view) {
-        space = (TextView)view.findViewById(R.id.circlebinder_actionbar_circle_detail_space);
-        name = (TextView)view.findViewById(R.id.circlebinder_actionbar_circle_detail_name);
+        space = (TextView)view.findViewById(R.id.circle_detail_header_space);
+        name = (TextView)view.findViewById(R.id.circle_detail_header_name);
     }
 
     public TextView getSpace() {

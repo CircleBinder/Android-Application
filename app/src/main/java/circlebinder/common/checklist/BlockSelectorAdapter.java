@@ -23,7 +23,7 @@ public final class BlockSelectorAdapter extends ArrayAdapter<Block, SelectorView
 
     @Override
     public View generateView(int position, Block item, LayoutInflater inflater, ViewGroup parent) {
-        return inflater.inflate(R.layout.circlebinder_spinner_dropdown_item, parent, false);
+        return inflater.inflate(R.layout.common_spinner_dropdown_item, parent, false);
     }
 
     @Override

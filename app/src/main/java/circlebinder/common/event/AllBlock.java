@@ -10,7 +10,7 @@ public final class AllBlock extends Block {
         super(
                 new BlockBuilder()
                         .setId(-1)
-                        .setName(context.getString(R.string.circlebinder_common_all))
+                        .setName(context.getString(R.string.common_all))
         );
     }
 }

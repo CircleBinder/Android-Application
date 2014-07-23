@@ -30,7 +30,7 @@ import circlebinder.common.event.Block;
 import circlebinder.common.event.BlockBuilder;
 import circlebinder.common.search.CircleSearchOption;
 import circlebinder.common.search.CircleSearchOptionBuilder;
-import circlebinder.creation.BaseFragment;
+import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
 import circlebinder.creation.event.BlockTable;
 
@@ -84,13 +84,13 @@ public final class CircleSearchOptionFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.circlebinder_fragment_circle_search_option, parent, false);
+        View view = inflater.inflate(R.layout.fragment_circle_search_option, parent, false);
 
         List<Block> blocks = new CopyOnWriteArrayList<Block>();
         blocks.add(new BlockBuilder().setName("全").setId(-1).build());
         blocks.addAll(BlockTable.get());
         BlockSelectorContainer selectorContainer = new BlockSelectorContainer(
-                (Spinner)view.findViewById(R.id.circlebinder_fragment_circle_search_option_selector),
+                (Spinner)view.findViewById(R.id.fragment_circle_search_option_block_selector),
                 blocks
         );
         selectorContainer.setSelection(new AllBlock(getActivity()));
@@ -109,7 +109,7 @@ public final class CircleSearchOptionFragment extends BaseFragment {
         selectorContainer.setSelection(searchOptionBuilder.build().getBlock());
 
         searchTextView = (EditText)view.findViewById(
-                R.id.circlebinder_fragment_circle_search_keyword
+                R.id.fragment_circle_search_option_keyword
         );
         searchTextView.setText(searchOptionBuilder.build().getKeyword());
         searchTextView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -147,7 +147,7 @@ public final class CircleSearchOptionFragment extends BaseFragment {
         searchOptionLabelView = (TextView) view.findViewById(R.id.fragment_circle_search_option_label);
         final View searchOptionLabelContainer = view.findViewById(R.id.fragment_circle_search_option_label_container);
         final View searchOptionContainer = view.findViewById(R.id.fragment_circle_search_option_container);
-        view.findViewById(R.id.circlebinder_fragment_circle_search_option_cancel)
+        view.findViewById(R.id.fragment_circle_search_option_collapse)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

@@ -5,17 +5,17 @@ import circlebinder.R;
 
 //TODO: インターフェースをすっきりさせたい
 public enum ChecklistColor implements Legacy {
-    ALL(-1, R.drawable.ic_checklist_none, "全て", R.color.circlebinder_checklist_none),
-    NONE(0, R.drawable.ic_checklist_none, "お気に入りからはずす", R.color.circlebinder_checklist_none),
-    ORANGE(1, R.drawable.ic_checklist_orange, "お気に入り", R.color.circlebinder_checklist_orange),
-    PINK(2, R.drawable.ic_checklist_pink, "お気に入り", R.color.circlebinder_checklist_pink),
-    YELLOW(3, R.drawable.ic_checklist_yellow, "お気に入り", R.color.circlebinder_checklist_yellow),
-    GREEN(4, R.drawable.ic_checklist_green, "お気に入り", R.color.circlebinder_checklist_green),
-    LIGHT_BLUE(5, R.drawable.ic_checklist_light_blue, "お気に入り", R.color.circlebinder_checklist_light_blue),
-    PURPLE(6, R.drawable.ic_checklist_purple, "お気に入り", R.color.circlebinder_checklist_purple),
-    BLUE(7, R.drawable.ic_checklist_blue, "お気に入り", R.color.circlebinder_checklist_blue),
-    LIGHT_GREEN(8, R.drawable.ic_checklist_light_green, "お気に入り", R.color.circlebinder_checklist_light_green),
-    RED(9, R.drawable.ic_checklist_red, "お気に入り", R.color.circlebinder_checklist_red),
+    ALL(-1, R.drawable.ic_checklist_none, "全て", R.color.common_checklist_none),
+    NONE(0, R.drawable.ic_checklist_none, "お気に入りからはずす", R.color.common_checklist_none),
+    ORANGE(1, R.drawable.ic_checklist_orange, "お気に入り", R.color.common_checklist_orange),
+    PINK(2, R.drawable.ic_checklist_pink, "お気に入り", R.color.common_checklist_pink),
+    YELLOW(3, R.drawable.ic_checklist_yellow, "お気に入り", R.color.common_checklist_yellow),
+    GREEN(4, R.drawable.ic_checklist_green, "お気に入り", R.color.common_checklist_green),
+    LIGHT_BLUE(5, R.drawable.ic_checklist_light_blue, "お気に入り", R.color.common_checklist_light_blue),
+    PURPLE(6, R.drawable.ic_checklist_purple, "お気に入り", R.color.common_checklist_purple),
+    BLUE(7, R.drawable.ic_checklist_blue, "お気に入り", R.color.common_checklist_blue),
+    LIGHT_GREEN(8, R.drawable.ic_checklist_light_green, "お気に入り", R.color.common_checklist_light_green),
+    RED(9, R.drawable.ic_checklist_red, "お気に入り", R.color.common_checklist_red),
     ;
 
     final private int mId;

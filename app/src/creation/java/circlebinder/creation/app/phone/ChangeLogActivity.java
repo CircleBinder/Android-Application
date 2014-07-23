@@ -9,10 +9,8 @@ import net.ichigotake.common.app.ActivityFactory;
 import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.app.ActivityTripper;
 
-import circlebinder.common.app.FragmentTripper;
-import circlebinder.creation.BaseActivity;
+import circlebinder.creation.app.BaseActivity;
 import circlebinder.R;
-import circlebinder.creation.system.ChangeLogFragment;
 
 public final class ChangeLogActivity extends BaseActivity {
 

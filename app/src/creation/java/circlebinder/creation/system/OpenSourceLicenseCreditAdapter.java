@@ -18,7 +18,7 @@ public final class OpenSourceLicenseCreditAdapter
 
     @Override
     protected View generateView(int position, OpenSourceLicenseCredit item, LayoutInflater inflater, ViewGroup parent) {
-        return inflater.inflate(R.layout.circlebinder_license_credit_item, parent, false);
+        return inflater.inflate(R.layout.common_license_credit_item, parent, false);
     }
 
     @Override

@@ -20,7 +20,7 @@ import circlebinder.common.event.BlockBuilder;
 import circlebinder.common.event.Circle;
 import circlebinder.common.search.CircleSearchOption;
 import circlebinder.common.search.CircleSearchOptionBuilder;
-import circlebinder.creation.BaseFragment;
+import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
 import circlebinder.creation.app.phone.CircleDetailPagerActivity;
 import circlebinder.creation.event.CircleTable;
@@ -71,7 +71,7 @@ public final class CircleSearchFragment extends BaseFragment implements OnCircle
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         ViewGroup view = (ViewGroup)inflater.inflate(R.layout.fragment_circle_search, parent, false);
         View emptyView = getActivity().getLayoutInflater()
-                .inflate(R.layout.circlebinder_fragment_checklist_empty, view, false);
+                .inflate(R.layout.fragment_checklist_empty, view, false);
         CircleSearchViewHolder viewHolder = new CircleSearchViewHolder(
                 (ListView)view.findViewById(R.id.fragment_circle_search_list)
         );

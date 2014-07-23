@@ -22,16 +22,16 @@ public final class ContactTripper implements Tripper {
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.putExtra(
                 Intent.EXTRA_EMAIL,
-                context.getResources().getStringArray(R.array.circlebinder_navigation_contact_mail_addresses)
+                context.getResources().getStringArray(R.array.common_contact_mail_addresses)
         );
 
         intent.putExtra(
                 Intent.EXTRA_SUBJECT,
-                context.getString(R.string.circlebinder_contact_mail_subject, appName)
+                context.getString(R.string.common_contact_mail_subject, appName)
         );
         intent.putExtra(
                 Intent.EXTRA_TEXT,
-                context.getString(R.string.circlebinder_contact_mail_body)
+                context.getString(R.string.common_contact_mail_body)
         );
         intent.setType("message/rfc822");
         context.startActivity(intent);

@@ -10,7 +10,7 @@ import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.os.BundleMerger;
 
-import circlebinder.creation.BaseActivity;
+import circlebinder.creation.app.BaseActivity;
 import circlebinder.R;
 import circlebinder.creation.web.WebViewFragment;
 

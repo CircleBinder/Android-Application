@@ -21,7 +21,7 @@ import net.ichigotake.common.os.BundleMerger;
 import circlebinder.common.Legacy;
 import circlebinder.common.event.Circle;
 import circlebinder.common.search.CircleSearchOption;
-import circlebinder.creation.BaseActivity;
+import circlebinder.creation.app.BaseActivity;
 import circlebinder.R;
 import circlebinder.creation.circle.CircleDetailFragment;
 import circlebinder.creation.circle.CircleDetailViewHolder;
@@ -74,34 +74,34 @@ public final class CircleDetailPagerActivity extends BaseActivity
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        setContentView(R.layout.circlebinder_activity_view_pager);
+        setContentView(R.layout.activity_circle_detail_pager);
 
-        headerView = findViewById(R.id.circlebinder_activity_view_pager_header);
+        headerView = findViewById(R.id.activity_circle_detail_pager_header);
 
         Bundle bundle = BundleMerger.merge(getIntent(), savedInstanceState);
         searchOption = bundle.getParcelable(EXTRA_KEY_SEARCH_OPTION);
         currentPosition = bundle.getInt(EXTRA_KEY_POSITION);
 
-        pager = (ViewPager) findViewById(R.id.circlebinder_activity_view_pager);
+        pager = (ViewPager) findViewById(R.id.activity_circle_detail_pager);
         pagerAdapter = new FragmentPagerAdapter(
                 getFragmentManager(),
                 new CircleDetailPagerItem(searchOption)
         );
         pager.setAdapter(pagerAdapter);
         pager.setPageMargin(getResources().getDimensionPixelSize(
-                R.dimen.circlebinder_spacer_small
+                R.dimen.common_spacer_x_small
         ));
         pager.setPageMarginDrawable(new ColorDrawable(
-                getResources().getColor(R.color.circlebinder_app_card_container_background)
+                getResources().getColor(R.color.common_card_container_background)
         ));
-        final View forwardView = findViewById(R.id.circlebinder_activity_view_pager_forward);
+        final View forwardView = findViewById(R.id.activity_circle_detail_pager_forward);
         forwardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pager.setCurrentItem(currentPosition+1);
             }
         });
-        final View backView = findViewById(R.id.circlebinder_activity_view_pager_back);
+        final View backView = findViewById(R.id.activity_circle_detail_pager_back);
         backView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

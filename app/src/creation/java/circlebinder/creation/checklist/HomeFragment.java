@@ -20,7 +20,7 @@ import circlebinder.common.app.FragmentTripper;
 import circlebinder.common.checklist.ChecklistColor;
 import circlebinder.common.event.Circle;
 import circlebinder.common.search.CircleSearchOptionBuilder;
-import circlebinder.creation.BaseFragment;
+import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
 import circlebinder.creation.app.phone.ChecklistActivity;
 import circlebinder.creation.app.phone.CircleSearchActivity;
@@ -56,7 +56,7 @@ public final class HomeFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.circlebinder_fragment_checklist, parent, false);
+        return inflater.inflate(R.layout.fragment_checklist_list, parent, false);
     }
 
     @Override
@@ -64,7 +64,7 @@ public final class HomeFragment extends BaseFragment {
         super.onResume();
         ChecklistAdapter adapter = new ChecklistAdapter(getActivity());
         adapter.addAll(getChecklist());
-        GridView checklistsView = (GridView) getView().findViewById(R.id.circlebinder_fragment_checklist_list);
+        GridView checklistsView = (GridView) getView().findViewById(R.id.fragment_checklist_list);
         checklistsView.setAdapter(adapter);
         OnItemClickListener<Checklist> listener = new OnItemClickListener<Checklist>();
         listener.addOnItemClickEventListener(new OnItemClickEventListener<Checklist>() {

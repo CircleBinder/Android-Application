@@ -23,7 +23,7 @@ import circlebinder.common.checklist.ChecklistPopupSelector;
 import circlebinder.common.circle.CircleWebContainer;
 import circlebinder.common.event.Circle;
 import circlebinder.common.event.CircleBuilder;
-import circlebinder.creation.BaseFragment;
+import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
 import circlebinder.creation.event.CircleTable;
 
@@ -70,8 +70,8 @@ public final class CircleDetailFragment extends BaseFragment
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.circlebinder_circle_detail, parent, false);
-        WebView webView = (WebView)view.findViewById(R.id.circlebinder_circle_detail_web_preview);
+        View view = inflater.inflate(R.layout.circle_detail, parent, false);
+        WebView webView = (WebView)view.findViewById(R.id.circle_detail_web_view);
         webContainer = new CircleWebContainer(webView);
         return view;
     }
@@ -79,7 +79,7 @@ public final class CircleDetailFragment extends BaseFragment
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.circle_web, menu);
-        MenuItem shareItem = menu.findItem(R.id.circlebinder_menu_circle_web_share);
+        MenuItem shareItem = menu.findItem(R.id.menu_circle_web_share);
         shareItem.setActionProvider(
                 new ActionSendFilterActionProvider(getActivity(), webContainer.getCurrentUrl())
         );
@@ -89,7 +89,7 @@ public final class CircleDetailFragment extends BaseFragment
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.circlebinder_menu_circle_web_open_browser:
+            case R.id.menu_circle_web_open_browser:
                 new WebBrowserTripper(getActivity(), Uri.parse(webContainer.getCurrentUrl())).trip();
                 return true;
         }
@@ -99,7 +99,7 @@ public final class CircleDetailFragment extends BaseFragment
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        checklistView = getView().findViewById(R.id.circlebinder_circle_detail_checklist);
+        checklistView = getView().findViewById(R.id.circle_detail_checklist);
         final ChecklistPopupSelector checklistSelector =
                 new ChecklistPopupSelector(getActivity(), checklistView);
         checklistView.setBackgroundResource(circle.getChecklistColor().getDrawableResource());

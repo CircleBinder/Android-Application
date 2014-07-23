@@ -38,7 +38,7 @@ public final class CircleAdapter extends CursorAdapter<Circle, CircleViewHolder>
 
     @Override
     public View generateView(int position, Circle item, LayoutInflater inflater, ViewGroup parent) {
-        return inflater.inflate(R.layout.circlebinder_circle_list_item, parent, false);
+        return inflater.inflate(R.layout.common_circle_list_item, parent, false);
     }
 
     @Override
@@ -67,8 +67,8 @@ public final class CircleAdapter extends CursorAdapter<Circle, CircleViewHolder>
 
     @Override
     public View getHeaderView(int i, View view, ViewGroup viewGroup) {
-        View headerView = inflater.inflate(R.layout.circlebinder_list_sub_header, viewGroup, false);
-        TextView subHeaderView = (TextView) headerView.findViewById(R.id.circlebinder_list_sub_header);
+        View headerView = inflater.inflate(R.layout.common_section_sub_header, viewGroup, false);
+        TextView subHeaderView = (TextView) headerView.findViewById(R.id.common_section_sub_header);
         Circle circle = getItem(i);
         subHeaderView.setText(circle.getSpace().getBlockName());
         return headerView;

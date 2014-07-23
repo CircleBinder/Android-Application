@@ -12,8 +12,8 @@ public final class SelectorViewHolder {
     private final ImageView icon;
 
     public SelectorViewHolder(View convertView) {
-        name = (TextView)convertView.findViewById(R.id.circlebinder_spinner_dropdown_item_name);
-        icon = (ImageView)convertView.findViewById(R.id.circlebinder_spinner_dropdown_item_icon);
+        name = (TextView)convertView.findViewById(R.id.common_spinner_dropdown_item_name);
+        icon = (ImageView)convertView.findViewById(R.id.common_spinner_dropdown_item_icon);
     }
 
     public TextView getName() {

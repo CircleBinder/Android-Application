@@ -23,7 +23,7 @@ final class ChecklistSelectorAdapter extends ArrayAdapter<ChecklistColor, Select
 
     @Override
     public View generateView(int position, ChecklistColor item, LayoutInflater inflater, ViewGroup parent) {
-        return inflater.inflate(R.layout.circlebinder_spinner_dropdown_item, parent, false);
+        return inflater.inflate(R.layout.common_spinner_dropdown_item, parent, false);
     }
 
     @Override

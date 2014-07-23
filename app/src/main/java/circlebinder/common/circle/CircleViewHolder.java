@@ -17,11 +17,11 @@ public final class CircleViewHolder {
 
     public CircleViewHolder(View container) {
         this.container = container;
-        this.circleName = (TextView)container.findViewById(R.id.checklist_item_circle_name);
-        this.penName = (TextView)container.findViewById(R.id.checklist_item_pen_name);
-        this.genre = (TextView)container.findViewById(R.id.checklist_item_genre);
-        this.space = (TextView)container.findViewById(R.id.checklist_item_space);
-        this.spaceContainer = container.findViewById(R.id.checklist_item_space_container);
+        this.circleName = (TextView)container.findViewById(R.id.common_circle_list_item_name);
+        this.penName = (TextView)container.findViewById(R.id.common_circle_list_item_pen_name);
+        this.genre = (TextView)container.findViewById(R.id.common_circle_list_item_genre);
+        this.space = (TextView)container.findViewById(R.id.common_circle_list_item_space);
+        this.spaceContainer = container.findViewById(R.id.common_circle_list_item_space_container);
     }
 
     public View getContainer() {

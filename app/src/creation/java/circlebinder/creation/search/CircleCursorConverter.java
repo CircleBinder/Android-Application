@@ -22,7 +22,7 @@ import circlebinder.common.event.CircleLinkType;
 import circlebinder.common.event.CircleLinks;
 import circlebinder.common.event.GenreBuilder;
 import circlebinder.common.event.SpaceBuilder;
-import circlebinder.creation.BaseApplication;
+import circlebinder.creation.app.BaseApplication;
 import circlebinder.creation.event.BlockTable;
 import circlebinder.creation.event.CircleTable;
 

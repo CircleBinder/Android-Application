@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/AppChecklistList"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="circlebinder.creation.checklist.HomeFragment"
+    >
+
+    <TextView
+        android:id="@+id/fragment_checklist_header_container"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:paddingLeft="@dimen/common_baseline_padding"
+        android:paddingRight="@dimen/common_baseline_padding"
+        android:background="@color/app_theme_base"
+        android:text="@string/app_event_name"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/common_font_title"
+        android:gravity="center_vertical"
+        />
+
+    <GridView
+        style="@style/CommonCardList"
+        android:id="@+id/fragment_checklist_list"
+        android:layout_below="@+id/fragment_checklist_header_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/common_spacer_x_small"
+        android:paddingRight="@dimen/common_spacer_x_small"
+        android:numColumns="2"
+        android:horizontalSpacing="8dp"
+        android:verticalSpacing="8dp"
+        tools:listitem="@layout/common_circle_list_item"
+        />
+
+    <ImageView
+        android:id="@+id/fragment_checklist_header_label"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="24dp"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/ic_action_search"
+        android:background="@drawable/ic_checklist_none"
+        android:contentDescription="@string/common_circle_search"
+        />
+
+</RelativeLayout>

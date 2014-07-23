@@ -12,7 +12,7 @@ import android.os.RemoteException;
 import net.ichigotake.common.app.ActivityFactory;
 import net.ichigotake.common.app.ActivityTripper;
 
-import circlebinder.creation.BaseActivity;
+import circlebinder.creation.app.BaseActivity;
 import circlebinder.R;
 import circlebinder.creation.initialize.DatabaseInitializeService;
 import circlebinder.creation.initialize.IInitializeBindService;
@@ -71,7 +71,7 @@ public final class DatabaseInitializeActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_data_initialize);
+        setContentView(R.layout.activity_database_initialize);
         serviceBind = true;
         bindService(new Intent(this, DatabaseInitializeService.class), serviceConnection, 0);
     }

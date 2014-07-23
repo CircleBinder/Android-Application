@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/common_section_sub_header"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:paddingLeft="@dimen/common_baseline_padding"
+    android:paddingRight="@dimen/common_baseline_padding"
+    android:gravity="center_vertical"
+    android:background="@color/common_card_container_background"
+    android:clickable="true"
+    tools:text="あ"
+    />
+

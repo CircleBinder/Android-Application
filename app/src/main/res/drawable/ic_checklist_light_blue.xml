@@ -8,11 +8,11 @@
         android:height="24dp"/>
 
     <solid
-        android:color="@color/circlebinder_checklist_light_blue" />
+        android:color="@color/common_checklist_light_blue" />
 
     <stroke
-        android:color="@color/circlebinder_icon_border"
-        android:width="@dimen/circlebinder_icon_border"
+        android:color="@color/common_icon_border"
+        android:width="@dimen/common_divider_height"
         />
 
 </shape>

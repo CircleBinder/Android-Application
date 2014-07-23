@@ -12,7 +12,7 @@ import net.ichigotake.common.os.BundleMerger;
 
 import circlebinder.common.app.FragmentTripper;
 import circlebinder.common.circle.CircleWebContainer;
-import circlebinder.creation.BaseFragment;
+import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
 
 public final class WebViewFragment extends BaseFragment {
@@ -52,22 +52,16 @@ public final class WebViewFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.circlebinder_fragment_circle_web, parent, false);
+        return inflater.inflate(R.layout.fragment_web_view, parent, false);
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         container = new CircleWebContainer(
-                (WebView)getView().findViewById(R.id.circlebinder_fragment_circle_web)
+                (WebView)getView().findViewById(R.id.fragment_web_view)
         );
         container.loadUrl(url);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        getActivity().getActionBar().setTitle(R.string.circlebinder_event_name);
     }
 
     @Override

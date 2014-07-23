@@ -18,7 +18,7 @@ import net.ichigotake.common.app.OnClickToTrip;
 import circlebinder.common.Legacy;
 import circlebinder.common.app.ContactTripper;
 import circlebinder.common.app.FragmentTripper;
-import circlebinder.creation.BaseFragment;
+import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
 
 public final class ContactFragment extends BaseFragment implements Legacy {
@@ -48,7 +48,7 @@ public final class ContactFragment extends BaseFragment implements Legacy {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.circlebinder_fragment_contact, parent, false);
+        return inflater.inflate(R.layout.fragment_contact, parent, false);
     }
 
     @Override
@@ -56,17 +56,17 @@ public final class ContactFragment extends BaseFragment implements Legacy {
         super.onActivityCreated(savedInstanceState);
         View view = getView();
 
-        view.findViewById(R.id.circlebinder_fragment_contact_send).setOnClickListener(
+        view.findViewById(R.id.fragment_contact_send).setOnClickListener(
                 new OnClickToTrip(new ContactTripper(getActivity(), getString(R.string.app_name)))
         );
 
         TextView twitterHashTagView = (TextView) view.findViewById(
-                R.id.circlebinder_twitter_official_hash_tag_name
+                R.id.twitter_official_hash_tag_name
         );
-        String twitterHashTagUrl = getString(R.string.circlebinder_twitter_official_hash_tag_url);
+        String twitterHashTagUrl = getString(R.string.common_twitter_official_hash_tag_url);
         twitterHashTagView.setText(Html.fromHtml(
                 "<a href=\"" + twitterHashTagUrl + "\">" +
-                        getString(R.string.circlebinder_twitter_official_hash_tag_name) +
+                        getString(R.string.common_twitter_official_hash_tag_name) +
                         "</a>"
         ));
         twitterHashTagView.setOnClickListener(new OnClickToTrip(
@@ -76,12 +76,12 @@ public final class ContactFragment extends BaseFragment implements Legacy {
         ));
 
         TextView twitterScreenNameView = (TextView) view.findViewById(
-                R.id.circlebinder_twitter_official_account_screen_name
+                R.id.twitter_official_account_screen_name
         );
-        String twitterScreenNameUrl = getString(R.string.circlebinder_twitter_official_account_url);
+        String twitterScreenNameUrl = getString(R.string.common_twitter_official_account_url);
         twitterScreenNameView.setText(Html.fromHtml(
                 "<a href=\"" + twitterScreenNameUrl + "\">" +
-                        getString(R.string.circlebinder_twitter_official_account_screen_name) +
+                        getString(R.string.common_twitter_official_account_screen_name) +
                         "</a>"
         ));
         twitterScreenNameView.setOnClickListener(new OnClickToTrip(
@@ -100,7 +100,7 @@ public final class ContactFragment extends BaseFragment implements Legacy {
     private void restoreActionBar() {
         ActionBar actionBar = getActivity().getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle(R.string.circlebinder_navigation_wish_me_luck);
+        actionBar.setTitle(R.string.common_send_feedback_wish_me_luck);
     }
 
 }
