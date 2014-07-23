@@ -145,19 +145,20 @@ public final class CircleSearchOptionFragment extends BaseFragment {
             }
         });
         searchOptionLabelView = (TextView) view.findViewById(R.id.fragment_circle_search_option_label);
+        final View searchOptionLabelContainer = view.findViewById(R.id.fragment_circle_search_option_label_container);
         final View searchOptionContainer = view.findViewById(R.id.fragment_circle_search_option_container);
         view.findViewById(R.id.circlebinder_fragment_circle_search_option_cancel)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        searchOptionLabelView.setVisibility(View.VISIBLE);
+                        searchOptionLabelContainer.setVisibility(View.VISIBLE);
                         searchOptionContainer.setVisibility(View.GONE);
                     }
         });
-        searchOptionLabelView.setOnClickListener(new View.OnClickListener() {
+        searchOptionLabelContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                searchOptionLabelView.setVisibility(View.GONE);
+                searchOptionLabelContainer.setVisibility(View.GONE);
                 searchOptionContainer.setVisibility(View.VISIBLE);
             }
         });
