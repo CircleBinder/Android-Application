@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_home_open_official_site"
+        android:title="@string/common_action_open_browser"
+        android:orderInCategory="50"
+        android:icon="@drawable/ic_action_event"
+        android:showAsAction="ifRoom"
+        />
+
+    <item
+        android:id="@+id/menu_home_wish_me_luck"
+        android:title="@string/common_send_feedback_wish_me_luck"
+        android:orderInCategory="50"
+        android:icon="@drawable/ic_action_about"
+        android:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/menu_home_change_log"
+        android:title="@string/common_change_log"
+        android:orderInCategory="50"
+        android:icon="@drawable/ic_action_read"
+        android:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/menu_home_about"
+        android:title="@string/common_about"
+        android:orderInCategory="50"
+        android:icon="@drawable/ic_action_about"
+        android:showAsAction="never"
+        />
+
+</menu>

@@ -1,0 +1,10 @@
+versionName:0.8	versionCode:11	type:feature	title:デザインをリニューアルしました	publishDate:0
+versionName:0.7	versionCode:10	type:feature	title:サークル詳細を閉じた際のリスト位置を調整	publishDate:1403276400000
+versionName:0.7	versionCode:10	type:bug	title:アプリを開く際に強制終了する不具合を修正	publishDate:1403276400000
+versionName:0.6	versionCode:9	type:feature	title:キーワード検索の対象にペンネームを追加	publishDate:1402930800000
+versionName:0.5	versionCode:8	type:bug	title:Playストアからダウンロード出来ない件を修正	publishDate:1402671600000
+versionName:0.4	versionCode:7	type:feature	title:イベントの公式HPへのリンクを追加	publishDate:1402671600000
+versionName:0.3	versionCode:6	type:bug	title:一部サークルのHPを表示出来ない不具合を修正	publishDate:1402153200000
+versionName:0.2	versionCode:5	type:feature	title:出展ブロックによる絞り込みを実装	publishDate:1402153200000
+versionName:0.2	versionCode:5	type:feature	title:キーワード検索のリアルタイム絞り込みを実装	publishDate:1402153200000
+versionName:0.1	versionCode:4	type:feature	title:プレビュー版の公開	publishDate:1399302000000

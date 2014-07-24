@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/common_spacer_middle"
+        android:layout_gravity="center_horizontal"
+        android:padding="@dimen/common_spacer_x_small"
+        >
+
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/common_spacer_middle"
+            android:adjustViewBounds="true"
+            android:src="@drawable/tutorial_circle_search"
+            android:contentDescription="@string/app_tutorial_welcome_search_circle"
+            />
+
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/tutorial_swipe_on_circle_detail"
+            android:contentDescription="@string/app_tutorial_welcome_swipe_to_paging"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:padding="@dimen/common_spacer_x_small"
+        >
+
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/common_spacer_middle"
+            android:adjustViewBounds="true"
+            android:src="@drawable/tutorial_add_checklist"
+            android:contentDescription="@string/app_tutorial_welcome_add_checklist"
+            />
+
+
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/tutorial_checklist"
+            android:contentDescription="@string/app_tutorial_welcome_show_checklist"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
