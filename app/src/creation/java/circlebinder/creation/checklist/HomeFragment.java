@@ -48,6 +48,8 @@ public final class HomeFragment extends BaseFragment {
         }
     }
 
+    private GridView checklistsView;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +58,12 @@ public final class HomeFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_checklist_list, parent, false);
+        View view = inflater.inflate(R.layout.fragment_checklist_list, parent, false);
+        View emptyView = view.findViewById(R.id.fragment_checklist_empty);
+        emptyView.setOnClickListener(new OnClickToTrip(CircleSearchActivity.tripper(getActivity())));
+        checklistsView = (GridView) view.findViewById(R.id.fragment_checklist_list);
+        checklistsView.setEmptyView(emptyView);
+        return view;
     }
 
     @Override
@@ -64,7 +71,6 @@ public final class HomeFragment extends BaseFragment {
         super.onResume();
         ChecklistAdapter adapter = new ChecklistAdapter(getActivity());
         adapter.addAll(getChecklist());
-        GridView checklistsView = (GridView) getView().findViewById(R.id.fragment_checklist_list);
         checklistsView.setAdapter(adapter);
         OnItemClickListener<Checklist> listener = new OnItemClickListener<Checklist>();
         listener.addOnItemClickEventListener(new OnItemClickEventListener<Checklist>() {
@@ -74,10 +80,6 @@ public final class HomeFragment extends BaseFragment {
             }
         });
         checklistsView.setOnItemClickListener(listener);
-
-        getView().findViewById(R.id.fragment_checklist_header_label).setOnClickListener(
-                new OnClickToTrip(CircleSearchActivity.tripper(getActivity()))
-        );
     }
 
     private List<Checklist> getChecklist() {

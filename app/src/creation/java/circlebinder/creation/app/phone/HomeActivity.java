@@ -8,6 +8,7 @@ import android.view.MenuItem;
 
 import net.ichigotake.common.app.ActivityFactory;
 import net.ichigotake.common.app.ActivityTripper;
+import net.ichigotake.common.app.OnClickToTrip;
 
 import circlebinder.common.Legacy;
 import circlebinder.creation.app.BaseActivity;
@@ -47,6 +48,9 @@ public final class HomeActivity extends BaseActivity implements Legacy {
         }
 
         setContentView(R.layout.activity_home);
+        findViewById(R.id.fragment_checklist_header_label).setOnClickListener(
+                new OnClickToTrip(CircleSearchActivity.tripper(this))
+        );
     }
 
     @Override

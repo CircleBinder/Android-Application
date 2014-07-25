@@ -41,6 +41,7 @@ public final class WebViewActivity extends BaseActivity {
         setContentView(R.layout.activity_web_view);
         url = BundleMerger.merge(getIntent(), savedInstanceState).getString(KEY_URL);
 
+        getActionBar().setTitle(R.string.app_event_name);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         WebViewFragment
                 .tripper(getFragmentManager(), url)
