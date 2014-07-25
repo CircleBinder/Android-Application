@@ -22,7 +22,7 @@ import circlebinder.common.event.CircleLinkType;
 import circlebinder.common.event.CircleLinks;
 import circlebinder.common.event.GenreBuilder;
 import circlebinder.common.event.SpaceBuilder;
-import circlebinder.creation.app.BaseApplication;
+import circlebinder.creation.app.CreationBinderApplication;
 import circlebinder.creation.event.BlockTable;
 import circlebinder.creation.event.CircleTable;
 
@@ -41,10 +41,10 @@ public final class CircleCursorConverter implements CursorItemConverter<Circle>,
         int spaceNo = c.getInt(CircleTable.Field.SPACE_NO);
         String spaceNoSub = (c.getInt(CircleTable.Field.SPACE_NO_SUB) == 0) ? "a" : "b";
 
-        String spaceSimpleName = String.format(BaseApplication.APP_LOCALE,
+        String spaceSimpleName = String.format(CreationBinderApplication.APP_LOCALE,
                 "%s%02d%s", block.getName(), spaceNo, spaceNoSub
         );
-        String spaceName = String.format(BaseApplication.APP_LOCALE,
+        String spaceName = String.format(CreationBinderApplication.APP_LOCALE,
                 "%s-%02d%s", block.getName(), spaceNo, spaceNoSub
         );
         spaceBuilder
