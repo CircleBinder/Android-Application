@@ -89,12 +89,12 @@ android.applicationVariants.all { variant ->
 
 apply plugin: 'deploygate'
 
-// アップロード時のメッセージは /CirceBinder/STAGE を利用している
+// アップロード時のメッセージは /app/DEPLOYGATE を利用している
 deploygate {
     userName = project.properties.deployGateUserName
     token = project.properties.deployGateToken
 }
-def buildMessage = file("STAGE").readLines()[0]
+def buildMessage = file("DEPLOYGATE").readLines()[0]
 def apkDir = project.projectDir.getAbsolutePath() + "/build/outputs/apk"
 android.applicationVariants.all { variant ->
     if (variant.buildType.name == "release") {
