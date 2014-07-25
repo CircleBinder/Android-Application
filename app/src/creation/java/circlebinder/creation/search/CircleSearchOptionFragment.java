@@ -1,7 +1,6 @@
 package circlebinder.creation.search;
 
 import android.app.Activity;
-import android.app.FragmentManager;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -14,7 +13,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.os.BundleMerger;
 import net.ichigotake.common.view.inputmethod.SoftInput;
 import net.ichigotake.common.widget.OnItemSelectedEventListener;
@@ -23,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import circlebinder.common.app.FragmentTripper;
 import circlebinder.common.checklist.BlockSelectorContainer;
 import circlebinder.common.event.AllBlock;
 import circlebinder.common.event.Block;
@@ -37,36 +34,6 @@ import circlebinder.creation.event.BlockTable;
 public final class CircleSearchOptionFragment extends BaseFragment {
 
     private static final String KEY_SEARCH_OPTION_BUILDER = "search_option_builder";
-
-    @SuppressWarnings("unchecked")
-    public static FragmentTripper tripper(
-            FragmentManager fragmentManager,
-            CircleSearchOption searchOption
-    ) {
-        return new FragmentTripper(
-                fragmentManager,
-                new CircleSearchOptionFragmentFactory(searchOption)
-        );
-    }
-
-    private static class CircleSearchOptionFragmentFactory
-            implements FragmentFactory<CircleSearchOptionFragment> {
-
-        private final CircleSearchOption searchOption;
-
-        public CircleSearchOptionFragmentFactory(CircleSearchOption searchOption) {
-            this.searchOption = searchOption;
-        }
-
-        @Override
-        public CircleSearchOptionFragment create() {
-            CircleSearchOptionFragment fragment = new CircleSearchOptionFragment();
-            Bundle args = new Bundle();
-            args.putParcelable(KEY_SEARCH_OPTION_BUILDER, new CircleSearchOptionBuilder(searchOption));
-            fragment.setArguments(args);
-            return fragment;
-        }
-    }
 
     private CircleSearchOptionBuilder searchOptionBuilder;
     private EditText searchTextView;

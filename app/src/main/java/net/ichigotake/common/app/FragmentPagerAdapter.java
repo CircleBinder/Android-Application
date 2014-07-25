@@ -24,13 +24,6 @@ public class FragmentPagerAdapter extends FragmentStatePagerAdapter {
         }
     }
 
-    public void callOnInactive(int position) {
-        Object page = registeredPages.get(position);
-        if (page != null && page instanceof OnPageChangeListener) {
-            ((OnPageChangeListener)page).inactive();
-        }
-    }
-
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         Object fragment = super.instantiateItem(container, position);

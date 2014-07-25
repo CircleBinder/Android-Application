@@ -13,7 +13,6 @@ import android.view.View;
 
 import net.ichigotake.common.app.ActivityFactory;
 import net.ichigotake.common.app.ActivityNavigation;
-import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.FragmentPagerAdapter;
 import net.ichigotake.common.app.FragmentPagerItem;
 import net.ichigotake.common.os.BundleMerger;
@@ -35,8 +34,8 @@ public final class CircleDetailPagerActivity extends BaseActivity
     private static final String EXTRA_KEY_SEARCH_OPTION = "search_option";
     private static final String EXTRA_KEY_POSITION = "position";
 
-    public static ActivityTripper tripper(Context context, CircleSearchOption searchOption, int position) {
-        return new ActivityTripper(context, new CircleDetailPagerActivityFactory(searchOption, position));
+    public static ActivityFactory factory(CircleSearchOption searchOption, int position) {
+        return new CircleDetailPagerActivityFactory(searchOption, position);
     }
 
     private static class CircleDetailPagerActivityFactory implements ActivityFactory {

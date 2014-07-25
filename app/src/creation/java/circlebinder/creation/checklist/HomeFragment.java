@@ -1,6 +1,5 @@
 package circlebinder.creation.checklist;
 
-import android.app.FragmentManager;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
-import net.ichigotake.common.app.FragmentFactory;
+import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.OnClickToTrip;
 import net.ichigotake.common.widget.OnItemClickEventListener;
 import net.ichigotake.common.widget.OnItemClickListener;
@@ -16,7 +15,6 @@ import net.ichigotake.common.widget.OnItemClickListener;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import circlebinder.common.app.FragmentTripper;
 import circlebinder.common.checklist.ChecklistColor;
 import circlebinder.common.event.Circle;
 import circlebinder.common.search.CircleSearchOptionBuilder;
@@ -32,22 +30,6 @@ import circlebinder.creation.search.CircleCursorConverter;
  */
 public final class HomeFragment extends BaseFragment {
 
-    public static FragmentFactory<HomeFragment> factory() {
-        return new ChecklistFragmentFactory();
-    }
-
-    public static FragmentTripper tripper(FragmentManager fragmentManager) {
-        return new FragmentTripper(fragmentManager, factory());
-    }
-
-    private static class ChecklistFragmentFactory implements FragmentFactory<HomeFragment> {
-
-        @Override
-        public HomeFragment create() {
-            return new HomeFragment();
-        }
-    }
-
     private GridView checklistsView;
 
     @Override
@@ -60,7 +42,9 @@ public final class HomeFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_checklist_list, parent, false);
         View emptyView = view.findViewById(R.id.fragment_checklist_empty);
-        emptyView.setOnClickListener(new OnClickToTrip(CircleSearchActivity.tripper(getActivity())));
+        emptyView.setOnClickListener(
+                new OnClickToTrip(new ActivityTripper(getActivity(), CircleSearchActivity.factory()))
+        );
         checklistsView = (GridView) view.findViewById(R.id.fragment_checklist_list);
         checklistsView.setEmptyView(emptyView);
         return view;
@@ -76,7 +60,10 @@ public final class HomeFragment extends BaseFragment {
         listener.addOnItemClickEventListener(new OnItemClickEventListener<Checklist>() {
             @Override
             public void onItemClick(Checklist item) {
-                ChecklistActivity.tripper(getActivity(), item.getChecklistColor()).trip();
+                new ActivityTripper(
+                        getActivity(),
+                        ChecklistActivity.factory(item.getChecklistColor())
+                ).trip();
             }
         });
         checklistsView.setOnItemClickListener(listener);

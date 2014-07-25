@@ -8,7 +8,6 @@ import android.view.MenuItem;
 
 import net.ichigotake.common.app.ActivityFactory;
 import net.ichigotake.common.app.ActivityNavigation;
-import net.ichigotake.common.app.ActivityTripper;
 
 import circlebinder.common.search.CircleSearchOption;
 import circlebinder.creation.app.BaseActivity;
@@ -17,8 +16,8 @@ import circlebinder.creation.search.OnCircleSearchOptionListener;
 
 public final class CircleSearchActivity extends BaseActivity implements OnCircleSearchOptionListener {
 
-    public static ActivityTripper tripper(Context context) {
-        return new ActivityTripper(context, new CircleSearchActivityFactory());
+    public static ActivityFactory factory() {
+        return new CircleSearchActivityFactory();
     }
 
     private static class CircleSearchActivityFactory implements ActivityFactory {

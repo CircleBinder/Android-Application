@@ -1,6 +1,5 @@
 package circlebinder.creation.initialize;
 
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,11 +14,9 @@ import android.widget.TextView;
 
 import net.ichigotake.common.app.ActionViewActivityFactory;
 import net.ichigotake.common.app.ActivityTripper;
-import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.app.OnClickToTrip;
 
 import circlebinder.common.Legacy;
-import circlebinder.common.app.FragmentTripper;
 import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
 import circlebinder.creation.app.phone.HomeActivity;
@@ -29,19 +26,6 @@ import circlebinder.creation.app.phone.HomeActivity;
  */
 public final class DatabaseInitializeFragment extends BaseFragment
         implements IInitializeServiceCallback, Legacy {
-
-    public static FragmentFactory from() {
-        return new FragmentFactory() {
-            @Override
-            public BaseFragment create() {
-                return new DatabaseInitializeFragment();
-            }
-        };
-    }
-
-    public static FragmentTripper tripper(FragmentManager fragmentManager) {
-        return new FragmentTripper(fragmentManager, from());
-    }
 
     private Handler handler;
 
@@ -87,7 +71,7 @@ public final class DatabaseInitializeFragment extends BaseFragment
 
         View finishedView = view.findViewById(R.id.fragment_initialize_finished);
         finishedView.setOnClickListener(new OnClickToTrip(
-                HomeActivity.tripper(getActivity()).withFinish()
+                new ActivityTripper(getActivity(), HomeActivity.factory()).withFinish()
         ));
         handler = new InitializeHandler(
                 view.findViewById(R.id.fragment_initialize_progress),

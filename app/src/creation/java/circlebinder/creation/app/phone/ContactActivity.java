@@ -7,16 +7,11 @@ import android.view.MenuItem;
 
 import net.ichigotake.common.app.ActivityFactory;
 import net.ichigotake.common.app.ActivityNavigation;
-import net.ichigotake.common.app.ActivityTripper;
 
 import circlebinder.creation.app.BaseActivity;
 import circlebinder.R;
 
 public final class ContactActivity extends BaseActivity {
-
-    public static ActivityTripper tripper(Context context) {
-        return new ActivityTripper(context, factory());
-    }
 
     public static ActivityFactory factory() {
         return new ActivityFactory() {

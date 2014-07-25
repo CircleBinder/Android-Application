@@ -10,7 +10,6 @@ import android.os.IBinder;
 import android.os.RemoteException;
 
 import net.ichigotake.common.app.ActivityFactory;
-import net.ichigotake.common.app.ActivityTripper;
 
 import circlebinder.creation.app.BaseActivity;
 import circlebinder.R;
@@ -20,12 +19,8 @@ import circlebinder.creation.initialize.IInitializeServiceCallback;
 
 public final class DatabaseInitializeActivity extends BaseActivity {
 
-    public static ActivityFactory from() {
+    public static ActivityFactory factory() {
         return new DatabaseInitializeActivityFactory();
-    }
-
-    public static ActivityTripper tripper(Context context) {
-        return new ActivityTripper(context, from());
     }
 
     private static class DatabaseInitializeActivityFactory implements ActivityFactory {

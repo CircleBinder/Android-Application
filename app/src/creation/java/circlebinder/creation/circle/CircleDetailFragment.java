@@ -146,11 +146,6 @@ public final class CircleDetailFragment extends BaseFragment
         restoreActionBar();
     }
 
-    @Override
-    public void inactive() {
-
-    }
-
     private void restoreActionBar() {
         if (getActivity() != null) {
             getActivity().invalidateOptionsMenu();

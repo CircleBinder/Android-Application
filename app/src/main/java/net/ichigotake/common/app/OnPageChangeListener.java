@@ -4,5 +4,4 @@ public interface OnPageChangeListener {
 
     void active();
 
-    void inactive();
 }

@@ -1,7 +1,6 @@
 package circlebinder.creation.system;
 
 import android.os.Bundle;
-import android.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,31 +8,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import net.ichigotake.common.app.FragmentFactory;
-
 import circlebinder.common.Legacy;
 import circlebinder.common.app.FragmentTripper;
 import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
 
 public final class AboutFragment extends BaseFragment implements Legacy {
-
-    public static FragmentTripper tripper(FragmentManager fragmentManager) {
-        return new FragmentTripper(fragmentManager, factory());
-    }
-
-    public static FragmentFactory<AboutFragment> factory() {
-        return new FragmentFactory<AboutFragment>() {
-            @Override
-            public AboutFragment create() {
-                return newInstance();
-            }
-        };
-    }
-
-    private static AboutFragment newInstance() {
-        return new AboutFragment();
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanseState) {
@@ -52,9 +32,10 @@ public final class AboutFragment extends BaseFragment implements Legacy {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        OpenSourceLicenseCreditFragment
-                                .tripper(getFragmentManager())
-                                .trip();
+                        new FragmentTripper(
+                                getFragmentManager(),
+                                OpenSourceLicenseCreditFragment.factory()
+                        ).trip();
                         break;
                     default:
                 }

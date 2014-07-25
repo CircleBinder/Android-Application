@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.os.BundleMerger;
 import net.ichigotake.common.widget.OnItemClickEventListener;
@@ -70,17 +71,16 @@ public final class CircleSearchFragment extends BaseFragment implements OnCircle
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         ViewGroup view = (ViewGroup)inflater.inflate(R.layout.fragment_circle_search, parent, false);
-        View emptyView = getActivity().getLayoutInflater()
-                .inflate(R.layout.fragment_checklist_empty, view, false);
-        CircleSearchViewHolder viewHolder = new CircleSearchViewHolder(
-                (ListView)view.findViewById(R.id.fragment_circle_search_list)
-        );
-        viewHolder.getCircles().setEmptyView(emptyView);
-        viewHolder.getCircles().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        View emptyView = inflater.inflate(R.layout.fragment_checklist_empty, view, false);
+        ListView circlesView = (ListView)view.findViewById(R.id.fragment_circle_search_list);
+        circlesView.setEmptyView(emptyView);
+        circlesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CircleDetailPagerActivity.tripper(getActivity(), searchOptionBuilder.build(), position)
-                        .trip();
+                new ActivityTripper(
+                        getActivity(),
+                        CircleDetailPagerActivity.factory(searchOptionBuilder.build(), position)
+                ).trip();
             }
         });
         adapter = new CircleAdapter(
@@ -112,7 +112,7 @@ public final class CircleSearchFragment extends BaseFragment implements OnCircle
                     }
                 }
         );
-        viewHolder.getCircles().setAdapter(adapter);
+        circlesView.setAdapter(adapter);
         return view;
     }
 

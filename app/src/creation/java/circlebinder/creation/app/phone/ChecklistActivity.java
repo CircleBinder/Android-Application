@@ -22,15 +22,16 @@ import circlebinder.creation.search.CircleSearchFragment;
 public final class ChecklistActivity extends BaseActivity {
 
     private static final String KEY_CHECKLIST_COLOR = "checklist_color";
-    public static Tripper tripper(Context context, ChecklistColor checklistColor) {
-        return new ActivityTripper(context, new ChecklistActivityTripper(checklistColor));
+
+    public static ActivityFactory factory(ChecklistColor checklistColor) {
+        return new ChecklistActivityFactory(checklistColor);
     }
 
-    private static class ChecklistActivityTripper implements ActivityFactory {
+    private static class ChecklistActivityFactory implements ActivityFactory {
 
         private final ChecklistColor checklistColor;
 
-        private ChecklistActivityTripper(ChecklistColor checklistColor) {
+        private ChecklistActivityFactory(ChecklistColor checklistColor) {
             this.checklistColor = checklistColor;
         }
 

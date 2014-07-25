@@ -1,7 +1,6 @@
 package circlebinder.creation.system;
 
 import android.app.ActionBar;
-import android.app.FragmentManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
@@ -12,33 +11,14 @@ import android.widget.TextView;
 
 import net.ichigotake.common.app.ActionViewActivityFactory;
 import net.ichigotake.common.app.ActivityTripper;
-import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.app.OnClickToTrip;
 
 import circlebinder.common.Legacy;
 import circlebinder.common.app.ContactTripper;
-import circlebinder.common.app.FragmentTripper;
 import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
 
 public final class ContactFragment extends BaseFragment implements Legacy {
-
-    public static FragmentTripper tripper(FragmentManager fragmentManager) {
-        return new FragmentTripper(fragmentManager, factory());
-    }
-
-    public static FragmentFactory<ContactFragment> factory() {
-        return new FragmentFactory<ContactFragment>() {
-            @Override
-            public ContactFragment create() {
-                return newInstance();
-            }
-        };
-    }
-
-    private static ContactFragment newInstance() {
-        return new ContactFragment();
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -23,5 +23,5 @@ public final class NetworkState {
             return false;
         }
     }
-    
+
 }

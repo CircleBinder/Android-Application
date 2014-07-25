@@ -7,9 +7,9 @@ import android.view.MenuItem;
 
 import net.ichigotake.common.app.ActivityFactory;
 import net.ichigotake.common.app.ActivityNavigation;
-import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.os.BundleMerger;
 
+import circlebinder.common.app.FragmentTripper;
 import circlebinder.creation.app.BaseActivity;
 import circlebinder.R;
 import circlebinder.creation.web.WebViewFragment;
@@ -17,10 +17,6 @@ import circlebinder.creation.web.WebViewFragment;
 public final class WebViewActivity extends BaseActivity {
 
     private final static String KEY_URL = "url";
-
-    public static ActivityTripper tripper(Context context, String url) {
-        return new ActivityTripper(context, factory(url));
-    }
 
     public static ActivityFactory factory(final String url) {
         return new ActivityFactory() {
@@ -43,8 +39,7 @@ public final class WebViewActivity extends BaseActivity {
 
         getActionBar().setTitle(R.string.app_event_name);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        WebViewFragment
-                .tripper(getFragmentManager(), url)
+        new FragmentTripper(getFragmentManager(), WebViewFragment.factory(url))
                 .setAddBackStack(false)
                 .setLayoutId(R.id.activity_web_view_container)
                 .trip();
