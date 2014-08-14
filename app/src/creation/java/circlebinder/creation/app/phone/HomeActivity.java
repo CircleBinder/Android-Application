@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import net.ichigotake.common.app.ActivityFactory;
 import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.OnClickToTrip;
 
@@ -21,23 +20,15 @@ import circlebinder.creation.initialize.AppStorage;
  */
 public final class HomeActivity extends BaseActivity implements Legacy {
 
-    public static ActivityFactory factory() {
-        return new HomeActivityFactory();
-    }
-
-    private static class HomeActivityFactory implements ActivityFactory {
-
-        @Override
-        public Intent create(Context context) {
-            return new Intent(context, HomeActivity.class);
-        }
+    public static Intent createIntent(Context context) {
+        return new Intent(context, HomeActivity.class);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (!new AppStorage(getApplicationContext()).isInitialized()) {
-            new ActivityTripper(this, DatabaseInitializeActivity.factory())
+            new ActivityTripper(this, DatabaseInitializeActivity.createIntent(this))
                     .withFinish()
                     .trip();
             return;
@@ -45,7 +36,7 @@ public final class HomeActivity extends BaseActivity implements Legacy {
 
         setContentView(R.layout.activity_home);
         findViewById(R.id.fragment_checklist_header_label).setOnClickListener(
-                new OnClickToTrip(new ActivityTripper(this, CircleSearchActivity.factory()))
+                new OnClickToTrip(new ActivityTripper(this, CircleSearchActivity.createIntent(this)))
         );
     }
 
@@ -56,7 +47,9 @@ public final class HomeActivity extends BaseActivity implements Legacy {
         openWebBrowserItem.setActionProvider(
                 new TripActionProvider(
                         this,
-                        new ActivityTripper(this, WebViewActivity.factory("http://www.creation.gr.jp/")
+                        new ActivityTripper(
+                                this,
+                                WebViewActivity.createIntent(this, "http://www.creation.gr.jp/")
                         )
                 )
         );
@@ -64,21 +57,21 @@ public final class HomeActivity extends BaseActivity implements Legacy {
         contactItem.setActionProvider(
                 new TripActionProvider(
                         this,
-                        new ActivityTripper(this, ContactActivity.factory())
+                        new ActivityTripper(this, ContactActivity.createIntent(this))
                 )
         );
         MenuItem changeLogItem = menu.findItem(R.id.menu_home_change_log);
         changeLogItem.setActionProvider(
                 new TripActionProvider(
                         this,
-                        new ActivityTripper(this, ChangeLogActivity.factory())
+                        new ActivityTripper(this, ChangeLogActivity.createIntent(this))
                 )
         );
         MenuItem aboutForApplicationItem = menu.findItem(R.id.menu_home_about);
         aboutForApplicationItem.setActionProvider(
                 new TripActionProvider(
                         this,
-                        new ActivityTripper(this, AboutActivity.factory())
+                        new ActivityTripper(this, AboutActivity.createIntent(this))
                 )
         );
         return super.onCreateOptionsMenu(menu);

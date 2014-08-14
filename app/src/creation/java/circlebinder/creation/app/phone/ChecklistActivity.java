@@ -5,10 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import net.ichigotake.common.app.ActivityFactory;
 import net.ichigotake.common.app.ActivityNavigation;
-import net.ichigotake.common.app.ActivityTripper;
-import net.ichigotake.common.app.Tripper;
 import net.ichigotake.common.os.BundleMerger;
 
 import circlebinder.R;
@@ -23,26 +20,12 @@ public final class ChecklistActivity extends BaseActivity {
 
     private static final String KEY_CHECKLIST_COLOR = "checklist_color";
 
-    public static ActivityFactory factory(ChecklistColor checklistColor) {
-        return new ChecklistActivityFactory(checklistColor);
-    }
-
-    private static class ChecklistActivityFactory implements ActivityFactory {
-
-        private final ChecklistColor checklistColor;
-
-        private ChecklistActivityFactory(ChecklistColor checklistColor) {
-            this.checklistColor = checklistColor;
-        }
-
-        @Override
-        public Intent create(Context context) {
-            Intent intent = new Intent(context, ChecklistActivity.class);
-            Bundle map = new Bundle();
-            map.putSerializable(KEY_CHECKLIST_COLOR, checklistColor);
-            intent.putExtras(map);
-            return intent;
-        }
+    public static Intent createIntent(Context context, ChecklistColor checklistColor) {
+        Intent intent = new Intent(context, ChecklistActivity.class);
+        Bundle map = new Bundle();
+        map.putSerializable(KEY_CHECKLIST_COLOR, checklistColor);
+        intent.putExtras(map);
+        return intent;
     }
 
     private ChecklistColor checklistColor;

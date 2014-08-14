@@ -1,7 +1,6 @@
 package circlebinder.creation.system;
 
 import android.app.ActionBar;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -9,7 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import net.ichigotake.common.app.ActionViewActivityFactory;
+import com.dmitriy.tarasov.android.intents.IntentUtils;
+
 import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.OnClickToTrip;
 
@@ -52,7 +52,8 @@ public final class ContactFragment extends BaseFragment implements Legacy {
         twitterHashTagView.setOnClickListener(new OnClickToTrip(
                 new ActivityTripper(
                         getActivity(),
-                        new ActionViewActivityFactory(Uri.parse(twitterHashTagUrl)))
+                        IntentUtils.openLink(twitterHashTagUrl)
+                )
         ));
 
         TextView twitterScreenNameView = (TextView) view.findViewById(
@@ -67,7 +68,8 @@ public final class ContactFragment extends BaseFragment implements Legacy {
         twitterScreenNameView.setOnClickListener(new OnClickToTrip(
                 new ActivityTripper(
                         getActivity(),
-                        new ActionViewActivityFactory(Uri.parse(twitterScreenNameUrl)))
+                        IntentUtils.openLink(twitterScreenNameUrl)
+                )
         ));
     }
 

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import net.ichigotake.common.app.ActivityFactory;
 import net.ichigotake.common.app.ActivityNavigation;
 
 import circlebinder.common.search.CircleSearchOption;
@@ -16,16 +15,8 @@ import circlebinder.creation.search.OnCircleSearchOptionListener;
 
 public final class CircleSearchActivity extends BaseActivity implements OnCircleSearchOptionListener {
 
-    public static ActivityFactory factory() {
-        return new CircleSearchActivityFactory();
-    }
-
-    private static class CircleSearchActivityFactory implements ActivityFactory {
-
-        @Override
-        public Intent create(Context context) {
-            return new Intent(context, CircleSearchActivity.class);
-        }
+    public static Intent createIntent(Context context) {
+        return new Intent(context, CircleSearchActivity.class);
     }
 
     @Override

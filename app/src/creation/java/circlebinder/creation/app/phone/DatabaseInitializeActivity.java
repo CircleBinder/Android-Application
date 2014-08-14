@@ -6,10 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
-
-import net.ichigotake.common.app.ActivityFactory;
 
 import circlebinder.creation.app.BaseActivity;
 import circlebinder.R;

@@ -79,7 +79,9 @@ public final class CircleSearchFragment extends BaseFragment implements OnCircle
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 new ActivityTripper(
                         getActivity(),
-                        CircleDetailPagerActivity.factory(searchOptionBuilder.build(), position)
+                        CircleDetailPagerActivity.createIntent(
+                                getActivity(), searchOptionBuilder.build(), position
+                        )
                 ).trip();
             }
         });

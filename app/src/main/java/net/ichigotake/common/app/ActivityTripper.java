@@ -15,9 +15,9 @@ public class ActivityTripper implements Tripper {
     private final Intent intent;
     private boolean withFinish;
 
-    public ActivityTripper(Context context, ActivityFactory factory) {
+    public ActivityTripper(Context context, Intent intent) {
         this.context = context;
-        this.intent = factory.create(context);
+        this.intent = intent;
     }
 
     public ActivityTripper withFinish() {

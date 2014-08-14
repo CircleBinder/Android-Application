@@ -43,7 +43,10 @@ public final class HomeFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_checklist_list, parent, false);
         View emptyView = view.findViewById(R.id.fragment_checklist_empty);
         emptyView.setOnClickListener(
-                new OnClickToTrip(new ActivityTripper(getActivity(), CircleSearchActivity.factory()))
+                new OnClickToTrip(new ActivityTripper(
+                        getActivity(),
+                        CircleSearchActivity.createIntent(getActivity())
+                ))
         );
         checklistsView = (GridView) view.findViewById(R.id.fragment_checklist_list);
         checklistsView.setEmptyView(emptyView);
@@ -62,7 +65,7 @@ public final class HomeFragment extends BaseFragment {
             public void onItemClick(Checklist item) {
                 new ActivityTripper(
                         getActivity(),
-                        ChecklistActivity.factory(item.getChecklistColor())
+                        ChecklistActivity.createIntent(getActivity(), item.getChecklistColor())
                 ).trip();
             }
         });

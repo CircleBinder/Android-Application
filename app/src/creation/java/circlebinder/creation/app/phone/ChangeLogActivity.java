@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import net.ichigotake.common.app.ActivityFactory;
 import net.ichigotake.common.app.ActivityNavigation;
 
 import circlebinder.creation.app.BaseActivity;
@@ -13,13 +12,8 @@ import circlebinder.R;
 
 public final class ChangeLogActivity extends BaseActivity {
 
-    public static ActivityFactory factory() {
-        return new ActivityFactory() {
-            @Override
-            public Intent create(Context context) {
-                return new Intent(context, ChangeLogActivity.class);
-            }
-        };
+    public static Intent createIntent(Context context) {
+        return new Intent(context, ChangeLogActivity.class);
     }
 
     @Override

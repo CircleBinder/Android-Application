@@ -11,7 +11,6 @@ import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 import android.view.View;
 
-import net.ichigotake.common.app.ActivityFactory;
 import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.app.FragmentPagerAdapter;
 import net.ichigotake.common.app.FragmentPagerItem;
@@ -34,29 +33,13 @@ public final class CircleDetailPagerActivity extends BaseActivity
     private static final String EXTRA_KEY_SEARCH_OPTION = "search_option";
     private static final String EXTRA_KEY_POSITION = "position";
 
-    public static ActivityFactory factory(CircleSearchOption searchOption, int position) {
-        return new CircleDetailPagerActivityFactory(searchOption, position);
-    }
-
-    private static class CircleDetailPagerActivityFactory implements ActivityFactory {
-
-        private final CircleSearchOption searchOption;
-        private final int position;
-
-        public CircleDetailPagerActivityFactory(CircleSearchOption searchOption, int position) {
-            this.searchOption = searchOption;
-            this.position = position;
-        }
-
-        @Override
-        public Intent create(Context context) {
-            Intent intent = new Intent(context, CircleDetailPagerActivity.class);
-            Bundle extras = new Bundle();
-            extras.putParcelable(EXTRA_KEY_SEARCH_OPTION, searchOption);
-            extras.putInt(EXTRA_KEY_POSITION, position);
-            intent.putExtras(extras);
-            return intent;
-        }
+    public static Intent createIntent(Context context, CircleSearchOption searchOption, int position) {
+        Intent intent = new Intent(context, CircleDetailPagerActivity.class);
+        Bundle extras = new Bundle();
+        extras.putParcelable(EXTRA_KEY_SEARCH_OPTION, searchOption);
+        extras.putInt(EXTRA_KEY_POSITION, position);
+        intent.putExtras(extras);
+        return intent;
     }
 
     private FragmentPagerAdapter pagerAdapter;

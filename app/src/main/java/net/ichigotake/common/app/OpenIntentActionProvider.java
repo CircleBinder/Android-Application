@@ -1,18 +1,19 @@
 package net.ichigotake.common.app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.ActionProvider;
 import android.view.View;
 
-public final class ActionSendFilterActionProvider extends ActionProvider {
+public final class OpenIntentActionProvider extends ActionProvider {
 
     private final Context context;
-    private final String url;
+    private final Intent intent;
 
-    public ActionSendFilterActionProvider(Context context, String url) {
+    public OpenIntentActionProvider(Context context, Intent intent) {
         super(context);
         this.context = context;
-        this.url = url;
+        this.intent = intent;
     }
 
     @Override
@@ -24,7 +25,7 @@ public final class ActionSendFilterActionProvider extends ActionProvider {
     public boolean onPerformDefaultAction() {
         new ActivityTripper(
                 context,
-                new ActionSendActivityFactory(url)
+                intent
         ).trip();
         return super.onPerformDefaultAction();
     }

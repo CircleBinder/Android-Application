@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 
-import net.ichigotake.common.app.ActionSendFilterActionProvider;
+import com.dmitriy.tarasov.android.intents.IntentUtils;
+
+import net.ichigotake.common.app.OpenIntentActionProvider;
 import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.app.OnPageChangeListener;
 import net.ichigotake.common.app.WebBrowserTripper;
@@ -81,7 +83,10 @@ public final class CircleDetailFragment extends BaseFragment
         inflater.inflate(R.menu.circle_web, menu);
         MenuItem shareItem = menu.findItem(R.id.menu_circle_web_share);
         shareItem.setActionProvider(
-                new ActionSendFilterActionProvider(getActivity(), webContainer.getCurrentUrl())
+                new OpenIntentActionProvider(
+                        getActivity(),
+                        IntentUtils.shareText(circle.getName(), webContainer.getCurrentUrl())
+                )
         );
     }
 

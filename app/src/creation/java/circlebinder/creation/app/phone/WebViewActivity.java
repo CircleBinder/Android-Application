@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import net.ichigotake.common.app.ActivityFactory;
 import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.os.BundleMerger;
 
@@ -18,15 +17,10 @@ public final class WebViewActivity extends BaseActivity {
 
     private final static String KEY_URL = "url";
 
-    public static ActivityFactory factory(final String url) {
-        return new ActivityFactory() {
-            @Override
-            public Intent create(Context context) {
-                Intent intent = new Intent(context, WebViewActivity.class);
-                intent.putExtra(KEY_URL, url);
-                return intent;
-            }
-        };
+    public static Intent createIntent(Context context, String url) {
+        Intent intent = new Intent(context, WebViewActivity.class);
+        intent.putExtra(KEY_URL, url);
+        return intent;
     }
 
     private String url;

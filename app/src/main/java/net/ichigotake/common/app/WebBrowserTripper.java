@@ -3,6 +3,8 @@ package net.ichigotake.common.app;
 import android.content.Context;
 import android.net.Uri;
 
+import com.dmitriy.tarasov.android.intents.IntentUtils;
+
 public final class WebBrowserTripper implements Tripper {
 
     private final Context context;
@@ -15,6 +17,6 @@ public final class WebBrowserTripper implements Tripper {
 
     @Override
     public void trip() {
-        new ActivityTripper(context, new WebBrowserActivityFactory(uri)).trip();
+        new ActivityTripper(context, IntentUtils.openLink(uri.toString())).trip();
     }
 }

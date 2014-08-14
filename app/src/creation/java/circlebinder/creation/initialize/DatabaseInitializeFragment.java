@@ -1,7 +1,6 @@
 package circlebinder.creation.initialize;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -12,7 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import net.ichigotake.common.app.ActionViewActivityFactory;
+import com.dmitriy.tarasov.android.intents.IntentUtils;
+
 import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.OnClickToTrip;
 
@@ -51,7 +51,7 @@ public final class DatabaseInitializeFragment extends BaseFragment
         twitterHashTagView.setOnClickListener(new OnClickToTrip(
                 new ActivityTripper(
                         getActivity(),
-                        new ActionViewActivityFactory(Uri.parse(twitterHashTagUrl)))
+                        IntentUtils.openLink(twitterHashTagUrl))
         ));
 
         TextView twitterScreenNameView = (TextView) view.findViewById(
@@ -66,12 +66,12 @@ public final class DatabaseInitializeFragment extends BaseFragment
         twitterScreenNameView.setOnClickListener(new OnClickToTrip(
                 new ActivityTripper(
                         getActivity(),
-                        new ActionViewActivityFactory(Uri.parse(twitterScreenNameUrl)))
+                        IntentUtils.openLink(twitterScreenNameUrl))
         ));
 
         View finishedView = view.findViewById(R.id.fragment_initialize_finished);
         finishedView.setOnClickListener(new OnClickToTrip(
-                new ActivityTripper(getActivity(), HomeActivity.factory()).withFinish()
+                new ActivityTripper(getActivity(), HomeActivity.createIntent(getActivity())).withFinish()
         ));
         handler = new InitializeHandler(
                 view.findViewById(R.id.fragment_initialize_progress),
