@@ -7,12 +7,16 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import net.ichigotake.common.worker.ActivityJobWorker;
+
 import circlebinder.common.Legacy;
 import circlebinder.common.app.FragmentTripper;
 import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
 
 public final class AboutFragment extends BaseFragment implements Legacy {
+
+    private final ActivityJobWorker worker = new ActivityJobWorker();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanseState) {
@@ -29,10 +33,10 @@ public final class AboutFragment extends BaseFragment implements Legacy {
         menuView.setOnItemClickListener((parent1, view1, position, id) -> {
             switch (position) {
                 case 0:
-                    new FragmentTripper(
+                    worker.enqueueActivityJob(value -> new FragmentTripper(
                             getFragmentManager(),
                             OpenSourceLicenseCreditFragment.factory()
-                    ).trip();
+                    ).trip());
                     break;
                 default:
             }

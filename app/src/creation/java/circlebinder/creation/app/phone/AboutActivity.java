@@ -6,20 +6,25 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import net.ichigotake.common.app.ActivityNavigation;
+import net.ichigotake.common.worker.ActivityJobWorker;
+import net.ichigotake.common.worker.ActivityJobWorkerClient;
 
 import circlebinder.creation.app.BaseActivity;
 import circlebinder.R;
 
-public final class AboutActivity extends BaseActivity {
+public final class AboutActivity extends BaseActivity implements ActivityJobWorkerClient {
 
     public static Intent createIntent(Context context) {
         return new Intent(context, AboutActivity.class);
     }
 
+    private final ActivityJobWorker worker = new ActivityJobWorker();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActionBar().setDisplayHomeAsUpEnabled(true);
+        worker.setActivity(this);
         setContentView(R.layout.activity_about);
     }
 
@@ -29,4 +34,20 @@ public final class AboutActivity extends BaseActivity {
                 || super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        worker.resume();
+    }
+
+    @Override
+    public void onPause() {
+        worker.pause();
+        super.onPause();
+    }
+
+    @Override
+    public ActivityJobWorker getWorker() {
+        return worker;
+    }
 }

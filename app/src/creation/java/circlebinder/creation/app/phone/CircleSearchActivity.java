@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import net.ichigotake.common.app.ActivityNavigation;
+import net.ichigotake.common.worker.ActivityJobWorker;
 
 import circlebinder.common.search.CircleSearchOption;
 import circlebinder.creation.app.BaseActivity;
@@ -19,10 +20,13 @@ public final class CircleSearchActivity extends BaseActivity implements OnCircle
         return new Intent(context, CircleSearchActivity.class);
     }
 
+    private final ActivityJobWorker worker = new ActivityJobWorker();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_circle_search);
+        worker.setActivity(this);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setTitle(R.string.common_circle_search);
     }
@@ -34,11 +38,25 @@ public final class CircleSearchActivity extends BaseActivity implements OnCircle
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        worker.resume();
+    }
+
+    @Override
+    public void onPause() {
+        worker.pause();
+        super.onPause();
+    }
+
+    @Override
     public void setSearchOption(CircleSearchOption searchOption) {
-        Fragment fragment = getFragmentManager().findFragmentById(R.id.activity_circle_search_container);
-        if (fragment != null && fragment.isResumed() && fragment instanceof OnCircleSearchOptionListener) {
-            ((OnCircleSearchOptionListener)fragment).setSearchOption(searchOption);
-        }
+        worker.enqueueActivityJob(value -> {
+            Fragment fragment = value.getFragmentManager().findFragmentById(R.id.activity_circle_search_container);
+            if (fragment != null && fragment.isResumed() && fragment instanceof OnCircleSearchOptionListener) {
+                ((OnCircleSearchOptionListener)fragment).setSearchOption(searchOption);
+            }
+        });
     }
 
 }

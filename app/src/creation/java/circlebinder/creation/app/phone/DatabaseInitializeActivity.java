@@ -6,9 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
+
+import net.ichigotake.common.worker.ActivityJobWorker;
 
 import circlebinder.creation.app.BaseActivity;
 import circlebinder.R;
@@ -22,14 +23,14 @@ public final class DatabaseInitializeActivity extends BaseActivity {
         return new Intent(context, DatabaseInitializeActivity.class);
     }
 
-    private final Handler handler = new Handler();
+    private final ActivityJobWorker worker = new ActivityJobWorker();
     private boolean serviceBind;
     private IInitializeBindService mService;
     private IInitializeServiceCallback callback = new IInitializeServiceCallback.Stub() {
         @Override
         public void initializeCompleted() throws RemoteException {
-            handler.post(() -> {
-                Fragment callback1 = getFragmentManager()
+            worker.enqueueActivityJob(value -> {
+                Fragment callback1 = value.getFragmentManager()
                         .findFragmentByTag(getString(R.string.fragment_tag_data_initialize));
                 if (callback1 instanceof IInitializeServiceCallback) {
                     try {
@@ -65,10 +66,22 @@ public final class DatabaseInitializeActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_database_initialize);
+        worker.setActivity(this);
         serviceBind = true;
         bindService(new Intent(this, DatabaseInitializeService.class), serviceConnection, 0);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        worker.resume();
+    }
+
+    @Override
+    public void onPause() {
+        worker.pause();
+        super.onPause();
+    }
 
     @Override
     public void onDestroy() {

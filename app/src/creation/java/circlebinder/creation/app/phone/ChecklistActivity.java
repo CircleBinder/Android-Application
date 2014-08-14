@@ -7,6 +7,7 @@ import android.view.MenuItem;
 
 import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.os.BundleMerger;
+import net.ichigotake.common.worker.ActivityJobWorker;
 
 import circlebinder.R;
 import circlebinder.common.app.FragmentTripper;
@@ -28,24 +29,28 @@ public final class ChecklistActivity extends BaseActivity {
         return intent;
     }
 
+    private ActivityJobWorker worker = new ActivityJobWorker();
     private ChecklistColor checklistColor;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acticity_checklist);
+        worker.setActivity(this);
         checklistColor = (ChecklistColor) BundleMerger.merge(getIntent(), savedInstanceState)
                 .getSerializable(KEY_CHECKLIST_COLOR);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setTitle(checklistColor.getName());
         CircleSearchOption searchOption = new CircleSearchOptionBuilder()
                 .setChecklist(checklistColor).build();
-        FragmentTripper.firstTrip(
-                getFragmentManager(),
-                CircleSearchFragment.factory(searchOption)
-        )
-        .setLayoutId(R.id.activity_checklist_container)
-        .trip();
+
+        worker.enqueueActivityJob(value -> FragmentTripper.firstTrip(
+                        getFragmentManager(),
+                        CircleSearchFragment.factory(searchOption)
+                )
+                        .setLayoutId(R.id.activity_checklist_container)
+                        .trip()
+        );
     }
 
     @Override
@@ -59,4 +64,17 @@ public final class ChecklistActivity extends BaseActivity {
         super.onSaveInstanceState(outState);
         outState.putSerializable(KEY_CHECKLIST_COLOR, checklistColor);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        worker.resume();
+    }
+
+    @Override
+    public void onPause() {
+        worker.pause();
+        super.onPause();
+    }
+
 }
