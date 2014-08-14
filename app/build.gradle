@@ -18,7 +18,7 @@ retrolambda {}
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "20.0.0"
+    buildToolsVersion '20.0.0'
 
     signingConfigs {
         release {
@@ -31,10 +31,10 @@ android {
 
     productFlavors {
         creation {
-            applicationId = "circlebinder.creation"
+            applicationId 'circlebinder.creation'
         }
         catalog {
-            applicationId = "circlebinder.catalog"
+            applicationId 'circlebinder.catalog'
         }
     }
 
@@ -53,7 +53,6 @@ android {
             runProguard true
             proguardFiles 'proguard-rules.txt'
             signingConfig signingConfigs.release
-
             applicationIdSuffix ''
             versionNameSuffix ''
             zipAlign true
