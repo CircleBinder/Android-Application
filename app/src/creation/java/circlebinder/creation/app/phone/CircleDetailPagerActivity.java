@@ -15,6 +15,8 @@ import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.app.FragmentPagerAdapter;
 import net.ichigotake.common.app.FragmentPagerItem;
 import net.ichigotake.common.os.BundleMerger;
+import net.ichigotake.common.worker.ActivityJobWorker;
+import net.ichigotake.common.worker.ActivityJobWorkerClient;
 
 import circlebinder.common.Legacy;
 import circlebinder.common.event.Circle;
@@ -77,19 +79,9 @@ public final class CircleDetailPagerActivity extends BaseActivity
                 getResources().getColor(R.color.common_card_container_background)
         ));
         final View forwardView = findViewById(R.id.activity_circle_detail_pager_forward);
-        forwardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pager.setCurrentItem(currentPosition+1);
-            }
-        });
+        forwardView.setOnClickListener(v -> pager.setCurrentItem(currentPosition+1));
         final View backView = findViewById(R.id.activity_circle_detail_pager_back);
-        backView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pager.setCurrentItem(currentPosition-1);
-            }
-        });
+        backView.setOnClickListener(v -> pager.setCurrentItem(currentPosition-1));
         final ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
             @Override public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
             @Override public void onPageScrollStateChanged(int state) {}
@@ -106,12 +98,7 @@ public final class CircleDetailPagerActivity extends BaseActivity
         pagerAdapter.reload(currentPosition);
         pager.setCurrentItem(currentPosition);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                onPageChangeListener.onPageSelected(currentPosition);
-            }
-        }, 1000);
+        new Handler().postDelayed(() -> onPageChangeListener.onPageSelected(currentPosition), 1000);
     }
     
     @Override

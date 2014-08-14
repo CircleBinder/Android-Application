@@ -12,8 +12,7 @@ import circlebinder.common.Legacy;
 
 public final class DatabaseInitializeService extends Service implements Legacy {
 
-    private final RemoteCallbackList<IInitializeServiceCallback> callbacks =
-            new RemoteCallbackList<IInitializeServiceCallback>();
+    private final RemoteCallbackList<IInitializeServiceCallback> callbacks = new RemoteCallbackList<>();
 
     private IInitializeBindService.Stub stub = new IInitializeBindService.Stub() {
 

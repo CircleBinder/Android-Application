@@ -17,7 +17,7 @@ public final class ChecklistItemViewHolder {
     public ChecklistItemViewHolder(View convertView) {
         labelBackground = convertView.findViewById(R.id.checklist_item_label_background);
         labelName = (TextView) convertView.findViewById(R.id.checklist_item_label_name);
-        circles = new CopyOnWriteArrayList<TextView>();
+        circles = new CopyOnWriteArrayList<>();
         int circleItemLabelId = R.id.checklist_item_circle_label;
         circles.add((TextView)
                 convertView.findViewById(R.id.checklist_item_circle_label1).findViewById(circleItemLabelId)

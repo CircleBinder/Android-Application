@@ -16,7 +16,7 @@ public final class BlockSelectorContainer {
 
     public BlockSelectorContainer(Spinner selector, Collection<Block> blocks) {
         this.selector = selector;
-        this.onItemSelectedListener = new OnItemSelectedListener<Block>();
+        this.onItemSelectedListener = new OnItemSelectedListener<>();
 
         BlockSelectorAdapter adapter = new BlockSelectorAdapter(selector.getContext());
         adapter.clear();

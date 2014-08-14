@@ -14,7 +14,7 @@ public class FragmentPagerAdapter extends FragmentStatePagerAdapter {
     public FragmentPagerAdapter(FragmentManager fm, FragmentPagerItem item) {
         super(fm);
         this.item = item;
-        this.registeredPages = new SparseArray<Object>();
+        this.registeredPages = new SparseArray<>();
     }
 
     public void reload(int position) {

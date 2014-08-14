@@ -19,12 +19,7 @@ import circlebinder.R;
 public final class OpenSourceLicenseCreditFragment extends BaseFragment {
 
     public static FragmentFactory<OpenSourceLicenseCreditFragment> factory() {
-        return new FragmentFactory<OpenSourceLicenseCreditFragment>() {
-            @Override
-            public OpenSourceLicenseCreditFragment create() {
-                return newInstance();
-            }
-        };
+        return OpenSourceLicenseCreditFragment::newInstance;
     }
 
     private static OpenSourceLicenseCreditFragment newInstance() {

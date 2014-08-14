@@ -28,7 +28,7 @@ public final class ChangeLogLoader {
     }
 
     public List<ChangeLogFeed> load() throws IOException {
-        List<ChangeLogFeed> changeLogFeeds = new CopyOnWriteArrayList<ChangeLogFeed>();
+        List<ChangeLogFeed> changeLogFeeds = new CopyOnWriteArrayList<>();
         InputStream inputStream = null;
         BufferedReader reader = null;
         try {

@@ -20,9 +20,9 @@ public final class ConditionQueryBuilder {
     private final List<String> logicalOperators;
 
     public ConditionQueryBuilder() {
-        conditions = new CopyOnWriteArrayList<String>();
-        values = new CopyOnWriteArrayList<Object>();
-        logicalOperators = new CopyOnWriteArrayList<String>();
+        conditions = new CopyOnWriteArrayList<>();
+        values = new CopyOnWriteArrayList<>();
+        logicalOperators = new CopyOnWriteArrayList<>();
     }
 
     public ConditionQueryBuilder and(String condition, Object... arguments) {

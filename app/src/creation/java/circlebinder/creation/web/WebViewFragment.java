@@ -16,13 +16,7 @@ import circlebinder.R;
 public final class WebViewFragment extends BaseFragment {
 
     public static FragmentFactory<WebViewFragment> factory(final String url) {
-        return new FragmentFactory<WebViewFragment>() {
-            @Override
-            public WebViewFragment create() {
-                return WebViewFragment.newInstance(url);
-            }
-
-        };
+        return () -> WebViewFragment.newInstance(url);
     }
 
     static WebViewFragment newInstance(String url) {

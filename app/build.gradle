@@ -12,6 +12,9 @@ rootProject.ext.properties.each { key, value ->
 apply plugin: 'android-sdk-manager'
 apply plugin: 'com.android.application'
 apply plugin: 'android-power-assert'
+apply plugin: 'retrolambda'
+
+retrolambda {}
 
 android {
     compileSdkVersion 19

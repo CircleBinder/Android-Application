@@ -11,7 +11,7 @@ public final class OnItemClickListener<T> implements AdapterView.OnItemClickList
     private final List<OnItemClickEventListener<T>> listeners;
 
     public OnItemClickListener() {
-        listeners = new CopyOnWriteArrayList<OnItemClickEventListener<T>>();
+        listeners = new CopyOnWriteArrayList<>();
     }
 
     public void addOnItemClickEventListener(OnItemClickEventListener<T> listener) {

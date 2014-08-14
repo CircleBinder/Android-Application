@@ -11,7 +11,7 @@ public final class OnItemSelectedListener<T> implements AdapterView.OnItemSelect
     private final List<OnItemSelectedEventListener<T>> listeners;
 
     public OnItemSelectedListener() {
-        this.listeners = new CopyOnWriteArrayList<OnItemSelectedEventListener<T>>();
+        this.listeners = new CopyOnWriteArrayList<>();
     }
 
     public void addOnItemSelectedListener(OnItemSelectedEventListener<T> listener) {

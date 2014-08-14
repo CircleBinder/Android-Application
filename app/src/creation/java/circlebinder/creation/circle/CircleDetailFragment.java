@@ -17,7 +17,6 @@ import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.app.OnPageChangeListener;
 import net.ichigotake.common.app.WebBrowserTripper;
 import net.ichigotake.common.os.BundleMerger;
-import net.ichigotake.common.widget.OnItemClickEventListener;
 
 import circlebinder.common.Legacy;
 import circlebinder.common.checklist.ChecklistColor;
@@ -108,26 +107,20 @@ public final class CircleDetailFragment extends BaseFragment
         final ChecklistPopupSelector checklistSelector =
                 new ChecklistPopupSelector(getActivity(), checklistView);
         checklistView.setBackgroundResource(circle.getChecklistColor().getDrawableResource());
-        checklistSelector.setOnItemClickListener(new OnItemClickEventListener<ChecklistColor>() {
-            @Override
-            public void onItemClick(ChecklistColor item) {
-                updateChecklist(item);
-                checklistSelector.dismiss();
-            }
+        checklistSelector.setOnItemClickListener(item -> {
+            updateChecklist(item);
+            checklistSelector.dismiss();
         });
         if (circle.getLinks().isEmpty()) {
             webContainer.load(circle);
         } else {
             webContainer.loadUrl(circle.getLinks().get(0));
         }
-        checklistView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (checklistSelector.isShowing()) {
-                    checklistSelector.dismiss();
-                } else {
-                    checklistSelector.show();
-                }
+        checklistView.setOnClickListener(v -> {
+            if (checklistSelector.isShowing()) {
+                checklistSelector.dismiss();
+            } else {
+                checklistSelector.show();
             }
         });
     }

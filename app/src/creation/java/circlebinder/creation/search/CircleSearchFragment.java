@@ -4,21 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.os.BundleMerger;
-import net.ichigotake.common.widget.OnItemClickEventListener;
 
-import circlebinder.common.checklist.ChecklistColor;
 import circlebinder.common.checklist.ChecklistPopupSelector;
 import circlebinder.common.circle.CircleAdapter;
-import circlebinder.common.circle.CircleViewHolder;
-import circlebinder.common.circle.OnCircleItemClickListener;
 import circlebinder.common.event.BlockBuilder;
-import circlebinder.common.event.Circle;
 import circlebinder.common.search.CircleSearchOption;
 import circlebinder.common.search.CircleSearchOptionBuilder;
 import circlebinder.creation.app.BaseFragment;
@@ -74,44 +68,33 @@ public final class CircleSearchFragment extends BaseFragment implements OnCircle
         View emptyView = inflater.inflate(R.layout.fragment_checklist_empty, view, false);
         ListView circlesView = (ListView)view.findViewById(R.id.fragment_circle_search_list);
         circlesView.setEmptyView(emptyView);
-        circlesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                new ActivityTripper(
-                        getActivity(),
-                        CircleDetailPagerActivity.createIntent(
-                                getActivity(), searchOptionBuilder.build(), position
-                        )
-                ).trip();
-            }
-        });
+        circlesView.setOnItemClickListener((parent1, view1, position, id) -> new ActivityTripper(
+                getActivity(),
+                CircleDetailPagerActivity.createIntent(
+                        getActivity(), searchOptionBuilder.build(), position
+                )
+        ).trip());
         adapter = new CircleAdapter(
                 getActivity(),
                 null,
                 new CircleCursorConverter(),
-                new OnCircleItemClickListener() {
-                    @Override
-                    public void onSpaceClick(final CircleViewHolder viewHolder, int position, final Circle item) {
-                        final ChecklistPopupSelector selector = new ChecklistPopupSelector(
-                                getActivity(), viewHolder.getSpaceContainer()
+                (viewHolder, position, item) -> {
+                    final ChecklistPopupSelector selector = new ChecklistPopupSelector(
+                            getActivity(), viewHolder.getSpaceContainer()
+                    );
+                    selector.setOnItemClickListener(checklistColor -> {
+                        viewHolder.getSpace().setCompoundDrawablesWithIntrinsicBounds(
+                                0,
+                                checklistColor.getDrawableResource(),
+                                0,
+                                0
                         );
-                        selector.setOnItemClickListener(new OnItemClickEventListener<ChecklistColor>() {
-                            @Override
-                            public void onItemClick(ChecklistColor checklistColor) {
-                                viewHolder.getSpace().setCompoundDrawablesWithIntrinsicBounds(
-                                        0,
-                                        checklistColor.getDrawableResource(),
-                                        0,
-                                        0
-                                );
-                                CircleTable.setChecklist(item, checklistColor);
-                                adapter.reload();
-                                selector.dismiss();
-                                
-                            }
-                        });
-                        selector.show();
-                    }
+                        CircleTable.setChecklist(item, checklistColor);
+                        adapter.reload();
+                        selector.dismiss();
+
+                    });
+                    selector.show();
                 }
         );
         circlesView.setAdapter(adapter);

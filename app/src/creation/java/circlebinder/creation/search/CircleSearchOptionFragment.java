@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +52,7 @@ public final class CircleSearchOptionFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_circle_search_option, parent, false);
 
-        List<Block> blocks = new CopyOnWriteArrayList<Block>();
+        List<Block> blocks = new CopyOnWriteArrayList<>();
         blocks.add(new BlockBuilder().setName("全").setId(-1).build());
         blocks.addAll(BlockTable.get());
         BlockSelectorContainer selectorContainer = new BlockSelectorContainer(
@@ -79,14 +78,11 @@ public final class CircleSearchOptionFragment extends BaseFragment {
                 R.id.fragment_circle_search_option_keyword
         );
         searchTextView.setText(searchOptionBuilder.build().getKeyword());
-        searchTextView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    onEditTextFocused();
-                } else {
-                    onEditTextUnFocused();
-                }
+        searchTextView.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                onEditTextFocused();
+            } else {
+                onEditTextUnFocused();
             }
         });
         searchTextView.addTextChangedListener(new TextWatcher() {
@@ -103,31 +99,21 @@ public final class CircleSearchOptionFragment extends BaseFragment {
                 reloadTargetFragment(searchOptionBuilder.setKeyword(s.toString()).build());
             }
         });
-        searchTextView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                SoftInput.hide(v);
-                v.clearFocus();
-                return false;
-            }
+        searchTextView.setOnEditorActionListener((v, actionId, event) -> {
+            SoftInput.hide(v);
+            v.clearFocus();
+            return false;
         });
         searchOptionLabelView = (TextView) view.findViewById(R.id.fragment_circle_search_option_label);
         final View searchOptionLabelContainer = view.findViewById(R.id.fragment_circle_search_option_label_container);
         final View searchOptionContainer = view.findViewById(R.id.fragment_circle_search_option_container);
-        view.findViewById(R.id.fragment_circle_search_option_collapse)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        searchOptionLabelContainer.setVisibility(View.VISIBLE);
-                        searchOptionContainer.setVisibility(View.GONE);
-                    }
+        view.findViewById(R.id.fragment_circle_search_option_collapse).setOnClickListener(v -> {
+            searchOptionLabelContainer.setVisibility(View.VISIBLE);
+            searchOptionContainer.setVisibility(View.GONE);
         });
-        searchOptionLabelContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                searchOptionLabelContainer.setVisibility(View.GONE);
-                searchOptionContainer.setVisibility(View.VISIBLE);
-            }
+        searchOptionLabelContainer.setOnClickListener(v -> {
+            searchOptionLabelContainer.setVisibility(View.GONE);
+            searchOptionContainer.setVisibility(View.VISIBLE);
         });
         return view;
     }
@@ -152,7 +138,7 @@ public final class CircleSearchOptionFragment extends BaseFragment {
             ((OnCircleSearchOptionListener) activity).setSearchOption(searchOption);
         }
         if (searchOptionLabelView != null) {
-            List<String> labels = new ArrayList<String>();
+            List<String> labels = new ArrayList<>();
             labels.add(searchOption.getBlock().getName() + " ブロック");
             if (searchOption.hasKeyword()) {
                 labels.add("キーワード: " + searchOption.getKeyword());

@@ -16,7 +16,7 @@ import circlebinder.common.event.BlockBuilder;
 public final class BlockTable extends Model implements Legacy {
 
     public static List<Block> get() {
-        List<Block> blocks = new CopyOnWriteArrayList<Block>();
+        List<Block> blocks = new CopyOnWriteArrayList<>();
         List<BlockTable> blockTableList = new Select()
                 .from(BlockTable.class)
                 .orderBy(Field.ID)

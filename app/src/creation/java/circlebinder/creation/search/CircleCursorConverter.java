@@ -61,7 +61,7 @@ public final class CircleCursorConverter implements CursorItemConverter<Circle>,
                 c.getInt(CircleTable.Field.CHECKLIST_ID)
         );
 
-        List<CircleLink> linkList = new CopyOnWriteArrayList<CircleLink>();
+        List<CircleLink> linkList = new CopyOnWriteArrayList<>();
         String homepageUrl = c.getString(CircleTable.Field.HOMEPAGE_URL);
         if (!TextUtils.isEmpty(homepageUrl)) {
             CircleLink link = new CircleLinkBuilder()

@@ -18,30 +18,29 @@ import circlebinder.creation.initialize.IInitializeServiceCallback;
 
 public final class DatabaseInitializeActivity extends BaseActivity {
 
-    public static ActivityFactory factory() {
-        return new DatabaseInitializeActivityFactory();
+    public static Intent createIntent(Context context) {
+        return new Intent(context, DatabaseInitializeActivity.class);
     }
 
-    private static class DatabaseInitializeActivityFactory implements ActivityFactory {
-
-        @Override
-        public Intent create(Context context) {
-            return new Intent(context, DatabaseInitializeActivity.class);
-        }
-    }
-
+    private final Handler handler = new Handler();
     private boolean serviceBind;
     private IInitializeBindService mService;
     private IInitializeServiceCallback callback = new IInitializeServiceCallback.Stub() {
         @Override
         public void initializeCompleted() throws RemoteException {
-            Fragment callback = getFragmentManager()
-                    .findFragmentByTag(getString(R.string.fragment_tag_data_initialize));
-            if (callback instanceof IInitializeServiceCallback) {
-                ((IInitializeServiceCallback)callback).initializeCompleted();
-            } else {
-                throw new IllegalStateException("not implements");
-            }
+            handler.post(() -> {
+                Fragment callback1 = getFragmentManager()
+                        .findFragmentByTag(getString(R.string.fragment_tag_data_initialize));
+                if (callback1 instanceof IInitializeServiceCallback) {
+                    try {
+                        ((IInitializeServiceCallback) callback1).initializeCompleted();
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    throw new IllegalStateException("not implements");
+                }
+            });
         }
     };
     private ServiceConnection serviceConnection = new ServiceConnection() {

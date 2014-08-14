@@ -21,7 +21,7 @@ public final class RawResources {
         InputStream inputStream = resources.openRawResource(rawResourceId);
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String line;
-        List<String> lines = new CopyOnWriteArrayList<String>();
+        List<String> lines = new CopyOnWriteArrayList<>();
         while ((line = reader.readLine()) != null) {
             lines.add(line);
         }
