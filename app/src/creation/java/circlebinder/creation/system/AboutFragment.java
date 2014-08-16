@@ -1,5 +1,6 @@
 package circlebinder.creation.system;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import net.ichigotake.common.worker.ActivityJobWorker;
+import net.ichigotake.common.worker.ActivityJobWorkerClient;
 
 import circlebinder.common.Legacy;
 import circlebinder.common.app.FragmentTripper;
@@ -16,7 +18,16 @@ import circlebinder.R;
 
 public final class AboutFragment extends BaseFragment implements Legacy {
 
-    private final ActivityJobWorker worker = new ActivityJobWorker();
+    private ActivityJobWorker worker;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (!(activity instanceof ActivityJobWorkerClient)) {
+            throw new IllegalStateException("Activity must implements ActivityJobWorkerClient.");
+        }
+        this.worker = ((ActivityJobWorkerClient)activity).getWorker();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanseState) {
@@ -48,6 +59,12 @@ public final class AboutFragment extends BaseFragment implements Legacy {
     public void onResume() {
         super.onResume();
         getActivity().getActionBar().setTitle(R.string.common_about);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.worker = null;
     }
 
 }
