@@ -1,3 +1,6 @@
 [submodule "gradle/gradle-android-utils"]
 	path = gradle/gradle-android-utils
 	url = git@github.com:gfx/gradle-android-utils.git
+[submodule "vendor/HeaderGridView"]
+	path = vendor/HeaderGridView
+	url = git@github.com:maurycyw/HeaderGridView.git

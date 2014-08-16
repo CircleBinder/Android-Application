@@ -13,6 +13,7 @@ import circlebinder.common.Legacy;
 import circlebinder.creation.app.BaseActivity;
 import circlebinder.R;
 import circlebinder.common.app.TripActionProvider;
+import circlebinder.creation.enjoy.PetionlyContainer;
 import circlebinder.creation.initialize.AppStorage;
 
 /**
@@ -38,6 +39,7 @@ public final class HomeActivity extends BaseActivity implements Legacy {
         findViewById(R.id.fragment_checklist_header_label).setOnClickListener(
                 new OnClickToTrip(new ActivityTripper(this, CircleSearchActivity.createIntent(this)))
         );
+        PetionlyContainer.render(findViewById(R.id.activity_home_header_petionly));
     }
 
     @Override

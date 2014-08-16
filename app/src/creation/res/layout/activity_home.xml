@@ -6,7 +6,7 @@
     >
 
     <TextView
-        android:id="@+id/fragment_checklist_header_container"
+        android:id="@+id/activity_home_header_event_name"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:paddingLeft="@dimen/common_baseline_padding"
@@ -18,10 +18,18 @@
         android:gravity="center_vertical"
         />
 
+    <include
+        layout="@layout/petionly"
+        android:id="@+id/activity_home_header_petionly"
+        android:layout_below="@+id/activity_home_header_event_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
     <fragment
         android:id="@+id/activity_fragment_content"
         android:name="circlebinder.creation.checklist.HomeFragment"
-        android:layout_below="@+id/fragment_checklist_header_container"
+        android:layout_below="@+id/activity_home_header_event_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/fragment_checklist_list"

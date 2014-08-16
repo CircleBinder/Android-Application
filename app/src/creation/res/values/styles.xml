@@ -13,10 +13,7 @@
 
     <style name="CommonSectionHeaderLabel">
         <item name="android:minHeight">@dimen/common_baseline_list_item_height</item>
-        <item name="android:background">@color/app_theme_base</item>
-        <item name="android:textColor">#ffffff</item>
         <item name="android:textSize">@dimen/common_font_subhead</item>
-        <item name="android:textStyle">bold</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingTop">@dimen/common_section_head_label_padding_vertical</item>
         <item name="android:paddingRight">@dimen/common_section_head_label_padding_horizontal</item>
@@ -39,6 +36,22 @@
 
     <style name="AppChecklistList">
         <item name="android:background">@color/common_card_container_background</item>
+    </style>
+
+    <style name="AppPetiOnlyTitle">
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="AppPetiOnlyDescription">
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="AppPetiOnlyThumbnail">
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:adjustViewBounds">true</item>
     </style>
 
 </resources>
