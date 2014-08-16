@@ -17,6 +17,7 @@ CreationBinder
 ------------
 
 - AndroidStudio v0.8.+
+- Java 8 ( [retrolambda](https://github.com/orfjackal/retrolambda) を利用しているため )
 
 関連リンク
 ------------
