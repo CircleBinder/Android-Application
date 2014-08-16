@@ -8,7 +8,7 @@
     tools:context="circlebinder.creation.checklist.HomeFragment"
     >
 
-    <com.origamilabs.library.headergridview.views.HeaderGridView
+    <GridView
         style="@style/CommonCardList"
         android:id="@+id/fragment_checklist_list"
         android:layout_width="match_parent"

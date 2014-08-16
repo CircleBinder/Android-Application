@@ -5,8 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.origamilabs.library.headergridview.views.HeaderGridView;
+import android.widget.GridView;
 
 import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.OnClickToTrip;
@@ -31,7 +30,7 @@ import circlebinder.creation.search.CircleCursorConverter;
  */
 public final class HomeFragment extends BaseFragment {
 
-    private HeaderGridView checklistsView;
+    private GridView checklistsView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,8 +48,7 @@ public final class HomeFragment extends BaseFragment {
                         CircleSearchActivity.createIntent(getActivity())
                 ))
         );
-        checklistsView = (HeaderGridView) view.findViewById(R.id.fragment_checklist_list);
-        checklistsView.addHeaderView(inflater.inflate(R.layout.checklist_header, parent, false));
+        checklistsView = (GridView) view.findViewById(R.id.fragment_checklist_list);
         checklistsView.setEmptyView(emptyView);
         return view;
     }

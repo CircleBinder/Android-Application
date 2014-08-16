@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:gravity="center_horizontal"
+    android:baselineAligned="false"
+    android:paddingLeft="@dimen/common_spacer_x_small"
+    android:paddingRight="@dimen/common_spacer_x_small"
+    >
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_weight="1"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:background="@drawable/common_card_item_selector"
+        >
+
+
+        <ImageView
+            style="@style/AppPetiOnlyThumbnail"
+            android:id="@+id/event_heads_up_peti_only_1"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_marginRight="@dimen/common_spacer_x_small"
+            android:layout_alignParentLeft="true"
+            />
+
+        <TextView
+            style="@style/AppPetiOnlyTitle"
+            android:id="@+id/event_heads_up_peti_only_1_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/event_heads_up_peti_only_1"
+            android:layout_marginBottom="@dimen/common_spacer_xx_small"
+            android:text="@string/app_peti_only_nmnl_name"
+            />
+
+        <TextView
+            style="@style/AppPetiOnlyDescription"
+            android:id="@+id/event_heads_up_peti_only_1_description"
+            android:layout_toRightOf="@+id/event_heads_up_peti_only_1"
+            android:layout_below="@+id/event_heads_up_peti_only_1_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_peti_only_nmnl_description"
+            />
+
+        <TextView
+            style="@style/AppPetiOnlyLabel"
+            android:layout_toRightOf="@+id/event_heads_up_peti_only_1"
+            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="@dimen/common_spacer_x_small"
+        android:layout_height="match_parent"
+        />
+
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_weight="1"
+        android:layout_gravity="center_horizontal"
+        android:clickable="true"
+        android:gravity="center_horizontal"
+        android:background="@drawable/common_card_item_selector"
+        >
+
+        <ImageView
+            style="@style/AppPetiOnlyThumbnail"
+            android:id="@+id/event_heads_up_peti_only_2"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="@dimen/common_spacer_x_small"
+            />
+
+        <TextView
+            style="@style/AppPetiOnlyTitle"
+            android:id="@+id/event_heads_up_peti_only_2_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/event_heads_up_peti_only_2"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="@dimen/common_spacer_xx_small"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="@string/app_peti_only_omufes_name"
+            />
+
+        <TextView
+            style="@style/AppPetiOnlyDescription"
+            android:id="@+id/event_heads_up_peti_only_2_description"
+            android:layout_toRightOf="@+id/event_heads_up_peti_only_2"
+            android:layout_below="@+id/event_heads_up_peti_only_2_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_peti_only_omufes_description"
+            />
+
+        <TextView
+            style="@style/AppPetiOnlyLabel"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/event_heads_up_peti_only_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>
