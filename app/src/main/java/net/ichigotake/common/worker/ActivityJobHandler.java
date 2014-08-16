@@ -29,7 +29,9 @@ class ActivityJobHandler extends AbstractJobHandler {
         boolean isActivityDead = activity == null || activity.isEnqueued();
         if (isActivityDead) {
             pause();
-            sendMessage(message);
+            Message newMessage = obtainMessage();
+            newMessage.obj = message.obj;
+            sendMessage(newMessage);
             return;
         }
 
