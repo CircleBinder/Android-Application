@@ -3,7 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
+    android:layout_height="72dp"
     android:gravity="center_horizontal"
     android:baselineAligned="false"
     android:paddingLeft="@dimen/common_spacer_x_small"
@@ -12,7 +12,7 @@
 
     <RelativeLayout
         android:layout_width="0dp"
-        android:layout_height="70dp"
+        android:layout_height="72dp"
         android:layout_weight="1"
         android:layout_gravity="center_horizontal"
         android:gravity="center_horizontal"
@@ -24,7 +24,7 @@
             style="@style/AppPetiOnlyThumbnail"
             android:id="@+id/event_heads_up_peti_only_1"
             android:layout_width="wrap_content"
-            android:layout_height="70dp"
+            android:layout_height="72dp"
             android:layout_marginRight="@dimen/common_spacer_x_small"
             android:layout_alignParentLeft="true"
             />
@@ -68,7 +68,7 @@
 
     <RelativeLayout
         android:layout_width="0dp"
-        android:layout_height="70dp"
+        android:layout_height="72dp"
         android:layout_weight="1"
         android:layout_gravity="center_horizontal"
         android:clickable="true"
@@ -80,7 +80,7 @@
             style="@style/AppPetiOnlyThumbnail"
             android:id="@+id/event_heads_up_peti_only_2"
             android:layout_width="wrap_content"
-            android:layout_height="70dp"
+            android:layout_height="72dp"
             android:layout_alignParentLeft="true"
             android:layout_marginRight="@dimen/common_spacer_x_small"
             />

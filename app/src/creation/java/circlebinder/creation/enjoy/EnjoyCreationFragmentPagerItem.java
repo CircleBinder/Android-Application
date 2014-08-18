@@ -14,7 +14,7 @@ public final class EnjoyCreationFragmentPagerItem implements FragmentPagerItem {
                 return CircleSearchGuidanceFragment.newInstance();
             default:
                 //throw new InvalidImplementationException();
-                return PetiOnlyPanelFragment.newInstance();
+                return PetiOnlyOverviewFragment.newInstance();
         }
     }
 

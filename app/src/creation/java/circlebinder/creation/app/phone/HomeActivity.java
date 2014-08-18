@@ -5,13 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.FragmentPagerAdapter;
+import circlebinder.common.view.carousel.CarouselView;
 
 import circlebinder.common.Legacy;
 import circlebinder.creation.app.BaseActivity;
@@ -41,10 +41,10 @@ public final class HomeActivity extends BaseActivity implements Legacy {
 
         getActionBar().setTitle(R.string.app_event_name);
         setContentView(R.layout.activity_home);
-        ViewPager enjoyCreationPager = (ViewPager) findViewById(R.id.activity_home_enjoy_creation);
         FragmentPagerAdapter enjoyCreationPagerAdapter =
                 new FragmentPagerAdapter(getFragmentManager(), new EnjoyCreationFragmentPagerItem());
-        enjoyCreationPager.setAdapter(enjoyCreationPagerAdapter);
+        CarouselView enjoyCreationCarousel = (CarouselView) findViewById(R.id.activity_home_enjoy_creation);
+        enjoyCreationCarousel.setAdapter(enjoyCreationPagerAdapter);
     }
 
     @Override
