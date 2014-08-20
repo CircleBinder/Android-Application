@@ -69,4 +69,7 @@ public class CarouselView extends RelativeLayout {
         );
     }
 
+    public void setCurrentItem(int position) {
+        this.pager.setCurrentItem(position);
+    }
 }

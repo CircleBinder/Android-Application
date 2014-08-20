@@ -11,6 +11,9 @@
     <string name="app_tutorial_initialize_progress">初期化しています</string>
     <string name="app_tutorial_initialize_complete">お気に入りサークルを探す！</string>
     <string name="app_circle_search_keyword_hint">サークル名 or ペンネーム</string>
+    <string name="app_enjoy_creation_overview">サンクリを楽しもう！\n初参加の方もこちらから</string>
+
+    <string name="app_creation_homepage_welcome">http://www.creation.gr.jp/common/welcome.html</string>
 
     <string name="app_peti_only">プチオンリー</string>
     <string name="app_peti_only_nmnl_name">No µ\'sic, No Live!</string>
