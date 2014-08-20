@@ -6,12 +6,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.ichigotake.common.app.ActivityTripper;
+import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.app.OnClickToTrip;
 
 import circlebinder.creation.app.BaseFragment;
 import circlebinder.creation.app.phone.AboutActivity;
 
 public final class PetiOnlyOverviewFragment extends BaseFragment {
+
+    public static FragmentFactory<PetiOnlyOverviewFragment> factory() {
+        return PetiOnlyOverviewFragment::newInstance;
+    }
 
     public static PetiOnlyOverviewFragment newInstance() {
         return new PetiOnlyOverviewFragment();

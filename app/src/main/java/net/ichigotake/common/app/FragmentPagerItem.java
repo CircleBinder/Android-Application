@@ -2,14 +2,10 @@ package net.ichigotake.common.app;
 
 import android.app.Fragment;
 
-import net.ichigotake.common.lang.InvalidImplementationException;
-
 public interface FragmentPagerItem {
 
-    Fragment getItem(int position) throws InvalidImplementationException;
+    Fragment getItem();
 
-    CharSequence getPageTitle(int position);
-
-    int getCount();
+    CharSequence getTitle();
 
 }

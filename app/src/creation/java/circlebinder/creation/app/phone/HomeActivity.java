@@ -11,13 +11,19 @@ import android.view.View;
 
 import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.FragmentPagerAdapter;
+import net.ichigotake.common.app.FragmentPagerItemCreatorFactory;
+import net.ichigotake.common.app.FragmentPagerItemFactory;
+
+import java.util.Arrays;
+
 import circlebinder.common.view.carousel.CarouselView;
 
 import circlebinder.common.Legacy;
 import circlebinder.creation.app.BaseActivity;
 import circlebinder.R;
 import circlebinder.common.app.TripActionProvider;
-import circlebinder.creation.enjoy.EnjoyCreationFragmentPagerItem;
+import circlebinder.creation.enjoy.CircleSearchGuidanceFragment;
+import circlebinder.creation.enjoy.PetiOnlyOverviewFragment;
 import circlebinder.creation.initialize.AppStorage;
 
 /**
@@ -41,8 +47,14 @@ public final class HomeActivity extends BaseActivity implements Legacy {
 
         getActionBar().setTitle(R.string.app_event_name);
         setContentView(R.layout.activity_home);
-        FragmentPagerAdapter enjoyCreationPagerAdapter =
-                new FragmentPagerAdapter(getFragmentManager(), new EnjoyCreationFragmentPagerItem());
+
+        FragmentPagerAdapter enjoyCreationPagerAdapter = new FragmentPagerAdapter(
+                getFragmentManager(),
+                FragmentPagerItemCreatorFactory.create(Arrays.asList(
+                        FragmentPagerItemFactory.create(CircleSearchGuidanceFragment.factory(), ""),
+                        FragmentPagerItemFactory.create(PetiOnlyOverviewFragment.factory(), "")
+                ))
+        );
         CarouselView enjoyCreationCarousel = (CarouselView) findViewById(R.id.activity_home_enjoy_creation);
         enjoyCreationCarousel.setAdapter(enjoyCreationPagerAdapter);
     }

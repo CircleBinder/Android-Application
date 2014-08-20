@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.ichigotake.common.app.ActivityTripper;
+import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.app.OnClickToTrip;
 
 import circlebinder.R;
@@ -13,6 +14,10 @@ import circlebinder.creation.app.BaseFragment;
 import circlebinder.creation.app.phone.CircleSearchActivity;
 
 public final class CircleSearchGuidanceFragment extends BaseFragment {
+
+    public static FragmentFactory<CircleSearchGuidanceFragment> factory() {
+        return CircleSearchGuidanceFragment::newInstance;
+    }
 
     public static CircleSearchGuidanceFragment newInstance() {
         return new CircleSearchGuidanceFragment();

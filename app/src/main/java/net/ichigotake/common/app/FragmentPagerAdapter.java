@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 
 public class FragmentPagerAdapter extends FragmentStatePagerAdapter {
 
-    private final FragmentPagerItem item;
+    private final FragmentPagerItemCreator item;
     private final SparseArray<Object> registeredPages;
 
-    public FragmentPagerAdapter(FragmentManager fm, FragmentPagerItem item) {
+    public FragmentPagerAdapter(FragmentManager fm, FragmentPagerItemCreator item) {
         super(fm);
         this.item = item;
         this.registeredPages = new SparseArray<>();
