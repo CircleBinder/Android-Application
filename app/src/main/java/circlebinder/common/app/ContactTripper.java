@@ -3,6 +3,9 @@ package circlebinder.common.app;
 import android.content.Context;
 import android.content.Intent;
 
+import com.dmitriy.tarasov.android.intents.IntentUtils;
+
+import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.Tripper;
 
 import circlebinder.R;
@@ -19,21 +22,12 @@ public final class ContactTripper implements Tripper {
 
     @Override
     public void trip() {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.putExtra(
-                Intent.EXTRA_EMAIL,
-                context.getResources().getStringArray(R.array.common_contact_mail_addresses)
-        );
-
-        intent.putExtra(
-                Intent.EXTRA_SUBJECT,
-                context.getString(R.string.common_contact_mail_subject, appName)
-        );
-        intent.putExtra(
-                Intent.EXTRA_TEXT,
+        Intent intent = IntentUtils.sendEmail(
+                context.getResources().getStringArray(R.array.common_contact_mail_addresses),
+                context.getString(R.string.common_contact_mail_subject, appName),
                 context.getString(R.string.common_contact_mail_body)
         );
-        intent.setType("message/rfc822");
-        context.startActivity(intent);
+        new ActivityTripper(context, intent).trip();
     }
+
 }
