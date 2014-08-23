@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.dmitriy.tarasov.android.intents.IntentUtils;
 
-import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.OnClickToTrip;
 import net.ichigotake.common.widget.TextViewUtil;
 
@@ -46,12 +45,9 @@ public final class ContactFragment extends BaseFragment implements Legacy {
         String twitterHashTagUrl = getString(R.string.common_twitter_official_hash_tag_url);
         twitterHashTagView.setText(getString(R.string.common_twitter_official_hash_tag_name));
         TextViewUtil.hyperLinkDecoration(twitterHashTagView, twitterHashTagUrl);
-        twitterHashTagView.setOnClickListener(new OnClickToTrip(
-                new ActivityTripper(
-                        getActivity(),
-                        IntentUtils.openLink(twitterHashTagUrl)
-                )
-        ));
+        twitterHashTagView.setOnClickListener(
+                OnClickToTrip.activityTrip(getActivity(), IntentUtils.openLink(twitterHashTagUrl))
+        );
 
         TextView twitterScreenNameView = (TextView) view.findViewById(
                 R.id.twitter_official_account_screen_name
@@ -59,12 +55,9 @@ public final class ContactFragment extends BaseFragment implements Legacy {
         String twitterScreenNameUrl = getString(R.string.common_twitter_official_account_url);
         twitterScreenNameView.setText(getString(R.string.common_twitter_official_account_screen_name));
         TextViewUtil.hyperLinkDecoration(twitterScreenNameView, twitterScreenNameUrl);
-        twitterScreenNameView.setOnClickListener(new OnClickToTrip(
-                new ActivityTripper(
-                        getActivity(),
-                        IntentUtils.openLink(twitterScreenNameUrl)
-                )
-        ));
+        twitterScreenNameView.setOnClickListener(
+                OnClickToTrip.activityTrip(getActivity(), IntentUtils.openLink(twitterScreenNameUrl))
+        );
     }
 
     @Override

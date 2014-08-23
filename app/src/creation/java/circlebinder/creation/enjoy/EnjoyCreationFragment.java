@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.app.OnClickToTrip;
 import net.ichigotake.common.widget.TextViewUtil;
@@ -33,7 +32,7 @@ public final class EnjoyCreationFragment extends BaseFragment {
         TextViewUtil.hyperLinkDecoration(aboutCatalogLink);
         String aboutCatalogUrl = getString(R.string.app_enjoy_creation_about_catalog_link);
         Intent intent = WebViewActivity.createIntent(getActivity(), aboutCatalogUrl);
-        aboutCatalogLink.setOnClickListener(new OnClickToTrip(new ActivityTripper(getActivity(), intent)));
+        aboutCatalogLink.setOnClickListener(OnClickToTrip.activityTrip(getActivity(), intent));
         return view;
     }
 
