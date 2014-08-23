@@ -22,6 +22,17 @@
     <string name="app_peti_only_omufes_name">おむ☆フェス</string>
     <string name="app_peti_only_omufes_description">おむつっ娘メイン</string>
 
+    <string name="app_enjoy_creation_label">サンクリを楽しもう！</string>
+    <string name="app_enjoy_creation_news_label">クリエイションニュース</string>
+    <string name="app_enjoy_creation_news_description">会場内で5〜8枚ほど(枚数は開催時によってまちまち)、「クリエイションニュース」が発行されます。\n各ホール入り口そばや、クリエイション事務局本部の近くに設置されている事が多いです。</string>
+    <string name="app_enjoy_creation_rakugaki_corner_label">ラクガキコーナー</string>
+    <string name="app_enjoy_creation_rakugaki_corner_description">各ホールの壁や柱に大きな紙が貼られています。\nホール毎にテーマが設定されており、誰でもラクガキ可能な自由な場で毎回たくさんのラクガキが寄せられています。</string>
+    <string name="app_enjoy_creation_survey_label">アンケート</string>
+    <string name="app_enjoy_creation_survey_description">クリエイション事務局では参加者からの声を集めています。\n当日の感想の他に、次回開催時のカタログにコメントが掲載される項目や、アンケートに答える事でイラスト色紙等の抽選権の獲得等もあります。\n詳細はカタログや当日のアナウンスにてご確認ください。</string>
+    <string name="app_enjoy_creation_about_catalog_label">カタログについて</string>
+    <string name="app_enjoy_creation_about_catalog_description">その他注意事項やイベント内イベントの詳細等はカタログに掲載されています。\nカタログは入場証にもなっておりますので、入場の前に必ず1人1冊ご購入ください。</string>
+    <string name="app_enjoy_creation_about_catalog_link">http://www.creation.gr.jp/common/visitor.html</string>
+
     <!-- Preference -->
     <string name="app_pref_app_storage">pref_app_storage</string>
     <string name="app_pref_app_storage_is_initialize">pref_app_storage_is_initialize</string>

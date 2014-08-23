@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="circlebinder.creation.enjoy.EnjoyCreationFragment"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            style="@style/CommonSectionHeaderLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_enjoy_creation_news_label"
+            />
+
+        <TextView
+            style="@style/CommonSectionContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_enjoy_creation_news_description"
+            />
+
+        <TextView
+            style="@style/CommonSectionHeaderLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_enjoy_creation_rakugaki_corner_label"
+            />
+
+        <TextView
+            style="@style/CommonSectionContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_enjoy_creation_rakugaki_corner_description"
+            />
+
+        <TextView
+            style="@style/CommonSectionHeaderLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_enjoy_creation_survey_label"
+            />
+
+        <TextView
+            style="@style/CommonSectionContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_enjoy_creation_survey_description"
+            />
+
+        <TextView
+            style="@style/CommonSectionHeaderLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_enjoy_creation_about_catalog_label"
+            />
+
+        <TextView
+            style="@style/CommonSectionContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_enjoy_creation_about_catalog_description"
+            />
+
+        <TextView
+            style="@style/CommonSectionContent"
+            android:id="@+id/fragment_enjoy_creation_about_catalog_link"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_enjoy_creation_about_catalog_link"
+            />
+
+    </LinearLayout>
+</ScrollView>

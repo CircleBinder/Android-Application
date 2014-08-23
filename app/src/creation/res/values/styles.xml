@@ -21,6 +21,14 @@
         <item name="android:paddingLeft">@dimen/common_section_head_label_padding_horizontal</item>
     </style>
 
+    <style name="CommonSectionContent">
+        <item name="android:textSize">@dimen/common_font_body</item>
+        <item name="android:paddingTop">@dimen/common_spacer_x_small</item>
+        <item name="android:paddingRight">@dimen/common_spacer_x_small</item>
+        <item name="android:paddingBottom">@dimen/common_spacer_x_small</item>
+        <item name="android:paddingLeft">@dimen/common_spacer_x_small</item>
+    </style>
+
     <style name="CircleBinderActionBar" parent="android:Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@color/app_theme_base</item>
         <item name="android:backgroundSplit">@color/app_theme_base</item>

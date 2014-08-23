@@ -23,7 +23,7 @@ import circlebinder.creation.app.BaseActivity;
 import circlebinder.R;
 import circlebinder.common.app.TripActionProvider;
 import circlebinder.creation.enjoy.CircleSearchGuidanceFragment;
-import circlebinder.creation.enjoy.EnjoyCreationFragment;
+import circlebinder.creation.enjoy.WelcomeToCreationFragment;
 import circlebinder.creation.enjoy.PetiOnlyOverviewFragment;
 import circlebinder.creation.initialize.AppStorage;
 
@@ -52,7 +52,7 @@ public final class HomeActivity extends BaseActivity implements Legacy {
         FragmentPagerAdapter enjoyCreationPagerAdapter = new FragmentPagerAdapter(
                 getFragmentManager(),
                 FragmentPagerItemCreatorFactory.create(Arrays.asList(
-                        FragmentPagerItemFactory.create(EnjoyCreationFragment.factory(), ""),
+                        FragmentPagerItemFactory.create(WelcomeToCreationFragment.factory(), ""),
                         FragmentPagerItemFactory.create(CircleSearchGuidanceFragment.factory(), ""),
                         FragmentPagerItemFactory.create(PetiOnlyOverviewFragment.factory(), "")
                 ))
