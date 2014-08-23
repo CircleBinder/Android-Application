@@ -1,13 +1,19 @@
 package circlebinder.common.view.carousel;
 
+import android.view.View;
 import android.widget.TextView;
 
-final class CarouselIndicatorView implements CarouselIndicator {
+final class DefaultCarouselIndicator implements CarouselIndicator {
 
     private final TextView indicator;
 
-    CarouselIndicatorView(TextView textView) {
+    DefaultCarouselIndicator(TextView textView) {
         this.indicator = textView;
+    }
+
+    @Override
+    public View getView() {
+        return indicator;
     }
 
     @Override

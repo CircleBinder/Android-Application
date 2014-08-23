@@ -1,13 +1,14 @@
 package circlebinder.common.view.carousel;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +17,14 @@ import circlebinder.R;
 
 public class CarouselView extends RelativeLayout {
 
-    private LayoutInflater inflater;
     private ViewPager pager;
+    private PagerAdapter adapter;
     private ViewGroup indicatorsContainer;
-    private CarouseNavigationViewHolder viewHolder;
+    private ViewGroup backView;
+    private ViewGroup forwardView;
+    private ViewPager.OnPageChangeListener onPageChangeListener;
+    private List<CarouselIndicator> indicators = new ArrayList<>();
+    private CarouselIndicatorFactory carouselIndicatorFactory;
 
     public CarouselView(Context context) {
         super(context);
@@ -37,39 +42,101 @@ public class CarouselView extends RelativeLayout {
     }
 
     private void initialize() {
-        this.inflater = LayoutInflater.from(getContext());
-        this.inflater.inflate(R.layout.view_carousel, this);
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        inflater.inflate(R.layout.view_carousel, this);
         this.pager = (ViewPager) findViewById(R.id.view_carousel_pager);
         this.indicatorsContainer = (ViewGroup) findViewById(R.id.view_carousel_indicators);
-        this.viewHolder = new CarouseNavigationViewHolder(
-                findViewById(R.id.view_carousel_pager_forward),
-                findViewById(R.id.view_carousel_pager_back)
+        this.carouselIndicatorFactory = new DefaultCarouselIndicatorFactory(getContext());
+        forwardView = (ViewGroup) findViewById(R.id.view_carousel_pager_forward);
+        ViewGroup.LayoutParams forwardViewParams = new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
         );
+        setForwardView(inflater.inflate(R.layout.view_carousel_forward, null), forwardViewParams);
+        backView = (ViewGroup) findViewById(R.id.view_carousel_pager_back);
+        ViewGroup.LayoutParams backViewParams = new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
+        );
+        setBackView(inflater.inflate(R.layout.view_carousel_back, null), backViewParams);
+    }
+
+    public void setBackView(View backView, ViewGroup.LayoutParams params) {
+        backView.setOnClickListener(v -> pager.setCurrentItem(pager.getCurrentItem()-1));
+        this.backView.removeAllViews();
+        this.backView.addView(backView, 0, params);
+    }
+
+    public void setForwardView(View forwardView, ViewGroup.LayoutParams params) {
+        forwardView.setOnClickListener(v -> pager.setCurrentItem(pager.getCurrentItem()+1));
+        this.forwardView.removeAllViews();
+        this.forwardView.addView(forwardView, 0, params);
     }
 
     public void setAdapter(PagerAdapter adapter) {
+        this.adapter = adapter;
         this.indicatorsContainer.removeAllViews();
-        int count = adapter.getCount();
-        List<CarouselIndicator> indicators = new ArrayList<>();
-        for (int i=0; i<count; i++) {
-            TextView indicatorView = (TextView)
-                    this.inflater.inflate(R.layout.view_carousel_indicator, null);
-            this.indicatorsContainer.addView(indicatorView);
-            CarouselIndicator indicator = new CarouselIndicatorView(indicatorView);
-            if (i == 0) {
-                indicator.activate();
-            } else {
-                indicator.deactivate();
-            }
-            indicators.add(indicator);
+        int size = adapter.getCount();
+        indicators = carouselIndicatorFactory.create(size);
+        for (CarouselIndicator item : indicators) {
+            this.indicatorsContainer.addView(item.getView());
         }
         this.pager.setAdapter(adapter);
-        this.pager.setOnPageChangeListener(
-                CarouselIndicatorListener.create(pager, adapter, viewHolder, indicators)
-        );
+        this.pager.setOnPageChangeListener(new CarouselIndicatorListener());
+    }
+
+    public void setIndicatorVisible(boolean visible) {
+        indicatorsContainer.setVisibility(visible ? VISIBLE : GONE);
     }
 
     public void setCurrentItem(int position) {
         this.pager.setCurrentItem(position);
+    }
+
+    public void setOnPageChangeListener(ViewPager.OnPageChangeListener listener) {
+        onPageChangeListener = listener;
+    }
+
+    public void setPageMargin(int pageMargin) {
+        pager.setPageMargin(pageMargin);
+    }
+
+    public void setPageMarginDrawable(ColorDrawable drawable) {
+        pager.setPageMarginDrawable(drawable);
+    }
+
+    private class CarouselIndicatorListener implements ViewPager.OnPageChangeListener {
+
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            if (onPageChangeListener != null) {
+                onPageChangeListener.onPageScrolled(position, positionOffset, positionOffsetPixels);
+            }
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            backView.setVisibility(position == 0 ? View.GONE : View.VISIBLE);
+
+            int count = adapter != null ? adapter.getCount() : 0;
+            int lastIndex = count-1;
+            forwardView.setVisibility(position < lastIndex ? View.VISIBLE : View.GONE);
+            for (int i=0; i<count; i++) {
+                CarouselIndicator indicator = indicators.get(i);
+                if (i == position) {
+                    indicator.activate();
+                } else {
+                    indicator.deactivate();
+                }
+            }
+            if (onPageChangeListener != null) {
+                onPageChangeListener.onPageSelected(position);
+            }
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+            if (onPageChangeListener != null) {
+                onPageChangeListener.onPageScrollStateChanged(state);
+            }
+        }
     }
 }

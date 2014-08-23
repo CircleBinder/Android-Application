@@ -15,40 +15,11 @@
         android:paddingRight="16dp"
         />
 
-    <RelativeLayout
+    <circlebinder.common.view.carousel.CarouselView
+        android:id="@+id/activity_circle_detail_pager"
         android:layout_below="@+id/activity_circle_detail_pager_header"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/activity_circle_detail_pager"
-            android:layout_centerVertical="true"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
-
-        <ImageView
-            android:id="@+id/activity_circle_detail_pager_back"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:padding="8dp"
-            android:src="@drawable/ic_action_light_back"
-            android:visibility="gone"
-            />
-
-        <ImageView
-            android:id="@+id/activity_circle_detail_pager_forward"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:padding="8dp"
-            android:src="@drawable/ic_action_light_forward"
-            android:visibility="gone"
-            />
-
-    </RelativeLayout>
+        android:layout_height="match_parent"
+        />
 
 </RelativeLayout>
