@@ -6,15 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.dmitriy.tarasov.android.intents.IntentUtils;
-
 import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.app.OnClickToTrip;
 
 import circlebinder.R;
 import circlebinder.creation.app.BaseFragment;
-import circlebinder.creation.app.phone.AboutActivity;
 import circlebinder.creation.app.phone.WebViewActivity;
 
 public final class PetiOnlyOverviewFragment extends BaseFragment {
