@@ -2,6 +2,8 @@ package circlebinder.creation.web;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
@@ -12,6 +14,7 @@ import net.ichigotake.common.os.BundleMerger;
 import circlebinder.common.circle.CircleWebContainer;
 import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
+import progress.menu.item.ProgressMenuItemHelper;
 
 public final class WebViewFragment extends BaseFragment {
 
@@ -30,10 +33,12 @@ public final class WebViewFragment extends BaseFragment {
     private static final String KEY_URL = "url";
     private String url;
     private CircleWebContainer container;
+    private ProgressMenuItemHelper progressMenuItemHelper;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         String restoredUrl = BundleMerger.merge(getArguments(), savedInstanceState).getString(KEY_URL);
         url = (restoredUrl != null) ? restoredUrl : "https://google.co.jp";
     }
@@ -44,12 +49,28 @@ public final class WebViewFragment extends BaseFragment {
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.app_web_view_progress_bar, menu);
+        progressMenuItemHelper = new ProgressMenuItemHelper(menu, R.id.app_web_view_progress_bar);
+    }
+
+    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         container = new CircleWebContainer(
                 (WebView)getView().findViewById(R.id.fragment_web_view)
         );
         container.loadUrl(url);
+        container.setBeforeLoadingListener(() -> {
+            if (progressMenuItemHelper != null) {
+                progressMenuItemHelper.startProgress();
+            }
+        });
+        container.setAfterLoadingListener(() -> {
+            if (progressMenuItemHelper != null) {
+                progressMenuItemHelper.stopProgress();
+            }
+        });
     }
 
     @Override

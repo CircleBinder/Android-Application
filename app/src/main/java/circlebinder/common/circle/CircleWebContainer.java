@@ -4,18 +4,34 @@ import android.annotation.SuppressLint;
 import android.os.Build;
 import android.webkit.WebView;
 
+import net.ichigotake.common.content.AfterLoadingListener;
+import net.ichigotake.common.content.BeforeLoadingListener;
+
 import circlebinder.common.event.Circle;
 import circlebinder.common.event.CircleLink;
 
 public final class CircleWebContainer {
 
     private final WebView webView;
+    private AfterLoadingListener afterLoadingListener;
+    private BeforeLoadingListener beforeLoadingListener;
 
     @SuppressLint("SetJavaScriptEnabled")
     public CircleWebContainer(WebView webView) {
         this.webView = webView;
 
-        webView.setWebViewClient(new CircleWebClient(webView));
+        CircleWebClient client = new CircleWebClient(webView);
+        client.setAfterLoadingListener(() -> {
+            if (afterLoadingListener != null) {
+                afterLoadingListener.onAfterLoading();
+            }
+        });
+        client.setBeforeLoadingListener(() -> {
+            if (beforeLoadingListener != null) {
+                beforeLoadingListener.onBeforeLoading();
+            }
+        });
+        webView.setWebViewClient(client);
         webView.getSettings().setLoadWithOverviewMode(true);
         webView.getSettings().setUseWideViewPort(true);
         webView.getSettings().setBuiltInZoomControls(true);
@@ -26,6 +42,14 @@ public final class CircleWebContainer {
             webView.getSettings().setJavaScriptEnabled(false);
         }
         webView.setOnKeyListener(new CircleWebOnKeyListener(webView));
+    }
+
+    public void setAfterLoadingListener(AfterLoadingListener listener) {
+        this.afterLoadingListener = listener;
+    }
+
+    public void setBeforeLoadingListener(BeforeLoadingListener listener) {
+        this.beforeLoadingListener = listener;
     }
 
     public void loadUrl(CircleLink link) {

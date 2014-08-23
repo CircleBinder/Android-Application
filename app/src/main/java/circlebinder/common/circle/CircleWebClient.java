@@ -4,6 +4,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import net.ichigotake.common.content.AfterLoadingListener;
+import net.ichigotake.common.content.BeforeLoadingListener;
 import net.ichigotake.common.net.NetworkState;
 
 /**
@@ -14,11 +16,22 @@ import net.ichigotake.common.net.NetworkState;
 public final class CircleWebClient extends WebViewClient {
 
     private final WebView webView;
+    private AfterLoadingListener afterLoadingListener;
+    private BeforeLoadingListener beforeLoadingListener;
 
     public CircleWebClient(WebView webView) {
         this.webView = webView;
     }
 
+    public void setAfterLoadingListener(AfterLoadingListener listener) {
+        this.afterLoadingListener = listener;
+    }
+
+    public void setBeforeLoadingListener(BeforeLoadingListener listener) {
+        this.beforeLoadingListener = listener;
+    }
+
+    @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         if (NetworkState.isConnected(webView.getContext())) {
             webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
@@ -26,6 +39,22 @@ public final class CircleWebClient extends WebViewClient {
             webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         }
         return false;
+    }
+
+    @Override
+    public void onPageStarted(WebView view, String url, android.graphics.Bitmap favicon) {
+        if (beforeLoadingListener != null) {
+            beforeLoadingListener.onBeforeLoading();
+        }
+        super.onPageStarted(view, url, favicon);
+    }
+
+    @Override
+    public void onPageFinished(WebView view, String url) {
+        if (afterLoadingListener != null) {
+            afterLoadingListener.onAfterLoading();
+        }
+        super.onPageFinished(view, url);
     }
 
 }
