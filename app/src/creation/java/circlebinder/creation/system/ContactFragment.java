@@ -2,7 +2,6 @@ package circlebinder.creation.system;
 
 import android.app.ActionBar;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +11,7 @@ import com.dmitriy.tarasov.android.intents.IntentUtils;
 
 import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.OnClickToTrip;
+import net.ichigotake.common.widget.TextViewUtil;
 
 import circlebinder.common.Legacy;
 import circlebinder.common.app.ContactTripper;
@@ -44,11 +44,8 @@ public final class ContactFragment extends BaseFragment implements Legacy {
                 R.id.twitter_official_hash_tag_name
         );
         String twitterHashTagUrl = getString(R.string.common_twitter_official_hash_tag_url);
-        twitterHashTagView.setText(Html.fromHtml(
-                "<a href=\"" + twitterHashTagUrl + "\">" +
-                        getString(R.string.common_twitter_official_hash_tag_name) +
-                        "</a>"
-        ));
+        twitterHashTagView.setText(getString(R.string.common_twitter_official_hash_tag_name));
+        TextViewUtil.hyperLinkDecoration(twitterHashTagView, twitterHashTagUrl);
         twitterHashTagView.setOnClickListener(new OnClickToTrip(
                 new ActivityTripper(
                         getActivity(),
@@ -60,11 +57,8 @@ public final class ContactFragment extends BaseFragment implements Legacy {
                 R.id.twitter_official_account_screen_name
         );
         String twitterScreenNameUrl = getString(R.string.common_twitter_official_account_url);
-        twitterScreenNameView.setText(Html.fromHtml(
-                "<a href=\"" + twitterScreenNameUrl + "\">" +
-                        getString(R.string.common_twitter_official_account_screen_name) +
-                        "</a>"
-        ));
+        twitterScreenNameView.setText(getString(R.string.common_twitter_official_account_screen_name));
+        TextViewUtil.hyperLinkDecoration(twitterScreenNameView, twitterScreenNameUrl);
         twitterScreenNameView.setOnClickListener(new OnClickToTrip(
                 new ActivityTripper(
                         getActivity(),
