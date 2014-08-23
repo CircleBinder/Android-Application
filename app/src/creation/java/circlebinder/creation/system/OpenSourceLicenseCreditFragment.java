@@ -38,8 +38,9 @@ public final class OpenSourceLicenseCreditFragment extends BaseFragment {
             e.printStackTrace();
         }
         adapter.add(new OpenSourceLicenseCredit("ActiveAndroid", "Michael Pardo", 2010, licenseBody));
-        adapter.add(new OpenSourceLicenseCredit("ltsv4j", "making", 2013, licenseBody));
         adapter.add(new OpenSourceLicenseCredit("android-intents", "Dmitriy Tarasov ", 2013, licenseBody));
+        adapter.add(new OpenSourceLicenseCredit("ltsv4j", "making", 2013, licenseBody));
+        adapter.add(new OpenSourceLicenseCredit("Picasso", "Square, Inc", 2013, licenseBody));
 
         ListView credits = (ListView)view.findViewById(R.id.fragment_open_source_license_list);
         credits.setAdapter(adapter);

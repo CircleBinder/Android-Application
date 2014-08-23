@@ -66,6 +66,11 @@
             />
 
         <activity
+            android:name="circlebinder.creation.app.phone.EnjoyCreationActivity"
+            android:label="@string/app_enjoy_creation_label"
+            />
+
+        <activity
             android:name="circlebinder.creation.app.phone.ContactActivity"
             android:label="@string/app_name"
             android:configChanges="orientation|screenSize"

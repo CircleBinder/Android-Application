@@ -1,18 +1,30 @@
 package circlebinder.creation.app.phone;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import net.ichigotake.common.app.ActivityTripper;
-import net.ichigotake.common.app.OnClickToTrip;
+import net.ichigotake.common.app.FragmentPagerAdapter;
+import net.ichigotake.common.app.FragmentPagerItemCreatorFactory;
+import net.ichigotake.common.app.FragmentPagerItemFactory;
+
+import java.util.Arrays;
+
+import circlebinder.common.view.carousel.CarouselView;
 
 import circlebinder.common.Legacy;
 import circlebinder.creation.app.BaseActivity;
 import circlebinder.R;
 import circlebinder.common.app.TripActionProvider;
+import circlebinder.creation.enjoy.CircleSearchGuidanceFragment;
+import circlebinder.creation.enjoy.WelcomeToCreationFragment;
+import circlebinder.creation.enjoy.PetiOnlyOverviewFragment;
 import circlebinder.creation.initialize.AppStorage;
 
 /**
@@ -34,10 +46,33 @@ public final class HomeActivity extends BaseActivity implements Legacy {
             return;
         }
 
+        getActionBar().setTitle(R.string.app_event_name);
         setContentView(R.layout.activity_home);
-        findViewById(R.id.fragment_checklist_header_label).setOnClickListener(
-                new OnClickToTrip(new ActivityTripper(this, CircleSearchActivity.createIntent(this)))
+
+        FragmentPagerAdapter enjoyCreationPagerAdapter = new FragmentPagerAdapter(
+                getFragmentManager(),
+                FragmentPagerItemCreatorFactory.create(Arrays.asList(
+                        FragmentPagerItemFactory.create(WelcomeToCreationFragment.factory(), ""),
+                        FragmentPagerItemFactory.create(CircleSearchGuidanceFragment.factory(), ""),
+                        FragmentPagerItemFactory.create(PetiOnlyOverviewFragment.factory(), "")
+                ))
         );
+        CarouselView enjoyCreationCarousel = (CarouselView) findViewById(R.id.activity_home_enjoy_creation);
+        enjoyCreationCarousel.setAdapter(enjoyCreationPagerAdapter);
+        enjoyCreationCarousel.setCurrentItem(1);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        ActionBar actionBar = getActionBar();
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            actionBar.setDisplayShowTitleEnabled(true);
+            findViewById(R.id.activity_home_header_event_name).setVisibility(View.GONE);
+        } else {
+            actionBar.setDisplayShowTitleEnabled(false);
+            findViewById(R.id.activity_home_header_event_name).setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

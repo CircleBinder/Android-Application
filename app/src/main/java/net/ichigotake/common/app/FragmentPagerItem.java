@@ -4,10 +4,8 @@ import android.app.Fragment;
 
 public interface FragmentPagerItem {
 
-    Fragment getItem(int position);
+    Fragment getItem();
 
-    CharSequence getPageTitle(int position);
-
-    int getCount();
+    CharSequence getTitle();
 
 }

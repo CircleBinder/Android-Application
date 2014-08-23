@@ -13,7 +13,7 @@ import android.view.View;
 
 import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.app.FragmentPagerAdapter;
-import net.ichigotake.common.app.FragmentPagerItem;
+import net.ichigotake.common.app.FragmentPagerItemCreator;
 import net.ichigotake.common.os.BundleMerger;
 
 import circlebinder.common.Legacy;
@@ -67,7 +67,7 @@ public final class CircleDetailPagerActivity extends BaseActivity
         pager = (ViewPager) findViewById(R.id.activity_circle_detail_pager);
         pagerAdapter = new FragmentPagerAdapter(
                 getFragmentManager(),
-                new CircleDetailPagerItem(searchOption)
+                new CircleDetailPagerItemCreator(searchOption)
         );
         pager.setAdapter(pagerAdapter);
         pager.setPageMargin(getResources().getDimensionPixelSize(
@@ -128,12 +128,12 @@ public final class CircleDetailPagerActivity extends BaseActivity
         viewHolder.getSpace().setText(circle.getSpace().getName());
     }
 
-    private static class CircleDetailPagerItem implements FragmentPagerItem {
+    private static class CircleDetailPagerItemCreator implements FragmentPagerItemCreator {
 
         private final CircleCursorConverter cursorCreator;
         private final Cursor cursor;
 
-        public CircleDetailPagerItem(CircleSearchOption circleSearchOption) {
+        public CircleDetailPagerItemCreator(CircleSearchOption circleSearchOption) {
             cursorCreator = new CircleCursorConverter();
             cursor = CircleTable.get(circleSearchOption);
         }
