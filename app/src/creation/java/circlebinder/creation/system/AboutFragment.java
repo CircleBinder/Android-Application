@@ -13,6 +13,7 @@ import net.ichigotake.common.worker.ActivityJobWorkerClient;
 
 import circlebinder.common.Legacy;
 import circlebinder.common.app.FragmentTripper;
+import circlebinder.common.system.OpenSourceLicenseCreditFragment;
 import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
 

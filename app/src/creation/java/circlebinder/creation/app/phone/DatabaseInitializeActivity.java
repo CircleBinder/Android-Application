@@ -11,13 +11,14 @@ import android.os.RemoteException;
 
 import net.ichigotake.common.worker.ActivityJobWorker;
 
+import circlebinder.common.Legacy;
 import circlebinder.creation.app.BaseActivity;
 import circlebinder.R;
 import circlebinder.creation.initialize.DatabaseInitializeService;
 import circlebinder.creation.initialize.IInitializeBindService;
 import circlebinder.creation.initialize.IInitializeServiceCallback;
 
-public final class DatabaseInitializeActivity extends BaseActivity {
+public final class DatabaseInitializeActivity extends BaseActivity implements Legacy {
 
     public static Intent createIntent(Context context) {
         return new Intent(context, DatabaseInitializeActivity.class);

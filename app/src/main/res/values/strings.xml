@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_event_name">サンシャインクリエイション64</string>
+    <string name="common_app_name">CircleBinder</string>
     <string name="common_action_open_browser">WEBブラウザで開く</string>
     <string name="common_action_share">シェアする</string>
     <string name="common_circle_search">出展サークルを探す</string>

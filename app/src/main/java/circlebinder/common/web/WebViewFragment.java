@@ -1,4 +1,4 @@
-package circlebinder.creation.web;
+package circlebinder.common.web;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -45,7 +45,7 @@ public final class WebViewFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_web_view, parent, false);
+        return inflater.inflate(R.layout.common_fragment_web_view, parent, false);
     }
 
     @Override

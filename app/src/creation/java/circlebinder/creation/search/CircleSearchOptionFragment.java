@@ -26,6 +26,7 @@ import circlebinder.common.event.Block;
 import circlebinder.common.event.BlockBuilder;
 import circlebinder.common.search.CircleSearchOption;
 import circlebinder.common.search.CircleSearchOptionBuilder;
+import circlebinder.common.search.OnCircleSearchOptionListener;
 import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
 import circlebinder.creation.event.BlockTable;

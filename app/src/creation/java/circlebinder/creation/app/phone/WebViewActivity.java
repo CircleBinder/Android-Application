@@ -12,7 +12,7 @@ import net.ichigotake.common.worker.ActivityJobWorker;
 import circlebinder.common.app.FragmentTripper;
 import circlebinder.creation.app.BaseActivity;
 import circlebinder.R;
-import circlebinder.creation.web.WebViewFragment;
+import circlebinder.common.web.WebViewFragment;
 
 public final class WebViewActivity extends BaseActivity {
 

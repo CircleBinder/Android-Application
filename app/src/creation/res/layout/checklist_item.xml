@@ -32,7 +32,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:drawablePadding="@dimen/common_spacer_x_small"
-            android:drawableLeft="@drawable/ic_checklist_blue"
+            android:drawableLeft="@drawable/common_ic_checklist_blue"
             tools:text="お気に入り"
             />
 

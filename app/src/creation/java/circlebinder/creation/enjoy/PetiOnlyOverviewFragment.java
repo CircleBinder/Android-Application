@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.app.OnClickToTrip;
 
@@ -30,7 +29,7 @@ public final class PetiOnlyOverviewFragment extends BaseFragment {
         Intent intent = WebViewActivity.createIntent(
                 getActivity(), getString(R.string.app_creation_homepage_peti_only)
         );
-        view.setOnClickListener(new OnClickToTrip(new ActivityTripper(getActivity(), intent)));
+        view.setOnClickListener(OnClickToTrip.activityTrip(getActivity(), intent));
         return view;
     }
 

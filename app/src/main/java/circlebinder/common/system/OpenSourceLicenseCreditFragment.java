@@ -1,4 +1,4 @@
-package circlebinder.creation.system;
+package circlebinder.common.system;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -28,7 +28,7 @@ public final class OpenSourceLicenseCreditFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_open_source_license, parent, false);
+        View view = inflater.inflate(R.layout.common_fragment_open_source_license, parent, false);
         OpenSourceLicenseCreditAdapter adapter = new OpenSourceLicenseCreditAdapter(getActivity());
         String licenseBody = "";
         try {

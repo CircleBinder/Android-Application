@@ -1,9 +1,8 @@
-package circlebinder.creation.search;
+package circlebinder.common.search;
 
 import android.database.Cursor;
 import android.widget.FilterQueryProvider;
 
-import circlebinder.common.search.CircleSearchOption;
 import circlebinder.creation.event.CircleTable;
 
 public final class CircleQueryProvider implements FilterQueryProvider {

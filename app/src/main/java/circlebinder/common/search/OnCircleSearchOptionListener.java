@@ -1,6 +1,4 @@
-package circlebinder.creation.search;
-
-import circlebinder.common.search.CircleSearchOption;
+package circlebinder.common.search;
 
 public interface OnCircleSearchOptionListener {
 

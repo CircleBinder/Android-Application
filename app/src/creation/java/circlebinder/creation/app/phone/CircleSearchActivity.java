@@ -12,7 +12,7 @@ import net.ichigotake.common.worker.ActivityJobWorker;
 import circlebinder.common.search.CircleSearchOption;
 import circlebinder.creation.app.BaseActivity;
 import circlebinder.R;
-import circlebinder.creation.search.OnCircleSearchOptionListener;
+import circlebinder.common.search.OnCircleSearchOptionListener;
 
 public final class CircleSearchActivity extends BaseActivity implements OnCircleSearchOptionListener {
 

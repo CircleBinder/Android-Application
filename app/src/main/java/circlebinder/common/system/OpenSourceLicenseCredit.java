@@ -1,4 +1,4 @@
-package circlebinder.creation.system;
+package circlebinder.common.system;
 
 final class OpenSourceLicenseCredit {
 
