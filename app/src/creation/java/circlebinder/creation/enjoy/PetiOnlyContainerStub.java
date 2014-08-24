@@ -8,21 +8,21 @@ import com.squareup.picasso.Picasso;
 
 import circlebinder.R;
 
-class PetiOnlyContainer {
+class PetiOnlyContainerStub {
 
     static final int layoutResource = R.layout.enjoy_creation_petionly;
 
     static void render(View container) {
         ImageView petiOnly1 = (ImageView) container.findViewById(R.id.event_heads_up_peti_only_1);
         ImageView petiOnly2 = (ImageView) container.findViewById(R.id.event_heads_up_peti_only_2);
-        new PetiOnlyContainer(petiOnly1, petiOnly2).renderView();
+        new PetiOnlyContainerStub(petiOnly1, petiOnly2).renderView();
     }
 
     private final Context context;
     private final ImageView petiOnly1;
     private final ImageView petiOnly2;
 
-    private PetiOnlyContainer(ImageView petiOnly1, ImageView petiOnly2) {
+    private PetiOnlyContainerStub(ImageView petiOnly1, ImageView petiOnly2) {
         this.context = petiOnly1.getContext().getApplicationContext();
         this.petiOnly1 = petiOnly1;
         this.petiOnly2 = petiOnly2;
