@@ -60,13 +60,19 @@ public final class HomeActivity extends BaseActivity implements Legacy {
         CarouselView enjoyCreationCarousel = (CarouselView) findViewById(R.id.activity_home_enjoy_creation);
         enjoyCreationCarousel.setAdapter(enjoyCreationPagerAdapter);
         enjoyCreationCarousel.setCurrentItem(1);
+
+        orientationConfig(getResources().getConfiguration());
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        orientationConfig(newConfig);
+    }
+
+    private void orientationConfig(Configuration configuration) {
         ActionBar actionBar = getActionBar();
-        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             actionBar.setDisplayShowTitleEnabled(true);
             findViewById(R.id.activity_home_header_event_name).setVisibility(View.GONE);
         } else {
