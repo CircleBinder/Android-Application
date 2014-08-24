@@ -25,7 +25,7 @@ public final class PetiOnlyOverviewFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        View view = inflater.inflate(PetiOnlyContainerStub.layoutResource, parent, false);
+        View view = inflater.inflate(PetiOnlyContainer.layoutResource, parent, false);
         Intent intent = WebViewActivity.createIntent(
                 getActivity(), getString(R.string.app_creation_homepage_peti_only)
         );
@@ -36,6 +36,6 @@ public final class PetiOnlyOverviewFragment extends BaseFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        PetiOnlyContainerStub.render(getView());
+        PetiOnlyContainer.render(getView());
     }
 }
