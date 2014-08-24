@@ -3,6 +3,7 @@ package circlebinder.creation.app.phone;
 import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -47,7 +48,8 @@ public final class CircleDetailPagerActivity extends BaseActivity
     private FragmentPagerAdapter pagerAdapter;
     private CircleSearchOption searchOption;
     private int currentPosition;
-    private View headerView;
+    private CircleDetailViewHolder headerViewHolder;
+    private CircleDetailViewHolder actionBarViewHolder;
     private CarouselView pager;
 
     @Override
@@ -60,7 +62,9 @@ public final class CircleDetailPagerActivity extends BaseActivity
         actionBar.setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_circle_detail_pager);
 
-        headerView = findViewById(R.id.activity_circle_detail_pager_header);
+        headerViewHolder = new CircleDetailViewHolder(findViewById(R.id.activity_circle_detail_pager_header));
+        actionBar.setCustomView(CircleDetailViewHolder.layoutResource);
+        actionBarViewHolder = new CircleDetailViewHolder(actionBar.getCustomView());
 
         Bundle bundle = BundleMerger.merge(getIntent(), savedInstanceState);
         searchOption = bundle.getParcelable(EXTRA_KEY_SEARCH_OPTION);
@@ -97,6 +101,7 @@ public final class CircleDetailPagerActivity extends BaseActivity
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
         );
         pager.setBackView(getLayoutInflater().inflate(R.layout.circle_detail_back, null), backViewParams);
+        orientationConfig(getResources().getConfiguration());
         new Handler().postDelayed(() -> onPageChangeListener.onPageSelected(currentPosition), 1000);
     }
 
@@ -122,10 +127,28 @@ public final class CircleDetailPagerActivity extends BaseActivity
     }
 
     @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        orientationConfig(newConfig);
+    }
+
+    @Override
     public void onCirclePageChanged(Circle circle) {
-        CircleDetailViewHolder viewHolder = new CircleDetailViewHolder(headerView);
-        viewHolder.getName().setText(circle.getPenName() + "/" + circle.getName());
-        viewHolder.getSpace().setText(circle.getSpace().getName());
+        actionBarViewHolder.getName().setText(circle.getPenName() + "/" + circle.getName());
+        actionBarViewHolder.getSpace().setText(circle.getSpace().getName());
+        headerViewHolder.getName().setText(circle.getPenName() + "/" + circle.getName());
+        headerViewHolder.getSpace().setText(circle.getSpace().getName());
+        orientationConfig(getResources().getConfiguration());
+    }
+
+    private void orientationConfig(Configuration configuration) {
+        if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            getActionBar().setDisplayShowCustomEnabled(true);
+            headerViewHolder.getContainer().setVisibility(View.GONE);
+        } else {
+            getActionBar().setDisplayShowCustomEnabled(false);
+            headerViewHolder.getContainer().setVisibility(View.VISIBLE);
+        }
     }
 
     private static class CircleDetailPagerItemCreator implements FragmentPagerItemCreator {
