@@ -25,6 +25,7 @@ import circlebinder.R;
 import circlebinder.creation.enjoy.CircleSearchGuidanceFragment;
 import circlebinder.creation.enjoy.WelcomeToCreationFragment;
 import circlebinder.creation.enjoy.PetiOnlyOverviewFragment;
+import circlebinder.creation.event.CircleTable;
 import circlebinder.creation.initialize.AppStorage;
 
 /**
@@ -59,7 +60,9 @@ public final class HomeActivity extends BaseActivity implements Legacy {
         );
         CarouselView enjoyCreationCarousel = (CarouselView) findViewById(R.id.activity_home_enjoy_creation);
         enjoyCreationCarousel.setAdapter(enjoyCreationPagerAdapter);
-        enjoyCreationCarousel.setCurrentItem(1);
+        if (!CircleTable.isChecklistEmpty()) {
+            enjoyCreationCarousel.setCurrentItem(1);
+        }
 
         orientationConfig(getResources().getConfiguration());
     }

@@ -28,6 +28,7 @@
         android:layout_alignParentLeft="true"
         android:orientation="vertical"
         android:gravity="center_vertical"
+        android:visibility="gone"
         />
 
     <LinearLayout
