@@ -19,7 +19,7 @@
         android:numColumns="2"
         android:horizontalSpacing="8dp"
         android:verticalSpacing="8dp"
-        tools:listitem="@layout/common_circle_list_item"
+        tools:listitem="@layout/checklist_item"
         />
 
     <include
