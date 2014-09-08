@@ -57,6 +57,7 @@ public class CarouselView extends RelativeLayout {
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
         );
         setBackView(inflater.inflate(R.layout.view_carousel_back, null), backViewParams);
+        this.pager.setOnPageChangeListener(new CarouselIndicatorListener());
     }
 
     public void setBackView(View backView, ViewGroup.LayoutParams params) {
@@ -80,7 +81,6 @@ public class CarouselView extends RelativeLayout {
             this.indicatorsContainer.addView(item.getView());
         }
         this.pager.setAdapter(adapter);
-        this.pager.setOnPageChangeListener(new CarouselIndicatorListener());
     }
 
     public void setIndicatorVisible(boolean visible) {
