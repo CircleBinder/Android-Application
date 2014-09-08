@@ -26,9 +26,5 @@ public final class OnItemSelectedListener<T> implements AdapterView.OnItemSelect
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        for (OnItemSelectedEventListener<T> listener : listeners) {
-            listener.onNothingSelected();
-        }
-    }
+    public void onNothingSelected(AdapterView<?> parent) {}
 }

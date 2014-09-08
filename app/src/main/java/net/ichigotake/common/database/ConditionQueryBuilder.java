@@ -13,8 +13,6 @@ public final class ConditionQueryBuilder {
         return new ConditionQueryBuilder().and(condition, arguments);
     }
 
-    private final String LOGICAL_OPERATOR_AND = "AND";
-    private final String LOGICAL_OPERATOR_OR = "OR";
     private final List<String> conditions;
     private final List<Object> values;
     private final List<String> logicalOperators;
@@ -27,7 +25,7 @@ public final class ConditionQueryBuilder {
 
     public ConditionQueryBuilder and(String condition, Object... arguments) {
         if (conditions.size() > 0) {
-            logicalOperators.add(LOGICAL_OPERATOR_AND);
+            logicalOperators.add("AND");
         }
         conditions.add(condition);
         values.addAll(Arrays.asList(arguments));
@@ -40,7 +38,7 @@ public final class ConditionQueryBuilder {
 
     public ConditionQueryBuilder or(String condition, Object... arguments) {
         if (conditions.size() > 0) {
-            logicalOperators.add(LOGICAL_OPERATOR_OR);
+            logicalOperators.add("OR");
         }
         conditions.add(condition);
         values.addAll(Arrays.asList(arguments));

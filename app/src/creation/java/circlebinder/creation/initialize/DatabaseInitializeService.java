@@ -2,11 +2,10 @@ package circlebinder.creation.initialize;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.IBinder;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
-
-import net.ichigotake.common.os.RunnableAsyncTask;
 
 import circlebinder.common.Legacy;
 
@@ -28,7 +27,7 @@ public final class DatabaseInitializeService extends Service implements Legacy {
 
         @Override
         public void AsyncStart() throws RemoteException {
-            RunnableAsyncTask.execute(new CreationDatabaseInitialize(getApplicationContext()) {
+            AsyncTask.execute(new CreationDatabaseInitialize(getApplicationContext()) {
                 @Override
                 void finished() {
                     callback();
