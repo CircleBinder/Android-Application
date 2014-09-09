@@ -78,7 +78,6 @@ public final class CircleSearchFragment extends BaseFragment implements OnCircle
         ).trip());
         adapter = new CircleAdapter(
                 getActivity(),
-                null,
                 new CircleCursorConverter(),
                 (viewHolder, position, item) -> {
                     final ChecklistPopupSelector selector = new ChecklistPopupSelector(
