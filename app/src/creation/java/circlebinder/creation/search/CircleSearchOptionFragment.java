@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import net.ichigotake.common.os.BundleMerger;
 import net.ichigotake.common.view.inputmethod.SoftInput;
-import net.ichigotake.common.widget.OnItemSelectedEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,17 +60,9 @@ public final class CircleSearchOptionFragment extends BaseFragment {
                 blocks
         );
         selectorContainer.setSelection(new AllBlock(getActivity()));
-        selectorContainer.addOnItemSelectedListener(new OnItemSelectedEventListener<Block>() {
-            @Override
-            public void onItemSelected(Block item) {
-                searchOptionBuilder.setBlock(item);
-                reloadTargetFragment(searchOptionBuilder.build());
-            }
-
-            @Override
-            public void onNothingSelected() {
-
-            }
+        selectorContainer.addOnItemSelectedListener(item -> {
+            searchOptionBuilder.setBlock(item);
+            reloadTargetFragment(searchOptionBuilder.build());
         });
         selectorContainer.setSelection(searchOptionBuilder.build().getBlock());
 

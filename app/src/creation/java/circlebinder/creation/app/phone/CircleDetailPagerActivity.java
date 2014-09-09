@@ -1,8 +1,10 @@
 package circlebinder.creation.app.phone;
 
 import android.app.ActionBar;
+import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.Loader;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.drawable.ColorDrawable;
@@ -27,11 +29,11 @@ import circlebinder.R;
 import circlebinder.creation.circle.CircleDetailFragment;
 import circlebinder.creation.circle.CircleDetailViewHolder;
 import circlebinder.creation.circle.OnCirclePageChangeListener;
-import circlebinder.creation.event.CircleTable;
 import circlebinder.creation.search.CircleCursorConverter;
+import circlebinder.creation.search.CircleLoader;
 
 public final class CircleDetailPagerActivity extends BaseActivity
-        implements Legacy, OnCirclePageChangeListener {
+        implements Legacy, OnCirclePageChangeListener, LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final String EXTRA_KEY_SEARCH_OPTION = "search_option";
     private static final String EXTRA_KEY_POSITION = "position";
@@ -71,20 +73,6 @@ public final class CircleDetailPagerActivity extends BaseActivity
         currentPosition = bundle.getInt(EXTRA_KEY_POSITION);
 
         pager = (CarouselView) findViewById(R.id.activity_circle_detail_pager);
-        pagerAdapter = new FragmentPagerAdapter(
-                getFragmentManager(),
-                new CircleDetailPagerItemCreator(searchOption)
-        );
-        ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
-            @Override public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
-            @Override public void onPageScrollStateChanged(int state) {}
-            @Override public void onPageSelected(int position) {
-                currentPosition = position;
-                pagerAdapter.reload(position);
-            }
-        };
-        pager.setOnPageChangeListener(onPageChangeListener);
-        pager.setAdapter(pagerAdapter);
         pager.setPageMargin(getResources().getDimensionPixelSize(
                 R.dimen.common_spacer_x_small
         ));
@@ -92,7 +80,6 @@ public final class CircleDetailPagerActivity extends BaseActivity
                 getResources().getColor(R.color.common_card_container_background)
         ));
         pager.setIndicatorVisible(false);
-        pager.setCurrentItem(currentPosition);
         ViewGroup.LayoutParams forwardViewParams = new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
         );
@@ -102,7 +89,7 @@ public final class CircleDetailPagerActivity extends BaseActivity
         );
         pager.setBackView(getLayoutInflater().inflate(R.layout.circle_detail_back, null), backViewParams);
         orientationConfig(getResources().getConfiguration());
-        new Handler().postDelayed(() -> onPageChangeListener.onPageSelected(currentPosition), 1000);
+        getLoaderManager().initLoader(0, bundle, this);
     }
 
     @Override
@@ -151,14 +138,44 @@ public final class CircleDetailPagerActivity extends BaseActivity
         }
     }
 
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new CircleLoader(getApplicationContext(), searchOption);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        pagerAdapter = new FragmentPagerAdapter(
+                getFragmentManager(),
+                new CircleDetailPagerItemCreator(data)
+        );
+        ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
+            @Override public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+            @Override public void onPageScrollStateChanged(int state) {}
+            @Override public void onPageSelected(int position) {
+                currentPosition = position;
+                pagerAdapter.reload(position);
+            }
+        };
+        pager.setOnPageChangeListener(onPageChangeListener);
+        pager.setAdapter(pagerAdapter);
+        pager.setCurrentItem(currentPosition);
+        new Handler().postDelayed(() -> onPageChangeListener.onPageSelected(currentPosition), 1000);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
+    }
+
     private static class CircleDetailPagerItemCreator implements FragmentPagerItemCreator {
 
         private final CircleCursorConverter cursorCreator;
         private final Cursor cursor;
 
-        public CircleDetailPagerItemCreator(CircleSearchOption circleSearchOption) {
-            cursorCreator = new CircleCursorConverter();
-            cursor = CircleTable.get(circleSearchOption);
+        public CircleDetailPagerItemCreator(Cursor cursor) {
+            this.cursorCreator = new CircleCursorConverter();
+            this.cursor = cursor;
         }
 
         @Override
