@@ -16,12 +16,12 @@ import net.ichigotake.common.app.FragmentPagerItemFactory;
 
 import java.util.Arrays;
 
+import circlebinder.common.app.ActivityTripActionProvider;
 import circlebinder.common.view.carousel.CarouselView;
 
 import circlebinder.common.Legacy;
 import circlebinder.creation.app.BaseActivity;
 import circlebinder.R;
-import circlebinder.common.app.TripActionProvider;
 import circlebinder.creation.enjoy.CircleSearchGuidanceFragment;
 import circlebinder.creation.enjoy.WelcomeToCreationFragment;
 import circlebinder.creation.enjoy.PetiOnlyOverviewFragment;
@@ -46,7 +46,6 @@ public final class HomeActivity extends BaseActivity implements Legacy {
             return;
         }
 
-        getActionBar().setTitle(R.string.app_event_name);
         setContentView(R.layout.activity_home);
 
         FragmentPagerAdapter enjoyCreationPagerAdapter = new FragmentPagerAdapter(
@@ -86,34 +85,21 @@ public final class HomeActivity extends BaseActivity implements Legacy {
         getMenuInflater().inflate(R.menu.home, menu);
         MenuItem openWebBrowserItem = menu.findItem(R.id.menu_home_open_official_site);
         openWebBrowserItem.setActionProvider(
-                new TripActionProvider(
-                        this,
-                        new ActivityTripper(
-                                this,
-                                WebViewActivity.createIntent(this, "http://www.creation.gr.jp/")
-                        )
+                new ActivityTripActionProvider(
+                        this, WebViewActivity.createIntent(this, "http://www.creation.gr.jp/")
                 )
         );
         MenuItem contactItem = menu.findItem(R.id.menu_home_wish_me_luck);
         contactItem.setActionProvider(
-                new TripActionProvider(
-                        this,
-                        new ActivityTripper(this, ContactActivity.createIntent(this))
-                )
+                new ActivityTripActionProvider(this, ContactActivity.createIntent(this))
         );
         MenuItem changeLogItem = menu.findItem(R.id.menu_home_change_log);
         changeLogItem.setActionProvider(
-                new TripActionProvider(
-                        this,
-                        new ActivityTripper(this, ChangeLogActivity.createIntent(this))
-                )
+                new ActivityTripActionProvider(this, ChangeLogActivity.createIntent(this))
         );
         MenuItem aboutForApplicationItem = menu.findItem(R.id.menu_home_about);
         aboutForApplicationItem.setActionProvider(
-                new TripActionProvider(
-                        this,
-                        new ActivityTripper(this, AboutActivity.createIntent(this))
-                )
+                new ActivityTripActionProvider(this, AboutActivity.createIntent(this))
         );
         return super.onCreateOptionsMenu(menu);
     }

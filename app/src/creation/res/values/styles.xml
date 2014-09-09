@@ -71,4 +71,8 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="AppCarouselIndicator">
+        <item name="android:background">#66ffffff</item>
+    </style>
+
 </resources>

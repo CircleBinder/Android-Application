@@ -28,7 +28,6 @@ public final class CircleSearchActivity extends BaseActivity implements OnCircle
         setContentView(R.layout.activity_circle_search);
         worker.setActivity(this);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setTitle(R.string.common_circle_search);
     }
 
     @Override

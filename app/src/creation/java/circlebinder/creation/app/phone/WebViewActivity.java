@@ -34,7 +34,6 @@ public final class WebViewActivity extends BaseActivity {
         worker.setActivity(this);
         url = BundleMerger.merge(getIntent(), savedInstanceState).getString(KEY_URL);
 
-        getActionBar().setTitle(R.string.app_event_name);
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         worker.enqueueActivityJob(value -> new FragmentTripper(getFragmentManager(), WebViewFragment.factory(url))
