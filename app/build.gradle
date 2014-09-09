@@ -14,7 +14,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'android-power-assert'
 apply plugin: 'retrolambda'
 
-retrolambda {}
+retrolambda {
+    jvmArgs '-noverify'
+}
 
 android {
     compileSdkVersion 19
@@ -50,7 +52,7 @@ android {
     buildTypes {
         release {
             debuggable false
-            runProguard true
+            runProguard false
             proguardFiles 'proguard-rules.txt'
             signingConfig signingConfigs.release
             applicationIdSuffix ''
@@ -78,7 +80,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'src/libs/', include: '*.jar')
-    compile 'com.android.support:support-v13:18.0.+'
+    compile 'com.android.support:support-v13:18.0.0'
     compile 'am.ik.ltsv4j:ltsv4j:0.9.0'
     compile 'com.dmitriy-tarasov:android-intents:1.1.0'
     compile 'com.github.hotchemi:ProgressMenuItem:0.3.3'
