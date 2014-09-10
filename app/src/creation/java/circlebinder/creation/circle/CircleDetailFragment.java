@@ -1,6 +1,5 @@
 package circlebinder.creation.circle;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,7 +14,6 @@ import com.dmitriy.tarasov.android.intents.IntentUtils;
 import net.ichigotake.common.app.OpenIntentActionProvider;
 import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.app.OnPageChangeListener;
-import net.ichigotake.common.app.WebBrowserTripper;
 import net.ichigotake.common.os.BundleMerger;
 
 import circlebinder.common.Legacy;
@@ -87,17 +85,12 @@ public final class CircleDetailFragment extends BaseFragment
                         IntentUtils.shareText(circle.getName(), webContainer.getCurrentUrl())
                 )
         );
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_circle_web_open_browser:
-                new WebBrowserTripper(getActivity(), Uri.parse(webContainer.getCurrentUrl())).trip();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
+        menu.findItem(R.id.menu_circle_web_open_browser).setActionProvider(
+                new OpenIntentActionProvider(
+                        getActivity(),
+                        IntentUtils.openLink(webContainer.getCurrentUrl())
+                )
+        );
     }
 
     @Override

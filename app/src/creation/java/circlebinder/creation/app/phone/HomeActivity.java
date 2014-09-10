@@ -47,7 +47,6 @@ public final class HomeActivity extends BaseActivity implements Legacy {
             return;
         }
 
-        getActionBar().setTitle(R.string.app_event_name);
         setContentView(R.layout.activity_home);
 
         FragmentPagerAdapter enjoyCreationPagerAdapter = new FragmentPagerAdapter(

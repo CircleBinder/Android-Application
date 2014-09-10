@@ -22,11 +22,10 @@ public final class CircleAdapter extends CursorAdapter<Circle, CircleViewHolder>
 
     public CircleAdapter(
             Context context,
-            Cursor cursor,
             CursorItemConverter<Circle> converter,
             OnCircleItemClickListener onCircleItemClickListener
     ) {
-        super(context, cursor, converter);
+        super(context, null, converter);
         this.inflater = LayoutInflater.from(context);
         this.onCircleItemClickListener = onCircleItemClickListener;
     }

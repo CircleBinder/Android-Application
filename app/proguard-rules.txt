@@ -2,13 +2,16 @@
 -keep public class javax.** { *; }
 -keepattributes *Annotations*
 -keepattributes Signature
--optimizationpasses 5
--dontusemixedcaseclassnames
--dontskipnonpubliclibraryclasses
--dontpreverify
--verbose
--optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
+#-optimizationpasses 5
+#-dontusemixedcaseclassnames
+#-dontskipnonpubliclibraryclasses
+#-dontpreverify
+#-verbose
+#-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
+-dontoptimize
 
+-keepclassmembers class java.lang.** { *; }
+-keepclassmembers class javax.** { *; }
 -keepclasseswithmembernames class * {
     native <methods>;
 }
@@ -26,6 +29,7 @@
 # For AndroidSDK
 -keep public class * extends android.app.Activity
 -keep public class * extends android.app.Application
+-keep public class * extends android.app.Fragment
 -keep public class * extends android.app.Service
 -keep public class * extends android.content.BroadcastReceiver
 -keep public class * extends android.content.ContentProvider
@@ -58,3 +62,6 @@
 -keep public class * extends com.activeandroid.ActiveRecordBase
 -keepattributes Column
 -keepattributes Table
+
+# For picasso
+-dontwarn com.squareup.okhttp.**

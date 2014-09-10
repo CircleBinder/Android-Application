@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- port from https://github.com/arturcorvino/shadow-android/blob/master/res/drawable/box_shadow_corners.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Sombra na parte inferior -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#d8d8d8" />
+            <corners android:radius="3dp" />
+        </shape>
+    </item>
+
+    <!-- Cor Branca do Topo -->
+    <item android:bottom="3px">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFF" />
+            <corners android:radius="3dp" />
+        </shape>
+    </item>
+
+</layer-list>

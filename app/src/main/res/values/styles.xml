@@ -21,7 +21,7 @@
     </style>
 
     <style name="CommonCardItem">
-        <item name="android:background">@color/common_card_item_background</item>
+        <item name="android:background">@drawable/common_box_shadow_corners</item>
     </style>
 
 </resources>
