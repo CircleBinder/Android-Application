@@ -52,6 +52,9 @@ public final class WebViewFragment extends BaseFragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.app_web_view_progress_bar, menu);
         progressMenuItemHelper = new ProgressMenuItemHelper(menu, R.id.app_web_view_progress_bar);
+        inflater.inflate(R.menu.reload, menu);
+        menu.findItem(R.id.menu_reload)
+                .setActionProvider(new ReloadWebViewActionProvider(getActivity(), container));
     }
 
     @Override
