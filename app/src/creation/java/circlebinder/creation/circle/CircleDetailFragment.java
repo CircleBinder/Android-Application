@@ -22,7 +22,9 @@ import circlebinder.common.checklist.ChecklistPopupSelector;
 import circlebinder.common.circle.CircleWebContainer;
 import circlebinder.common.event.Circle;
 import circlebinder.common.event.CircleBuilder;
-import circlebinder.common.web.ReloadWebViewActionProvider;
+
+import net.ichigotake.common.view.ReloadActionProvider;
+
 import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
 import circlebinder.creation.event.CircleTable;
@@ -94,7 +96,7 @@ public final class CircleDetailFragment extends BaseFragment
         );
         inflater.inflate(R.menu.reload, menu);
         menu.findItem(R.id.menu_reload)
-                .setActionProvider(new ReloadWebViewActionProvider(getActivity(), webContainer));
+                .setActionProvider(new ReloadActionProvider(getActivity(), webContainer));
     }
 
     @Override

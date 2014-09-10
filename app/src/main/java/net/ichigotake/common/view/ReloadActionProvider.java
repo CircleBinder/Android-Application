@@ -1,4 +1,4 @@
-package circlebinder.common.web;
+package net.ichigotake.common.view;
 
 import android.content.Context;
 import android.view.ActionProvider;
@@ -6,11 +6,11 @@ import android.view.View;
 
 import net.ichigotake.common.content.ContentReloader;
 
-public class ReloadWebViewActionProvider extends ActionProvider {
+public class ReloadActionProvider extends ActionProvider {
 
     private final ContentReloader reloader;
 
-    public ReloadWebViewActionProvider(Context context, ContentReloader reloader) {
+    public ReloadActionProvider(Context context, ContentReloader reloader) {
         super(context.getApplicationContext());
         this.reloader = reloader;
     }
