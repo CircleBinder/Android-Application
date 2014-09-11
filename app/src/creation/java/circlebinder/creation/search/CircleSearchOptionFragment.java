@@ -1,11 +1,15 @@
 package circlebinder.creation.search;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -13,9 +17,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import net.ichigotake.common.os.BundleMerger;
+import net.ichigotake.common.view.ActionProvider;
 import net.ichigotake.common.view.inputmethod.SoftInput;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -35,15 +39,15 @@ public final class CircleSearchOptionFragment extends BaseFragment {
     private static final String KEY_SEARCH_OPTION_BUILDER = "search_option_builder";
 
     private CircleSearchOptionBuilder searchOptionBuilder;
+    private TextView searchOptionKeywordView;
     private EditText searchTextView;
-    private TextView searchOptionLabelView;
-    private View searchOptionContainer;
-    private View searchOptionLabelContainer;
+    private View searchTextContainer;
     private SearchFormStore searchFormStore;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         searchOptionBuilder = BundleMerger.merge(getArguments(), savedInstanceState)
                 .getParcelable(KEY_SEARCH_OPTION_BUILDER);
         searchFormStore = new SearchFormStore(getActivity());
@@ -54,14 +58,40 @@ public final class CircleSearchOptionFragment extends BaseFragment {
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.search, menu);
+        MenuItem showSearchItem = menu.findItem(R.id.menu_search);
+        showSearchItem.setActionProvider(new ActionProvider(getActivity(), this::showForm));
+        inflater.inflate(R.menu.clear, menu);
+        MenuItem hideSearchItem = menu.findItem(R.id.menu_cancel);
+        hideSearchItem.setActionProvider(new ActionProvider(getActivity(), this::hideForm));
+        if (searchFormStore.isFormVisible()) {
+            showSearchItem.setVisible(false);
+            hideSearchItem.setVisible(true);
+        } else {
+            showSearchItem.setVisible(true);
+            hideSearchItem.setVisible(false);
+        }
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_circle_search_option, parent, false);
+        searchTextContainer = view;
 
+        View actionBarView = inflater.inflate(R.layout.circle_search_option, null);
+        ActionBar actionBar = getActivity().getActionBar();
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setCustomView(actionBarView);
+        searchOptionKeywordView = (TextView) actionBarView.findViewById(R.id.circle_search_option_keyword);
+        searchOptionKeywordView.setText(searchOptionBuilder.build().getKeyword());
         List<Block> blocks = new CopyOnWriteArrayList<>();
         blocks.add(new BlockBuilder().setName("全").setId(-1).build());
         blocks.addAll(BlockTable.get());
         BlockSelectorContainer selectorContainer = new BlockSelectorContainer(
-                (Spinner)view.findViewById(R.id.fragment_circle_search_option_block_selector),
+                (Spinner)actionBarView.findViewById(R.id.circle_search_option_block_selector),
                 blocks
         );
         selectorContainer.setSelection(new AllBlock(getActivity()));
@@ -104,11 +134,6 @@ public final class CircleSearchOptionFragment extends BaseFragment {
             v.clearFocus();
             return false;
         });
-        searchOptionLabelView = (TextView) view.findViewById(R.id.fragment_circle_search_option_label);
-        searchOptionLabelContainer = view.findViewById(R.id.fragment_circle_search_option_label_container);
-        searchOptionContainer = view.findViewById(R.id.fragment_circle_search_option_container);
-        view.findViewById(R.id.fragment_circle_search_option_collapse).setOnClickListener(v -> hideForm());
-        searchOptionLabelContainer.setOnClickListener(v -> showForm());
         if (searchFormStore.isFormVisible()) {
             showForm();
         } else {
@@ -119,16 +144,12 @@ public final class CircleSearchOptionFragment extends BaseFragment {
 
     private void showForm() {
         searchFormStore.setFormVisible(true);
-        searchOptionLabelContainer.setVisibility(View.GONE);
-        searchOptionContainer.setVisibility(View.VISIBLE);
         reload(searchOptionBuilder.build());
     }
 
     private void hideForm() {
         searchFormStore.setFormVisible(false);
-        searchOptionLabelContainer.setVisibility(View.VISIBLE);
-        searchOptionContainer.setVisibility(View.GONE);
-        reload(searchOptionBuilder.build());
+        reload(searchOptionBuilder.setKeyword("").build());
     }
 
     private void onEditTextFocused() {
@@ -150,13 +171,15 @@ public final class CircleSearchOptionFragment extends BaseFragment {
         if (activity != null) {
             ((OnCircleSearchOptionListener) activity).setSearchOption(searchOption);
         }
-        if (searchOptionLabelView != null) {
-            List<String> labels = new ArrayList<>();
-            labels.add(searchOption.getBlock().getName() + " ブロック");
-            if (searchOption.hasKeyword()) {
-                labels.add("キーワード: " + searchOption.getKeyword());
-            }
-            searchOptionLabelView.setText(TextUtils.join(",", labels));
+        Log.d("welcome", "eyword: " + searchOption.getKeyword());
+        searchOptionKeywordView.setText(searchOption.getKeyword());
+        Log.d("welcome", "editText: " + searchOptionKeywordView.getText());
+        searchFormStore.setKeyword(searchOption.getKeyword());
+        getActivity().invalidateOptionsMenu();
+        if (searchFormStore.isFormVisible()) {
+            searchTextContainer.setVisibility(View.VISIBLE);
+        } else {
+            searchTextContainer.setVisibility(View.GONE);
         }
     }
 

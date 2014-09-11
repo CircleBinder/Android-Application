@@ -15,7 +15,7 @@ final class SearchFormStore {
     }
 
     boolean isFormVisible() {
-        return pref.getBoolean(KEY_FORM_VISIBILITY, true);
+        return pref.getBoolean(KEY_FORM_VISIBILITY, false);
     }
 
     void setFormVisible(boolean visible) {
