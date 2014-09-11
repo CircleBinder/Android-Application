@@ -2,7 +2,7 @@
 <resources>
 
     <color name="common_card_item_background">#ffffff</color>
-    <color name="common_card_container_background">#eeeeee</color>
+    <color name="common_card_container_background">#cccccc</color>
     <color name="common_card_container_background_selector">#40eeeeee</color>
 
     <color name="common_icon_border">#dddddd</color>

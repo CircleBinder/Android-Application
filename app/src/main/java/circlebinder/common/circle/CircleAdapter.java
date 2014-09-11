@@ -45,18 +45,9 @@ public final class CircleAdapter extends CursorAdapter<Circle, CircleViewHolder>
         tag.getCircleName().setText(item.getName());
         tag.getPenName().setText(item.getPenName());
 
-        tag.getSpaceContainer().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onCircleItemClickListener.onSpaceClick(tag, position, item);
-            }
-        });
-        tag.getSpace().setCompoundDrawablesWithIntrinsicBounds(
-                0,
-                item.getChecklistColor().getDrawableResource(),
-                0,
-                0
-        );
+        tag.getSpaceContainer().setOnClickListener(v ->
+                onCircleItemClickListener.onSpaceClick(tag, position, item));
+        tag.getChecklist().setImageResource(item.getChecklistColor().getDrawableResource());
         tag.getSpace().setText(
                 String.format("%s%02d%s",
                         item.getSpace().getBlockName(), item.getSpace().getNo(), item.getSpace().getNoSub())

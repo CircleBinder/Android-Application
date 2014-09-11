@@ -84,12 +84,7 @@ public final class CircleSearchFragment extends BaseFragment implements OnCircle
                             getActivity(), viewHolder.getSpaceContainer()
                     );
                     selector.setOnItemClickListener(checklistColor -> {
-                        viewHolder.getSpace().setCompoundDrawablesWithIntrinsicBounds(
-                                0,
-                                checklistColor.getDrawableResource(),
-                                0,
-                                0
-                        );
+                        viewHolder.getChecklist().setImageResource(checklistColor.getDrawableResource());
                         CircleTable.setChecklist(item, checklistColor);
                         adapter.reload();
                         selector.dismiss();

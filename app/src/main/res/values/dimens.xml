@@ -12,6 +12,8 @@
     <dimen name="common_spacer_xxx_large">32dp</dimen>
     <dimen name="common_divider_height">1dp</dimen>
 
+    <dimen name="common_card_container_divider_height">1dp</dimen>
+
     <!-- SEE ALSO: http://www.google.com/design/spec/style/typography.html -->
     <dimen name="common_font_headline">24sp</dimen>
     <dimen name="common_font_title">20sp</dimen>
