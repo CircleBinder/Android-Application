@@ -37,14 +37,19 @@ public final class CircleSearchOptionFragment extends BaseFragment {
     private CircleSearchOptionBuilder searchOptionBuilder;
     private EditText searchTextView;
     private TextView searchOptionLabelView;
+    private View searchOptionContainer;
+    private View searchOptionLabelContainer;
+    private SearchFormStore searchFormStore;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         searchOptionBuilder = BundleMerger.merge(getArguments(), savedInstanceState)
                 .getParcelable(KEY_SEARCH_OPTION_BUILDER);
+        searchFormStore = new SearchFormStore(getActivity());
         if (searchOptionBuilder == null) {
-            searchOptionBuilder = new CircleSearchOptionBuilder();
+            searchOptionBuilder = new CircleSearchOptionBuilder()
+                    .setKeyword(searchFormStore.getKeyword());
         }
     }
 
@@ -62,7 +67,7 @@ public final class CircleSearchOptionFragment extends BaseFragment {
         selectorContainer.setSelection(new AllBlock(getActivity()));
         selectorContainer.addOnItemSelectedListener(item -> {
             searchOptionBuilder.setBlock(item);
-            reloadTargetFragment(searchOptionBuilder.build());
+            reload(searchOptionBuilder.build());
         });
         selectorContainer.setSelection(searchOptionBuilder.build().getBlock());
 
@@ -70,6 +75,7 @@ public final class CircleSearchOptionFragment extends BaseFragment {
                 R.id.fragment_circle_search_option_keyword
         );
         searchTextView.setText(searchOptionBuilder.build().getKeyword());
+        searchTextView.requestFocus(searchOptionBuilder.build().getKeyword().length());
         searchTextView.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
                 onEditTextFocused();
@@ -88,7 +94,9 @@ public final class CircleSearchOptionFragment extends BaseFragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                reloadTargetFragment(searchOptionBuilder.setKeyword(s.toString()).build());
+                String keyword = s.toString();
+                searchFormStore.setKeyword(keyword);
+                reload(searchOptionBuilder.setKeyword(keyword).build());
             }
         });
         searchTextView.setOnEditorActionListener((v, actionId, event) -> {
@@ -97,17 +105,30 @@ public final class CircleSearchOptionFragment extends BaseFragment {
             return false;
         });
         searchOptionLabelView = (TextView) view.findViewById(R.id.fragment_circle_search_option_label);
-        final View searchOptionLabelContainer = view.findViewById(R.id.fragment_circle_search_option_label_container);
-        final View searchOptionContainer = view.findViewById(R.id.fragment_circle_search_option_container);
-        view.findViewById(R.id.fragment_circle_search_option_collapse).setOnClickListener(v -> {
-            searchOptionLabelContainer.setVisibility(View.VISIBLE);
-            searchOptionContainer.setVisibility(View.GONE);
-        });
-        searchOptionLabelContainer.setOnClickListener(v -> {
-            searchOptionLabelContainer.setVisibility(View.GONE);
-            searchOptionContainer.setVisibility(View.VISIBLE);
-        });
+        searchOptionLabelContainer = view.findViewById(R.id.fragment_circle_search_option_label_container);
+        searchOptionContainer = view.findViewById(R.id.fragment_circle_search_option_container);
+        view.findViewById(R.id.fragment_circle_search_option_collapse).setOnClickListener(v -> hideForm());
+        searchOptionLabelContainer.setOnClickListener(v -> showForm());
+        if (searchFormStore.isFormVisible()) {
+            showForm();
+        } else {
+            hideForm();
+        }
         return view;
+    }
+
+    private void showForm() {
+        searchFormStore.setFormVisible(true);
+        searchOptionLabelContainer.setVisibility(View.GONE);
+        searchOptionContainer.setVisibility(View.VISIBLE);
+        reload(searchOptionBuilder.build());
+    }
+
+    private void hideForm() {
+        searchFormStore.setFormVisible(false);
+        searchOptionLabelContainer.setVisibility(View.VISIBLE);
+        searchOptionContainer.setVisibility(View.GONE);
+        reload(searchOptionBuilder.build());
     }
 
     private void onEditTextFocused() {
@@ -124,7 +145,7 @@ public final class CircleSearchOptionFragment extends BaseFragment {
         outState.putParcelable(KEY_SEARCH_OPTION_BUILDER, searchOptionBuilder);
     }
 
-    private void reloadTargetFragment(CircleSearchOption searchOption) {
+    private void reload(CircleSearchOption searchOption) {
         Activity activity = getActivity();
         if (activity != null) {
             ((OnCircleSearchOptionListener) activity).setSearchOption(searchOption);
