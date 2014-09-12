@@ -6,11 +6,12 @@ import android.webkit.WebView;
 
 import net.ichigotake.common.content.AfterLoadingListener;
 import net.ichigotake.common.content.BeforeLoadingListener;
+import net.ichigotake.common.content.ContentReloader;
 
 import circlebinder.common.event.Circle;
 import circlebinder.common.event.CircleLink;
 
-public final class CircleWebContainer {
+public final class CircleWebContainer implements ContentReloader {
 
     private final WebView webView;
     private AfterLoadingListener afterLoadingListener;
@@ -67,6 +68,11 @@ public final class CircleWebContainer {
                         + "%20"
                         + "\"" + circle.getName() + "\""
         );
+    }
+
+    @Override
+    public void reload() {
+        webView.reload();
     }
 
     public String getCurrentUrl() {

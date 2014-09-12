@@ -103,6 +103,10 @@ public class CarouselView extends RelativeLayout {
         pager.setPageMarginDrawable(drawable);
     }
 
+    public int getCurrentItem() {
+        return pager.getCurrentItem();
+    }
+
     private class CarouselIndicatorListener implements ViewPager.OnPageChangeListener {
 
         @Override

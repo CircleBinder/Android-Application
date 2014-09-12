@@ -21,8 +21,10 @@ public final class ActionProvider extends android.view.ActionProvider {
         return null;
     }
 
+    @Override
     public boolean onPerformDefaultAction() {
         listener.onClick();
-        return true;
+        return false;
     }
+
 }

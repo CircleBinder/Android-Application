@@ -10,6 +10,7 @@ import android.webkit.WebView;
 
 import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.os.BundleMerger;
+import net.ichigotake.common.view.ReloadActionProvider;
 
 import circlebinder.common.circle.CircleWebContainer;
 import circlebinder.creation.app.BaseFragment;
@@ -52,6 +53,9 @@ public final class WebViewFragment extends BaseFragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.app_web_view_progress_bar, menu);
         progressMenuItemHelper = new ProgressMenuItemHelper(menu, R.id.app_web_view_progress_bar);
+        inflater.inflate(R.menu.reload, menu);
+        menu.findItem(R.id.menu_reload)
+                .setActionProvider(new ReloadActionProvider(getActivity(), container));
     }
 
     @Override
