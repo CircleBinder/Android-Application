@@ -22,6 +22,9 @@ import circlebinder.common.checklist.ChecklistPopupSelector;
 import circlebinder.common.circle.CircleWebContainer;
 import circlebinder.common.event.Circle;
 import circlebinder.common.event.CircleBuilder;
+
+import net.ichigotake.common.view.ReloadActionProvider;
+
 import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
 import circlebinder.creation.event.CircleTable;
@@ -91,6 +94,9 @@ public final class CircleDetailFragment extends BaseFragment
                         IntentUtils.openLink(webContainer.getCurrentUrl())
                 )
         );
+        inflater.inflate(R.menu.reload, menu);
+        menu.findItem(R.id.menu_reload)
+                .setActionProvider(new ReloadActionProvider(getActivity(), webContainer));
     }
 
     @Override
@@ -116,6 +122,7 @@ public final class CircleDetailFragment extends BaseFragment
                 checklistSelector.show();
             }
         });
+
     }
 
     @Override
@@ -134,15 +141,17 @@ public final class CircleDetailFragment extends BaseFragment
 
     @Override
     public void active() {
+        webContainer.reload();
         restoreActionBar();
     }
 
     private void restoreActionBar() {
-        if (getActivity() != null) {
-            getActivity().invalidateOptionsMenu();
-            if (getActivity() instanceof OnCirclePageChangeListener) {
-                ((OnCirclePageChangeListener)getActivity()).onCirclePageChanged(circle);
-            }
+        if (getActivity() == null) {
+            return;
+        }
+        getActivity().invalidateOptionsMenu();
+        if (getActivity() instanceof OnCirclePageChangeListener) {
+            ((OnCirclePageChangeListener)getActivity()).onCirclePageChanged(circle);
         }
     }
 
