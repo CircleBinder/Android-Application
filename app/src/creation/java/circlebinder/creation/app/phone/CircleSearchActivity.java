@@ -9,26 +9,26 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Spinner;
 
 import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.os.BundleMerger;
 import net.ichigotake.common.view.ActionProvider;
 import net.ichigotake.common.worker.ActivityJobWorker;
 
-import circlebinder.common.checklist.BlockSelectorContainer;
+import circlebinder.common.event.Block;
 import circlebinder.common.search.CircleSearchOption;
 import circlebinder.common.search.CircleSearchOptionBuilder;
 import circlebinder.common.search.OnCircleSearchOptionListener;
 import circlebinder.creation.app.BaseActivity;
 import circlebinder.R;
-import circlebinder.creation.search.GenreSelectorContainer;
+import circlebinder.creation.search.BlockSelectorFragment;
 import circlebinder.creation.search.InputTextFragment;
+import circlebinder.creation.search.OnBlockSelectListener;
 import circlebinder.creation.search.OnInputTextListener;
 import circlebinder.creation.search.SearchFormStore;
 
 public final class CircleSearchActivity extends BaseActivity
-        implements OnInputTextListener {
+        implements OnInputTextListener, OnBlockSelectListener {
 
     public static Intent createIntent(Context context) {
         return new Intent(context, CircleSearchActivity.class);
@@ -62,16 +62,10 @@ public final class CircleSearchActivity extends BaseActivity
             hideForm();
         }
 
-        View actionBarView = getLayoutInflater().inflate(R.layout.circle_search_option, null);
-        BlockSelectorContainer genreSelectorContainer = GenreSelectorContainer.init(
-                getApplicationContext(),
-                (Spinner) actionBarView.findViewById(R.id.circle_search_option_block_selector
-                ));
-        genreSelectorContainer.addOnItemSelectedListener(item -> {
-            searchOptionBuilder.setBlock(item);
-            setSearchOption(searchOptionBuilder.build());
-        });
-        genreSelectorContainer.setSelection(searchOptionBuilder.build().getBlock());
+        View actionBarView = getLayoutInflater().inflate(R.layout.action_bar_circle_search_option, null);
+        BlockSelectorFragment blockSelectorFragment = (BlockSelectorFragment) getFragmentManager()
+                .findFragmentById(R.id.action_bar_circle_search_option);
+        blockSelectorFragment.setSelection(searchOptionBuilder.build().getBlock());
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setCustomView(actionBarView);
@@ -155,4 +149,9 @@ public final class CircleSearchActivity extends BaseActivity
                 .setText(searchOptionBuilder.build().getKeyword());
     }
 
+    @Override
+    public void onBlockSelect(Block block) {
+        searchOptionBuilder.setBlock(block);
+        setSearchOption(searchOptionBuilder.build());
+    }
 }
