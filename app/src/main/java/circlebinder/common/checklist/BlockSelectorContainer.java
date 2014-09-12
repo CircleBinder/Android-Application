@@ -25,10 +25,6 @@ public final class BlockSelectorContainer {
         selector.setOnItemSelectedListener(onItemSelectedListener);
     }
 
-    public Spinner getSelector() {
-        return selector;
-    }
-
     public void addOnItemSelectedListener(OnItemSelectedEventListener<Block> listener) {
         onItemSelectedListener.addOnItemSelectedListener(listener);
     }

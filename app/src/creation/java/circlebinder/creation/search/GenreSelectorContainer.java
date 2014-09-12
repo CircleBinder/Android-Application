@@ -15,9 +15,17 @@ import circlebinder.creation.event.BlockTable;
 public final class GenreSelectorContainer {
 
     public static BlockSelectorContainer init(Context context, Spinner spinner) {
+        List<Block> preBlocks = new CopyOnWriteArrayList<>();
+        preBlocks.add(new BlockBuilder().setName("全").setId(-1).build());
+        preBlocks.addAll(BlockTable.get());
         List<Block> blocks = new CopyOnWriteArrayList<>();
-        blocks.add(new BlockBuilder().setName("全").setId(-1).build());
-        blocks.addAll(BlockTable.get());
+        for (Block block : preBlocks) {
+            blocks.add(new BlockBuilder()
+                    .setArea(block.getArea())
+                    .setName(block.getName() + " ブロック")
+                    .setId(block.getId())
+                    .build());
+        }
         BlockSelectorContainer selectorContainer = new BlockSelectorContainer(
                 spinner,
                 blocks
