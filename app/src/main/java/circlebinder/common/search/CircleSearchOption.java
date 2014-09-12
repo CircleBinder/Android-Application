@@ -78,4 +78,8 @@ public class CircleSearchOption implements Parcelable {
             return new CircleSearchOption[size];
         }
     };
+
+    public CircleSearchOptionBuilder builder() {
+        return new CircleSearchOptionBuilder().set(this);
+    }
 }

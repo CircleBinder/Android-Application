@@ -9,11 +9,11 @@
     >
 
     <fragment
-        android:id="@+id/activity_circle_search_option_container"
+        android:id="@+id/activity_circle_search_option_keyword_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:name="circlebinder.creation.search.CircleSearchOptionFragment"
-        tools:layout="@layout/fragment_circle_search_option"
+        android:name="circlebinder.creation.search.InputTextFragment"
+        tools:layout="@layout/fragment_input_text"
         />
 
     <View
@@ -24,7 +24,7 @@
 
 
     <fragment
-        android:id="@+id/activity_circle_search_container"
+        android:id="@+id/activity_circle_search_circles_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:name="circlebinder.creation.search.CircleSearchFragment"
