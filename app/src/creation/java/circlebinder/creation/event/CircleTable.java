@@ -55,6 +55,14 @@ public final class CircleTable extends Model implements Legacy {
     @Column(name = Field.CHECKLIST_ID)
     public int checklistId;
 
+    public static boolean isChecklistEmpty() {
+        ConditionQueryBuilder where = ConditionQueryBuilder.where(Field.CHECKLIST_ID + " > 0");
+        return !new Select(Field.ID)
+                .from(CircleTable.class)
+                .where(where.getQuery(), where.getArguments())
+                .exists();
+    }
+
     public static CircleTable find(int circleId) {
         return new Select("*, " + Field.ID + " AS _id")
                 .from(CircleTable.class)
