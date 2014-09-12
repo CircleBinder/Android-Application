@@ -43,7 +43,13 @@ public final class ChecklistAdapter extends ArrayAdapter<Checklist, ChecklistIte
     }
 
     @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
+    @Override
     public ChecklistItemViewHolder generateTag(int position, Checklist item, View convertView) {
         return new ChecklistItemViewHolder(convertView);
     }
+
 }

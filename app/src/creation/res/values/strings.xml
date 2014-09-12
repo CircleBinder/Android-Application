@@ -15,6 +15,7 @@
     <string name="app_circle_search_keyword_hint">サークル名 or ペンネーム</string>
     <string name="app_enjoy_creation_overview">サンクリを楽しもう！\n初参加の方もこちらから</string>
 
+    <string name="app_creation_homepage_top">http://www.creation.gr.jp/</string>
     <string name="app_creation_homepage_peti_only">http://www.creation.gr.jp/sc65/petitonly.html</string>
     <string name="app_creation_homepage_welcome">http://www.creation.gr.jp/common/welcome.html</string>
 
@@ -24,7 +25,10 @@
     <string name="app_peti_only_omufes_name">おむ☆フェス</string>
     <string name="app_peti_only_omufes_description">おむつっ娘メイン</string>
 
+
     <string name="app_enjoy_creation_label">サンクリを楽しもう！</string>
+    <string name="app_enjoy_creation_peti_only_label">プチオンリー</string>
+    <string name="app_enjoy_creation_peti_only_description">イベントの会場内でスペースを集合配置し、参加サークルの手によって様々な企画を行うことが出来るイベント内企画です。</string>
     <string name="app_enjoy_creation_news_label">クリエイションニュース</string>
     <string name="app_enjoy_creation_news_description">会場内で5〜8枚ほど(枚数は開催時によってまちまち)、「クリエイションニュース」が発行されます。\n各ホール入り口そばや、クリエイション事務局本部の近くに設置されている事が多いです。</string>
     <string name="app_enjoy_creation_rakugaki_corner_label">ラクガキコーナー</string>

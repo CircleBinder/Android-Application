@@ -5,11 +5,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
+import android.widget.ListView;
 
 import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.OnClickToTrip;
-import net.ichigotake.common.widget.OnItemClickEventListener;
+import net.ichigotake.common.content.ContentReloader;
 import net.ichigotake.common.widget.OnItemClickListener;
 
 import java.util.List;
@@ -22,62 +22,63 @@ import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
 import circlebinder.creation.app.phone.ChecklistActivity;
 import circlebinder.creation.app.phone.CircleSearchActivity;
+import circlebinder.creation.app.phone.EnjoyCreationActivity;
 import circlebinder.creation.event.CircleTable;
 import circlebinder.creation.search.CircleCursorConverter;
 
 /**
  * アプリを起動した際の最初に表示する画面
+ *
+ * TODO: ListFragment を継承する
  */
-public final class HomeFragment extends BaseFragment {
+public final class ChecklistListFragment extends BaseFragment implements ContentReloader {
 
-    private GridView checklistsView;
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getActivity().getActionBar().setDisplayShowTitleEnabled(false);
-    }
+    private ChecklistAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_checklist_list, parent, false);
+        View headerView = inflater.inflate(R.layout.enjoy_creation_search_guidance, parent, false);
+        headerView.setOnClickListener(OnClickToTrip.activityTrip(
+                getActivity(), CircleSearchActivity.createIntent(getActivity())
+        ));
+        ListView checklistsView = (ListView) view.findViewById(R.id.fragment_checklist_list);
+        adapter = new ChecklistAdapter(getActivity());
+        adapter.addAll(getChecklist());
+        checklistsView.setAdapter(adapter);
+        checklistsView.addHeaderView(headerView);
         View emptyView = view.findViewById(R.id.fragment_checklist_empty);
-        emptyView.setOnClickListener(
-                new OnClickToTrip(new ActivityTripper(
-                        getActivity(),
-                        CircleSearchActivity.createIntent(getActivity())
-                ))
-        );
-        checklistsView = (GridView) view.findViewById(R.id.fragment_checklist_list);
+        emptyView.setOnClickListener(OnClickToTrip.activityTrip(
+                getActivity(), EnjoyCreationActivity.createIntent(getActivity())
+        ));
         checklistsView.setEmptyView(emptyView);
+        OnItemClickListener<Checklist> listener = new OnItemClickListener<>();
+        listener.addOnItemClickEventListener(item -> new ActivityTripper(
+                getActivity(),
+                ChecklistActivity.createIntent(getActivity(), item.getChecklistColor())
+        ).trip());
+        checklistsView.setOnItemClickListener(listener);
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        ChecklistAdapter adapter = new ChecklistAdapter(getActivity());
+        reload();
+    }
+
+    @Override
+    public void reload() {
+        adapter.clear();
         adapter.addAll(getChecklist());
-        checklistsView.setAdapter(adapter);
-        OnItemClickListener<Checklist> listener = new OnItemClickListener<Checklist>();
-        listener.addOnItemClickEventListener(new OnItemClickEventListener<Checklist>() {
-            @Override
-            public void onItemClick(Checklist item) {
-                new ActivityTripper(
-                        getActivity(),
-                        ChecklistActivity.createIntent(getActivity(), item.getChecklistColor())
-                ).trip();
-            }
-        });
-        checklistsView.setOnItemClickListener(listener);
     }
 
     private List<Checklist> getChecklist() {
-        List<Checklist> checklistList = new CopyOnWriteArrayList<Checklist>();
+        List<Checklist> checklistList = new CopyOnWriteArrayList<>();
         CircleCursorConverter converter = new CircleCursorConverter();
 
         for (ChecklistColor checklistColor : ChecklistColor.checklists()) {
-            List<Circle> circleList = new CopyOnWriteArrayList<Circle>();
+            List<Circle> circleList = new CopyOnWriteArrayList<>();
             Cursor cursor = CircleTable.get(
                     new CircleSearchOptionBuilder()
                             .setChecklist(checklistColor)
@@ -96,7 +97,7 @@ public final class HomeFragment extends BaseFragment {
             }
         }
 
-        return new CopyOnWriteArrayList<Checklist>(checklistList);
+        return new CopyOnWriteArrayList<>(checklistList);
     }
 
 }
