@@ -63,14 +63,6 @@
         <item name="android:adjustViewBounds">true</item>
     </style>
 
-    <style name="AppPetiOnlyLabel">
-        <item name="android:background">#aaaaaa</item>
-        <item name="android:text">@string/app_peti_only</item>
-        <item name="android:textColor">#ffffff</item>
-        <item name="android:textSize">12sp</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
     <style name="AppCarouselIndicator">
         <item name="android:background">#66ffffff</item>
     </style>

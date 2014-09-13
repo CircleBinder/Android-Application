@@ -18,17 +18,10 @@
         android:gravity="center_vertical"
         />
 
-    <circlebinder.common.view.carousel.CarouselView
-        android:id="@+id/activity_home_enjoy_creation"
-        android:layout_below="@+id/activity_home_header_event_name"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        />
-
     <fragment
-        android:id="@+id/activity_fragment_content"
-        android:name="circlebinder.creation.checklist.HomeFragment"
-        android:layout_below="@+id/activity_home_enjoy_creation"
+        android:id="@+id/activity_home_fragment_content"
+        android:name="circlebinder.creation.checklist.ChecklistListFragment"
+        android:layout_below="@+id/activity_home_header_event_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/fragment_checklist_list"

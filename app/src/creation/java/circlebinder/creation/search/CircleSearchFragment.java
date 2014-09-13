@@ -19,6 +19,7 @@ import circlebinder.common.search.CircleSearchOptionBuilder;
 import circlebinder.common.search.OnCircleSearchOptionListener;
 import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
+import circlebinder.creation.app.BroadcastEvent;
 import circlebinder.creation.app.phone.CircleDetailPagerActivity;
 import circlebinder.creation.event.CircleTable;
 
@@ -67,9 +68,7 @@ public final class CircleSearchFragment extends BaseFragment implements OnCircle
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         ViewGroup view = (ViewGroup)inflater.inflate(R.layout.fragment_circle_search, parent, false);
-        View emptyView = inflater.inflate(R.layout.fragment_checklist_empty, view, false);
         ListView circlesView = (ListView)view.findViewById(R.id.fragment_circle_search_list);
-        circlesView.setEmptyView(emptyView);
         circlesView.setOnItemClickListener((parent1, view1, position, id) -> new ActivityTripper(
                 getActivity(),
                 CircleDetailPagerActivity.createIntent(
@@ -87,6 +86,7 @@ public final class CircleSearchFragment extends BaseFragment implements OnCircle
                         viewHolder.getChecklist().setImageResource(checklistColor.getDrawableResource());
                         CircleTable.setChecklist(item, checklistColor);
                         adapter.reload();
+                        getActivity().sendBroadcast(BroadcastEvent.createIntent());
                         selector.dismiss();
 
                     });

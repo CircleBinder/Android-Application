@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_open_browser"
+        android:title="@string/common_action_open_browser"
+        android:orderInCategory="50"
+        android:icon="@drawable/ic_action_web_site"
+        android:showAsAction="ifRoom"
+        />
+
+</menu>

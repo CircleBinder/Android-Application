@@ -81,6 +81,7 @@ public final class CircleDetailFragment extends BaseFragment
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.circle_web, menu);
+        inflater.inflate(R.menu.open_browser, menu);
         MenuItem shareItem = menu.findItem(R.id.menu_circle_web_share);
         shareItem.setActionProvider(
                 new OpenIntentActionProvider(
@@ -88,7 +89,7 @@ public final class CircleDetailFragment extends BaseFragment
                         IntentUtils.shareText(circle.getName(), webContainer.getCurrentUrl())
                 )
         );
-        menu.findItem(R.id.menu_circle_web_open_browser).setActionProvider(
+        menu.findItem(R.id.menu_open_browser).setActionProvider(
                 new OpenIntentActionProvider(
                         getActivity(),
                         IntentUtils.openLink(webContainer.getCurrentUrl())
