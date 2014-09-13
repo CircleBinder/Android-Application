@@ -9,7 +9,7 @@
     >
 
 
-    <ListView
+    <se.emilsjolander.stickylistheaders.StickyListHeadersListView
         style="@style/CommonCardList"
         android:id="@+id/fragment_circle_search_list"
         android:layout_width="match_parent"

@@ -22,6 +22,7 @@ import circlebinder.R;
 import circlebinder.creation.app.BroadcastEvent;
 import circlebinder.creation.app.phone.CircleDetailPagerActivity;
 import circlebinder.creation.event.CircleTable;
+import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 /**
  * サークルの検索をする
@@ -68,7 +69,8 @@ public final class CircleSearchFragment extends BaseFragment implements OnCircle
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         ViewGroup view = (ViewGroup)inflater.inflate(R.layout.fragment_circle_search, parent, false);
-        ListView circlesView = (ListView)view.findViewById(R.id.fragment_circle_search_list);
+        StickyListHeadersListView circlesView = (StickyListHeadersListView)view
+                .findViewById(R.id.fragment_circle_search_list);
         circlesView.setOnItemClickListener((parent1, view1, position, id) -> new ActivityTripper(
                 getActivity(),
                 CircleDetailPagerActivity.createIntent(

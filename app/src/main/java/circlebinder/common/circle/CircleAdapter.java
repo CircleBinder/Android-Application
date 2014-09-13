@@ -9,15 +9,13 @@ import android.widget.TextView;
 
 import net.ichigotake.common.widget.CursorAdapter;
 import net.ichigotake.common.widget.CursorItemConverter;
-import net.ichigotake.common.widget.SectionHeaderAdapter;
 
 import circlebinder.common.event.Circle;
 import circlebinder.R;
+import circlebinder.creation.system.SectionHeaderViewHolder;
 
-public final class CircleAdapter extends CursorAdapter<Circle, CircleViewHolder>
-        implements SectionHeaderAdapter {
+public final class CircleAdapter extends CursorAdapter<Circle, CircleViewHolder, SectionHeaderViewHolder> {
 
-    private final LayoutInflater inflater;
     private final OnCircleItemClickListener onCircleItemClickListener;
 
     public CircleAdapter(
@@ -26,13 +24,27 @@ public final class CircleAdapter extends CursorAdapter<Circle, CircleViewHolder>
             OnCircleItemClickListener onCircleItemClickListener
     ) {
         super(context, null, converter);
-        this.inflater = LayoutInflater.from(context);
         this.onCircleItemClickListener = onCircleItemClickListener;
     }
 
     @Override
     public CircleViewHolder generateTag(int position, Circle item, View convertView) {
         return new CircleViewHolder(convertView);
+    }
+
+    @Override
+    protected SectionHeaderViewHolder generateHeaderTag(int position, Circle circle, View convertView) {
+        return new SectionHeaderViewHolder((TextView)convertView);
+    }
+
+    @Override
+    protected View generateHeaderView(int position, Circle circle, LayoutInflater inflater, ViewGroup parent) {
+        return inflater.inflate(SectionHeaderViewHolder.layoutResourceId, parent, false);
+    }
+
+    @Override
+    protected void bindHeaderView(int position, Circle circle, SectionHeaderViewHolder holder) {
+        holder.getLabel().setText(circle.getSpace().getBlockName());
     }
 
     @Override
@@ -55,24 +67,32 @@ public final class CircleAdapter extends CursorAdapter<Circle, CircleViewHolder>
         tag.getGenre().setText(item.getGenre().getName());
     }
 
-    @Override
-    public View getHeaderView(int i, View view, ViewGroup viewGroup) {
-        View headerView = inflater.inflate(R.layout.common_section_sub_header, viewGroup, false);
-        TextView subHeaderView = (TextView) headerView.findViewById(R.id.common_section_sub_header);
-        Circle circle = getItem(i);
-        subHeaderView.setText(circle.getSpace().getBlockName());
-        return headerView;
-    }
-
-    @Override
-    public long getHeaderId(int i) {
-        return  getItem(i).getSpace().getBlockName().charAt(0);
-    }
-
     /**
      * TODO: {@link Cursor#requery} はDeprecated
      */
     public void reload() {
         getCursor().requery();
+    }
+
+    @Override
+    public View getHeaderView(int position, View view, ViewGroup viewGroup) {
+        SectionHeaderViewHolder tag;
+        Circle item = getItem(position);
+        if (view == null) {
+            view = generateHeaderView(position, item, getLayoutInflater(), viewGroup);
+            tag = generateHeaderTag(position, item, view);
+            view.setTag(tag);
+        } else {
+            tag = (SectionHeaderViewHolder)view.getTag();
+        }
+
+        bindHeaderView(position, item, tag);
+
+        return view;
+    }
+
+    @Override
+    public long getHeaderId(int i) {
+        return getItem(i).getSpace().getBlockName().charAt(0);
     }
 }
