@@ -17,17 +17,13 @@ import net.ichigotake.common.app.OnPageChangeListener;
 import net.ichigotake.common.os.BundleMerger;
 
 import circlebinder.common.Legacy;
-import circlebinder.common.checklist.ChecklistColor;
-import circlebinder.common.checklist.ChecklistPopupSelector;
 import circlebinder.common.circle.CircleWebContainer;
 import circlebinder.common.event.Circle;
-import circlebinder.common.event.CircleBuilder;
 
 import net.ichigotake.common.view.ReloadActionProvider;
 
 import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
-import circlebinder.creation.event.CircleTable;
 
 public final class CircleDetailFragment extends BaseFragment
         implements OnPageChangeListener, Legacy {
@@ -61,7 +57,6 @@ public final class CircleDetailFragment extends BaseFragment
     private static final String KEY_CIRCLE = "circle";
     private Circle circle;
     private CircleWebContainer webContainer;
-    private View checklistView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -103,26 +98,11 @@ public final class CircleDetailFragment extends BaseFragment
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        checklistView = getView().findViewById(R.id.circle_detail_checklist);
-        final ChecklistPopupSelector checklistSelector =
-                new ChecklistPopupSelector(getActivity(), checklistView);
-        checklistView.setBackgroundResource(circle.getChecklistColor().getDrawableResource());
-        checklistSelector.setOnItemClickListener(item -> {
-            updateChecklist(item);
-            checklistSelector.dismiss();
-        });
         if (circle.getLinks().isEmpty()) {
             webContainer.load(circle);
         } else {
             webContainer.loadUrl(circle.getLinks().get(0));
         }
-        checklistView.setOnClickListener(v -> {
-            if (checklistSelector.isShowing()) {
-                checklistSelector.dismiss();
-            } else {
-                checklistSelector.show();
-            }
-        });
 
     }
 
@@ -130,14 +110,6 @@ public final class CircleDetailFragment extends BaseFragment
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable(KEY_CIRCLE, circle);
-    }
-
-    private void updateChecklist(ChecklistColor checklistColor) {
-        checklistView.setBackgroundResource(checklistColor.getDrawableResource());
-        CircleTable.setChecklist(circle, checklistColor);
-        circle = new CircleBuilder(circle)
-                .setChecklistColor(checklistColor)
-                .build();
     }
 
     @Override
