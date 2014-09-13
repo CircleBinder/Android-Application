@@ -14,14 +14,6 @@
         android:minHeight="48dp"
         >
 
-        <View
-            android:id="@+id/checklist_item_label_background"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/common_checklist_blue"
-            android:alpha="0.5"
-            />
-
         <TextView
             android:id="@+id/checklist_item_label_name"
             android:layout_width="match_parent"

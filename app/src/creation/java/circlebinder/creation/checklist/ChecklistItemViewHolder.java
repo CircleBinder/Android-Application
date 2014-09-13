@@ -10,12 +10,10 @@ import circlebinder.R;
 
 public final class ChecklistItemViewHolder {
 
-    private final View labelBackground;
     private final TextView labelName;
     private final List<TextView> circles;
 
     public ChecklistItemViewHolder(View convertView) {
-        labelBackground = convertView.findViewById(R.id.checklist_item_label_background);
         labelName = (TextView) convertView.findViewById(R.id.checklist_item_label_name);
         circles = new CopyOnWriteArrayList<>();
         int circleItemLabelId = R.id.checklist_item_circle_label;
@@ -31,10 +29,6 @@ public final class ChecklistItemViewHolder {
         circles.add((TextView)
                 convertView.findViewById(R.id.checklist_item_circle_label4).findViewById(circleItemLabelId)
         );
-    }
-
-    public View getLabelBackground() {
-        return labelBackground;
     }
 
     public TextView getLabelName() {

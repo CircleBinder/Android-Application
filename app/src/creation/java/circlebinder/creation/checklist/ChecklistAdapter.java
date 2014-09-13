@@ -24,7 +24,6 @@ public final class ChecklistAdapter extends ArrayAdapter<Checklist, ChecklistIte
 
     @Override
     public void bindView(int position, Checklist item, ChecklistItemViewHolder holder) {
-        holder.getLabelBackground().setBackgroundResource(item.getChecklistColor().getColorResource());
         holder.getLabelName().setText(item.getName());
         holder.getLabelName().setCompoundDrawablesWithIntrinsicBounds(
                 item.getChecklistColor().getDrawableResource(), 0, 0, 0
