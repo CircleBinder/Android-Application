@@ -19,7 +19,8 @@ import net.ichigotake.common.os.BundleMerger;
 import circlebinder.common.Legacy;
 import circlebinder.common.checklist.ChecklistColor;
 import circlebinder.common.checklist.ChecklistPopupSelector;
-import circlebinder.common.circle.WebViewContainer;
+import circlebinder.common.web.WebViewClient;
+import circlebinder.common.web.WebViewContainer;
 import circlebinder.common.event.Circle;
 import circlebinder.common.event.CircleBuilder;
 
@@ -76,8 +77,10 @@ public final class CircleDetailFragment extends BaseFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.circle_detail, parent, false);
         WebView webView = (WebView)view.findViewById(R.id.circle_detail_web_view);
+        WebViewClient client = new WebViewClient(webView);
+        client.setOnUrlLoadListener((url) -> this.currentUrl = url);
+        webView.setWebViewClient(client);
         webContainer = new WebViewContainer(webView);
-        webContainer.setOnUrlLoadListener((url) -> this.currentUrl = url);
         webContainer.load(getLink(circle));
         return view;
     }

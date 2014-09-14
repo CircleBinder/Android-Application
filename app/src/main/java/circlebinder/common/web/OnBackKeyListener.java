@@ -1,14 +1,14 @@
-package circlebinder.common.circle;
+package circlebinder.common.web;
 
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebView;
 
-final class CircleWebOnKeyListener implements View.OnKeyListener {
+final class OnBackKeyListener implements View.OnKeyListener {
 
     private final WebView webView;
 
-    CircleWebOnKeyListener(WebView webView) {
+    OnBackKeyListener(WebView webView) {
         this.webView = webView;
     }
 
