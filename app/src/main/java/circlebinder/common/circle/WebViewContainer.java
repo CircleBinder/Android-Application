@@ -7,18 +7,17 @@ import android.webkit.WebView;
 import net.ichigotake.common.content.AfterLoadingListener;
 import net.ichigotake.common.content.BeforeLoadingListener;
 import net.ichigotake.common.content.ContentReloader;
+import net.ichigotake.common.content.OnUrlLoadListener;
 
-import circlebinder.common.event.Circle;
-import circlebinder.common.event.CircleLink;
-
-public final class CircleWebContainer implements ContentReloader {
+public final class WebViewContainer implements ContentReloader {
 
     private final WebView webView;
     private AfterLoadingListener afterLoadingListener;
     private BeforeLoadingListener beforeLoadingListener;
+    private OnUrlLoadListener onUrlLoadListener;
 
     @SuppressLint("SetJavaScriptEnabled")
-    public CircleWebContainer(WebView webView) {
+    public WebViewContainer(WebView webView) {
         this.webView = webView;
 
         CircleWebClient client = new CircleWebClient(webView);
@@ -30,6 +29,11 @@ public final class CircleWebContainer implements ContentReloader {
         client.setBeforeLoadingListener(() -> {
             if (beforeLoadingListener != null) {
                 beforeLoadingListener.onBeforeLoading();
+            }
+        });
+        client.setOnUrlLoadListener((url) -> {
+            if (onUrlLoadListener != null) {
+                onUrlLoadListener.onLoadUrl(url);
             }
         });
         webView.setWebViewClient(client);
@@ -53,30 +57,17 @@ public final class CircleWebContainer implements ContentReloader {
         this.beforeLoadingListener = listener;
     }
 
-    public void loadUrl(CircleLink link) {
-        loadUrl(link.getUri().toString());
+    public void setOnUrlLoadListener(OnUrlLoadListener listener) {
+        this.onUrlLoadListener = listener;
     }
 
-    public void loadUrl(String url) {
+    public void load(String url) {
         webView.loadUrl(url);
-    }
-
-    public void load(Circle circle) {
-        webView.loadUrl(
-                "https://google.co.jp/search?q="
-                        + "\"" + circle.getPenName() + "\""
-                        + "%20"
-                        + "\"" + circle.getName() + "\""
-        );
     }
 
     @Override
     public void reload() {
         webView.reload();
-    }
-
-    public String getCurrentUrl() {
-        return webView.getUrl();
     }
 
     public void onDestroy() {

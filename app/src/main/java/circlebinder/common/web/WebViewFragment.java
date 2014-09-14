@@ -12,7 +12,7 @@ import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.os.BundleMerger;
 import net.ichigotake.common.view.ReloadActionProvider;
 
-import circlebinder.common.circle.CircleWebContainer;
+import circlebinder.common.circle.WebViewContainer;
 import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
 import progress.menu.item.ProgressMenuItemHelper;
@@ -33,7 +33,7 @@ public final class WebViewFragment extends BaseFragment {
 
     private static final String KEY_URL = "url";
     private String url;
-    private CircleWebContainer container;
+    private WebViewContainer container;
     private ProgressMenuItemHelper progressMenuItemHelper;
 
     @Override
@@ -61,10 +61,10 @@ public final class WebViewFragment extends BaseFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        container = new CircleWebContainer(
+        container = new WebViewContainer(
                 (WebView)getView().findViewById(R.id.fragment_web_view)
         );
-        container.loadUrl(url);
+        container.load(url);
         container.setBeforeLoadingListener(() -> {
             if (progressMenuItemHelper != null) {
                 progressMenuItemHelper.startProgress();

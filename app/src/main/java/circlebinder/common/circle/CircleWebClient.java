@@ -6,6 +6,7 @@ import android.webkit.WebViewClient;
 
 import net.ichigotake.common.content.AfterLoadingListener;
 import net.ichigotake.common.content.BeforeLoadingListener;
+import net.ichigotake.common.content.OnUrlLoadListener;
 import net.ichigotake.common.net.NetworkState;
 
 /**
@@ -16,6 +17,7 @@ import net.ichigotake.common.net.NetworkState;
 public final class CircleWebClient extends WebViewClient {
 
     private final WebView webView;
+    private OnUrlLoadListener onUrlLoadListener;
     private AfterLoadingListener afterLoadingListener;
     private BeforeLoadingListener beforeLoadingListener;
 
@@ -31,12 +33,19 @@ public final class CircleWebClient extends WebViewClient {
         this.beforeLoadingListener = listener;
     }
 
+    public void setOnUrlLoadListener(OnUrlLoadListener listener) {
+        this.onUrlLoadListener = listener;
+    }
+
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         if (NetworkState.isConnected(webView.getContext())) {
             webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
         } else {
             webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        }
+        if (onUrlLoadListener != null) {
+            onUrlLoadListener.onLoadUrl(url);
         }
         return false;
     }
