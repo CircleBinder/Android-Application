@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     android:minHeight="48dp"
     android:paddingLeft="@dimen/common_baseline_padding"
+    android:paddingRight="@dimen/common_baseline_padding"
     android:textSize="@dimen/common_font_list_item"
     android:gravity="center_vertical"
     />

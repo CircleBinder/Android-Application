@@ -21,6 +21,7 @@ public final class OnItemSelectedListener<T> implements AdapterView.OnItemSelect
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         for (OnItemSelectedEventListener<T> listener : listeners) {
+            //noinspection unchecked
             listener.onItemSelected((T)parent.getSelectedItem());
         }
     }

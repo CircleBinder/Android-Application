@@ -41,9 +41,10 @@ public abstract class CursorAdapter<ITEM, TAG, HEADER_TAG> extends android.widge
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
+        @SuppressWarnings("unchecked") TAG tag = (TAG)view.getTag();
         ITEM item = converter.create(cursor);
         int position = cursor.getPosition();
-        bindView(position, item, (TAG)view.getTag());
+        bindView(position, item, tag);
     }
 
     abstract public View generateView(int position, ITEM item, LayoutInflater inflater, ViewGroup parent);

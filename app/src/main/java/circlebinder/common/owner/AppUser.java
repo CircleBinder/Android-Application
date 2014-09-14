@@ -34,7 +34,7 @@ public class AppUser implements Legacy {
     private void setUuid(String uuid) {
         SharedPreferences.Editor editor = mPref.edit();
         editor.putString(KEY_UUID, uuid);
-        editor.commit();
+        editor.apply();
     }
 
 }
