@@ -17,7 +17,7 @@
         android:orderInCategory="50"
         android:icon="@drawable/ic_action_about"
         android:showAsAction="never"
-        />
+        tools:ignore="AppCompatResource" />
 
     <item
         android:id="@+id/menu_home_change_log"
@@ -25,7 +25,7 @@
         android:orderInCategory="50"
         android:icon="@drawable/ic_action_read"
         android:showAsAction="never"
-        />
+        tools:ignore="AppCompatResource" />
 
     <item
         android:id="@+id/menu_home_about"
@@ -33,6 +33,6 @@
         android:orderInCategory="50"
         android:icon="@drawable/ic_action_about"
         android:showAsAction="never"
-        />
+        tools:ignore="AppCompatResource" />
 
 </menu>

@@ -26,6 +26,7 @@
             android:layout_height="72dp"
             android:layout_marginRight="@dimen/common_spacer_x_small"
             android:layout_alignParentLeft="true"
+            android:contentDescription="@string/app_peti_only_nmnl_name"
             />
 
         <TextView
@@ -73,6 +74,7 @@
             android:layout_height="72dp"
             android:layout_alignParentLeft="true"
             android:layout_marginRight="@dimen/common_spacer_x_small"
+            android:contentDescription="@string/app_peti_only_omufes_name"
             />
 
         <TextView
