@@ -19,7 +19,7 @@ import circlebinder.common.Legacy;
 import circlebinder.creation.app.BaseActivity;
 import circlebinder.R;
 import circlebinder.creation.app.BroadcastEvent;
-import circlebinder.creation.initialize.AppStorage;
+import circlebinder.creation.initialize.LegacyAppStorage;
 
 /**
  * 通常起動時のファーストビュー
@@ -35,7 +35,7 @@ public final class HomeActivity extends BaseActivity implements Legacy {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (!new AppStorage(getApplicationContext()).isInitialized()) {
+        if (!new LegacyAppStorage(getApplicationContext()).isInitialized()) {
             new ActivityTripper(this, DatabaseInitializeActivity.createIntent(this))
                     .withFinish()
                     .trip();

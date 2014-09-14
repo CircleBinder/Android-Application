@@ -48,7 +48,7 @@ abstract class CreationDatabaseInitialize implements Runnable, Legacy {
             ActiveAndroid.endTransaction();
         }
 
-        new AppStorage(context).setInitialized(true);
+        new LegacyAppStorage(context).setInitialized(true);
         finished();
     }
 
