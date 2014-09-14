@@ -18,7 +18,7 @@ public final class ChecklistPopupSelector {
         this.context = context;
         this.anchor = anchor;
         this.popupWindow = new ListPopupWindow(context);
-        this.listener = new OnItemClickListener<ChecklistColor>();
+        this.listener = new OnItemClickListener<>();
     }
 
     public void setOnItemClickListener(OnItemClickEventListener<ChecklistColor> listener) {

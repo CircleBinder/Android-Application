@@ -1,5 +1,13 @@
 <resources>
 
+    <style name="CommonSubSectionHeader">
+        <item name="android:background">@color/common_card_container_background</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:clickable">true</item>
+        <item name="android:paddingRight">@dimen/common_baseline_padding</item>
+        <item name="android:paddingLeft">@dimen/common_baseline_padding</item>
+    </style>
+
     <style name="CommonCircleListItemName">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

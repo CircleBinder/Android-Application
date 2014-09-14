@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -49,7 +48,6 @@ public final class HomeActivity extends BaseActivity implements Legacy {
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                Log.d("HomeActivityActivity", "reciedefde");
                 ContentReloader reloader = (ContentReloader) getFragmentManager()
                         .findFragmentById(R.id.activity_home_fragment_content);
                 reloader.reload();
@@ -101,7 +99,9 @@ public final class HomeActivity extends BaseActivity implements Legacy {
 
     @Override
     public void onDestroy() {
-        unregisterReceiver(broadcastReceiver);
+        if (broadcastReceiver != null) {
+            unregisterReceiver(broadcastReceiver);
+        }
         super.onDestroy();
     }
 

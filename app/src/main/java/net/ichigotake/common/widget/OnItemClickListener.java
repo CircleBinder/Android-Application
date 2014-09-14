@@ -21,6 +21,7 @@ public final class OnItemClickListener<T> implements AdapterView.OnItemClickList
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         for (OnItemClickEventListener<T> listener : listeners) {
+            //noinspection unchecked
             listener.onItemClick((T)parent.getItemAtPosition(position));
         }
     }

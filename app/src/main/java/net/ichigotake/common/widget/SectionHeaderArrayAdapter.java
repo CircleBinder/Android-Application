@@ -39,6 +39,7 @@ public abstract class SectionHeaderArrayAdapter<ITEM, ITEM_TAG, HEADER_TAG>
         } else {
             headerView = ((ViewGroup)view.findViewById(R.id.common_section_item_with_header_label))
                     .getChildAt(0);
+            //noinspection unchecked
             headerTag = (HEADER_TAG) headerView.getTag();
             itemTag = (ITEM_TAG)((ViewGroup)view.findViewById(R.id.common_section_item_with_header_item))
                     .getChildAt(0).getTag();
@@ -63,6 +64,7 @@ public abstract class SectionHeaderArrayAdapter<ITEM, ITEM_TAG, HEADER_TAG>
             tag = generateHeaderTag(position, item, view);
             view.setTag(tag);
         } else {
+            //noinspection unchecked
             tag = (HEADER_TAG)view.getTag();
         }
 
