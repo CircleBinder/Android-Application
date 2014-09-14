@@ -6,7 +6,7 @@ import android.database.Cursor;
 import net.ichigotake.common.content.AsyncTaskLoader;
 
 import circlebinder.common.search.CircleSearchOption;
-import circlebinder.creation.event.CircleTable;
+import circlebinder.creation.event.LegacyCircleTable;
 
 public final class CircleLoader extends AsyncTaskLoader<Cursor> {
 
@@ -19,7 +19,7 @@ public final class CircleLoader extends AsyncTaskLoader<Cursor> {
 
     @Override
     public Cursor loadInBackground() {
-        return CircleTable.get(searchOption);
+        return LegacyCircleTable.get(searchOption);
     }
 
 }

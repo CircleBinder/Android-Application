@@ -12,16 +12,16 @@ import circlebinder.common.Legacy;
 import circlebinder.common.event.Block;
 import circlebinder.common.event.BlockBuilder;
 
-@Table(name = "Comic1Blocks", id = BlockTable.Field.ID)
-public final class BlockTable extends Model implements Legacy {
+@Table(name = "Comic1Blocks", id = LegacyBlockTable.Field.ID)
+public final class LegacyBlockTable extends Model implements Legacy {
 
     public static List<Block> get() {
         List<Block> blocks = new CopyOnWriteArrayList<>();
-        List<BlockTable> blockTableList = new Select()
-                .from(BlockTable.class)
+        List<LegacyBlockTable> blockTableList = new Select()
+                .from(LegacyBlockTable.class)
                 .orderBy(Field.ID)
                 .execute();
-        for (BlockTable item : blockTableList) {
+        for (LegacyBlockTable item : blockTableList) {
             blocks.add(
                     new BlockBuilder()
                             .setId(item.getId().intValue())
@@ -33,13 +33,13 @@ public final class BlockTable extends Model implements Legacy {
     }
 
     public static Block get(long id) {
-        BlockTable block = new Select()
-                .from(BlockTable.class)
+        LegacyBlockTable block = new Select()
+                .from(LegacyBlockTable.class)
                 .where(Field.ID + " = ?", id)
                 .executeSingle();
         if (block == null) {
             block = new Select()
-                    .from(BlockTable.class)
+                    .from(LegacyBlockTable.class)
                     .where(Field.ID + " = ?", 1)
                     .executeSingle();
         }
@@ -49,9 +49,9 @@ public final class BlockTable extends Model implements Legacy {
                 .build();
     }
 
-    public static BlockTable get(CharSequence name) {
+    public static LegacyBlockTable get(CharSequence name) {
         return new Select()
-                .from(BlockTable.class)
+                .from(LegacyBlockTable.class)
                 .where("name = ?", name)
                 .executeSingle();
     }

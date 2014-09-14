@@ -18,8 +18,8 @@ import circlebinder.common.event.CircleBuilder;
 import circlebinder.common.event.Space;
 import circlebinder.common.event.SpaceFactory;
 import circlebinder.R;
-import circlebinder.creation.event.BlockTable;
-import circlebinder.creation.event.CircleTable;
+import circlebinder.creation.event.LegacyBlockTable;
+import circlebinder.creation.event.LegacyCircleTable;
 
 abstract class CreationDatabaseInitialize implements Runnable, Legacy {
 
@@ -64,7 +64,7 @@ abstract class CreationDatabaseInitialize implements Runnable, Legacy {
                     continue;
                 }
 
-                BlockTable blockTable = new BlockTable();
+                LegacyBlockTable blockTable = new LegacyBlockTable();
                 blockTable.name = space.get("block");
                 blockTable.save();
             }
@@ -93,8 +93,8 @@ abstract class CreationDatabaseInitialize implements Runnable, Legacy {
                 builder.clear();
 
                 Space space = spaceFactory.from(circle.get("space"));
-                CircleTable circleTable = new CircleTable();
-                circleTable.blockId = BlockTable.get(space.getBlockName()).getId();
+                LegacyCircleTable circleTable = new LegacyCircleTable();
+                circleTable.blockId = LegacyBlockTable.get(space.getBlockName()).getId();
                 circleTable.checklistId = 0;
                 circleTable.name = circle.get("circle_name");
                 circleTable.penName = circle.get("pen_name");

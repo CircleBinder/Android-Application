@@ -18,8 +18,8 @@ import circlebinder.common.search.CircleOrder;
 import circlebinder.common.search.CircleSearchOption;
 import circlebinder.common.search.Order;
 
-@Table(name = CircleTable.NAME, id = CircleTable.Field.ID)
-public final class CircleTable extends Model implements Legacy {
+@Table(name = LegacyCircleTable.NAME, id = LegacyCircleTable.Field.ID)
+public final class LegacyCircleTable extends Model implements Legacy {
 
     public static final String NAME = "CreationCircles";
 
@@ -58,25 +58,25 @@ public final class CircleTable extends Model implements Legacy {
     public static boolean isChecklistEmpty() {
         ConditionQueryBuilder where = ConditionQueryBuilder.where(Field.CHECKLIST_ID + " > 0");
         return !new Select(Field.ID)
-                .from(CircleTable.class)
+                .from(LegacyCircleTable.class)
                 .where(where.getQuery(), where.getArguments())
                 .exists();
     }
 
-    public static CircleTable find(int circleId) {
+    public static LegacyCircleTable find(int circleId) {
         return new Select("*, " + Field.ID + " AS _id")
-                .from(CircleTable.class)
+                .from(LegacyCircleTable.class)
                 .where(String.format("%s = ?", Field.ID), circleId)
                 .executeSingle();
     }
 
     public static Cursor get() {
-        From query = new Select("*, " + Field.ID + " AS _id").from(CircleTable.class);
+        From query = new Select("*, " + Field.ID + " AS _id").from(LegacyCircleTable.class);
         return Cache.openDatabase().rawQuery(query.toSql(), query.getArguments());
     }
 
     public static Cursor get(CircleSearchOption searchOption) {
-        From query = new Select("*, " + CircleTable.Field.ID + " AS _id").from(CircleTable.class);
+        From query = new Select("*, " + LegacyCircleTable.Field.ID + " AS _id").from(LegacyCircleTable.class);
         ConditionQueryBuilder where = new ConditionQueryBuilder();
         if (searchOption.hasKeyword()) {
             where.and(
@@ -101,7 +101,7 @@ public final class CircleTable extends Model implements Legacy {
     }
 
     public static void setChecklist(Circle circle, ChecklistColor color) {
-        CircleTable circleTable = find((int) circle.getId());
+        LegacyCircleTable circleTable = find((int) circle.getId());
         circleTable.checklistId = color.getId();
         circleTable.save();
     }

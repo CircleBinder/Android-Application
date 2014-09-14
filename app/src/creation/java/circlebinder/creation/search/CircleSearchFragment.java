@@ -20,7 +20,7 @@ import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
 import circlebinder.creation.app.BroadcastEvent;
 import circlebinder.creation.app.phone.CircleDetailPagerActivity;
-import circlebinder.creation.event.CircleTable;
+import circlebinder.creation.event.LegacyCircleTable;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 /**
@@ -85,7 +85,7 @@ public final class CircleSearchFragment extends BaseFragment implements OnCircle
                     );
                     selector.setOnItemClickListener(checklistColor -> {
                         viewHolder.getChecklist().setImageResource(checklistColor.getDrawableResource());
-                        CircleTable.setChecklist(item, checklistColor);
+                        LegacyCircleTable.setChecklist(item, checklistColor);
                         adapter.reload();
                         getActivity().sendBroadcast(BroadcastEvent.createIntent());
                         selector.dismiss();

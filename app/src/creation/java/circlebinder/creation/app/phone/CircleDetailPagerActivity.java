@@ -32,7 +32,7 @@ import circlebinder.R;
 import circlebinder.creation.circle.CircleDetailFragment;
 import circlebinder.creation.circle.CircleDetailViewHolder;
 import circlebinder.creation.circle.OnCirclePageChangeListener;
-import circlebinder.creation.event.CircleTable;
+import circlebinder.creation.event.LegacyCircleTable;
 import circlebinder.creation.search.CircleCursorConverter;
 import circlebinder.creation.search.CircleLoader;
 
@@ -143,7 +143,7 @@ public final class CircleDetailPagerActivity extends BaseActivity
     public void onCirclePageChanged(Circle circle) {
         ChecklistColor checklistColor = circle.getChecklistColor();
         updateChecklistColor(checklistColor);
-        CircleTable.setChecklist(circle, checklistColor);
+        LegacyCircleTable.setChecklist(circle, checklistColor);
         circle = new CircleBuilder(circle)
                 .setChecklistColor(checklistColor)
                 .build();
