@@ -12,7 +12,6 @@ import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.os.BundleMerger;
 import net.ichigotake.common.view.ReloadActionProvider;
 
-import circlebinder.common.circle.CircleWebContainer;
 import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
 import progress.menu.item.ProgressMenuItemHelper;
@@ -33,20 +32,34 @@ public final class WebViewFragment extends BaseFragment {
 
     private static final String KEY_URL = "url";
     private String url;
-    private CircleWebContainer container;
+    private WebViewContainer container;
     private ProgressMenuItemHelper progressMenuItemHelper;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        String restoredUrl = BundleMerger.merge(getArguments(), savedInstanceState).getString(KEY_URL);
-        url = (restoredUrl != null) ? restoredUrl : "https://google.co.jp";
+        url = BundleMerger.merge(getArguments(), savedInstanceState).getString(KEY_URL);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.common_fragment_web_view, parent, false);
+        View view = inflater.inflate(R.layout.common_fragment_web_view, parent, false);
+        WebView webView = (WebView)view.findViewById(R.id.fragment_web_view);
+        WebViewClient webViewClient = new WebViewClient(webView);
+        webViewClient.setOnBeforeLoadingListener(() -> {
+            if (progressMenuItemHelper != null) {
+                progressMenuItemHelper.startProgress();
+            }
+        });
+        webViewClient.setOnAfterLoadingListener(() -> {
+            if (progressMenuItemHelper != null) {
+                progressMenuItemHelper.stopProgress();
+            }
+        });
+        webView.setWebViewClient(webViewClient);
+        container = new WebViewContainer(webView);
+        return view;
     }
 
     @Override
@@ -61,20 +74,7 @@ public final class WebViewFragment extends BaseFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        container = new CircleWebContainer(
-                (WebView)getView().findViewById(R.id.fragment_web_view)
-        );
-        container.loadUrl(url);
-        container.setBeforeLoadingListener(() -> {
-            if (progressMenuItemHelper != null) {
-                progressMenuItemHelper.startProgress();
-            }
-        });
-        container.setAfterLoadingListener(() -> {
-            if (progressMenuItemHelper != null) {
-                progressMenuItemHelper.stopProgress();
-            }
-        });
+        container.load(url);
     }
 
     @Override

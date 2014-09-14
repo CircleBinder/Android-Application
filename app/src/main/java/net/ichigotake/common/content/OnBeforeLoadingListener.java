@@ -1,6 +1,6 @@
 package net.ichigotake.common.content;
 
-public interface BeforeLoadingListener {
+public interface OnBeforeLoadingListener {
 
     void onBeforeLoading();
 
