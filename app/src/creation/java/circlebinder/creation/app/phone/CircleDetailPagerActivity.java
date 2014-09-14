@@ -152,12 +152,12 @@ public final class CircleDetailPagerActivity extends BaseActivity
         headerViewHolder.getName().setText(circle.getPenName() + "/" + circle.getName());
         headerViewHolder.getSpace().setText(circle.getSpace().getName());
         orientationConfig(getResources().getConfiguration());
+        invalidateOptionsMenu();
     }
 
     private void updateChecklistColor(ChecklistColor checklistColor) {
         checklistColorView.setBackgroundResource(checklistColor.getDrawableResource());
     }
-
 
     private void orientationConfig(Configuration configuration) {
         if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {

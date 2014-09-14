@@ -25,13 +25,14 @@ public final class ChangeLogFeedHeaderAdapter
     }
 
     @Override
-    protected View generateHeaderView(int position, ChangeLogFeed changeLogFeed, LayoutInflater inflater, ViewGroup parent) {
+    public View generateHeaderView(int position, ChangeLogFeed changeLogFeed, LayoutInflater inflater, ViewGroup parent) {
         return inflater.inflate(R.layout.common_section_sub_header, parent, false);
     }
 
     @Override
     protected void bindHeaderView(int position, ChangeLogFeed item, SectionHeaderViewHolder tag) {
-        String label = "バージョン" + item.getVersionName() + " " + item.getPublishDate().getFormattedDate();
+        String label = getContext().getString(R.string.common_change_log_publish_date_format,
+                item.getVersionName(), item.getPublishDate().getFormattedDate());
         tag.getLabel().setText(label);
     }
 

@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/common_ic_checklist_none"
             tools:src="@drawable/common_ic_checklist_blue"
-            />
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/common_circle_list_item_space"

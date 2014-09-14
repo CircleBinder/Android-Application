@@ -14,6 +14,7 @@
         android:padding="8dp"
         android:src="@drawable/ic_action_light_forward"
         android:layout_gravity="center_vertical"
+        android:contentDescription="@string/app_circle_search_navigation_forward"
         />
 
 </LinearLayout>

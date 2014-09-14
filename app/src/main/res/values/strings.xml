@@ -2,27 +2,20 @@
 <resources>
 
     <string name="common_app_name">CircleBinder</string>
-    <string name="common_action_refresh">リロードする</string>
     <string name="common_action_open_browser">WEBブラウザで開く</string>
     <string name="common_action_share">シェアする</string>
     <string name="common_circle_search">出展サークルを探す</string>
-    <string name="common_circle_search_option">検索条件を指定する</string>
-    <string name="common_checklist_empty">まだお気に入りサークルはありません</string>
-    <string name="common_circle_link">リンク</string>
     <string name="common_circle_link_homepage">ホームページ</string>
     <string name="common_circle_link_pixiv">pixiv</string>
 
     <!-- 汎用 -->
     <string name="common_all">全て</string>
-    <string name="common_close_symbol">X</string>
 
     <!-- その他・アプリ情報など(本筋の機能とは直接関係のないもの) -->
     <string name="common_about">このアプリについて</string>
     <string name="common_change_log">更新履歴</string>
     <string name="common_change_log_publish_date_format">%1$s バージョン%2$s</string>
     <string name="common_open_source_license">オープンソースライセンス</string>
-    <string name="common_open_source_license_cretit_body_apache_v2">Apache License</string>
-    <string name="common_send_feedback">意見・感想を送る！</string>
     <string name="common_send_feedback_by_mail">メールで意見を送る！</string>
     <string name="common_send_feedback_wish_me_luck">応援する</string>
     <string name="common_send_feedback_description">メールアプリからご意見,ご感想,不具合報告など、お気軽にお寄せください。
@@ -37,6 +30,7 @@
         <item >circlebinder@gmail.com</item>
     </string-array>
     <string name="common_contact_mail_subject">【ご意見・ご要望】%sに関して</string>
+    <!--suppress CheckTagEmptyBody -->
     <string name="common_contact_mail_body"></string>
 
 

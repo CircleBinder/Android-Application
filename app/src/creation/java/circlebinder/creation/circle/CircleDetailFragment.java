@@ -1,6 +1,7 @@
 package circlebinder.creation.circle;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,15 +12,17 @@ import android.webkit.WebView;
 
 import com.dmitriy.tarasov.android.intents.IntentUtils;
 
-import net.ichigotake.common.app.OpenIntentActionProvider;
+import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.app.OnPageChangeListener;
 import net.ichigotake.common.os.BundleMerger;
 
 import circlebinder.common.Legacy;
-import circlebinder.common.circle.CircleWebContainer;
+import circlebinder.common.web.WebViewClient;
+import circlebinder.common.web.WebViewContainer;
 import circlebinder.common.event.Circle;
 
+import net.ichigotake.common.view.ActionProvider;
 import net.ichigotake.common.view.ReloadActionProvider;
 
 import circlebinder.creation.app.BaseFragment;
@@ -56,7 +59,8 @@ public final class CircleDetailFragment extends BaseFragment
 
     private static final String KEY_CIRCLE = "circle";
     private Circle circle;
-    private CircleWebContainer webContainer;
+    private WebViewContainer webContainer;
+    private String currentUrl;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,7 +73,15 @@ public final class CircleDetailFragment extends BaseFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.circle_detail, parent, false);
         WebView webView = (WebView)view.findViewById(R.id.circle_detail_web_view);
-        webContainer = new CircleWebContainer(webView);
+        WebViewClient client = new WebViewClient(webView);
+        client.setOnBeforeLoadingListener((url) -> {
+            Log.d("CirldeDetail", "url: " + url);
+            this.currentUrl = url;
+            getActivity().invalidateOptionsMenu();
+        });
+        webView.setWebViewClient(client);
+        webContainer = new WebViewContainer(webView);
+        webContainer.load(getLink(circle));
         return view;
     }
 
@@ -78,32 +90,29 @@ public final class CircleDetailFragment extends BaseFragment
         inflater.inflate(R.menu.circle_web, menu);
         inflater.inflate(R.menu.open_browser, menu);
         MenuItem shareItem = menu.findItem(R.id.menu_circle_web_share);
-        shareItem.setActionProvider(
-                new OpenIntentActionProvider(
+        shareItem.setActionProvider(new ActionProvider(getActivity(), () ->
+                new ActivityTripper(
                         getActivity(),
-                        IntentUtils.shareText(circle.getName(), webContainer.getCurrentUrl())
-                )
-        );
-        menu.findItem(R.id.menu_open_browser).setActionProvider(
-                new OpenIntentActionProvider(
-                        getActivity(),
-                        IntentUtils.openLink(webContainer.getCurrentUrl())
-                )
-        );
+                        IntentUtils.shareText(circle.getName(), currentUrl)
+                ).trip()
+        ));
+        menu.findItem(R.id.menu_open_browser)
+                .setActionProvider(new ActionProvider(getActivity(), () ->
+                        new ActivityTripper(getActivity(), IntentUtils.openLink(currentUrl)).trip()
+                ));
         inflater.inflate(R.menu.reload, menu);
         menu.findItem(R.id.menu_reload)
                 .setActionProvider(new ReloadActionProvider(getActivity(), webContainer));
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    private String getLink(Circle circle) {
         if (circle.getLinks().isEmpty()) {
-            webContainer.load(circle);
-        } else {
-            webContainer.loadUrl(circle.getLinks().get(0));
+            return "https://google.co.jp/search?q="
+                    + "\"" + circle.getPenName() + "\""
+                    + "%20"
+                    + "\"" + circle.getName() + "\"";
         }
-
+        return circle.getLinks().get(0).getUri().toString();
     }
 
     @Override

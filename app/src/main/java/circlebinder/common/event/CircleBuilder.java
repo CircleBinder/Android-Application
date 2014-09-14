@@ -20,7 +20,7 @@ public final class CircleBuilder implements Parcelable {
     String freeMemo;
 
     public CircleBuilder() {
-        links = new CopyOnWriteArrayList<CircleLink>();
+        links = new CopyOnWriteArrayList<>();
     }
 
     public CircleBuilder(CircleBuilder builder) {

@@ -1,6 +1,6 @@
 package net.ichigotake.common.content;
 
-public interface AfterLoadingListener {
+public interface OnAfterLoadingListener {
 
     void onAfterLoading();
 

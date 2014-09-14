@@ -1,11 +1,10 @@
-package circlebinder.common.circle;
+package circlebinder.common.web;
 
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
-import net.ichigotake.common.content.AfterLoadingListener;
-import net.ichigotake.common.content.BeforeLoadingListener;
+import net.ichigotake.common.content.OnAfterLoadingListener;
+import net.ichigotake.common.content.OnBeforeLoadingListener;
 import net.ichigotake.common.net.NetworkState;
 
 /**
@@ -13,22 +12,22 @@ import net.ichigotake.common.net.NetworkState;
  *  {@link WebView} と共依存ぽくなってしまっているのはよろしくないと思いつつ、
  *  キャッシュを利用するか否かの設定は、HTTPリクエスト直前にやった方が柔軟性が高いため、{@link WebView} 依存がある
  */
-public final class CircleWebClient extends WebViewClient {
+public final class WebViewClient extends android.webkit.WebViewClient {
 
     private final WebView webView;
-    private AfterLoadingListener afterLoadingListener;
-    private BeforeLoadingListener beforeLoadingListener;
+    private OnAfterLoadingListener onAfterLoadingListener;
+    private OnBeforeLoadingListener onBeforeLoadingListener;
 
-    public CircleWebClient(WebView webView) {
+    public WebViewClient(WebView webView) {
         this.webView = webView;
     }
 
-    public void setAfterLoadingListener(AfterLoadingListener listener) {
-        this.afterLoadingListener = listener;
+    public void setOnAfterLoadingListener(OnAfterLoadingListener listener) {
+        this.onAfterLoadingListener = listener;
     }
 
-    public void setBeforeLoadingListener(BeforeLoadingListener listener) {
-        this.beforeLoadingListener = listener;
+    public void setOnBeforeLoadingListener(OnBeforeLoadingListener listener) {
+        this.onBeforeLoadingListener = listener;
     }
 
     @Override
@@ -43,16 +42,16 @@ public final class CircleWebClient extends WebViewClient {
 
     @Override
     public void onPageStarted(WebView view, String url, android.graphics.Bitmap favicon) {
-        if (beforeLoadingListener != null) {
-            beforeLoadingListener.onBeforeLoading();
+        if (onBeforeLoadingListener != null) {
+            onBeforeLoadingListener.onBeforeLoading(url);
         }
         super.onPageStarted(view, url, favicon);
     }
 
     @Override
     public void onPageFinished(WebView view, String url) {
-        if (afterLoadingListener != null) {
-            afterLoadingListener.onAfterLoading();
+        if (onAfterLoadingListener != null) {
+            onAfterLoadingListener.onAfterLoading();
         }
         super.onPageFinished(view, url);
     }
