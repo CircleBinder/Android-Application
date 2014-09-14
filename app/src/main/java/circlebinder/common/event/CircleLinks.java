@@ -9,7 +9,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public final class CircleLinks implements Parcelable {
 
-    private final List<CircleLink> links = new CopyOnWriteArrayList<CircleLink>();
+    private final List<CircleLink> links = new CopyOnWriteArrayList<>();
 
     public CircleLinks() {}
 

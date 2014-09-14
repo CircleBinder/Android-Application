@@ -30,6 +30,7 @@
         <item >circlebinder@gmail.com</item>
     </string-array>
     <string name="common_contact_mail_subject">【ご意見・ご要望】%sに関して</string>
+    <!--suppress CheckTagEmptyBody -->
     <string name="common_contact_mail_body"></string>
 
 

@@ -6,7 +6,6 @@ import android.view.ActionProvider;
 import android.view.View;
 
 import net.ichigotake.common.app.ActivityTripper;
-import net.ichigotake.common.app.Tripper;
 
 public final class ActivityTripActionProvider extends ActionProvider {
 

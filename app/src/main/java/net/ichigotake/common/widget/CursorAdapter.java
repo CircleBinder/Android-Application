@@ -35,7 +35,7 @@ public abstract class CursorAdapter<ITEM, TAG> extends android.widget.CursorAdap
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        TAG tag = (TAG)view.getTag();
+        @SuppressWarnings("unchecked") TAG tag = (TAG)view.getTag();
         ITEM item = converter.create(cursor);
         int position = cursor.getPosition();
         bindView(position, item, tag);
