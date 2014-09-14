@@ -21,7 +21,10 @@ import net.ichigotake.common.app.FragmentPagerItemCreator;
 import net.ichigotake.common.os.BundleMerger;
 
 import circlebinder.common.Legacy;
+import circlebinder.common.checklist.ChecklistColor;
+import circlebinder.common.checklist.ChecklistPopupSelector;
 import circlebinder.common.event.Circle;
+import circlebinder.common.event.CircleBuilder;
 import circlebinder.common.search.CircleSearchOption;
 import circlebinder.common.view.carousel.CarouselView;
 import circlebinder.creation.app.BaseActivity;
@@ -29,6 +32,7 @@ import circlebinder.R;
 import circlebinder.creation.circle.CircleDetailFragment;
 import circlebinder.creation.circle.CircleDetailViewHolder;
 import circlebinder.creation.circle.OnCirclePageChangeListener;
+import circlebinder.creation.event.CircleTable;
 import circlebinder.creation.search.CircleCursorConverter;
 import circlebinder.creation.search.CircleLoader;
 
@@ -53,6 +57,7 @@ public final class CircleDetailPagerActivity extends BaseActivity
     private CircleDetailViewHolder headerViewHolder;
     private CircleDetailViewHolder actionBarViewHolder;
     private CarouselView pager;
+    private View checklistColorView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,6 +68,21 @@ public final class CircleDetailPagerActivity extends BaseActivity
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_circle_detail_pager);
+
+        checklistColorView = findViewById(R.id.activity_circle_detail_pager_checklist);
+        final ChecklistPopupSelector checklistSelector =
+                new ChecklistPopupSelector(this, checklistColorView);
+        checklistColorView.setOnClickListener(v -> {
+            if (checklistSelector.isShowing()) {
+                checklistSelector.dismiss();
+            } else {
+                checklistSelector.show();
+            }
+        });
+        checklistSelector.setOnItemClickListener(item -> {
+            updateChecklistColor(item);
+            checklistSelector.dismiss();
+        });
 
         headerViewHolder = new CircleDetailViewHolder(findViewById(R.id.activity_circle_detail_pager_header));
         actionBar.setCustomView(CircleDetailViewHolder.layoutResource);
@@ -121,11 +141,22 @@ public final class CircleDetailPagerActivity extends BaseActivity
 
     @Override
     public void onCirclePageChanged(Circle circle) {
+        ChecklistColor checklistColor = circle.getChecklistColor();
+        updateChecklistColor(checklistColor);
+        CircleTable.setChecklist(circle, checklistColor);
+        circle = new CircleBuilder(circle)
+                .setChecklistColor(checklistColor)
+                .build();
         actionBarViewHolder.getName().setText(circle.getPenName() + "/" + circle.getName());
         actionBarViewHolder.getSpace().setText(circle.getSpace().getName());
         headerViewHolder.getName().setText(circle.getPenName() + "/" + circle.getName());
         headerViewHolder.getSpace().setText(circle.getSpace().getName());
         orientationConfig(getResources().getConfiguration());
+        invalidateOptionsMenu();
+    }
+
+    private void updateChecklistColor(ChecklistColor checklistColor) {
+        checklistColorView.setBackgroundResource(checklistColor.getDrawableResource());
     }
 
     private void orientationConfig(Configuration configuration) {

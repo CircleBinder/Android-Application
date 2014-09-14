@@ -5,7 +5,6 @@ import android.webkit.WebView;
 
 import net.ichigotake.common.content.OnAfterLoadingListener;
 import net.ichigotake.common.content.OnBeforeLoadingListener;
-import net.ichigotake.common.content.OnUrlLoadListener;
 import net.ichigotake.common.net.NetworkState;
 
 /**
@@ -16,7 +15,6 @@ import net.ichigotake.common.net.NetworkState;
 public final class WebViewClient extends android.webkit.WebViewClient {
 
     private final WebView webView;
-    private OnUrlLoadListener onUrlLoadListener;
     private OnAfterLoadingListener onAfterLoadingListener;
     private OnBeforeLoadingListener onBeforeLoadingListener;
 
@@ -32,10 +30,6 @@ public final class WebViewClient extends android.webkit.WebViewClient {
         this.onBeforeLoadingListener = listener;
     }
 
-    public void setOnUrlLoadListener(OnUrlLoadListener listener) {
-        this.onUrlLoadListener = listener;
-    }
-
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         if (NetworkState.isConnected(webView.getContext())) {
@@ -43,16 +37,13 @@ public final class WebViewClient extends android.webkit.WebViewClient {
         } else {
             webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         }
-        if (onUrlLoadListener != null) {
-            onUrlLoadListener.onLoadUrl(url);
-        }
         return false;
     }
 
     @Override
     public void onPageStarted(WebView view, String url, android.graphics.Bitmap favicon) {
         if (onBeforeLoadingListener != null) {
-            onBeforeLoadingListener.onBeforeLoading();
+            onBeforeLoadingListener.onBeforeLoading(url);
         }
         super.onPageStarted(view, url, favicon);
     }

@@ -47,7 +47,7 @@ public final class WebViewFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.common_fragment_web_view, parent, false);
         WebView webView = (WebView)view.findViewById(R.id.fragment_web_view);
         WebViewClient webViewClient = new WebViewClient(webView);
-        webViewClient.setOnBeforeLoadingListener(() -> {
+        webViewClient.setOnBeforeLoadingListener((url) -> {
             if (progressMenuItemHelper != null) {
                 progressMenuItemHelper.startProgress();
             }
