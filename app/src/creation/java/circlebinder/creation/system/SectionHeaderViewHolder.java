@@ -2,7 +2,11 @@ package circlebinder.creation.system;
 
 import android.widget.TextView;
 
+import circlebinder.R;
+
 public final class SectionHeaderViewHolder {
+
+    public static int layoutResourceId = R.layout.common_section_sub_header;
 
     private final TextView label;
 

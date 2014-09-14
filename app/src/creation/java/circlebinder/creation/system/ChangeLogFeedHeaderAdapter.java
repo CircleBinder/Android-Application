@@ -25,7 +25,7 @@ public final class ChangeLogFeedHeaderAdapter
     }
 
     @Override
-    protected View generateHeaderView(int position, ChangeLogFeed changeLogFeed, LayoutInflater inflater, ViewGroup parent) {
+    public View generateHeaderView(int position, ChangeLogFeed changeLogFeed, LayoutInflater inflater, ViewGroup parent) {
         return inflater.inflate(R.layout.common_section_sub_header, parent, false);
     }
 
