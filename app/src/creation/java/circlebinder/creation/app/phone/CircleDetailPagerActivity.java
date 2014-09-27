@@ -13,7 +13,6 @@ import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 
 import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.app.FragmentPagerAdapter;
@@ -26,7 +25,6 @@ import circlebinder.common.checklist.ChecklistPopupSelector;
 import circlebinder.common.event.Circle;
 import circlebinder.common.event.CircleBuilder;
 import circlebinder.common.search.CircleSearchOption;
-import circlebinder.common.view.carousel.CarouselView;
 import circlebinder.creation.app.BaseActivity;
 import circlebinder.R;
 import circlebinder.creation.circle.CircleDetailFragment;
@@ -56,7 +54,7 @@ public final class CircleDetailPagerActivity extends BaseActivity
     private int currentPosition;
     private CircleDetailViewHolder headerViewHolder;
     private CircleDetailViewHolder actionBarViewHolder;
-    private CarouselView pager;
+    private ViewPager pager;
     private View checklistColorView;
 
     @Override
@@ -92,22 +90,13 @@ public final class CircleDetailPagerActivity extends BaseActivity
         searchOption = bundle.getParcelable(EXTRA_KEY_SEARCH_OPTION);
         currentPosition = bundle.getInt(EXTRA_KEY_POSITION);
 
-        pager = (CarouselView) findViewById(R.id.activity_circle_detail_pager);
+        pager = (ViewPager) findViewById(R.id.activity_circle_detail_pager);
         pager.setPageMargin(getResources().getDimensionPixelSize(
                 R.dimen.common_spacer_x_small
         ));
         pager.setPageMarginDrawable(new ColorDrawable(
                 getResources().getColor(R.color.common_card_container_background)
         ));
-        pager.setIndicatorVisible(false);
-        ViewGroup.LayoutParams forwardViewParams = new ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
-        );
-        pager.setForwardView(getLayoutInflater().inflate(R.layout.circle_detail_forward, null), forwardViewParams);
-        ViewGroup.LayoutParams backViewParams = new ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
-        );
-        pager.setBackView(getLayoutInflater().inflate(R.layout.circle_detail_back, null), backViewParams);
         orientationConfig(getResources().getConfiguration());
         getLoaderManager().initLoader(0, bundle, this);
     }

@@ -1,7 +1,6 @@
 package circlebinder.creation.circle;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -75,7 +74,6 @@ public final class CircleDetailFragment extends BaseFragment
         WebView webView = (WebView)view.findViewById(R.id.circle_detail_web_view);
         WebViewClient client = new WebViewClient(webView);
         client.setOnBeforeLoadingListener((url) -> {
-            Log.d("CirldeDetail", "url: " + url);
             this.currentUrl = url;
             getActivity().invalidateOptionsMenu();
         });
