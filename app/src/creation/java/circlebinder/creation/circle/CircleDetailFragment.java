@@ -1,7 +1,6 @@
 package circlebinder.creation.circle;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,7 +13,6 @@ import com.dmitriy.tarasov.android.intents.IntentUtils;
 
 import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.FragmentFactory;
-import net.ichigotake.common.app.OnPageChangeListener;
 import net.ichigotake.common.os.BundleMerger;
 
 import circlebinder.common.Legacy;
@@ -28,8 +26,7 @@ import net.ichigotake.common.view.ReloadActionProvider;
 import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
 
-public final class CircleDetailFragment extends BaseFragment
-        implements OnPageChangeListener, Legacy {
+public final class CircleDetailFragment extends BaseFragment implements Legacy {
 
     public static FragmentFactory<CircleDetailFragment> factory(Circle circle) {
         return new CircleDetailFragmentFactory(circle);
@@ -75,13 +72,11 @@ public final class CircleDetailFragment extends BaseFragment
         WebView webView = (WebView)view.findViewById(R.id.circle_detail_web_view);
         WebViewClient client = new WebViewClient(webView);
         client.setOnBeforeLoadingListener((url) -> {
-            Log.d("CirldeDetail", "url: " + url);
             this.currentUrl = url;
             getActivity().invalidateOptionsMenu();
         });
         webView.setWebViewClient(client);
         webContainer = new WebViewContainer(webView);
-        webContainer.load(getLink(circle));
         return view;
     }
 
@@ -105,6 +100,13 @@ public final class CircleDetailFragment extends BaseFragment
                 .setActionProvider(new ReloadActionProvider(getActivity(), webContainer));
     }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        webContainer.load(getLink(circle));
+        postEvent();
+    }
+
     private String getLink(Circle circle) {
         if (circle.getLinks().isEmpty()) {
             return "https://google.co.jp/search?q="
@@ -121,13 +123,7 @@ public final class CircleDetailFragment extends BaseFragment
         outState.putParcelable(KEY_CIRCLE, circle);
     }
 
-    @Override
-    public void active() {
-        webContainer.reload();
-        restoreActionBar();
-    }
-
-    private void restoreActionBar() {
+    private void postEvent() {
         if (getActivity() == null) {
             return;
         }

@@ -16,8 +16,8 @@
         android:paddingRight="16dp"
         />
 
-    <circlebinder.common.view.carousel.CarouselView
-        android:id="@+id/activity_circle_detail_pager"
+    <FrameLayout
+        android:id="@+id/activity_circle_detail_pager_item"
         android:layout_below="@+id/activity_circle_detail_pager_header"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
