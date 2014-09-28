@@ -13,7 +13,6 @@ import com.dmitriy.tarasov.android.intents.IntentUtils;
 
 import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.FragmentFactory;
-import net.ichigotake.common.app.OnPageChangeListener;
 import net.ichigotake.common.os.BundleMerger;
 
 import circlebinder.common.Legacy;
@@ -27,8 +26,7 @@ import net.ichigotake.common.view.ReloadActionProvider;
 import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
 
-public final class CircleDetailFragment extends BaseFragment
-        implements OnPageChangeListener, Legacy {
+public final class CircleDetailFragment extends BaseFragment implements Legacy {
 
     public static FragmentFactory<CircleDetailFragment> factory(Circle circle) {
         return new CircleDetailFragmentFactory(circle);
@@ -106,6 +104,7 @@ public final class CircleDetailFragment extends BaseFragment
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         webContainer.load(getLink(circle));
+        postEvent();
     }
 
     private String getLink(Circle circle) {
@@ -124,12 +123,7 @@ public final class CircleDetailFragment extends BaseFragment
         outState.putParcelable(KEY_CIRCLE, circle);
     }
 
-    @Override
-    public void active() {
-        restoreActionBar();
-    }
-
-    private void restoreActionBar() {
+    private void postEvent() {
         if (getActivity() == null) {
             return;
         }
