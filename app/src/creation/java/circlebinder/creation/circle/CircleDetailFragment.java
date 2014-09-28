@@ -79,7 +79,6 @@ public final class CircleDetailFragment extends BaseFragment
         });
         webView.setWebViewClient(client);
         webContainer = new WebViewContainer(webView);
-        webContainer.load(getLink(circle));
         return view;
     }
 
@@ -103,6 +102,12 @@ public final class CircleDetailFragment extends BaseFragment
                 .setActionProvider(new ReloadActionProvider(getActivity(), webContainer));
     }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        webContainer.load(getLink(circle));
+    }
+
     private String getLink(Circle circle) {
         if (circle.getLinks().isEmpty()) {
             return "https://google.co.jp/search?q="
@@ -121,7 +126,6 @@ public final class CircleDetailFragment extends BaseFragment
 
     @Override
     public void active() {
-        webContainer.reload();
         restoreActionBar();
     }
 
