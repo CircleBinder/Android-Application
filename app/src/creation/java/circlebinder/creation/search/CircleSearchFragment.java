@@ -9,7 +9,6 @@ import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.os.BundleMerger;
 
-import circlebinder.common.checklist.ChecklistPopupSelector;
 import circlebinder.common.circle.CircleAdapter;
 import circlebinder.common.event.BlockBuilder;
 import circlebinder.common.search.CircleQueryProvider;
@@ -18,9 +17,7 @@ import circlebinder.common.search.CircleSearchOptionBuilder;
 import circlebinder.common.search.OnCircleSearchOptionListener;
 import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
-import circlebinder.creation.app.BroadcastEvent;
-import circlebinder.creation.app.phone.CircleDetailPagerActivity;
-import circlebinder.creation.event.CircleTable;
+import circlebinder.creation.app.phone.CircleDetailActivity;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 /**
@@ -72,28 +69,11 @@ public final class CircleSearchFragment extends BaseFragment implements OnCircle
                 .findViewById(R.id.fragment_circle_search_list);
         circlesView.setOnItemClickListener((parent1, view1, position, id) -> new ActivityTripper(
                 getActivity(),
-                CircleDetailPagerActivity.createIntent(
+                CircleDetailActivity.createIntent(
                         getActivity(), searchOptionBuilder.build(), position
                 )
         ).trip());
-        adapter = new CircleAdapter(
-                getActivity(),
-                new CircleCursorConverter(),
-                (viewHolder, position, item) -> {
-                    final ChecklistPopupSelector selector = new ChecklistPopupSelector(
-                            getActivity(), viewHolder.getSpaceContainer()
-                    );
-                    selector.setOnItemClickListener(checklistColor -> {
-                        viewHolder.getChecklist().setImageResource(checklistColor.getDrawableResource());
-                        CircleTable.setChecklist(item, checklistColor);
-                        adapter.reload();
-                        getActivity().sendBroadcast(BroadcastEvent.createIntent());
-                        selector.dismiss();
-
-                    });
-                    selector.show();
-                }
-        );
+        adapter = new CircleAdapter(getActivity(), new CircleCursorConverter());
         circlesView.setAdapter(adapter);
         return view;
     }

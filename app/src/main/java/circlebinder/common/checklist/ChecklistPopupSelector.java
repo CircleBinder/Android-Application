@@ -10,13 +10,11 @@ import net.ichigotake.common.widget.OnItemClickListener;
 public final class ChecklistPopupSelector {
 
     private final Context context;
-    private final View anchor;
     private final OnItemClickListener<ChecklistColor> listener;
     private final ListPopupWindow popupWindow;
 
-    public ChecklistPopupSelector(Context context, View anchor) {
+    public ChecklistPopupSelector(Context context) {
         this.context = context;
-        this.anchor = anchor;
         this.popupWindow = new ListPopupWindow(context);
         this.listener = new OnItemClickListener<>();
     }
@@ -25,7 +23,7 @@ public final class ChecklistPopupSelector {
         this.listener.addOnItemClickEventListener(listener);
     }
 
-    public void show() {
+    public void show(View anchor) {
         ChecklistSelectorAdapter adapter = new ChecklistSelectorAdapter(context);
         adapter.add(ChecklistColor.NONE);
         for (ChecklistColor item : ChecklistColor.checklists()) {

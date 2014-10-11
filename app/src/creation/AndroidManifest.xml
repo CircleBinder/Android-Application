@@ -56,7 +56,7 @@
             />
 
         <activity
-            android:name="circlebinder.creation.app.phone.CircleDetailPagerActivity"
+            android:name="circlebinder.creation.app.phone.CircleDetailActivity"
             android:label="@string/app_label_empty"
             android:configChanges="orientation|screenSize"
             />

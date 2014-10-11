@@ -21,13 +21,11 @@
         android:gravity="center_vertical|center_horizontal"
         >
 
-        <ImageView
+        <circlebinder.creation.checklist.ChecklistSelectorView
             android:id="@+id/common_circle_list_checklist"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/common_ic_checklist_none"
-            tools:src="@drawable/common_ic_checklist_blue"
-            tools:ignore="ContentDescription" />
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            />
 
         <TextView
             android:id="@+id/common_circle_list_item_space"

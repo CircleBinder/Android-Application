@@ -5,13 +5,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import circlebinder.R;
+import circlebinder.creation.checklist.ChecklistSelectorView;
 
 public final class CircleViewHolder {
 
     private final TextView circleName;
     private final TextView penName;
     private final TextView genre;
-    private final ImageView checklist;
+    private final ChecklistSelectorView checklistSelector;
     private final TextView space;
     private final View spaceContainer;
 
@@ -19,7 +20,7 @@ public final class CircleViewHolder {
         this.circleName = (TextView)container.findViewById(R.id.common_circle_list_item_name);
         this.penName = (TextView)container.findViewById(R.id.common_circle_list_item_pen_name);
         this.genre = (TextView)container.findViewById(R.id.common_circle_list_item_genre);
-        this.checklist = (ImageView) container.findViewById(R.id.common_circle_list_checklist);
+        this.checklistSelector = (ChecklistSelectorView) container.findViewById(R.id.common_circle_list_checklist);
         this.space = (TextView)container.findViewById(R.id.common_circle_list_item_space);
         this.spaceContainer = container.findViewById(R.id.common_circle_list_item_space_container);
     }
@@ -36,8 +37,8 @@ public final class CircleViewHolder {
         return genre;
     }
 
-    public ImageView getChecklist() {
-        return checklist;
+    public ChecklistSelectorView getChecklistSelector() {
+        return checklistSelector;
     }
 
     public TextView getSpace() {
