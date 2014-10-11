@@ -50,7 +50,7 @@ android {
         release {
             debuggable false
             runProguard false
-            proguardFiles 'proguard-rules.txt'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
             signingConfig signingConfigs.release
             applicationIdSuffix ''
             versionNameSuffix ''
