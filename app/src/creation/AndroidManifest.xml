@@ -20,15 +20,20 @@
         <meta-data android:name="AA_DB_VERSION" android:value="4" />
 
         <activity
-            android:name="circlebinder.creation.app.phone.HomeActivity"
-            android:label="@string/app_event_name"
-            android:configChanges="orientation|screenSize"
+            android:name="circlebinder.creation.app.phone.LauncherActivity"
+            android:theme="@android:style/Theme.NoDisplay"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="circlebinder.creation.app.phone.HomeActivity"
+            android:label="@string/app_event_name"
+            android:configChanges="orientation|screenSize"
+            />
 
         <activity
             android:name="circlebinder.creation.app.phone.CircleSearchActivity"

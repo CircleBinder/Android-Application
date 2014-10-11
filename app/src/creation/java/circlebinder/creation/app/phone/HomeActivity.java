@@ -12,7 +12,6 @@ import android.view.View;
 
 import com.dmitriy.tarasov.android.intents.IntentUtils;
 
-import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.content.ContentReloader;
 import net.ichigotake.common.content.RawResources;
 
@@ -24,7 +23,6 @@ import circlebinder.common.Legacy;
 import circlebinder.creation.app.BaseActivity;
 import circlebinder.R;
 import circlebinder.creation.app.BroadcastEvent;
-import circlebinder.creation.initialize.AppStorage;
 
 /**
  * 通常起動時のファーストビュー
@@ -40,12 +38,6 @@ public final class HomeActivity extends BaseActivity implements Legacy {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (!new AppStorage(getApplicationContext()).isInitialized()) {
-            new ActivityTripper(this, DatabaseInitializeActivity.createIntent(this))
-                    .withFinish()
-                    .trip();
-            return;
-        }
         setContentView(R.layout.activity_home);
         getActionBar().setDisplayShowTitleEnabled(false);
         orientationConfig(getResources().getConfiguration());
