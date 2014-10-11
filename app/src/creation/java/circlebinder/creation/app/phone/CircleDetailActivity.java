@@ -22,7 +22,6 @@ import circlebinder.common.event.Circle;
 import circlebinder.common.search.CircleSearchOption;
 import circlebinder.creation.app.BaseActivity;
 import circlebinder.R;
-import circlebinder.creation.checklist.ChecklistSelectorView;
 import circlebinder.creation.circle.CircleDetailFragment;
 import circlebinder.creation.circle.CircleDetailViewHolder;
 import circlebinder.creation.circle.OnCirclePageChangeListener;
@@ -48,7 +47,6 @@ public final class CircleDetailActivity extends BaseActivity
     private int currentPosition;
     private CircleDetailViewHolder headerViewHolder;
     private CircleDetailViewHolder actionBarViewHolder;
-    private ChecklistSelectorView checklistSelectorView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,8 +57,6 @@ public final class CircleDetailActivity extends BaseActivity
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_circle_detail_pager);
-
-        checklistSelectorView = (ChecklistSelectorView) findViewById(R.id.activity_circle_detail_checklist);
 
         headerViewHolder = new CircleDetailViewHolder(findViewById(R.id.activity_circle_detail_header));
         actionBar.setCustomView(CircleDetailViewHolder.layoutResource);
@@ -95,7 +91,6 @@ public final class CircleDetailActivity extends BaseActivity
 
     @Override
     public void onCirclePageChanged(Circle circle) {
-        checklistSelectorView.setCircle(circle);
         actionBarViewHolder.getName().setText(circle.getPenName() + "/" + circle.getName());
         actionBarViewHolder.getSpace().setText(circle.getSpace().getName());
         headerViewHolder.getName().setText(circle.getPenName() + "/" + circle.getName());

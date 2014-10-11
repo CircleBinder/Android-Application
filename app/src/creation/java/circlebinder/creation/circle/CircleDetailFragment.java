@@ -25,6 +25,7 @@ import net.ichigotake.common.view.ReloadActionProvider;
 
 import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
+import circlebinder.creation.checklist.ChecklistSelectActionProvider;
 
 public final class CircleDetailFragment extends BaseFragment implements Legacy {
 
@@ -80,24 +81,31 @@ public final class CircleDetailFragment extends BaseFragment implements Legacy {
         return view;
     }
 
+    //TODO: Activityに移したい
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.circle_web, menu);
         inflater.inflate(R.menu.open_browser, menu);
         MenuItem shareItem = menu.findItem(R.id.menu_circle_web_share);
+        shareItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
         shareItem.setActionProvider(new ActionProvider(getActivity(), () ->
                 new ActivityTripper(
                         getActivity(),
                         IntentUtils.shareText(circle.getName(), currentUrl)
                 ).trip()
         ));
-        menu.findItem(R.id.menu_open_browser)
-                .setActionProvider(new ActionProvider(getActivity(), () ->
+        MenuItem openBrowserItem = menu.findItem(R.id.menu_open_browser);
+        openBrowserItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+        openBrowserItem.setActionProvider(new ActionProvider(getActivity(), () ->
                         new ActivityTripper(getActivity(), IntentUtils.openLink(currentUrl)).trip()
                 ));
         inflater.inflate(R.menu.reload, menu);
-        menu.findItem(R.id.menu_reload)
-                .setActionProvider(new ReloadActionProvider(getActivity(), webContainer));
+        MenuItem reloadItem = menu.findItem(R.id.menu_reload);
+        reloadItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+        reloadItem.setActionProvider(new ReloadActionProvider(getActivity(), webContainer));
+        inflater.inflate(R.menu.checklist_selector, menu);
+        menu.findItem(R.id.menu_checklist_selector)
+                .setActionProvider(new ChecklistSelectActionProvider(getActivity(), circle));
     }
 
     @Override
