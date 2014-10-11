@@ -10,8 +10,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.dmitriy.tarasov.android.intents.IntentUtils;
+
 import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.content.ContentReloader;
+import net.ichigotake.common.content.RawResources;
+
+import java.io.IOException;
 
 import circlebinder.common.app.ActivityTripActionProvider;
 
@@ -86,6 +91,16 @@ public final class HomeActivity extends BaseActivity implements Legacy {
         contactItem.setActionProvider(
                 new ActivityTripActionProvider(this, ContactActivity.createIntent(this))
         );
+        try {
+            getMenuInflater().inflate(R.menu.event_map, menu);
+            String eventMapGeoUrl = new RawResources(getResources()).getText(R.raw.event_map_geo_url).get(0);
+            MenuItem openMapItem = menu.findItem(R.id.menu_event_map);
+            openMapItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+            openMapItem.setActionProvider(
+                    new ActivityTripActionProvider(this, IntentUtils.openLink(eventMapGeoUrl)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         MenuItem changeLogItem = menu.findItem(R.id.menu_home_change_log);
         changeLogItem.setActionProvider(
                 new ActivityTripActionProvider(this, ChangeLogActivity.createIntent(this))
