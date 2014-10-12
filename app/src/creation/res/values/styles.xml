@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/CircleBinderActionBar</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="AppNoActionBarTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="CommonSectionHeaderLabel">
+        <item name="android:minHeight">@dimen/common_baseline_list_item_height</item>
+        <item name="android:textSize">@dimen/common_font_subhead</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingTop">@dimen/common_section_head_label_padding_vertical</item>
+        <item name="android:paddingRight">@dimen/common_section_head_label_padding_horizontal</item>
+        <item name="android:paddingBottom">@dimen/common_section_head_label_padding_vertical</item>
+        <item name="android:paddingLeft">@dimen/common_section_head_label_padding_horizontal</item>
+    </style>
+
+    <style name="CommonSectionContent">
+        <item name="android:textSize">@dimen/common_font_body</item>
+        <item name="android:paddingTop">@dimen/common_spacer_x_small</item>
+        <item name="android:paddingRight">@dimen/common_spacer_x_small</item>
+        <item name="android:paddingBottom">@dimen/common_spacer_x_small</item>
+        <item name="android:paddingLeft">@dimen/common_spacer_x_small</item>
+    </style>
+
+    <style name="CircleBinderActionBar" parent="android:Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/app_theme_base</item>
+        <item name="android:backgroundSplit">@color/app_theme_base</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="AppCircleDetailHeader">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">@dimen/common_baseline_padding</item>
+        <item name="android:paddingRight">@dimen/common_baseline_padding</item>
+        <item name="android:background">@color/app_theme_base</item>
+    </style>
+
+    <style name="AppChecklistList">
+        <item name="android:background">@color/common_card_container_background</item>
+    </style>
+
+    <style name="AppPetiOnlyTitle">
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="AppPetiOnlyDescription">
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="AppPetiOnlyThumbnail">
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:adjustViewBounds">true</item>
+    </style>
+
+    <style name="AppCarouselIndicator">
+        <item name="android:background">#66ffffff</item>
+    </style>
+
+</resources>

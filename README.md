@@ -13,6 +13,11 @@ CreationBinder
 
 アプリ内の出展サークル情報は[公式サイト](http://www.creation.gr.jp/)で公開されているものを元に作成しております。
 
+開発環境
+------------
+
+- AndroidStudio v0.8.+
+- Java 8 ( [retrolambda](https://github.com/orfjackal/retrolambda) を利用しているため )
 
 関連リンク
 ------------

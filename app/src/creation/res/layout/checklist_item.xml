@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/common_box_shadow_corners"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        >
+
+        <TextView
+            android:id="@+id/checklist_item_label_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="16dp"
+            android:textSize="@dimen/common_font_subhead"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:drawablePadding="@dimen/common_spacer_x_small"
+            android:drawableLeft="@drawable/common_ic_checklist_blue"
+            tools:text="お気に入り"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/checklist_item_circle_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <include
+            layout="@layout/checklist_item_circle_label"
+            android:id="@+id/checklist_item_circle_label1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <include
+            layout="@layout/checklist_item_circle_label"
+            android:id="@+id/checklist_item_circle_label2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <include
+            layout="@layout/checklist_item_circle_label"
+            android:id="@+id/checklist_item_circle_label3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <include
+            layout="@layout/checklist_item_circle_label"
+            android:id="@+id/checklist_item_circle_label4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

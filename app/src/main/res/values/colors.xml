@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="common_card_item_background">#ffffff</color>
+    <color name="common_card_container_background">#e0e0e0</color>
+    <color name="common_card_container_background_selector">#40eeeeee</color>
+
+    <color name="common_icon_border">#dddddd</color>
+
+    <color name="common_checklist_none">#ffffffff</color>
+    <color name="common_checklist_light_blue">#03a9f4</color>
+    <color name="common_checklist_light_green">#8bc34a</color>
+    <color name="common_checklist_orange">#ff9800</color>
+    <color name="common_checklist_pink">#e91e63</color>
+    <color name="common_checklist_purple">#9c27b0</color>
+    <color name="common_checklist_red">#e51c23</color>
+    <color name="common_checklist_yellow">#ffeb3b</color>
+    <color name="common_checklist_green">#259b24</color>
+    <color name="common_checklist_blue">#5677fc</color>
+
+</resources>

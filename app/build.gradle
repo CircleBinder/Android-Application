@@ -1,0 +1,127 @@
+public String capitalize(String a){
+    String s = a.substring(1)
+    return "${a[0].toUpperCase()}${s.toLowerCase()}"
+}
+
+rootProject.ext.properties.each { key, value ->
+    if (!project.ext.has(key)) {
+        project.ext.set(key, value)
+    }
+}
+
+apply plugin: 'android-sdk-manager'
+apply plugin: 'com.android.application'
+apply plugin: 'android-power-assert'
+apply plugin: 'retrolambda'
+
+retrolambda {
+    jvmArgs '-noverify'
+}
+
+android {
+    compileSdkVersion 20
+    buildToolsVersion '20.0.0'
+
+    signingConfigs {
+        release {
+            storeFile file(project.properties.storeFile)
+            storePassword project.properties.storePassword
+            keyAlias project.properties.storeAlias
+            keyPassword project.properties.keyPassword
+        }
+    }
+
+    productFlavors {
+        creation {
+            applicationId 'circlebinder.creation'
+        }
+    }
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 20
+        versionCode 12
+        versionName '0.8'
+
+        buildConfigField "String", "CRASH_REPORTER_KEY", "\"${project.properties.crashReporterKey}\""
+    }
+
+    buildTypes {
+        release {
+            debuggable false
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.release
+            applicationIdSuffix ''
+            versionNameSuffix ''
+            zipAlign true
+        }
+
+        debug {
+            debuggable true
+            runProguard false
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-debug'
+        }
+    }
+
+    lintOptions {
+        abortOnError true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'src/libs/', include: '*.jar')
+    compile 'am.ik.ltsv4j:ltsv4j:0.9.0'
+    compile 'com.dmitriy-tarasov:android-intents:1.1.0'
+    compile 'com.github.hotchemi:ProgressMenuItem:0.3.3'
+    compile 'com.squareup.picasso:picasso:2.3.3'
+    compile 'se.emilsjolander:stickylistheaders:2.5.0'
+}
+
+
+android.applicationVariants.all { variant ->
+    def resourceDir = new File("app/src/${variant.buildType.name}/res/values")
+    def resourceFile = new File(resourceDir, "_app.xml")
+    def appName = project.properties.appName + variant.buildType.versionNameSuffix;
+
+    resourceDir.mkdirs()
+    writeResources(resourceFile, [
+            "app_name": appName,
+    ])
+}
+
+apply plugin: 'deploygate'
+
+// アップロード時のメッセージは /app/DEPLOYGATE を利用している
+deploygate {
+    userName = project.properties.deployGateUserName
+    token = project.properties.deployGateToken
+}
+def buildMessage = file("DEPLOYGATE").readLines()[0]
+def apkDir = project.projectDir.getAbsolutePath() + "/build/outputs/apk"
+android.applicationVariants.all { variant ->
+    if (variant.buildType.name == "release") {
+        def flavor = variant.productFlavors[0].name
+        deploygate.apks {
+            "${capitalize(flavor)}" {
+                sourceFile = file("${apkDir}/app-${flavor}-${variant.buildType.name}.apk")
+                message = buildMessage
+            }
+        }
+        task("uploadDeployGate${capitalize(flavor)}Release").dependsOn ":app:assemble${capitalize(flavor)}Release"
+    }
+}
+
+// 起動の速い環境を利用するために、実装中は Chrome 上でアプリを起動出来るようにする
+// https://gist.github.com/ichigotake/6f6c21c26971c4248d6d
+task runChromeAppDebug(type: Exec, dependsOn: assembleDebug) {
+    executable "bash"
+    args "--login", "-c", "chromeos-apk '${buildDir}/outputs/apk/app-creation-debug.apk' " \
+            + "&& /Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --load-and-launch-app=${projectDir}/circlebinder.creation.debug.android/"
+}

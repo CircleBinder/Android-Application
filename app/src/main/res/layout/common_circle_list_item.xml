@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/CommonCardItem"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    >
+
+    <LinearLayout
+        android:id="@+id/common_circle_list_item_space_container"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/common_spacer_xx_small"
+        android:paddingTop="@dimen/common_spacer_x_small"
+        android:paddingRight="@dimen/common_spacer_xx_small"
+        android:paddingBottom="@dimen/common_spacer_x_small"
+        android:background="#eeeeee"
+        android:gravity="center_vertical|center_horizontal"
+        >
+
+        <circlebinder.creation.checklist.ChecklistSelectorView
+            android:id="@+id/common_circle_list_checklist"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            />
+
+        <TextView
+            android:id="@+id/common_circle_list_item_space"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="#666666"
+            android:textSize="@dimen/common_font_button"
+            tools:text="あ01a"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/common_baseline_padding_horizontal"
+        android:layout_marginRight="@dimen/common_baseline_padding_horizontal"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            android:id="@+id/common_circle_list_item_genre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/common_font_subhead"
+            android:visibility="gone"
+            tools:text="創作"
+            />
+
+        <TextView
+            style="@style/CommonCircleListItemName"
+            android:id="@+id/common_circle_list_item_name"
+            android:textSize="@dimen/common_font_subhead"
+            tools:text="CircleBinder"
+            />
+
+        <TextView
+            android:id="@+id/common_circle_list_item_pen_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/common_font_body"
+            tools:text="\@ichigotake"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>
