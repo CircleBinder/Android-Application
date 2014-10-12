@@ -54,6 +54,7 @@ public final class CircleCursorConverter implements CursorItemConverter<Circle>,
                 .setNo(spaceNo)
                 .setNoSub(spaceNoSub);
 
+//        TODO: 何故か取得に失敗する。環境によってはクラッシュするかもしれない。
 //        String name = c.getString(EventCircleTable.FIELD_CIRCLE_NAME);
         String name = cursor.getString(3);
 
