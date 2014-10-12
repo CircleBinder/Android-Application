@@ -1,5 +1,5 @@
-versionName:0.8	versionCode:11	type:feature	title:デザインをリニューアルしました	publishDate:0
-versionName:0.8	versionCode:11	type:feature	title:会場周辺の地図を開くメニューを追加	publishDate:0
+versionName:0.8	versionCode:11	type:feature	title:デザインをリニューアルしました	publishDate:1413039600000
+versionName:0.8	versionCode:11	type:feature	title:会場周辺の地図を開くメニューを追加	publishDate:1413039600000
 versionName:0.7	versionCode:10	type:feature	title:サークル詳細を閉じた際のリスト位置を調整	publishDate:1403276400000
 versionName:0.7	versionCode:10	type:bug	title:アプリを開く際に強制終了する不具合を修正	publishDate:1403276400000
 versionName:0.6	versionCode:9	type:feature	title:キーワード検索の対象にペンネームを追加	publishDate:1402930800000
