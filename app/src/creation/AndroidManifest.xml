@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="circlebinder"
     >
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -21,15 +20,20 @@
         <meta-data android:name="AA_DB_VERSION" android:value="11" />
 
         <activity
-            android:name="circlebinder.creation.app.phone.HomeActivity"
-            android:label="@string/app_event_name"
-            android:configChanges="orientation|screenSize"
+            android:name="circlebinder.creation.app.phone.LauncherActivity"
+            android:theme="@android:style/Theme.NoDisplay"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="circlebinder.creation.app.phone.HomeActivity"
+            android:label="@string/app_event_name"
+            android:configChanges="orientation|screenSize"
+            />
 
         <activity
             android:name="circlebinder.creation.app.phone.CircleSearchActivity"
@@ -56,7 +60,7 @@
             />
 
         <activity
-            android:name="circlebinder.creation.app.phone.CircleDetailPagerActivity"
+            android:name="circlebinder.creation.app.phone.CircleDetailActivity"
             android:label="@string/app_label_empty"
             android:configChanges="orientation|screenSize"
             />

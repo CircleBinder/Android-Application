@@ -45,8 +45,8 @@ public final class ChecklistListFragment extends BaseFragment implements Content
         ListView checklistsView = (ListView) view.findViewById(R.id.fragment_checklist_list);
         adapter = new ChecklistAdapter(getActivity());
         adapter.addAll(getChecklist());
-        checklistsView.setAdapter(adapter);
         checklistsView.addHeaderView(headerView);
+        checklistsView.setAdapter(adapter);
         View emptyView = view.findViewById(R.id.fragment_checklist_empty);
         emptyView.setOnClickListener(OnClickToTrip.activityTrip(
                 getActivity(), EnjoyCreationActivity.createIntent(getActivity())

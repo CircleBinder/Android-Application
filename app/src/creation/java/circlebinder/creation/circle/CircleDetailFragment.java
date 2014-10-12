@@ -1,7 +1,6 @@
 package circlebinder.creation.circle;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,7 +13,6 @@ import com.dmitriy.tarasov.android.intents.IntentUtils;
 
 import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.FragmentFactory;
-import net.ichigotake.common.app.OnPageChangeListener;
 import net.ichigotake.common.os.BundleMerger;
 
 import circlebinder.common.Legacy;
@@ -27,9 +25,9 @@ import net.ichigotake.common.view.ReloadActionProvider;
 
 import circlebinder.creation.app.BaseFragment;
 import circlebinder.R;
+import circlebinder.creation.checklist.ChecklistSelectActionProvider;
 
-public final class CircleDetailFragment extends BaseFragment
-        implements OnPageChangeListener, Legacy {
+public final class CircleDetailFragment extends BaseFragment implements Legacy {
 
     public static FragmentFactory<CircleDetailFragment> factory(Circle circle) {
         return new CircleDetailFragmentFactory(circle);
@@ -75,34 +73,46 @@ public final class CircleDetailFragment extends BaseFragment
         WebView webView = (WebView)view.findViewById(R.id.circle_detail_web_view);
         WebViewClient client = new WebViewClient(webView);
         client.setOnBeforeLoadingListener((url) -> {
-            Log.d("CirldeDetail", "url: " + url);
             this.currentUrl = url;
             getActivity().invalidateOptionsMenu();
         });
         webView.setWebViewClient(client);
         webContainer = new WebViewContainer(webView);
-        webContainer.load(getLink(circle));
         return view;
     }
 
+    //TODO: Activityに移したい
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.circle_web, menu);
         inflater.inflate(R.menu.open_browser, menu);
         MenuItem shareItem = menu.findItem(R.id.menu_circle_web_share);
+        shareItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
         shareItem.setActionProvider(new ActionProvider(getActivity(), () ->
                 new ActivityTripper(
                         getActivity(),
                         IntentUtils.shareText(circle.getName(), currentUrl)
                 ).trip()
         ));
-        menu.findItem(R.id.menu_open_browser)
-                .setActionProvider(new ActionProvider(getActivity(), () ->
+        MenuItem openBrowserItem = menu.findItem(R.id.menu_open_browser);
+        openBrowserItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+        openBrowserItem.setActionProvider(new ActionProvider(getActivity(), () ->
                         new ActivityTripper(getActivity(), IntentUtils.openLink(currentUrl)).trip()
                 ));
         inflater.inflate(R.menu.reload, menu);
-        menu.findItem(R.id.menu_reload)
-                .setActionProvider(new ReloadActionProvider(getActivity(), webContainer));
+        MenuItem reloadItem = menu.findItem(R.id.menu_reload);
+        reloadItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+        reloadItem.setActionProvider(new ReloadActionProvider(getActivity(), webContainer));
+        inflater.inflate(R.menu.checklist_selector, menu);
+        menu.findItem(R.id.menu_checklist_selector)
+                .setActionProvider(new ChecklistSelectActionProvider(getActivity(), circle));
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        webContainer.load(getLink(circle));
+        postEvent();
     }
 
     private String getLink(Circle circle) {
@@ -121,13 +131,7 @@ public final class CircleDetailFragment extends BaseFragment
         outState.putParcelable(KEY_CIRCLE, circle);
     }
 
-    @Override
-    public void active() {
-        webContainer.reload();
-        restoreActionBar();
-    }
-
-    private void restoreActionBar() {
+    private void postEvent() {
         if (getActivity() == null) {
             return;
         }

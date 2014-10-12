@@ -10,8 +10,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import net.ichigotake.common.app.ActivityTripper;
+import com.dmitriy.tarasov.android.intents.IntentUtils;
+
 import net.ichigotake.common.content.ContentReloader;
+import net.ichigotake.common.content.RawResources;
+
+import java.io.IOException;
 
 import circlebinder.common.app.ActivityTripActionProvider;
 
@@ -19,7 +23,6 @@ import circlebinder.common.Legacy;
 import circlebinder.creation.app.BaseActivity;
 import circlebinder.R;
 import circlebinder.creation.app.BroadcastEvent;
-import circlebinder.creation.initialize.LegacyAppStorage;
 
 /**
  * 通常起動時のファーストビュー
@@ -35,12 +38,6 @@ public final class HomeActivity extends BaseActivity implements Legacy {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (!new LegacyAppStorage(getApplicationContext()).isInitialized()) {
-            new ActivityTripper(this, DatabaseInitializeActivity.createIntent(this))
-                    .withFinish()
-                    .trip();
-            return;
-        }
         setContentView(R.layout.activity_home);
         getActionBar().setDisplayShowTitleEnabled(false);
         orientationConfig(getResources().getConfiguration());
@@ -86,6 +83,16 @@ public final class HomeActivity extends BaseActivity implements Legacy {
         contactItem.setActionProvider(
                 new ActivityTripActionProvider(this, ContactActivity.createIntent(this))
         );
+        try {
+            getMenuInflater().inflate(R.menu.event_map, menu);
+            String eventMapGeoUrl = new RawResources(getResources()).getText(R.raw.event_map_geo_url).get(0);
+            MenuItem openMapItem = menu.findItem(R.id.menu_event_map);
+            openMapItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+            openMapItem.setActionProvider(
+                    new ActivityTripActionProvider(this, IntentUtils.openLink(eventMapGeoUrl)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         MenuItem changeLogItem = menu.findItem(R.id.menu_home_change_log);
         changeLogItem.setActionProvider(
                 new ActivityTripActionProvider(this, ChangeLogActivity.createIntent(this))

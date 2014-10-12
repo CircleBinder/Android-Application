@@ -3,6 +3,7 @@ package circlebinder.creation.search;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,6 +58,7 @@ public final class InputTextFragment extends BaseFragment {
                 listener.onTextChange(s.toString());
             }
         });
+        editText.setFilters(new InputFilter[]{new EmptyCharacterInputFilter()});
         editText.setOnEditorActionListener((v, actionId, event) -> {
             SoftInput.hide(v);
             v.clearFocus();

@@ -96,6 +96,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/app_enjoy_creation_about_catalog_link"
+            android:autoLink="web"
             />
 
     </LinearLayout>

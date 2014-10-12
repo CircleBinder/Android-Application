@@ -5,9 +5,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import net.ichigotake.common.widget.SingleLineTextTripAdapter;
 import net.ichigotake.common.worker.ActivityJobWorker;
 import net.ichigotake.common.worker.ActivityJobWorkerClient;
 
@@ -32,27 +32,16 @@ public final class AboutFragment extends BaseFragment implements Legacy {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanseState) {
-        View view = inflater.inflate(R.layout.fragment_about, parent, false);
-        ListView menuView = (ListView)view.findViewById(R.id.fragment_about_list);
-        menuView.setAdapter(new ArrayAdapter<>(
-                getActivity(),
-                R.layout.common_list_item,
-                R.id.common_list_item,
-                new String[]{
-                        getString(R.string.common_open_source_license),
-                }
-        ));
-        menuView.setOnItemClickListener((parent1, view1, position, id) -> {
-            switch (position) {
-                case 0:
-                    worker.enqueueActivityJob(value -> new FragmentTripper(
-                            getFragmentManager(),
-                            OpenSourceLicenseCreditFragment.factory()
-                    ).trip());
-                    break;
-                default:
-            }
-        });
+        View view = inflater.inflate(R.layout.fragment_about_application, parent, false);
+        ListView menuView = (ListView)view.findViewById(R.id.view_about_application_list);
+        SingleLineTextTripAdapter adapter = new SingleLineTextTripAdapter(getActivity());
+        adapter.add(
+                getString(R.string.common_open_source_license),
+                () -> worker.enqueueActivityJob(value -> new FragmentTripper(
+                        value.getFragmentManager(),
+                        OpenSourceLicenseCreditFragment.factory()
+                ).trip()));
+        menuView.setAdapter(adapter);
         return view;
     }
 

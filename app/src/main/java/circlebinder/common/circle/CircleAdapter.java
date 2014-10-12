@@ -1,7 +1,6 @@
 package circlebinder.common.circle;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,15 +15,8 @@ import circlebinder.creation.system.SectionHeaderViewHolder;
 
 public final class CircleAdapter extends CursorAdapter<Circle, CircleViewHolder, SectionHeaderViewHolder> {
 
-    private final OnCircleItemClickListener onCircleItemClickListener;
-
-    public CircleAdapter(
-            Context context,
-            CursorItemConverter<Circle> converter,
-            OnCircleItemClickListener onCircleItemClickListener
-    ) {
+    public CircleAdapter(Context context, CursorItemConverter<Circle> converter) {
         super(context, null, converter);
-        this.onCircleItemClickListener = onCircleItemClickListener;
     }
 
     @Override
@@ -57,21 +49,14 @@ public final class CircleAdapter extends CursorAdapter<Circle, CircleViewHolder,
         tag.getCircleName().setText(item.getName());
         tag.getPenName().setText(item.getPenName());
 
-        tag.getSpaceContainer().setOnClickListener(v ->
-                onCircleItemClickListener.onSpaceClick(tag, position, item));
-        tag.getChecklist().setImageResource(item.getChecklistColor().getDrawableResource());
+        tag.getChecklistSelector().setCircle(item);
+        tag.getChecklistSelector().setPopupAnchor(tag.getSpaceContainer());
+        tag.getSpaceContainer().setOnClickListener((v) -> tag.getChecklistSelector().showPopup());
         tag.getSpace().setText(
                 String.format("%s%02d%s",
                         item.getSpace().getBlockName(), item.getSpace().getNo(), item.getSpace().getNoSub())
         );
         tag.getGenre().setText(item.getGenre().getName());
-    }
-
-    /**
-     * TODO: {@link Cursor#requery} はDeprecated
-     */
-    public void reload() {
-        getCursor().requery();
     }
 
     @Override
