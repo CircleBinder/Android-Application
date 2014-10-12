@@ -44,13 +44,9 @@ public final class ChecklistActivity extends BaseActivity {
         CircleSearchOption searchOption = new CircleSearchOptionBuilder()
                 .setChecklist(checklistColor).build();
 
-        worker.enqueueActivityJob(value -> FragmentTripper.firstTrip(
-                        getFragmentManager(),
-                        CircleSearchFragment.factory(searchOption)
-                )
-                        .setLayoutId(R.id.activity_checklist_container)
-                        .trip()
-        );
+        FragmentTripper.firstTrip(getFragmentManager(), CircleSearchFragment.factory(searchOption))
+                .setLayoutId(R.id.activity_checklist_container)
+                .trip();
     }
 
     @Override

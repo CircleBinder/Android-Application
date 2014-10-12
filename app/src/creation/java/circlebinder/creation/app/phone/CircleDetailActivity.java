@@ -116,13 +116,16 @@ public final class CircleDetailActivity extends BaseActivity
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        new Handler(Looper.getMainLooper()).post(() -> {
-            data.moveToPosition(currentPosition);
-            Circle circle = new CircleCursorConverter().create(data);
-            new FragmentTripper(getFragmentManager(), CircleDetailFragment.factory(circle))
-                    .setAddBackStack(false)
-                    .setLayoutId(R.id.activity_circle_detail_item)
-                    .trip();
+        data.moveToPosition(currentPosition);
+        final Circle circle = new CircleCursorConverter().create(data);
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                new FragmentTripper(getFragmentManager(), CircleDetailFragment.factory(circle))
+                        .setAddBackStack(false)
+                        .setLayoutId(R.id.activity_circle_detail_item)
+                        .trip();
+            }
         });
     }
 

@@ -1,5 +1,6 @@
 package circlebinder.creation.app.phone;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.ComponentName;
 import android.content.Context;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 
+import net.ichigotake.common.worker.ActivityJob;
 import net.ichigotake.common.worker.ActivityJobWorker;
 
 import circlebinder.common.Legacy;
@@ -30,17 +32,20 @@ public final class DatabaseInitializeActivity extends BaseActivity implements Le
     private IInitializeServiceCallback callback = new IInitializeServiceCallback.Stub() {
         @Override
         public void initializeCompleted() throws RemoteException {
-            worker.enqueueActivityJob(value -> {
-                Fragment callback1 = value.getFragmentManager()
-                        .findFragmentByTag(getString(R.string.fragment_tag_data_initialize));
-                if (callback1 instanceof IInitializeServiceCallback) {
-                    try {
-                        ((IInitializeServiceCallback) callback1).initializeCompleted();
-                    } catch (RemoteException e) {
-                        e.printStackTrace();
+            worker.enqueueActivityJob(new ActivityJob() {
+                @Override
+                public void run(Activity value) {
+                    Fragment callback1 = value.getFragmentManager()
+                            .findFragmentByTag(getString(R.string.fragment_tag_data_initialize));
+                    if (callback1 instanceof IInitializeServiceCallback) {
+                        try {
+                            ((IInitializeServiceCallback) callback1).initializeCompleted();
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        throw new IllegalStateException("not implements");
                     }
-                } else {
-                    throw new IllegalStateException("not implements");
                 }
             });
         }

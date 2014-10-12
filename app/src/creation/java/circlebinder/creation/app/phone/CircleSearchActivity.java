@@ -24,6 +24,7 @@ import circlebinder.R;
 import circlebinder.creation.search.BlockSelectorFragment;
 import circlebinder.creation.search.InputKeywordView;
 import circlebinder.creation.search.OnBlockSelectListener;
+import circlebinder.creation.search.OnInputTextListener;
 import circlebinder.creation.search.SearchFormStore;
 
 public final class CircleSearchActivity extends BaseActivity implements OnBlockSelectListener {
@@ -52,9 +53,12 @@ public final class CircleSearchActivity extends BaseActivity implements OnBlockS
         }
 
         inputKeywordView = (InputKeywordView) findViewById(R.id.activity_circle_search_option_keyword);
-        inputKeywordView.setOnInputTextListener(keyword -> {
-            searchOptionBuilder.setKeyword(keyword);
-            setSearchOption(searchOptionBuilder.build());
+        inputKeywordView.setOnInputTextListener(new OnInputTextListener() {
+            @Override
+            public void onTextChange(String keyword) {
+                searchOptionBuilder.setKeyword(keyword);
+                setSearchOption(searchOptionBuilder.build());
+            }
         });
         updateKeyword();
         searchFormStore = new SearchFormStore(getApplicationContext());
@@ -78,11 +82,21 @@ public final class CircleSearchActivity extends BaseActivity implements OnBlockS
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.search, menu);
-        MenuItem searchItem = menu.findItem(R.id.menu_search);
-        searchItem.setActionProvider(new ActionProvider(getApplicationContext(), this::showForm));
+        MenuItem searchItem = menu.findItem(R.id.menu_search)
+                .setActionProvider(new ActionProvider(getApplicationContext(), new ActionProvider.OnClickListener() {
+                    @Override
+                    public void onClick() {
+                        showForm();
+                    }
+                }));
         inflater.inflate(R.menu.clear, menu);
         MenuItem hiddenItem = menu.findItem(R.id.menu_cancel)
-                .setActionProvider(new ActionProvider(getApplicationContext(), this::hideForm));
+                .setActionProvider(new ActionProvider(getApplicationContext(), new ActionProvider.OnClickListener() {
+                    @Override
+                    public void onClick() {
+                        hideForm();
+                    }
+                }));
         if (searchFormStore.isFormVisible()) {
             searchItem.setVisible(false);
             hiddenItem.setVisible(true);

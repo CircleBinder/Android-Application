@@ -45,13 +45,18 @@ public final class CircleAdapter extends CursorAdapter<Circle, CircleViewHolder,
     }
 
     @Override
-    public void bindView(final int position, Circle item, CircleViewHolder tag) {
+    public void bindView(final int position, Circle item, final CircleViewHolder tag) {
         tag.getCircleName().setText(item.getName());
         tag.getPenName().setText(item.getPenName());
 
         tag.getChecklistSelector().setCircle(item);
         tag.getChecklistSelector().setPopupAnchor(tag.getSpaceContainer());
-        tag.getSpaceContainer().setOnClickListener((v) -> tag.getChecklistSelector().showPopup());
+        tag.getSpaceContainer().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tag.getChecklistSelector().showPopup();
+            }
+        });
         tag.getSpace().setText(
                 String.format("%s%02d%s",
                         item.getSpace().getBlockName(), item.getSpace().getNo(), item.getSpace().getNoSub())
