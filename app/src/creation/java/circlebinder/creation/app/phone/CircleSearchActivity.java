@@ -22,13 +22,11 @@ import circlebinder.common.search.OnCircleSearchOptionListener;
 import circlebinder.creation.app.BaseActivity;
 import circlebinder.R;
 import circlebinder.creation.search.BlockSelectorFragment;
-import circlebinder.creation.search.InputTextFragment;
+import circlebinder.creation.search.InputKeywordView;
 import circlebinder.creation.search.OnBlockSelectListener;
-import circlebinder.creation.search.OnInputTextListener;
 import circlebinder.creation.search.SearchFormStore;
 
-public final class CircleSearchActivity extends BaseActivity
-        implements OnInputTextListener, OnBlockSelectListener {
+public final class CircleSearchActivity extends BaseActivity implements OnBlockSelectListener {
 
     public static Intent createIntent(Context context) {
         return new Intent(context, CircleSearchActivity.class);
@@ -38,7 +36,7 @@ public final class CircleSearchActivity extends BaseActivity
     private final String EXTRA_CIRCLE_SEARCH_BUILDER = "circle_search_builder";
     private CircleSearchOptionBuilder searchOptionBuilder;
     private SearchFormStore searchFormStore;
-    private View textInputContainer;
+    private InputKeywordView inputKeywordView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,7 +51,11 @@ public final class CircleSearchActivity extends BaseActivity
             searchOptionBuilder = new CircleSearchOptionBuilder();
         }
 
-        textInputContainer = findViewById(R.id.activity_circle_search_option_keyword_container);
+        inputKeywordView = (InputKeywordView) findViewById(R.id.activity_circle_search_option_keyword);
+        inputKeywordView.setOnInputTextListener(keyword -> {
+            searchOptionBuilder.setKeyword(keyword);
+            setSearchOption(searchOptionBuilder.build());
+        });
         updateKeyword();
         searchFormStore = new SearchFormStore(getApplicationContext());
         if (searchFormStore.isFormVisible()) {
@@ -84,9 +86,11 @@ public final class CircleSearchActivity extends BaseActivity
         if (searchFormStore.isFormVisible()) {
             searchItem.setVisible(false);
             hiddenItem.setVisible(true);
+            inputKeywordView.requestFocus();
         } else {
             searchItem.setVisible(true);
             hiddenItem.setVisible(false);
+            inputKeywordView.clearFocus();
         }
         return true;
     }
@@ -109,6 +113,12 @@ public final class CircleSearchActivity extends BaseActivity
         super.onPause();
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(EXTRA_CIRCLE_SEARCH_BUILDER, searchOptionBuilder);
+    }
+
     private void setSearchOption(CircleSearchOption searchOption) {
         Fragment fragment = getFragmentManager().findFragmentById(R.id.activity_circle_search_circles_container);
         if (fragment != null && fragment.isResumed() && fragment instanceof OnCircleSearchOptionListener) {
@@ -116,37 +126,22 @@ public final class CircleSearchActivity extends BaseActivity
         }
     }
 
-    @Override
-    public void onTextChange(String keyword) {
-        searchOptionBuilder.setKeyword(keyword);
-        setSearchOption(searchOptionBuilder.build());
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putParcelable(EXTRA_CIRCLE_SEARCH_BUILDER, searchOptionBuilder);
-
-    }
-
     private void showForm() {
         searchFormStore.setFormVisible(true);
-        textInputContainer.setVisibility(View.VISIBLE);
+        inputKeywordView.setVisibility(View.VISIBLE);
         invalidateOptionsMenu();
     }
 
     private void hideForm() {
         searchFormStore.setFormVisible(false);
-        textInputContainer.setVisibility(View.GONE);
+        inputKeywordView.setVisibility(View.GONE);
         setSearchOption(searchOptionBuilder.setKeyword("").build());
         updateKeyword();
         invalidateOptionsMenu();
     }
 
     private void updateKeyword() {
-        ((InputTextFragment)getFragmentManager()
-                .findFragmentById(R.id.activity_circle_search_option_keyword_container))
-                .setText(searchOptionBuilder.build().getKeyword());
+        inputKeywordView.setText(searchOptionBuilder.build().getKeyword());
     }
 
     @Override

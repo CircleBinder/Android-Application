@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -72,16 +73,13 @@ public final class HomeActivity extends BaseActivity implements Legacy {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.home, menu);
-        MenuItem openWebBrowserItem = menu.findItem(R.id.menu_home_open_official_site);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.event_description, menu);
+        MenuItem openWebBrowserItem = menu.findItem(R.id.menu_event_description);
         openWebBrowserItem.setActionProvider(
                 new ActivityTripActionProvider(
                         this, EnjoyCreationActivity.createIntent(this)
                 )
-        );
-        MenuItem contactItem = menu.findItem(R.id.menu_home_wish_me_luck);
-        contactItem.setActionProvider(
-                new ActivityTripActionProvider(this, ContactActivity.createIntent(this))
         );
         try {
             getMenuInflater().inflate(R.menu.event_map, menu);
@@ -93,11 +91,18 @@ public final class HomeActivity extends BaseActivity implements Legacy {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        MenuItem changeLogItem = menu.findItem(R.id.menu_home_change_log);
+        inflater.inflate(R.menu.wish_me_luck, menu);
+        MenuItem contactItem = menu.findItem(R.id.menu_wish_me_luck);
+        contactItem.setActionProvider(
+                new ActivityTripActionProvider(this, ContactActivity.createIntent(this))
+        );
+        inflater.inflate(R.menu.change_log, menu);
+        MenuItem changeLogItem = menu.findItem(R.id.menu_change_log);
         changeLogItem.setActionProvider(
                 new ActivityTripActionProvider(this, ChangeLogActivity.createIntent(this))
         );
-        MenuItem aboutForApplicationItem = menu.findItem(R.id.menu_home_about);
+        inflater.inflate(R.menu.about_application, menu);
+        MenuItem aboutForApplicationItem = menu.findItem(R.id.menu_about_application);
         aboutForApplicationItem.setActionProvider(
                 new ActivityTripActionProvider(this, AboutActivity.createIntent(this))
         );

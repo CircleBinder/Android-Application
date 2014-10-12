@@ -6,11 +6,10 @@
     <item
         android:id="@+id/menu_event_map"
         android:title="@string/common_open_event_map"
-        android:orderInCategory="100"
+        android:orderInCategory="50"
         android:icon="@drawable/ic_action_light_map"
         android:showAsAction="collapseActionView"
         tools:ignore="AppCompatResource"
         />
-
 
 </menu>

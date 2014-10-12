@@ -18,7 +18,7 @@ public final class EnjoyCreationFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_enjoy_creation, parent, false);
         TextView aboutCatalogLink = (TextView) view.findViewById(R.id.fragment_enjoy_creation_about_catalog_link);
         TextViewUtil.hyperLinkDecoration(aboutCatalogLink);
-        PetiOnlyContainer.render(view.findViewById(R.id.fragment_enjoy_creation_peti_only));
+        new PetiOnlyContainer(view.findViewById(R.id.fragment_enjoy_creation_peti_only)).render();
         return view;
     }
 

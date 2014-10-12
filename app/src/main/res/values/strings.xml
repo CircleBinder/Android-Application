@@ -4,6 +4,7 @@
     <string name="common_app_name">CircleBinder</string>
     <string name="common_action_open_browser">WEBブラウザで開く</string>
     <string name="common_action_share">シェアする</string>
+    <string name="common_enjoy_event">イベントを楽しむ</string>
     <string name="common_open_event_map">会場周辺のマップ</string>
     <string name="common_circle_search">出展サークルを探す</string>
     <string name="common_circle_link_homepage">ホームページ</string>
@@ -21,7 +22,7 @@
     <string name="common_send_feedback_wish_me_luck">応援する</string>
     <string name="common_send_feedback_description">メールアプリからご意見,ご感想,不具合報告など、お気軽にお寄せください。
 今後のアップデートの参考にさせていただきます！</string>
-    <string name="common_twitter_official_account_label">公式アカウント</string>
+    <string name="common_twitter_official_account_label">Twitter公式アカウント</string>
     <string name="common_twitter_official_account_screen_name">\@circlebinder</string>
     <string name="common_twitter_official_account_url">https://twitter.com/circlebinder</string>
     <string name="common_twitter_official_hash_tag_label">ハッシュタグ</string>

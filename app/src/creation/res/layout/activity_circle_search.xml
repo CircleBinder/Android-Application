@@ -8,12 +8,10 @@
     tools:context="circlebinder.creation.app.phone.CircleSearchActivity"
     >
 
-    <fragment
-        android:id="@+id/activity_circle_search_option_keyword_container"
+    <circlebinder.creation.search.InputKeywordView
+        android:id="@+id/activity_circle_search_option_keyword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:name="circlebinder.creation.search.InputTextFragment"
-        tools:layout="@layout/fragment_input_text"
         />
 
     <View
