@@ -14,7 +14,7 @@ import net.ichigotake.common.content.OnBeforeLoadingListener;
 import net.ichigotake.common.os.BundleMerger;
 import net.ichigotake.common.view.ReloadActionProvider;
 
-import circlebinder.creation.app.BaseFragment;
+import circlebinder.common.app.BaseFragment;
 import circlebinder.R;
 import progress.menu.item.ProgressMenuItemHelper;
 

@@ -14,7 +14,7 @@ import net.ichigotake.common.worker.ActivityJob;
 import net.ichigotake.common.worker.ActivityJobWorker;
 
 import circlebinder.common.Legacy;
-import circlebinder.creation.app.BaseActivity;
+import circlebinder.common.app.BaseActivity;
 import circlebinder.R;
 import circlebinder.creation.initialize.DatabaseInitializeService;
 import circlebinder.creation.initialize.IInitializeBindService;

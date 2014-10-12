@@ -13,7 +13,7 @@ import net.ichigotake.common.content.RawResources;
 import java.io.IOException;
 import java.util.List;
 
-import circlebinder.creation.app.BaseFragment;
+import circlebinder.common.app.BaseFragment;
 import circlebinder.R;
 
 public final class OpenSourceLicenseCreditFragment extends BaseFragment {

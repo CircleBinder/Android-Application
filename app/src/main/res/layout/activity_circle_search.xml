@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="circlebinder.common.app.phone.CircleSearchActivity"
+    >
+
+    <circlebinder.creation.search.InputKeywordView
+        android:id="@+id/activity_circle_search_option_keyword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#aaaaaa"
+        />
+
+
+    <fragment
+        android:id="@+id/activity_circle_search_circles_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="circlebinder.creation.search.CircleSearchFragment"
+        tools:layout="@layout/fragment_circle_search"
+        />
+
+</LinearLayout>

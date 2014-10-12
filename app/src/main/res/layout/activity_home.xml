@@ -1,0 +1,30 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="circlebinder.common.app.phone.HomeActivity"
+    >
+
+    <TextView
+        android:id="@+id/activity_home_header_event_name"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:paddingLeft="@dimen/common_baseline_padding"
+        android:paddingRight="@dimen/common_baseline_padding"
+        android:background="@color/app_theme_base"
+        android:text="@string/app_event_name"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/common_font_title"
+        android:gravity="center_vertical"
+        />
+
+    <fragment
+        android:id="@+id/activity_home_fragment_content"
+        android:name="circlebinder.creation.checklist.ChecklistListFragment"
+        android:layout_below="@+id/activity_home_header_event_name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout="@layout/fragment_checklist_list"
+        />
+
+</RelativeLayout>

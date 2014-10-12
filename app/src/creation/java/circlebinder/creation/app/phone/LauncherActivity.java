@@ -5,7 +5,8 @@ import android.os.Bundle;
 
 import net.ichigotake.common.app.ActivityTripper;
 
-import circlebinder.creation.app.BaseActivity;
+import circlebinder.common.app.BaseActivity;
+import circlebinder.common.app.phone.HomeActivity;
 import circlebinder.creation.initialize.LegacyAppStorage;
 
 public final class LauncherActivity extends BaseActivity {
