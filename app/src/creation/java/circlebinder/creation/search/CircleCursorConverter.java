@@ -23,8 +23,8 @@ import circlebinder.common.event.CircleLinks;
 import circlebinder.common.event.GenreBuilder;
 import circlebinder.common.event.SpaceBuilder;
 import circlebinder.creation.app.CreationBinderApplication;
-import circlebinder.creation.event.LegacyBlockTable;
-import circlebinder.creation.event.LegacyCircleTable;
+import circlebinder.creation.event.EventBlockTable;
+import circlebinder.creation.event.EventCircleTable;
 
 public final class CircleCursorConverter implements CursorItemConverter<Circle>, Legacy {
 
@@ -37,9 +37,9 @@ public final class CircleCursorConverter implements CursorItemConverter<Circle>,
         circleBuilder.clear();
         spaceBuilder.clear();
 
-        Block block = LegacyBlockTable.get(c.getLong(LegacyCircleTable.Field.BLOCK_ID));
-        int spaceNo = c.getInt(LegacyCircleTable.Field.SPACE_NO);
-        String spaceNoSub = (c.getInt(LegacyCircleTable.Field.SPACE_NO_SUB) == 0) ? "a" : "b";
+        Block block = EventBlockTable.get(c.getLong(EventCircleTable.FIELD_BLOCK_ID));
+        int spaceNo = c.getInt(EventCircleTable.FIELD_SPACE_NO);
+        String spaceNoSub = (c.getInt(EventCircleTable.FIELD_SPACE_NO_SUB) == 0) ? "a" : "b";
 
         String spaceSimpleName = String.format(CreationBinderApplication.APP_LOCALE,
                 "%s%02d%s", block.getName(), spaceNo, spaceNoSub
@@ -54,15 +54,16 @@ public final class CircleCursorConverter implements CursorItemConverter<Circle>,
                 .setNo(spaceNo)
                 .setNoSub(spaceNoSub);
 
-        String name = c.getString(LegacyCircleTable.Field.NAME);
+//        String name = c.getString(EventCircleTable.FIELD_CIRCLE_NAME);
+        String name = cursor.getString(3);
 
-        long circleId = c.getLong(LegacyCircleTable.Field.ID);
+        long circleId = c.getLong(EventCircleTable.FIELD_ID);
         ChecklistColor checklist = ChecklistColor.getById(
-                c.getInt(LegacyCircleTable.Field.CHECKLIST_ID)
+                c.getInt(EventCircleTable.FIELD_CHECKLIST_ID)
         );
 
         List<CircleLink> linkList = new CopyOnWriteArrayList<>();
-        String homepageUrl = c.getString(LegacyCircleTable.Field.HOMEPAGE_URL);
+        String homepageUrl = c.getString(EventCircleTable.FIELD_HOMEPAGE);
         if (!TextUtils.isEmpty(homepageUrl)) {
             CircleLink link = new CircleLinkBuilder()
                     .setIcon(R.drawable.ic_action_attach)
@@ -76,7 +77,7 @@ public final class CircleCursorConverter implements CursorItemConverter<Circle>,
 
         return circleBuilder
                 .setId(circleId)
-                .setPenName(c.getString(LegacyCircleTable.Field.PEN_NAME))
+                .setPenName(c.getString(EventCircleTable.FIELD_PEN_NAME))
                 .setName(name)
                 .setSpace(spaceBuilder.build())
                 .setChecklistColor(checklist)

@@ -18,8 +18,9 @@ import circlebinder.common.event.CircleBuilder;
 import circlebinder.common.event.Space;
 import circlebinder.common.event.SpaceFactory;
 import circlebinder.R;
-import circlebinder.creation.event.LegacyBlockTable;
-import circlebinder.creation.event.LegacyCircleTable;
+import circlebinder.creation.event.EventBlockTable;
+import circlebinder.creation.event.EventBlockType;
+import circlebinder.creation.event.EventCircleTable;
 
 abstract class CreationDatabaseInitialize implements Runnable, Legacy {
 
@@ -64,12 +65,11 @@ abstract class CreationDatabaseInitialize implements Runnable, Legacy {
                     continue;
                 }
 
-                LegacyBlockTable blockTable = new LegacyBlockTable();
-                blockTable.name = space.get("block");
+                EventBlockTable blockTable = new EventBlockTable();
+                blockTable.blockName = space.get("block");
+                blockTable.blockTypeId = EventBlockType.一般的なスタイル.getTypeId();
                 blockTable.save();
             }
-        } catch (IOException e) {
-            throw e;
         } finally {
             if (reader != null) {
                 reader.close();
@@ -86,25 +86,24 @@ abstract class CreationDatabaseInitialize implements Runnable, Legacy {
             SpaceFactory spaceFactory = new SpaceFactory();
             while ((line = reader.readLine()) != null) {
                 Map<String, String> circle = LTSV.parser().parseLine(line);
-                if (TextUtils.isEmpty(circle.get("circle_name"))) {
+                String circleName = circle.get("circle_name");
+                if (TextUtils.isEmpty(circleName)) {
                     continue;
                 }
 
                 builder.clear();
 
                 Space space = spaceFactory.from(circle.get("space"));
-                LegacyCircleTable circleTable = new LegacyCircleTable();
-                circleTable.blockId = LegacyBlockTable.get(space.getBlockName()).getId();
+                EventCircleTable circleTable = new EventCircleTable();
+                circleTable.blockId = EventBlockTable.get(space.getBlockName()).getId();
                 circleTable.checklistId = 0;
-                circleTable.name = circle.get("circle_name");
+                circleTable.circleName = circleName;
                 circleTable.penName = circle.get("pen_name");
-                circleTable.homepageUrl = circle.get("circle_url");
+                circleTable.homepage = circle.get("circle_url");
                 circleTable.spaceNo = space.getNo();
                 circleTable.spaceNoSub = "a".equals(space.getNoSub()) ? 0 : 1;
                 circleTable.save();
             }
-        } catch (IOException e) {
-            throw e;
         } finally {
             if (reader != null) {
                 reader.close();
