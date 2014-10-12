@@ -7,7 +7,7 @@ import com.activeandroid.ActiveAndroid;
 
 import java.util.Locale;
 
-public final class CreationBinderApplication extends Application {
+public class CircleBinderApplication extends Application {
 
     public static final Locale APP_LOCALE = Locale.JAPAN;
 

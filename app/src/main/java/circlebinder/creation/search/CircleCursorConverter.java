@@ -12,6 +12,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import circlebinder.common.Legacy;
 import circlebinder.R;
+import circlebinder.common.app.CircleBinderApplication;
 import circlebinder.common.checklist.ChecklistColor;
 import circlebinder.common.event.Block;
 import circlebinder.common.event.Circle;
@@ -22,7 +23,6 @@ import circlebinder.common.event.CircleLinkType;
 import circlebinder.common.event.CircleLinks;
 import circlebinder.common.event.GenreBuilder;
 import circlebinder.common.event.SpaceBuilder;
-import circlebinder.common.app.CreationBinderApplication;
 import circlebinder.creation.event.EventBlockTable;
 import circlebinder.creation.event.EventCircleTable;
 
@@ -41,10 +41,10 @@ public final class CircleCursorConverter implements CursorItemConverter<Circle>,
         int spaceNo = c.getInt(EventCircleTable.FIELD_SPACE_NO);
         String spaceNoSub = (c.getInt(EventCircleTable.FIELD_SPACE_NO_SUB) == 0) ? "a" : "b";
 
-        String spaceSimpleName = String.format(CreationBinderApplication.APP_LOCALE,
+        String spaceSimpleName = String.format(CircleBinderApplication.APP_LOCALE,
                 "%s%02d%s", block.getName(), spaceNo, spaceNoSub
         );
-        String spaceName = String.format(CreationBinderApplication.APP_LOCALE,
+        String spaceName = String.format(CircleBinderApplication.APP_LOCALE,
                 "%s-%02d%s", block.getName(), spaceNo, spaceNoSub
         );
         spaceBuilder

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">CreationBinder</string>
+    <string name="app_name">CircleBinder</string>
     <string name="app_label_empty"> </string>
-    <string name="app_event_name">サンシャインクリエイション65</string>
+    <string name="app_event_name">イベント</string>
     <string name="app_tutorial_welcome_search_circle">サンクリのお気に入りサークルを探そう！</string>
     <string name="app_tutorial_welcome_add_checklist">お気に入りサークルを管理出来る！</string>
     <string name="app_tutorial_initialize_about">@string/common_about</string>
