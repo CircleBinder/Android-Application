@@ -7,7 +7,6 @@ import android.view.MenuItem;
 
 import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.os.BundleMerger;
-import net.ichigotake.common.worker.ActivityJobWorker;
 
 import circlebinder.common.app.FragmentTripper;
 import circlebinder.creation.app.BaseActivity;
@@ -24,22 +23,20 @@ public final class WebViewActivity extends BaseActivity {
         return intent;
     }
 
-    private final ActivityJobWorker worker = new ActivityJobWorker();
     private String url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
-        worker.setActivity(this);
         url = BundleMerger.merge(getIntent(), savedInstanceState).getString(KEY_URL);
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        worker.enqueueActivityJob(value -> new FragmentTripper(getFragmentManager(), WebViewFragment.factory(url))
+        new FragmentTripper(getFragmentManager(), WebViewFragment.factory(url))
                 .setAddBackStack(false)
                 .setLayoutId(R.id.activity_web_view_container)
-                .trip());
+                .trip();
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.FragmentFactory;
@@ -67,12 +68,17 @@ public final class CircleSearchFragment extends BaseFragment implements OnCircle
         ViewGroup view = (ViewGroup)inflater.inflate(R.layout.fragment_circle_search, parent, false);
         StickyListHeadersListView circlesView = (StickyListHeadersListView)view
                 .findViewById(R.id.fragment_circle_search_list);
-        circlesView.setOnItemClickListener((parent1, view1, position, id) -> new ActivityTripper(
-                getActivity(),
-                CircleDetailActivity.createIntent(
-                        getActivity(), searchOptionBuilder.build(), position
-                )
-        ).trip());
+        circlesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                new ActivityTripper(
+                        getActivity(),
+                        CircleDetailActivity.createIntent(
+                                getActivity(), searchOptionBuilder.build(), position
+                        )
+                ).trip();
+            }
+        });
         adapter = new CircleAdapter(getActivity(), new CircleCursorConverter());
         circlesView.setAdapter(adapter);
         return view;

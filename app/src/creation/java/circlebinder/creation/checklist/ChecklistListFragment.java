@@ -10,6 +10,7 @@ import android.widget.ListView;
 import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.OnClickToTrip;
 import net.ichigotake.common.content.ContentReloader;
+import net.ichigotake.common.widget.OnItemClickEventListener;
 import net.ichigotake.common.widget.OnItemClickListener;
 
 import java.util.List;
@@ -53,10 +54,15 @@ public final class ChecklistListFragment extends BaseFragment implements Content
         ));
         checklistsView.setEmptyView(emptyView);
         OnItemClickListener<Checklist> listener = new OnItemClickListener<>();
-        listener.addOnItemClickEventListener(item -> new ActivityTripper(
-                getActivity(),
-                ChecklistActivity.createIntent(getActivity(), item.getChecklistColor())
-        ).trip());
+        listener.addOnItemClickEventListener(new OnItemClickEventListener<Checklist>() {
+            @Override
+            public void onItemClick(Checklist item) {
+                new ActivityTripper(
+                        getActivity(),
+                        ChecklistActivity.createIntent(getActivity(), item.getChecklistColor())
+                ).trip();
+            }
+        });
         checklistsView.setOnItemClickListener(listener);
         return view;
     }

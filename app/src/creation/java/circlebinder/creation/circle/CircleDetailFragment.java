@@ -13,6 +13,7 @@ import com.dmitriy.tarasov.android.intents.IntentUtils;
 
 import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.FragmentFactory;
+import net.ichigotake.common.content.OnBeforeLoadingListener;
 import net.ichigotake.common.os.BundleMerger;
 
 import circlebinder.common.Legacy;
@@ -72,9 +73,12 @@ public final class CircleDetailFragment extends BaseFragment implements Legacy {
         View view = inflater.inflate(R.layout.circle_detail, parent, false);
         WebView webView = (WebView)view.findViewById(R.id.circle_detail_web_view);
         WebViewClient client = new WebViewClient(webView);
-        client.setOnBeforeLoadingListener((url) -> {
-            this.currentUrl = url;
-            getActivity().invalidateOptionsMenu();
+        client.setOnBeforeLoadingListener(new OnBeforeLoadingListener() {
+            @Override
+            public void onBeforeLoading(String url) {
+                currentUrl = url;
+                getActivity().invalidateOptionsMenu();
+            }
         });
         webView.setWebViewClient(client);
         webContainer = new WebViewContainer(webView);
@@ -88,17 +92,23 @@ public final class CircleDetailFragment extends BaseFragment implements Legacy {
         inflater.inflate(R.menu.open_browser, menu);
         MenuItem shareItem = menu.findItem(R.id.menu_circle_web_share);
         shareItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
-        shareItem.setActionProvider(new ActionProvider(getActivity(), () ->
+        shareItem.setActionProvider(new ActionProvider(getActivity(), new ActionProvider.OnClickListener() {
+            @Override
+            public void onClick() {
                 new ActivityTripper(
                         getActivity(),
                         IntentUtils.shareText(circle.getName(), currentUrl)
-                ).trip()
-        ));
+                ).trip();
+            }
+        }));
         MenuItem openBrowserItem = menu.findItem(R.id.menu_open_browser);
         openBrowserItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
-        openBrowserItem.setActionProvider(new ActionProvider(getActivity(), () ->
-                        new ActivityTripper(getActivity(), IntentUtils.openLink(currentUrl)).trip()
-                ));
+        openBrowserItem.setActionProvider(new ActionProvider(getActivity(), new ActionProvider.OnClickListener() {
+            @Override
+            public void onClick() {
+                new ActivityTripper(getActivity(), IntentUtils.openLink(currentUrl)).trip();
+            }
+        }));
         inflater.inflate(R.menu.reload, menu);
         MenuItem reloadItem = menu.findItem(R.id.menu_reload);
         reloadItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);

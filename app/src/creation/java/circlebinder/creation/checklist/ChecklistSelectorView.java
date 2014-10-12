@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import net.ichigotake.common.widget.OnItemClickEventListener;
+
 import circlebinder.R;
 import circlebinder.common.checklist.ChecklistColor;
 import circlebinder.common.checklist.ChecklistPopupSelector;
@@ -52,18 +54,24 @@ public class ChecklistSelectorView extends FrameLayout {
         this.checklistColorView = view.findViewById(R.id.view_checklist_selector_label);
         this.selector = new ChecklistPopupSelector(getContext());
         this.anchor = checklistColorView;
-        checklistColorView.setOnClickListener(v -> {
-            if (selector.isShowing()) {
-                selector.dismiss();
-            } else {
-                selector.show(anchor);
+        checklistColorView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (selector.isShowing()) {
+                    selector.dismiss();
+                } else {
+                    selector.show(anchor);
+                }
             }
         });
-        selector.setOnItemClickListener(item -> {
-            updateChecklistColor(circle, item);
-            EventCircleTable.setChecklist(circle, item);
-            getContext().sendBroadcast(BroadcastEvent.createIntent());
-            selector.dismiss();
+        selector.setOnItemClickListener(new OnItemClickEventListener<ChecklistColor>() {
+            @Override
+            public void onItemClick(ChecklistColor item) {
+                updateChecklistColor(circle, item);
+                EventCircleTable.setChecklist(circle, item);
+                getContext().sendBroadcast(BroadcastEvent.createIntent());
+                selector.dismiss();
+            }
         });
     }
 

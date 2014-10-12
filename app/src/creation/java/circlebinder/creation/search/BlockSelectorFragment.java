@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
 
+import net.ichigotake.common.widget.OnItemSelectedEventListener;
+
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -51,7 +53,12 @@ public final class BlockSelectorFragment extends BaseFragment {
                 blocks
         );
         container.setSelection(new AllBlock(getActivity()));
-        container.addOnItemSelectedListener(listener::onBlockSelect);
+        container.addOnItemSelectedListener(new OnItemSelectedEventListener<Block>() {
+            @Override
+            public void onItemSelected(Block item) {
+                listener.onBlockSelect(item);
+            }
+        });
         return view;
     }
 

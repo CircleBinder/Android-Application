@@ -7,7 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import net.ichigotake.common.app.Tripper;
 import net.ichigotake.common.widget.SingleLineTextTripAdapter;
+import net.ichigotake.common.worker.ActivityJob;
 import net.ichigotake.common.worker.ActivityJobWorker;
 import net.ichigotake.common.worker.ActivityJobWorkerClient;
 
@@ -37,10 +39,19 @@ public final class AboutFragment extends BaseFragment implements Legacy {
         SingleLineTextTripAdapter adapter = new SingleLineTextTripAdapter(getActivity());
         adapter.add(
                 getString(R.string.common_open_source_license),
-                () -> worker.enqueueActivityJob(value -> new FragmentTripper(
-                        value.getFragmentManager(),
-                        OpenSourceLicenseCreditFragment.factory()
-                ).trip()));
+                new Tripper() {
+                    @Override
+                    public void trip() {
+                        worker.enqueueActivityJob(new ActivityJob() {
+                            @Override
+                            public void run(Activity value) {
+                                new FragmentTripper(
+                                        value.getFragmentManager(),
+                                        OpenSourceLicenseCreditFragment.factory()
+                                ).trip();                            }
+                        });
+                    }
+                });
         menuView.setAdapter(adapter);
         return view;
     }

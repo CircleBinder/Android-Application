@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 
 import net.ichigotake.common.app.FragmentFactory;
+import net.ichigotake.common.content.OnAfterLoadingListener;
+import net.ichigotake.common.content.OnBeforeLoadingListener;
 import net.ichigotake.common.os.BundleMerger;
 import net.ichigotake.common.view.ReloadActionProvider;
 
@@ -19,7 +21,12 @@ import progress.menu.item.ProgressMenuItemHelper;
 public final class WebViewFragment extends BaseFragment {
 
     public static FragmentFactory<WebViewFragment> factory(final String url) {
-        return () -> WebViewFragment.newInstance(url);
+        return new FragmentFactory<WebViewFragment>() {
+            @Override
+            public WebViewFragment create() {
+                return WebViewFragment.newInstance(url);
+            }
+        };
     }
 
     static WebViewFragment newInstance(String url) {
@@ -47,14 +54,20 @@ public final class WebViewFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.common_fragment_web_view, parent, false);
         WebView webView = (WebView)view.findViewById(R.id.fragment_web_view);
         WebViewClient webViewClient = new WebViewClient(webView);
-        webViewClient.setOnBeforeLoadingListener((url) -> {
-            if (progressMenuItemHelper != null) {
-                progressMenuItemHelper.startProgress();
+        webViewClient.setOnBeforeLoadingListener(new OnBeforeLoadingListener() {
+            @Override
+            public void onBeforeLoading(String url) {
+                if (progressMenuItemHelper != null) {
+                    progressMenuItemHelper.startProgress();
+                }
             }
         });
-        webViewClient.setOnAfterLoadingListener(() -> {
-            if (progressMenuItemHelper != null) {
-                progressMenuItemHelper.stopProgress();
+        webViewClient.setOnAfterLoadingListener(new OnAfterLoadingListener() {
+            @Override
+            public void onAfterLoading() {
+                if (progressMenuItemHelper != null) {
+                    progressMenuItemHelper.stopProgress();
+                }
             }
         });
         webView.setWebViewClient(webViewClient);
