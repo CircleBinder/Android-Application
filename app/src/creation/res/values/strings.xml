@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Fragment -->
+    <string name="app_fragment_tag_data_initialize">fragment_tag_data_initialize</string>
+
 </resources>

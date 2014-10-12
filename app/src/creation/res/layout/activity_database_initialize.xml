@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:name="circlebinder.creation.initialize.DatabaseInitializeFragment"
-        android:tag="@string/fragment_tag_data_initialize"
+        android:tag="@string/app_fragment_tag_data_initialize"
         tools:layout="@layout/fragment_database_initialize"
         />
 

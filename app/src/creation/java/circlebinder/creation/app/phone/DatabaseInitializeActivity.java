@@ -36,7 +36,7 @@ public final class DatabaseInitializeActivity extends BaseActivity implements Le
                 @Override
                 public void run(Activity value) {
                     Fragment callback1 = value.getFragmentManager()
-                            .findFragmentByTag(getString(R.string.fragment_tag_data_initialize));
+                            .findFragmentByTag(getString(R.string.app_fragment_tag_data_initialize));
                     if (callback1 instanceof IInitializeServiceCallback) {
                         try {
                             ((IInitializeServiceCallback) callback1).initializeCompleted();
