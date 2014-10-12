@@ -25,7 +25,7 @@ public final class EventCircleTable extends Model {
     public static final String FIELD_BLOCK_ID = "block_id";
     public static final String FIELD_SPACE_NO = "space_no";
     public static final String FIELD_SPACE_NO_SUB = "space_no_sub";
-    public static final String FIELD_CIRCLE_NAME =" circle_name";
+    public static final String FIELD_CIRCLE_NAME = "circle_name";
     public static final String FIELD_PEN_NAME = "pen_name";
     public static final String FIELD_HOMEPAGE = "homepage";
     public static final String FIELD_CHECKLIST_ID = "checklist_id";
