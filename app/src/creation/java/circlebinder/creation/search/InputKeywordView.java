@@ -46,8 +46,10 @@ public final class InputKeywordView extends FrameLayout {
         editText.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
                 editText.requestFocus();
+                SoftInput.show(editText);
             } else {
                 editText.clearFocus();
+                SoftInput.hide(editText);
             }
         });
         editText.addTextChangedListener(new TextWatcher() {

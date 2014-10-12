@@ -86,9 +86,11 @@ public final class CircleSearchActivity extends BaseActivity implements OnBlockS
         if (searchFormStore.isFormVisible()) {
             searchItem.setVisible(false);
             hiddenItem.setVisible(true);
+            inputKeywordView.requestFocus();
         } else {
             searchItem.setVisible(true);
             hiddenItem.setVisible(false);
+            inputKeywordView.clearFocus();
         }
         return true;
     }
