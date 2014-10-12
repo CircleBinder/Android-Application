@@ -11,7 +11,7 @@ import circlebinder.common.checklist.ChecklistColor;
 import circlebinder.common.checklist.ChecklistPopupSelector;
 import circlebinder.common.event.Circle;
 import circlebinder.creation.app.BroadcastEvent;
-import circlebinder.creation.event.CircleTable;
+import circlebinder.creation.event.EventCircleTable;
 
 public class ChecklistSelectorView extends FrameLayout {
 
@@ -61,7 +61,7 @@ public class ChecklistSelectorView extends FrameLayout {
         });
         selector.setOnItemClickListener(item -> {
             updateChecklistColor(circle, item);
-            CircleTable.setChecklist(circle, item);
+            EventCircleTable.setChecklist(circle, item);
             getContext().sendBroadcast(BroadcastEvent.createIntent());
             selector.dismiss();
         });

@@ -16,7 +16,7 @@ import circlebinder.common.event.AllBlock;
 import circlebinder.common.event.Block;
 import circlebinder.common.event.BlockBuilder;
 import circlebinder.creation.app.BaseFragment;
-import circlebinder.creation.event.BlockTable;
+import circlebinder.creation.event.EventBlockTable;
 
 public final class BlockSelectorFragment extends BaseFragment {
 
@@ -37,7 +37,7 @@ public final class BlockSelectorFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.circle_search_option, parent, false);
         List<Block> preBlocks = new CopyOnWriteArrayList<>();
         preBlocks.add(new BlockBuilder().setName("全").setId(-1).build());
-        preBlocks.addAll(BlockTable.get());
+        preBlocks.addAll(EventBlockTable.getAll());
         List<Block> blocks = new CopyOnWriteArrayList<>();
         for (Block block : preBlocks) {
             blocks.add(new BlockBuilder()

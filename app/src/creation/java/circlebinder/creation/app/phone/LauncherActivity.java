@@ -6,7 +6,7 @@ import android.os.Bundle;
 import net.ichigotake.common.app.ActivityTripper;
 
 import circlebinder.creation.app.BaseActivity;
-import circlebinder.creation.initialize.AppStorage;
+import circlebinder.creation.initialize.LegacyAppStorage;
 
 public final class LauncherActivity extends BaseActivity {
 
@@ -14,7 +14,7 @@ public final class LauncherActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent launchActivity;
-        if (new AppStorage(getApplicationContext()).isInitialized()) {
+        if (new LegacyAppStorage(getApplicationContext()).isInitialized()) {
             launchActivity = HomeActivity.createIntent(this);
         } else {
             launchActivity = DatabaseInitializeActivity.createIntent(this);

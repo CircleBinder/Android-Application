@@ -17,7 +17,7 @@
         >
 
         <meta-data android:name="AA_DB_NAME" android:value="Creation.db" />
-        <meta-data android:name="AA_DB_VERSION" android:value="4" />
+        <meta-data android:name="AA_DB_VERSION" android:value="12" />
 
         <activity
             android:name="circlebinder.creation.app.phone.LauncherActivity"

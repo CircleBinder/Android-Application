@@ -3,15 +3,19 @@ package circlebinder.common.event;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import circlebinder.creation.event.EventBlockType;
+
 public class Block implements Parcelable {
     private final long id;
     private final Area area;
     private final String name;
+    private final EventBlockType type;
 
     Block(BlockBuilder builder) {
         id = builder.id;
         area = builder.area;
         name = builder.name;
+        type = builder.type;
     }
 
     public long getId() {
@@ -26,11 +30,16 @@ public class Block implements Parcelable {
         return name;
     }
 
+    public EventBlockType getType() {
+        return type;
+    }
+
     @Override
     public boolean equals(Object object) {
         return object instanceof Block && id == getId();
     }
 
+    @Override
     public int describeContents() {
         return 0;
     }
@@ -40,15 +49,18 @@ public class Block implements Parcelable {
         dest.writeLong(this.id);
         dest.writeParcelable(this.area, 0);
         dest.writeString(this.name);
+        dest.writeInt(this.type == null ? -1 : this.type.ordinal());
     }
 
     private Block(Parcel in) {
         this.id = in.readLong();
         this.area = in.readParcelable(Area.class.getClassLoader());
         this.name = in.readString();
+        int tmpType = in.readInt();
+        this.type = tmpType == -1 ? null : EventBlockType.values()[tmpType];
     }
 
-    public static Parcelable.Creator<Block> CREATOR = new Parcelable.Creator<Block>() {
+    public static final Creator<Block> CREATOR = new Creator<Block>() {
         public Block createFromParcel(Parcel source) {
             return new Block(source);
         }

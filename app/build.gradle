@@ -40,7 +40,7 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 20
-        versionCode 11
+        versionCode 12
         versionName '0.8'
 
         buildConfigField "String", "CRASH_REPORTER_KEY", "\"${project.properties.crashReporterKey}\""

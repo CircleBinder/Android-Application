@@ -3,7 +3,7 @@ package circlebinder.common.search;
 import android.database.Cursor;
 import android.widget.FilterQueryProvider;
 
-import circlebinder.creation.event.CircleTable;
+import circlebinder.creation.event.EventCircleTable;
 
 public final class CircleQueryProvider implements FilterQueryProvider {
 
@@ -15,7 +15,7 @@ public final class CircleQueryProvider implements FilterQueryProvider {
 
     @Override
     public Cursor runQuery(CharSequence constraint) {
-        return CircleTable.get(circleSearchOption);
+        return EventCircleTable.find(circleSearchOption);
     }
 
 }

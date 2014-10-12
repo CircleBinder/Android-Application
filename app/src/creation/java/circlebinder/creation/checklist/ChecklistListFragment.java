@@ -23,7 +23,7 @@ import circlebinder.R;
 import circlebinder.creation.app.phone.ChecklistActivity;
 import circlebinder.creation.app.phone.CircleSearchActivity;
 import circlebinder.creation.app.phone.EnjoyCreationActivity;
-import circlebinder.creation.event.CircleTable;
+import circlebinder.creation.event.EventCircleTable;
 import circlebinder.creation.search.CircleCursorConverter;
 
 /**
@@ -79,7 +79,7 @@ public final class ChecklistListFragment extends BaseFragment implements Content
 
         for (ChecklistColor checklistColor : ChecklistColor.checklists()) {
             List<Circle> circleList = new CopyOnWriteArrayList<>();
-            Cursor cursor = CircleTable.get(
+            Cursor cursor = EventCircleTable.find(
                     new CircleSearchOptionBuilder()
                             .setChecklist(checklistColor)
                             .build()

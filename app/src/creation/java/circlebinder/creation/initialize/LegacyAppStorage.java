@@ -1,20 +1,16 @@
 package circlebinder.creation.initialize;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import circlebinder.R;
 
-/**
- * アプリ内データのローカルストレージ
- */
-public final class AppStorage {
+public final class LegacyAppStorage {
 
     private final SharedPreferences pref;
     private final Context context;
 
-    public AppStorage(Context context) {
+    public LegacyAppStorage(Context context) {
         this.context = context;
         this.pref = context.getSharedPreferences(
                 context.getString(R.string.app_pref_app_storage), Context.MODE_MULTI_PROCESS);
@@ -24,10 +20,10 @@ public final class AppStorage {
         return pref.getBoolean(context.getString(R.string.app_pref_app_storage_is_initialize), false);
     }
 
-    @SuppressLint("CommitPrefEdits")
     public void setInitialized(boolean complete) {
         pref.edit()
                 .putBoolean(context.getString(R.string.app_pref_app_storage_is_initialize), complete)
                 .apply();
     }
+
 }
