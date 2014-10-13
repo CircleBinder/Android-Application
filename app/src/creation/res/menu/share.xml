@@ -5,7 +5,7 @@
     >
 
     <item
-        android:id="@+id/menu_circle_web_share"
+        android:id="@+id/menu_share"
         android:title="@string/common_action_share"
         android:orderInCategory="100"
         android:icon="@drawable/ic_action_share"

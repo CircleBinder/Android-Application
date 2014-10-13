@@ -84,9 +84,9 @@ public final class CircleDetailFragment extends BaseFragment implements Legacy {
     //TODO: Activityに移したい
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.circle_web, menu);
+        inflater.inflate(R.menu.share, menu);
         inflater.inflate(R.menu.open_browser, menu);
-        MenuItem shareItem = menu.findItem(R.id.menu_circle_web_share);
+        MenuItem shareItem = menu.findItem(R.id.menu_share);
         shareItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
         shareItem.setActionProvider(new ActionProvider(getActivity(), () ->
                 new ActivityTripper(
