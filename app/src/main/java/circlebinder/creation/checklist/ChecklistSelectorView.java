@@ -13,7 +13,7 @@ import circlebinder.common.checklist.ChecklistColor;
 import circlebinder.common.checklist.ChecklistPopupSelector;
 import circlebinder.common.event.Circle;
 import circlebinder.common.app.BroadcastEvent;
-import circlebinder.creation.event.EventCircleTable;
+import circlebinder.common.table.EventCircleTable;
 
 public class ChecklistSelectorView extends FrameLayout {
 

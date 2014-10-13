@@ -1,4 +1,4 @@
-package circlebinder.creation.event;
+package circlebinder.common.table;
 
 import android.database.Cursor;
 
@@ -50,6 +50,18 @@ public final class EventCircleTable extends Model {
 
     @Column(name = FIELD_CHECKLIST_ID)
     public int checklistId;
+
+    public static void insert(EventCircleTableForInsert circle) {
+        EventCircleTable circleTable = new EventCircleTable();
+        circleTable.blockId = circle.getBlockId();
+        circleTable.checklistId = circle.getChecklistId();
+        circleTable.circleName = circle.getCircleName();
+        circleTable.penName = circle.getPenName();
+        circleTable.homepage = circle.getHomepage();
+        circleTable.spaceNo = circle.getSpaceNo();
+        circleTable.spaceNoSub = circle.getSpaceNoSub();
+        circleTable.save();
+    }
 
     public static EventCircleTable find(long circleId) {
         return new Select("*")

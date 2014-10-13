@@ -24,7 +24,7 @@ import circlebinder.R;
 import circlebinder.common.app.phone.ChecklistActivity;
 import circlebinder.common.app.phone.CircleSearchActivity;
 import circlebinder.common.app.phone.EnjoyCreationActivity;
-import circlebinder.creation.event.EventCircleTable;
+import circlebinder.common.table.EventCircleTable;
 import circlebinder.creation.search.CircleCursorConverter;
 
 /**

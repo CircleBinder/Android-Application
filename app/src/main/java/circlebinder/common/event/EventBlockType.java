@@ -1,4 +1,4 @@
-package circlebinder.creation.event;
+package circlebinder.common.event;
 
 public enum EventBlockType {
 

@@ -1,4 +1,4 @@
-package circlebinder.creation.event;
+package circlebinder.common.table;
 
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
@@ -10,6 +10,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import circlebinder.common.event.Block;
 import circlebinder.common.event.BlockBuilder;
+import circlebinder.common.event.EventBlockType;
 
 @Table(name = EventBlockTable.NAME, id = EventBlockTable.FIELD_ID)
 public final class EventBlockTable extends Model {
@@ -24,6 +25,13 @@ public final class EventBlockTable extends Model {
 
     @Column(name = FIELD_BLOCK_NAME)
     public String blockName;
+
+    public static void insert(EventBlockTableForInsert block) {
+        EventBlockTable blockTable = new EventBlockTable();
+        blockTable.blockName = block.getName();
+        blockTable.blockTypeId = block.getTypeId();
+        blockTable.save();
+    }
 
     public static List<Block> getAll() {
         List<Block> blocks = new CopyOnWriteArrayList<>();

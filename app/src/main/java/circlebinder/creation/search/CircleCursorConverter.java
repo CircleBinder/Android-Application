@@ -23,8 +23,8 @@ import circlebinder.common.event.CircleLinkType;
 import circlebinder.common.event.CircleLinks;
 import circlebinder.common.event.GenreBuilder;
 import circlebinder.common.event.SpaceBuilder;
-import circlebinder.creation.event.EventBlockTable;
-import circlebinder.creation.event.EventCircleTable;
+import circlebinder.common.table.EventBlockTable;
+import circlebinder.common.table.EventCircleTable;
 
 public final class CircleCursorConverter implements CursorItemConverter<Circle>, Legacy {
 

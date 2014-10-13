@@ -1,4 +1,4 @@
-package circlebinder.creation.event;
+package circlebinder.common.table;
 
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;

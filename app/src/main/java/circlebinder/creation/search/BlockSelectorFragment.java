@@ -18,7 +18,7 @@ import circlebinder.common.event.AllBlock;
 import circlebinder.common.event.Block;
 import circlebinder.common.event.BlockBuilder;
 import circlebinder.common.app.BaseFragment;
-import circlebinder.creation.event.EventBlockTable;
+import circlebinder.common.table.EventBlockTable;
 
 public final class BlockSelectorFragment extends BaseFragment {
 

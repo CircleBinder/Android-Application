@@ -6,7 +6,7 @@ import android.database.Cursor;
 import net.ichigotake.common.content.AsyncTaskLoader;
 
 import circlebinder.common.search.CircleSearchOption;
-import circlebinder.creation.event.EventCircleTable;
+import circlebinder.common.table.EventCircleTable;
 
 public final class CircleLoader extends AsyncTaskLoader<Cursor> {
 
