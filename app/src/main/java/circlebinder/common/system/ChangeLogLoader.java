@@ -1,4 +1,4 @@
-package circlebinder.creation.system;
+package circlebinder.common.system;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -53,8 +53,6 @@ public final class ChangeLogLoader {
                         )
                 );
             }
-        } catch (IOException e) {
-            throw e;
         } finally {
             if (inputStream != null) {
                 inputStream.close();

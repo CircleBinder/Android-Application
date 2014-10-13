@@ -25,7 +25,6 @@ import circlebinder.common.app.BaseActivity;
 import circlebinder.R;
 import circlebinder.common.app.BroadcastEvent;
 import circlebinder.common.app.phone.AboutActivity;
-import circlebinder.common.app.phone.ChangeLogActivity;
 import circlebinder.common.app.phone.ContactActivity;
 import circlebinder.common.app.phone.EnjoyCreationActivity;
 

@@ -11,7 +11,7 @@ import net.ichigotake.common.widget.CursorItemConverter;
 
 import circlebinder.common.event.Circle;
 import circlebinder.R;
-import circlebinder.creation.system.SectionHeaderViewHolder;
+import net.ichigotake.common.widget.SectionHeaderViewHolder;
 
 public final class CircleAdapter extends CursorAdapter<Circle, CircleViewHolder, SectionHeaderViewHolder> {
 

@@ -1,4 +1,4 @@
-package circlebinder.creation.system;
+package circlebinder.common.system;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import net.ichigotake.common.widget.SectionHeaderArrayAdapter;
+import net.ichigotake.common.widget.SectionHeaderViewHolder;
 
 import circlebinder.common.changelog.ChangeLogFeed;
 import circlebinder.common.changelog.ChangeLogFeedViewHolder;

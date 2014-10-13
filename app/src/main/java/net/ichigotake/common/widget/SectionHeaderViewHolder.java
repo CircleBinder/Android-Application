@@ -1,4 +1,4 @@
-package circlebinder.creation.system;
+package net.ichigotake.common.widget;
 
 import android.widget.TextView;
 

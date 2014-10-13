@@ -31,7 +31,7 @@
             />
 
         <activity
-            android:name="circlebinder.common.app.phone.ChangeLogActivity"
+            android:name=".creation.app.phone.ChangeLogActivity"
             android:label="@string/common_change_log"
             android:configChanges="orientation|screenSize"
             />
