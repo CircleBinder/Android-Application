@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import net.ichigotake.common.view.inputmethod.SoftInput;
+
 import circlebinder.R;
 import circlebinder.common.checklist.ChecklistColor;
 import circlebinder.common.checklist.ChecklistPopupSelector;
@@ -84,6 +86,7 @@ public class ChecklistSelectorView extends FrameLayout {
     }
 
     public void showPopup() {
+        SoftInput.hide(this);
         selector.show(anchor);
     }
 }
