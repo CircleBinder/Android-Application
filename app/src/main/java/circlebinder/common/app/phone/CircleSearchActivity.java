@@ -15,22 +15,23 @@ import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.content.ContentReloader;
 import net.ichigotake.common.os.BundleMerger;
 import net.ichigotake.common.view.ActionProvider;
+import net.ichigotake.common.widget.OnItemSelectedEventListener;
 import net.ichigotake.common.worker.ActivityJobWorker;
 
 import circlebinder.common.app.BroadcastEvent;
+import circlebinder.common.checklist.EventBlockSelectorView;
 import circlebinder.common.event.Block;
-import circlebinder.common.search.BlockSelectorFragment;
 import circlebinder.common.search.CircleSearchOption;
 import circlebinder.common.search.CircleSearchOptionBuilder;
 import circlebinder.common.search.InputKeywordView;
-import circlebinder.common.search.OnBlockSelectListener;
 import circlebinder.common.search.OnCircleSearchOptionListener;
 import circlebinder.common.app.BaseActivity;
 import circlebinder.R;
 import circlebinder.common.search.OnInputTextListener;
 import circlebinder.common.search.SearchFormStore;
+import circlebinder.common.table.EventBlockTable;
 
-public final class CircleSearchActivity extends BaseActivity implements OnBlockSelectListener {
+public final class CircleSearchActivity extends BaseActivity {
 
     public static Intent createIntent(Context context) {
         return new Intent(context, CircleSearchActivity.class);
@@ -73,9 +74,17 @@ public final class CircleSearchActivity extends BaseActivity implements OnBlockS
         }
 
         View actionBarView = getLayoutInflater().inflate(R.layout.common_action_bar_circle_search_option, null);
-        BlockSelectorFragment blockSelectorFragment = (BlockSelectorFragment) getFragmentManager()
-                .findFragmentById(R.id.common_action_bar_circle_search_option);
-        blockSelectorFragment.setSelection(searchOptionBuilder.build().getBlock());
+        EventBlockSelectorView blockSelectorView = (EventBlockSelectorView) actionBarView
+                .findViewById(R.id.common_action_bar_circle_search_option);
+        blockSelectorView.setBlockList(EventBlockTable.getAll());
+        blockSelectorView.addOnItemSelectedListener(new OnItemSelectedEventListener<Block>() {
+            @Override
+            public void onItemSelected(Block item) {
+                searchOptionBuilder.setBlock(item);
+                setSearchOption(searchOptionBuilder.build());
+            }
+        });
+        blockSelectorView.setSelection(searchOptionBuilder.build().getBlock());
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setCustomView(actionBarView);
@@ -182,9 +191,4 @@ public final class CircleSearchActivity extends BaseActivity implements OnBlockS
         inputKeywordView.setText(searchOptionBuilder.build().getKeyword());
     }
 
-    @Override
-    public void onBlockSelect(Block block) {
-        searchOptionBuilder.setBlock(block);
-        setSearchOption(searchOptionBuilder.build());
-    }
 }

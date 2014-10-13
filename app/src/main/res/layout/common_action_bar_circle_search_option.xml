@@ -8,12 +8,10 @@
     tools:context="circlebinder.common.search.CircleSearchFragment"
     >
 
-    <fragment
+    <circlebinder.common.checklist.EventBlockSelectorView
         android:id="@+id/common_action_bar_circle_search_option"
-        android:name="circlebinder.common.search.BlockSelectorFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout="@layout/common_circle_search_option"
         />
 
 </LinearLayout>
