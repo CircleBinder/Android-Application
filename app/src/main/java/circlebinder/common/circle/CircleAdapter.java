@@ -80,4 +80,9 @@ public final class CircleAdapter extends CursorAdapter<Circle, CircleViewHolder,
     public long getHeaderId(int i) {
         return getItem(i).getSpace().getBlockName().charAt(0);
     }
+
+    //TODO: メインスレッドでリロード処理をしないようにする
+    public void reload() {
+        getCursor().requery();
+    }
 }

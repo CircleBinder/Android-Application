@@ -1,11 +1,13 @@
 package circlebinder.creation.app.phone;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import net.ichigotake.common.app.ActivityNavigation;
+import net.ichigotake.common.content.ContentReloader;
 import net.ichigotake.common.os.BundleMerger;
 import net.ichigotake.common.worker.ActivityJobWorker;
 
@@ -15,6 +17,7 @@ import circlebinder.common.checklist.ChecklistColor;
 import circlebinder.common.search.CircleSearchOption;
 import circlebinder.common.search.CircleSearchOptionBuilder;
 import circlebinder.creation.app.BaseActivity;
+import circlebinder.creation.app.BroadcastEvent;
 import circlebinder.creation.search.CircleSearchFragment;
 
 public final class ChecklistActivity extends BaseActivity {
@@ -31,6 +34,7 @@ public final class ChecklistActivity extends BaseActivity {
 
     private ActivityJobWorker worker = new ActivityJobWorker();
     private ChecklistColor checklistColor;
+    private BroadcastReceiver broadcastReceiver;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,18 @@ public final class ChecklistActivity extends BaseActivity {
                         .setLayoutId(R.id.activity_checklist_container)
                         .trip()
         );
+
+        broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                ContentReloader reloader = (ContentReloader) getFragmentManager()
+                        .findFragmentById(R.id.activity_checklist_container);
+                if (reloader != null) {
+                    reloader.reload();
+                }
+            }
+        };
+        registerReceiver(broadcastReceiver, BroadcastEvent.createIntentFilter());
     }
 
     @Override
@@ -75,6 +91,14 @@ public final class ChecklistActivity extends BaseActivity {
     public void onPause() {
         worker.pause();
         super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        if (broadcastReceiver != null) {
+            unregisterReceiver(broadcastReceiver);
+        }
+        super.onDestroy();
     }
 
 }
