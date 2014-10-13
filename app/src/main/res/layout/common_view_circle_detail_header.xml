@@ -6,10 +6,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="48dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:gravity="center_vertical"
+    android:layout_gravity="center_vertical"
     >
 
     <TextView
-        android:id="@+id/common_circle_detail_header_space"
+        android:id="@+id/common_view_circle_detail_header_space"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#ffffff"
@@ -18,7 +22,7 @@
         />
 
     <TextView
-        android:id="@+id/common_circle_detail_header_name"
+        android:id="@+id/common_view_circle_detail_header_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#ffffff"
