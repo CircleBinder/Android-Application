@@ -1,4 +1,4 @@
-package circlebinder.common.app.phone;
+package circlebinder.creation.app.phone;
 
 import android.app.ActionBar;
 import android.content.BroadcastReceiver;
@@ -24,6 +24,10 @@ import circlebinder.common.Legacy;
 import circlebinder.common.app.BaseActivity;
 import circlebinder.R;
 import circlebinder.common.app.BroadcastEvent;
+import circlebinder.common.app.phone.AboutActivity;
+import circlebinder.common.app.phone.ChangeLogActivity;
+import circlebinder.common.app.phone.ContactActivity;
+import circlebinder.common.app.phone.EnjoyCreationActivity;
 
 /**
  * 通常起動時のファーストビュー

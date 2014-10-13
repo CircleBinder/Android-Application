@@ -13,12 +13,6 @@
         <meta-data android:name="AA_DB_VERSION" android:value="12" />
 
         <activity
-            android:name="circlebinder.common.app.phone.HomeActivity"
-            android:label="@string/app_event_name"
-            android:configChanges="orientation|screenSize"
-            />
-
-        <activity
             android:name="circlebinder.common.app.phone.CircleSearchActivity"
             android:label="@string/common_circle_search"
             android:configChanges="orientation|screenSize"
@@ -52,11 +46,6 @@
             android:name="circlebinder.common.app.phone.WebViewActivity"
             android:label="@string/app_event_name"
             android:configChanges="orientation|screenSize"
-            />
-
-        <activity
-            android:name="circlebinder.common.app.phone.EnjoyCreationActivity"
-            android:label="@string/app_enjoy_creation_label"
             />
 
         <activity

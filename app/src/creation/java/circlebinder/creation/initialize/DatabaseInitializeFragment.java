@@ -19,7 +19,7 @@ import net.ichigotake.common.app.OnClickToTrip;
 import circlebinder.common.Legacy;
 import circlebinder.common.app.BaseFragment;
 import circlebinder.R;
-import circlebinder.common.app.phone.HomeActivity;
+import circlebinder.creation.app.phone.HomeActivity;
 
 /**
  * 初期化をする
