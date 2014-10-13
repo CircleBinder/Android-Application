@@ -11,6 +11,7 @@
 
     <string name="common_app_name">CircleBinder</string>
     <string name="common_action_open_browser">WEBブラウザで開く</string>
+    <string name="common_action_reload">更新</string>
     <string name="common_action_share">シェアする</string>
     <string name="common_enjoy_event">イベントを楽しむ</string>
     <string name="common_open_event_map">会場周辺のマップ</string>

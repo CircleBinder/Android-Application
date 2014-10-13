@@ -1,21 +1,24 @@
 package circlebinder.common.app.phone;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import net.ichigotake.common.app.ActivityNavigation;
+import net.ichigotake.common.content.ContentReloader;
 import net.ichigotake.common.os.BundleMerger;
 import net.ichigotake.common.worker.ActivityJobWorker;
 
 import circlebinder.R;
+import circlebinder.common.app.BaseActivity;
+import circlebinder.common.app.BroadcastEvent;
 import circlebinder.common.app.FragmentTripper;
 import circlebinder.common.checklist.ChecklistColor;
+import circlebinder.common.search.CircleSearchFragment;
 import circlebinder.common.search.CircleSearchOption;
 import circlebinder.common.search.CircleSearchOptionBuilder;
-import circlebinder.common.app.BaseActivity;
-import circlebinder.common.search.CircleSearchFragment;
 
 public final class ChecklistActivity extends BaseActivity {
 
@@ -31,6 +34,7 @@ public final class ChecklistActivity extends BaseActivity {
 
     private ActivityJobWorker worker = new ActivityJobWorker();
     private ChecklistColor checklistColor;
+    private BroadcastReceiver broadcastReceiver;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,18 @@ public final class ChecklistActivity extends BaseActivity {
         FragmentTripper.firstTrip(getFragmentManager(), CircleSearchFragment.factory(searchOption))
                 .setLayoutId(R.id.common_activity_checklist_container)
                 .trip();
+
+        broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                ContentReloader reloader = (ContentReloader) getFragmentManager()
+                        .findFragmentById(R.id.common_activity_checklist_container);
+                if (reloader != null) {
+                    reloader.reload();
+                }
+            }
+        };
+        registerReceiver(broadcastReceiver, BroadcastEvent.createIntentFilter());
     }
 
     @Override
@@ -71,6 +87,14 @@ public final class ChecklistActivity extends BaseActivity {
     public void onPause() {
         worker.pause();
         super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        if (broadcastReceiver != null) {
+            unregisterReceiver(broadcastReceiver);
+        }
+        super.onDestroy();
     }
 
 }

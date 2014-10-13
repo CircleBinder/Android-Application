@@ -2,6 +2,7 @@ package circlebinder.common.app.phone;
 
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,19 +12,21 @@ import android.view.MenuItem;
 import android.view.View;
 
 import net.ichigotake.common.app.ActivityNavigation;
+import net.ichigotake.common.content.ContentReloader;
 import net.ichigotake.common.os.BundleMerger;
 import net.ichigotake.common.view.ActionProvider;
 import net.ichigotake.common.worker.ActivityJobWorker;
 
+import circlebinder.common.app.BroadcastEvent;
 import circlebinder.common.event.Block;
+import circlebinder.common.search.BlockSelectorFragment;
 import circlebinder.common.search.CircleSearchOption;
 import circlebinder.common.search.CircleSearchOptionBuilder;
+import circlebinder.common.search.InputKeywordView;
+import circlebinder.common.search.OnBlockSelectListener;
 import circlebinder.common.search.OnCircleSearchOptionListener;
 import circlebinder.common.app.BaseActivity;
 import circlebinder.R;
-import circlebinder.common.search.BlockSelectorFragment;
-import circlebinder.common.search.InputKeywordView;
-import circlebinder.common.search.OnBlockSelectListener;
 import circlebinder.common.search.OnInputTextListener;
 import circlebinder.common.search.SearchFormStore;
 
@@ -38,6 +41,7 @@ public final class CircleSearchActivity extends BaseActivity implements OnBlockS
     private CircleSearchOptionBuilder searchOptionBuilder;
     private SearchFormStore searchFormStore;
     private InputKeywordView inputKeywordView;
+    private BroadcastReceiver broadcastReceiver;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,6 +79,18 @@ public final class CircleSearchActivity extends BaseActivity implements OnBlockS
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setCustomView(actionBarView);
+
+        broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                ContentReloader reloader = (ContentReloader) getFragmentManager()
+                        .findFragmentById(R.id.common_activity_circle_search_circles_container);
+                if (reloader != null) {
+                    reloader.reload();
+                }
+            }
+        };
+        registerReceiver(broadcastReceiver, BroadcastEvent.createIntentFilter());
     }
 
     @Override
@@ -131,6 +147,14 @@ public final class CircleSearchActivity extends BaseActivity implements OnBlockS
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable(EXTRA_CIRCLE_SEARCH_BUILDER, searchOptionBuilder);
+    }
+
+    @Override
+    public void onDestroy() {
+        if (broadcastReceiver != null) {
+            unregisterReceiver(broadcastReceiver);
+        }
+        super.onDestroy();
     }
 
     private void setSearchOption(CircleSearchOption searchOption) {
