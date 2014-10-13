@@ -1,4 +1,4 @@
-package circlebinder.creation.search;
+package circlebinder.common.search;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -21,7 +21,7 @@ import circlebinder.R;
 
 public final class InputKeywordView extends FrameLayout {
 
-    private final String KEY_PREFIX = "circlebinder.creation.search.InputKeywordView.";
+    private final String KEY_PREFIX = "circlebinder.common.search.InputKeywordView.";
     private final String KEY_KEYWORD = KEY_PREFIX + "keyword";
 
     private EditText editText;
@@ -43,8 +43,8 @@ public final class InputKeywordView extends FrameLayout {
     }
 
     private void initialize() {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_input_text, this, true);
-        editText = (EditText)view.findViewById(R.id.fragment_input_text);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.common_view_input_keyword, this, true);
+        editText = (EditText)view.findViewById(R.id.common_view_input_keyword);
         editText.setOnFocusChangeListener(new OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {

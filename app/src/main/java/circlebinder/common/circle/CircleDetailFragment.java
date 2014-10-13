@@ -1,4 +1,4 @@
-package circlebinder.creation.circle;
+package circlebinder.common.circle;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -70,8 +70,8 @@ public final class CircleDetailFragment extends BaseFragment implements Legacy {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.circle_detail, parent, false);
-        WebView webView = (WebView)view.findViewById(R.id.circle_detail_web_view);
+        View view = inflater.inflate(R.layout.common_circle_detail, parent, false);
+        WebView webView = (WebView)view.findViewById(R.id.common_circle_detail_web_view);
         WebViewClient client = new WebViewClient(webView);
         client.setOnBeforeLoadingListener(new OnBeforeLoadingListener() {
             @Override

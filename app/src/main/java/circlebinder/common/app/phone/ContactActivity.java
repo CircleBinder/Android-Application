@@ -19,7 +19,7 @@ public final class ContactActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contact);
+        setContentView(R.layout.common_activity_contact);
     }
 
     @Override

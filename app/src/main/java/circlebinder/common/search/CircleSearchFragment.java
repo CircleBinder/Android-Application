@@ -1,4 +1,4 @@
-package circlebinder.creation.search;
+package circlebinder.common.search;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,10 +12,6 @@ import net.ichigotake.common.os.BundleMerger;
 
 import circlebinder.common.circle.CircleAdapter;
 import circlebinder.common.event.BlockBuilder;
-import circlebinder.common.search.CircleQueryProvider;
-import circlebinder.common.search.CircleSearchOption;
-import circlebinder.common.search.CircleSearchOptionBuilder;
-import circlebinder.common.search.OnCircleSearchOptionListener;
 import circlebinder.common.app.BaseFragment;
 import circlebinder.R;
 import circlebinder.common.app.phone.CircleDetailActivity;
@@ -65,9 +61,9 @@ public final class CircleSearchFragment extends BaseFragment implements OnCircle
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        ViewGroup view = (ViewGroup)inflater.inflate(R.layout.fragment_circle_search, parent, false);
+        ViewGroup view = (ViewGroup)inflater.inflate(R.layout.common_fragment_circle_search, parent, false);
         StickyListHeadersListView circlesView = (StickyListHeadersListView)view
-                .findViewById(R.id.fragment_circle_search_list);
+                .findViewById(R.id.common_fragment_circle_search_list);
         circlesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

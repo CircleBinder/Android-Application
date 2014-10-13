@@ -40,7 +40,7 @@ public final class DatabaseInitializeFragment extends BaseFragment
         View view = getView();
 
         TextView twitterHashTagView = (TextView) view.findViewById(
-                R.id.twitter_official_hash_tag_name
+                R.id.common_fragment_contact_twitter_official_hash_tag
         );
         String twitterHashTagUrl = getString(R.string.common_twitter_official_hash_tag_url);
         twitterHashTagView.setText(Html.fromHtml(
@@ -55,7 +55,7 @@ public final class DatabaseInitializeFragment extends BaseFragment
         ));
 
         TextView twitterScreenNameView = (TextView) view.findViewById(
-                R.id.twitter_official_account_screen_name
+                R.id.common_fragment_contact_twitter_official_account_screen_name
         );
         String twitterScreenNameUrl = getString(R.string.common_twitter_official_account_url);
         twitterScreenNameView.setText(Html.fromHtml(

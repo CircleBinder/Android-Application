@@ -1,4 +1,4 @@
-package circlebinder.creation.search;
+package circlebinder.common.search;
 
 import circlebinder.common.event.Block;
 

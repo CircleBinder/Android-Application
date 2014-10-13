@@ -1,4 +1,4 @@
-package circlebinder.creation.system;
+package circlebinder.common.system;
 
 import android.app.ActionBar;
 import android.os.Bundle;
@@ -27,7 +27,7 @@ public final class ContactFragment extends BaseFragment implements Legacy {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_contact, parent, false);
+        return inflater.inflate(R.layout.common_fragment_contact, parent, false);
     }
 
     @Override
@@ -35,12 +35,12 @@ public final class ContactFragment extends BaseFragment implements Legacy {
         super.onActivityCreated(savedInstanceState);
         View view = getView();
 
-        view.findViewById(R.id.fragment_contact_send).setOnClickListener(
+        view.findViewById(R.id.common_fragment_contact_send).setOnClickListener(
                 new OnClickToTrip(new ContactTripper(getActivity(), getString(R.string.app_name)))
         );
 
         TextView twitterHashTagView = (TextView) view.findViewById(
-                R.id.twitter_official_hash_tag_name
+                R.id.common_fragment_contact_twitter_official_hash_tag
         );
         String twitterHashTagUrl = getString(R.string.common_twitter_official_hash_tag_url);
         twitterHashTagView.setText(getString(R.string.common_twitter_official_hash_tag_name));
@@ -50,7 +50,7 @@ public final class ContactFragment extends BaseFragment implements Legacy {
         );
 
         TextView twitterScreenNameView = (TextView) view.findViewById(
-                R.id.twitter_official_account_screen_name
+                R.id.common_fragment_contact_twitter_official_account_screen_name
         );
         String twitterScreenNameUrl = getString(R.string.common_twitter_official_account_url);
         twitterScreenNameView.setText(getString(R.string.common_twitter_official_account_screen_name));

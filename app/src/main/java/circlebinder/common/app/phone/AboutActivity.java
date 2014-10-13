@@ -25,7 +25,7 @@ public final class AboutActivity extends BaseActivity implements ActivityJobWork
         super.onCreate(savedInstanceState);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         worker.setActivity(this);
-        setContentView(R.layout.activity_about);
+        setContentView(R.layout.common_activity_about);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package circlebinder.creation.circle;
+package circlebinder.common.circle;
 
 import circlebinder.common.event.Circle;
 

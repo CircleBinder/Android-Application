@@ -1,4 +1,4 @@
-package circlebinder.creation.search;
+package circlebinder.common.search;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -36,7 +36,7 @@ public final class BlockSelectorFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.circle_search_option, parent, false);
+        View view = inflater.inflate(R.layout.common_circle_search_option, parent, false);
         List<Block> preBlocks = new CopyOnWriteArrayList<>();
         preBlocks.add(new BlockBuilder().setName("全").setId(-1).build());
         preBlocks.addAll(EventBlockTable.getAll());
@@ -49,7 +49,7 @@ public final class BlockSelectorFragment extends BaseFragment {
                     .build());
         }
         container = new BlockSelectorContainer(
-                (Spinner) view.findViewById(R.id.circle_search_option_block_selector),
+                (Spinner) view.findViewById(R.id.common_circle_search_option_block_selector),
                 blocks
         );
         container.setSelection(new AllBlock(getActivity()));

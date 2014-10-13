@@ -1,4 +1,4 @@
-package circlebinder.creation.search;
+package circlebinder.common.search;
 
 import android.database.Cursor;
 import android.net.Uri;

@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="circlebinder.creation.circle.CircleDetailFragment"
+    tools:context="circlebinder.common.app.phone.ContactActivity"
     >
 
-    <WebView
-        android:id="@+id/circle_detail_web_view"
+    <fragment
+        android:id="@+id/common_activity_contact_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:name="circlebinder.common.system.ContactFragment"
+        tools:layout="@layout/common_fragment_contact"
         />
 
 </RelativeLayout>

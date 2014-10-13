@@ -7,8 +7,8 @@
     >
 
     <include
-        layout="@layout/circle_detail_header"
-        android:id="@+id/activity_circle_detail_header"
+        layout="@layout/common_circle_detail_header"
+        android:id="@+id/common_activity_circle_detail_header"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:gravity="center_vertical"
@@ -17,8 +17,8 @@
         />
 
     <FrameLayout
-        android:id="@+id/activity_circle_detail_item"
-        android:layout_below="@+id/activity_circle_detail_header"
+        android:id="@+id/common_activity_circle_detail_item"
+        android:layout_below="@+id/common_activity_circle_detail_header"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />

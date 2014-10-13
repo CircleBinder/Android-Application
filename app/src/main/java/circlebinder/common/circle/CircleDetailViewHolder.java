@@ -1,4 +1,4 @@
-package circlebinder.creation.circle;
+package circlebinder.common.circle;
 
 import android.view.View;
 import android.widget.TextView;
@@ -6,9 +6,10 @@ import android.widget.TextView;
 import circlebinder.common.Legacy;
 import circlebinder.R;
 
+//TODO: カスタムビューにしよう
 public final class CircleDetailViewHolder implements Legacy {
 
-    public static int layoutResource = R.layout.circle_detail_header;
+    public static int layoutResource = R.layout.common_circle_detail_header;
 
     private final View container;
     private final TextView space;
@@ -16,8 +17,8 @@ public final class CircleDetailViewHolder implements Legacy {
 
     public CircleDetailViewHolder(View view) {
         container = view;
-        space = (TextView)view.findViewById(R.id.circle_detail_header_space);
-        name = (TextView)view.findViewById(R.id.circle_detail_header_name);
+        space = (TextView)view.findViewById(R.id.common_circle_detail_header_space);
+        name = (TextView)view.findViewById(R.id.common_circle_detail_header_name);
     }
 
     public View getContainer() {

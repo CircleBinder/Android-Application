@@ -21,11 +21,11 @@ import circlebinder.common.search.CircleSearchOptionBuilder;
 import circlebinder.common.search.OnCircleSearchOptionListener;
 import circlebinder.common.app.BaseActivity;
 import circlebinder.R;
-import circlebinder.creation.search.BlockSelectorFragment;
-import circlebinder.creation.search.InputKeywordView;
-import circlebinder.creation.search.OnBlockSelectListener;
-import circlebinder.creation.search.OnInputTextListener;
-import circlebinder.creation.search.SearchFormStore;
+import circlebinder.common.search.BlockSelectorFragment;
+import circlebinder.common.search.InputKeywordView;
+import circlebinder.common.search.OnBlockSelectListener;
+import circlebinder.common.search.OnInputTextListener;
+import circlebinder.common.search.SearchFormStore;
 
 public final class CircleSearchActivity extends BaseActivity implements OnBlockSelectListener {
 
@@ -42,7 +42,7 @@ public final class CircleSearchActivity extends BaseActivity implements OnBlockS
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_circle_search);
+        setContentView(R.layout.common_activity_circle_search);
         worker.setActivity(this);
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -52,7 +52,7 @@ public final class CircleSearchActivity extends BaseActivity implements OnBlockS
             searchOptionBuilder = new CircleSearchOptionBuilder();
         }
 
-        inputKeywordView = (InputKeywordView) findViewById(R.id.activity_circle_search_option_keyword);
+        inputKeywordView = (InputKeywordView) findViewById(R.id.common_activity_circle_search_option_keyword);
         inputKeywordView.setOnInputTextListener(new OnInputTextListener() {
             @Override
             public void onTextChange(String keyword) {
@@ -68,9 +68,9 @@ public final class CircleSearchActivity extends BaseActivity implements OnBlockS
             hideForm();
         }
 
-        View actionBarView = getLayoutInflater().inflate(R.layout.action_bar_circle_search_option, null);
+        View actionBarView = getLayoutInflater().inflate(R.layout.common_action_bar_circle_search_option, null);
         BlockSelectorFragment blockSelectorFragment = (BlockSelectorFragment) getFragmentManager()
-                .findFragmentById(R.id.action_bar_circle_search_option);
+                .findFragmentById(R.id.common_action_bar_circle_search_option);
         blockSelectorFragment.setSelection(searchOptionBuilder.build().getBlock());
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);
@@ -134,7 +134,7 @@ public final class CircleSearchActivity extends BaseActivity implements OnBlockS
     }
 
     private void setSearchOption(CircleSearchOption searchOption) {
-        Fragment fragment = getFragmentManager().findFragmentById(R.id.activity_circle_search_circles_container);
+        Fragment fragment = getFragmentManager().findFragmentById(R.id.common_activity_circle_search_circles_container);
         if (fragment != null && fragment.isResumed() && fragment instanceof OnCircleSearchOptionListener) {
             ((OnCircleSearchOptionListener)fragment).setSearchOption(searchOption);
         }

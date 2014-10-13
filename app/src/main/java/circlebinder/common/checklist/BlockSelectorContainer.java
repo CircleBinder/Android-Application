@@ -9,6 +9,7 @@ import java.util.Collection;
 
 import circlebinder.common.event.Block;
 
+//TODO: カスタムビューにしよう
 public final class BlockSelectorContainer {
 
     private final Spinner selector;

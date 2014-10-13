@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="circlebinder.common.app.phone.ContactActivity"
+    tools:context="circlebinder.common.app.phone.AboutActivity"
     >
 
     <fragment
-        android:id="@+id/activity_contact_container"
+        android:id="@+id/common_activity_about_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="circlebinder.creation.system.ContactFragment"
-        tools:layout="@layout/fragment_contact"
+        android:name="circlebinder.common.system.AboutFragment"
+        tools:layout="@layout/common_fragment_about_application"
         />
 
 </RelativeLayout>

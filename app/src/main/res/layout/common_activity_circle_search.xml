@@ -8,8 +8,8 @@
     tools:context="circlebinder.common.app.phone.CircleSearchActivity"
     >
 
-    <circlebinder.creation.search.InputKeywordView
-        android:id="@+id/activity_circle_search_option_keyword"
+    <circlebinder.common.search.InputKeywordView
+        android:id="@+id/common_activity_circle_search_option_keyword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
@@ -22,11 +22,11 @@
 
 
     <fragment
-        android:id="@+id/activity_circle_search_circles_container"
+        android:id="@+id/common_activity_circle_search_circles_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="circlebinder.creation.search.CircleSearchFragment"
-        tools:layout="@layout/fragment_circle_search"
+        android:name="circlebinder.common.search.CircleSearchFragment"
+        tools:layout="@layout/common_fragment_circle_search"
         />
 
 </LinearLayout>

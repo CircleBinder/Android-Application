@@ -1,4 +1,4 @@
-package circlebinder.creation.system;
+package circlebinder.common.system;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -15,7 +15,6 @@ import net.ichigotake.common.worker.ActivityJobWorkerClient;
 
 import circlebinder.common.Legacy;
 import circlebinder.common.app.FragmentTripper;
-import circlebinder.common.system.OpenSourceLicenseCreditFragment;
 import circlebinder.common.app.BaseFragment;
 import circlebinder.R;
 
@@ -34,7 +33,7 @@ public final class AboutFragment extends BaseFragment implements Legacy {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanseState) {
-        View view = inflater.inflate(R.layout.fragment_about_application, parent, false);
+        View view = inflater.inflate(R.layout.common_fragment_about_application, parent, false);
         ListView menuView = (ListView)view.findViewById(R.id.view_about_application_list);
         SingleLineTextTripAdapter adapter = new SingleLineTextTripAdapter(getActivity());
         adapter.add(

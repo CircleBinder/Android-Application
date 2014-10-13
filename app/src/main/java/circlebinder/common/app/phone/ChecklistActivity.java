@@ -15,7 +15,7 @@ import circlebinder.common.checklist.ChecklistColor;
 import circlebinder.common.search.CircleSearchOption;
 import circlebinder.common.search.CircleSearchOptionBuilder;
 import circlebinder.common.app.BaseActivity;
-import circlebinder.creation.search.CircleSearchFragment;
+import circlebinder.common.search.CircleSearchFragment;
 
 public final class ChecklistActivity extends BaseActivity {
 

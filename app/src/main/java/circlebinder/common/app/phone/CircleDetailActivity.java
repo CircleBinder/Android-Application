@@ -22,11 +22,11 @@ import circlebinder.common.event.Circle;
 import circlebinder.common.search.CircleSearchOption;
 import circlebinder.common.app.BaseActivity;
 import circlebinder.R;
-import circlebinder.creation.circle.CircleDetailFragment;
-import circlebinder.creation.circle.CircleDetailViewHolder;
-import circlebinder.creation.circle.OnCirclePageChangeListener;
-import circlebinder.creation.search.CircleCursorConverter;
-import circlebinder.creation.search.CircleLoader;
+import circlebinder.common.circle.CircleDetailFragment;
+import circlebinder.common.circle.CircleDetailViewHolder;
+import circlebinder.common.circle.OnCirclePageChangeListener;
+import circlebinder.common.search.CircleCursorConverter;
+import circlebinder.common.search.CircleLoader;
 
 public final class CircleDetailActivity extends BaseActivity
         implements Legacy, OnCirclePageChangeListener, LoaderManager.LoaderCallbacks<Cursor> {
@@ -56,9 +56,9 @@ public final class CircleDetailActivity extends BaseActivity
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        setContentView(R.layout.activity_circle_detail_pager);
+        setContentView(R.layout.common_activity_circle_detail);
 
-        headerViewHolder = new CircleDetailViewHolder(findViewById(R.id.activity_circle_detail_header));
+        headerViewHolder = new CircleDetailViewHolder(findViewById(R.id.common_activity_circle_detail_header));
         actionBar.setCustomView(CircleDetailViewHolder.layoutResource);
         actionBarViewHolder = new CircleDetailViewHolder(actionBar.getCustomView());
 
@@ -123,7 +123,7 @@ public final class CircleDetailActivity extends BaseActivity
             public void run() {
                 new FragmentTripper(getFragmentManager(), CircleDetailFragment.factory(circle))
                         .setAddBackStack(false)
-                        .setLayoutId(R.id.activity_circle_detail_item)
+                        .setLayoutId(R.id.common_activity_circle_detail_item)
                         .trip();
             }
         });

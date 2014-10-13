@@ -22,9 +22,8 @@ import circlebinder.common.app.BaseFragment;
 import circlebinder.R;
 import circlebinder.common.app.phone.ChecklistActivity;
 import circlebinder.common.app.phone.CircleSearchActivity;
-import circlebinder.common.app.phone.EnjoyCreationActivity;
 import circlebinder.common.table.EventCircleTable;
-import circlebinder.creation.search.CircleCursorConverter;
+import circlebinder.common.search.CircleCursorConverter;
 
 /**
  * アプリを起動した際の最初に表示する画面
@@ -47,11 +46,6 @@ public final class ChecklistListFragment extends BaseFragment implements Content
         adapter.addAll(getChecklist());
         checklistsView.addHeaderView(headerView);
         checklistsView.setAdapter(adapter);
-        View emptyView = view.findViewById(R.id.common_fragment_checklist_empty);
-        emptyView.setOnClickListener(OnClickToTrip.activityTrip(
-                getActivity(), EnjoyCreationActivity.createIntent(getActivity())
-        ));
-        checklistsView.setEmptyView(emptyView);
         OnItemClickListener<Checklist> listener = new OnItemClickListener<>();
         listener.addOnItemClickEventListener(new OnItemClickEventListener<Checklist>() {
             @Override

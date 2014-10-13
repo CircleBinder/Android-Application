@@ -6,7 +6,7 @@
     >
 
     <EditText
-        android:id="@+id/fragment_input_text"
+        android:id="@+id/common_view_input_keyword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/common_spacer_x_small"
