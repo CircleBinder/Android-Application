@@ -21,7 +21,7 @@
             />
 
         <include
-            layout="@layout/enjoy_creation_petionly"
+            layout="@layout/creation_enjoy_creation_petionly"
             android:id="@+id/fragment_enjoy_creation_peti_only"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

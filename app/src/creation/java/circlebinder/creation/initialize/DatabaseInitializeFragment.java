@@ -31,7 +31,7 @@ public final class DatabaseInitializeFragment extends BaseFragment
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_database_initialize, parent, false);
+        return inflater.inflate(R.layout.creation_fragment_database_initialize, parent, false);
     }
 
     @Override
@@ -69,12 +69,12 @@ public final class DatabaseInitializeFragment extends BaseFragment
                         IntentUtils.openLink(twitterScreenNameUrl))
         ));
 
-        View finishedView = view.findViewById(R.id.fragment_initialize_finished);
+        View finishedView = view.findViewById(R.id.creation_fragment_initialize_finished);
         finishedView.setOnClickListener(new OnClickToTrip(
                 new ActivityTripper(getActivity(), HomeActivity.createIntent(getActivity())).withFinish()
         ));
         handler = new InitializeHandler(
-                view.findViewById(R.id.fragment_initialize_progress),
+                view.findViewById(R.id.creation_fragment_initialize_progress),
                 finishedView
         );
 

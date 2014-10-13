@@ -11,7 +11,7 @@
     >
 
     <RelativeLayout
-        android:id="@+id/enjoy_creation_peti_only_nmnl_container"
+        android:id="@+id/creation_enjoy_creation_peti_only_nmnl_container"
         android:layout_width="0dp"
         android:layout_height="72dp"
         android:layout_weight="1"
@@ -32,7 +32,7 @@
 
         <TextView
             style="@style/AppPetiOnlyTitle"
-            android:id="@+id/enjoy_creation_peti_only_nmnl_title"
+            android:id="@+id/creation_enjoy_creation_peti_only_nmnl_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -43,9 +43,9 @@
 
         <TextView
             style="@style/AppPetiOnlyDescription"
-            android:id="@+id/enjoy_creation_peti_only_nmnl_description"
+            android:id="@+id/creation_enjoy_creation_peti_only_nmnl_description"
             android:layout_toRightOf="@+id/enjoy_creation_peti_only_nmnl_image"
-            android:layout_below="@+id/enjoy_creation_peti_only_nmnl_title"
+            android:layout_below="@+id/creation_enjoy_creation_peti_only_nmnl_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/app_peti_only_nmnl_description"
@@ -60,7 +60,7 @@
 
 
     <RelativeLayout
-        android:id="@+id/enjoy_creation_peti_only_omufes_container"
+        android:id="@+id/creation_enjoy_creation_peti_only_omufes_container"
         android:layout_width="0dp"
         android:layout_height="72dp"
         android:layout_weight="1"
@@ -71,7 +71,7 @@
 
         <ImageView
             style="@style/AppPetiOnlyThumbnail"
-            android:id="@+id/enjoy_creation_peti_only_omufes_image"
+            android:id="@+id/creation_enjoy_creation_peti_only_omufes_image"
             android:layout_width="48dp"
             android:layout_height="72dp"
             android:layout_alignParentLeft="true"
@@ -81,10 +81,10 @@
 
         <TextView
             style="@style/AppPetiOnlyTitle"
-            android:id="@+id/enjoy_creation_peti_only_omufes_title"
+            android:id="@+id/creation_enjoy_creation_peti_only_omufes_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/enjoy_creation_peti_only_omufes_image"
+            android:layout_toRightOf="@+id/creation_enjoy_creation_peti_only_omufes_image"
             android:layout_alignParentTop="true"
             android:layout_marginBottom="@dimen/common_spacer_xx_small"
             android:maxLines="1"
@@ -94,9 +94,9 @@
 
         <TextView
             style="@style/AppPetiOnlyDescription"
-            android:id="@+id/enjoy_creation_peti_only_omufes_description"
-            android:layout_toRightOf="@+id/enjoy_creation_peti_only_omufes_image"
-            android:layout_below="@+id/enjoy_creation_peti_only_omufes_title"
+            android:id="@+id/creation_enjoy_creation_peti_only_omufes_description"
+            android:layout_toRightOf="@+id/creation_enjoy_creation_peti_only_omufes_image"
+            android:layout_below="@+id/creation_enjoy_creation_peti_only_omufes_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/app_peti_only_omufes_description"

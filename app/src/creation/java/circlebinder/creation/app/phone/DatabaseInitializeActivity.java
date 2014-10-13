@@ -71,7 +71,7 @@ public final class DatabaseInitializeActivity extends BaseActivity implements Le
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_database_initialize);
+        setContentView(R.layout.creation_activity_database_initialize);
         worker.setActivity(this);
         serviceBind = true;
         bindService(new Intent(this, DatabaseInitializeService.class), serviceConnection, 0);

@@ -16,7 +16,7 @@
         >
 
         <LinearLayout
-            android:id="@+id/fragment_initialize_progress"
+            android:id="@+id/creation_fragment_initialize_progress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -39,7 +39,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/fragment_initialize_finished"
+            android:id="@+id/creation_fragment_initialize_finished"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/common_spacer_middle"
@@ -63,7 +63,7 @@
         >
 
         <include
-            layout="@layout/fragment_database_initialize_content"
+            layout="@layout/creation_fragment_database_initialize_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />

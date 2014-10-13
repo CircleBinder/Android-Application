@@ -22,7 +22,7 @@ public final class EnjoyCreationActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        setContentView(R.layout.activity_enjoy_creation);
+        setContentView(R.layout.creation_activity_enjoy_creation);
     }
 
     @Override

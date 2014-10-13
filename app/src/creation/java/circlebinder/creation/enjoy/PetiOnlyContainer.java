@@ -21,10 +21,10 @@ class PetiOnlyContainer {
 
     PetiOnlyContainer(View container) {
         this.context = container.getContext().getApplicationContext();
-        this.nmnlContainer = container.findViewById(R.id.enjoy_creation_peti_only_nmnl_container);
+        this.nmnlContainer = container.findViewById(R.id.creation_enjoy_creation_peti_only_nmnl_container);
         this.nmnlImage = (ImageView) container.findViewById(R.id.enjoy_creation_peti_only_nmnl_image);
-        this.omufesContainer = container.findViewById(R.id.enjoy_creation_peti_only_omufes_container);
-        this.omufesImage = (ImageView) container.findViewById(R.id.enjoy_creation_peti_only_omufes_image);
+        this.omufesContainer = container.findViewById(R.id.creation_enjoy_creation_peti_only_omufes_container);
+        this.omufesImage = (ImageView) container.findViewById(R.id.creation_enjoy_creation_peti_only_omufes_image);
     }
 
     void render() {

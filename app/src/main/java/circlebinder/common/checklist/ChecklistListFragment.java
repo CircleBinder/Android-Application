@@ -37,7 +37,7 @@ public final class ChecklistListFragment extends BaseFragment implements Content
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.common_fragment_checklist_list, parent, false);
-        View headerView = inflater.inflate(R.layout.enjoy_creation_search_guidance, parent, false);
+        View headerView = inflater.inflate(R.layout.creation_enjoy_creation_search_guidance, parent, false);
         headerView.setOnClickListener(OnClickToTrip.activityTrip(
                 getActivity(), CircleSearchActivity.createIntent(getActivity())
         ));
