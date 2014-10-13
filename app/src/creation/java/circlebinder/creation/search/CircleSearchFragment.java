@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.FragmentFactory;
+import net.ichigotake.common.content.ContentReloader;
 import net.ichigotake.common.os.BundleMerger;
 
 import circlebinder.common.circle.CircleAdapter;
@@ -23,7 +24,8 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 /**
  * サークルの検索をする
  */
-public final class CircleSearchFragment extends BaseFragment implements OnCircleSearchOptionListener {
+public final class CircleSearchFragment extends BaseFragment
+        implements OnCircleSearchOptionListener, ContentReloader {
 
     public static FragmentFactory<CircleSearchFragment> factory(CircleSearchOption searchOption) {
         return new CircleSearchFragmentFactory(searchOption);
@@ -95,6 +97,11 @@ public final class CircleSearchFragment extends BaseFragment implements OnCircle
         searchOptionBuilder.set(searchOption);
         adapter.setFilterQueryProvider(new CircleQueryProvider(searchOption));
         adapter.getFilter().filter("");
+    }
+
+    @Override
+    public void reload() {
+        adapter.reload();
     }
 
 }
