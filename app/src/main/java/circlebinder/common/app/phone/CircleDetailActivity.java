@@ -18,12 +18,12 @@ import net.ichigotake.common.os.BundleMerger;
 
 import circlebinder.common.Legacy;
 import circlebinder.common.app.FragmentTripper;
+import circlebinder.common.circle.CircleDetailHeaderView;
 import circlebinder.common.event.Circle;
 import circlebinder.common.search.CircleSearchOption;
 import circlebinder.common.app.BaseActivity;
 import circlebinder.R;
 import circlebinder.common.circle.CircleDetailFragment;
-import circlebinder.common.circle.CircleDetailViewHolder;
 import circlebinder.common.circle.OnCirclePageChangeListener;
 import circlebinder.common.search.CircleCursorConverter;
 import circlebinder.common.search.CircleLoader;
@@ -45,8 +45,8 @@ public final class CircleDetailActivity extends BaseActivity
 
     private CircleSearchOption searchOption;
     private int currentPosition;
-    private CircleDetailViewHolder headerViewHolder;
-    private CircleDetailViewHolder actionBarViewHolder;
+    private CircleDetailHeaderView inlineHeaderViewHolder;
+    private CircleDetailHeaderView actionBarHeaderView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,9 +58,10 @@ public final class CircleDetailActivity extends BaseActivity
         actionBar.setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.common_activity_circle_detail);
 
-        headerViewHolder = new CircleDetailViewHolder(findViewById(R.id.common_activity_circle_detail_header));
-        actionBar.setCustomView(CircleDetailViewHolder.layoutResource);
-        actionBarViewHolder = new CircleDetailViewHolder(actionBar.getCustomView());
+        inlineHeaderViewHolder =
+                (CircleDetailHeaderView) findViewById(R.id.common_activity_circle_detail_header);
+        actionBarHeaderView = new CircleDetailHeaderView(this);
+        actionBar.setCustomView(actionBarHeaderView);
 
         Bundle bundle = BundleMerger.merge(getIntent(), savedInstanceState);
         searchOption = bundle.getParcelable(EXTRA_KEY_SEARCH_OPTION);
@@ -91,10 +92,8 @@ public final class CircleDetailActivity extends BaseActivity
 
     @Override
     public void onCirclePageChanged(Circle circle) {
-        actionBarViewHolder.getName().setText(circle.getPenName() + "/" + circle.getName());
-        actionBarViewHolder.getSpace().setText(circle.getSpace().getName());
-        headerViewHolder.getName().setText(circle.getPenName() + "/" + circle.getName());
-        headerViewHolder.getSpace().setText(circle.getSpace().getName());
+        this.actionBarHeaderView.setCircle(circle);
+        this.inlineHeaderViewHolder.setCircle(circle);
         orientationConfig(getResources().getConfiguration());
         invalidateOptionsMenu();
     }
@@ -102,10 +101,10 @@ public final class CircleDetailActivity extends BaseActivity
     private void orientationConfig(Configuration configuration) {
         if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             getActionBar().setDisplayShowCustomEnabled(true);
-            headerViewHolder.getContainer().setVisibility(View.GONE);
+            inlineHeaderViewHolder.setVisibility(View.GONE);
         } else {
             getActionBar().setDisplayShowCustomEnabled(false);
-            headerViewHolder.getContainer().setVisibility(View.VISIBLE);
+            inlineHeaderViewHolder.setVisibility(View.VISIBLE);
         }
     }
 
