@@ -3,8 +3,6 @@ package circlebinder.common.event;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import circlebinder.creation.event.EventBlockType;
-
 public final class BlockBuilder implements Parcelable {
 
     long id;

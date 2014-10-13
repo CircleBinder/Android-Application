@@ -2,19 +2,15 @@
 <resources>
 
     <string name="app_name">CreationBinder</string>
-    <string name="app_label_empty"> </string>
     <string name="app_event_name">サンシャインクリエイション65</string>
+    <string name="app_this_is_un_official_application">当アプリは「クリエイション事務局」公式のアプリではありません。</string>
+    <string name="app_update_schedule_label">サンクリ 2014 Winter に向けての更新予定</string>
+    <string name="app_update_schedule_item">端末間でチェックリストを共有する\nチェックリストをエクスポートする\n過去の開催イベントのチェックリストを保持する</string>
     <string name="app_tutorial_welcome_search_circle">サンクリのお気に入りサークルを探そう！</string>
     <string name="app_tutorial_welcome_add_checklist">お気に入りサークルを管理出来る！</string>
     <string name="app_tutorial_initialize_about">@string/common_about</string>
     <string name="app_tutorial_initialize_progress">初期化しています</string>
-    <string name="app_this_is_un_official_application">当アプリは「クリエイション事務局」公式のアプリではありません。</string>
-    <string name="app_update_schedule_label">サンクリ 2014 Winter に向けての更新予定</string>
-    <string name="app_update_schedule_item">端末間でチェックリストを共有する\nチェックリストをエクスポートする\n過去の開催イベントのチェックリストを保持する</string>
     <string name="app_tutorial_initialize_complete">お気に入りサークルを探す！</string>
-    <string name="app_circle_search_keyword_hint">サークル名 or ペンネーム</string>
-    <string name="app_circle_search_navigation_back">前に戻る</string>
-    <string name="app_circle_search_navigation_forward">次へ進む</string>
 
     <string name="app_creation_homepage_top">http://www.creation.gr.jp/</string>
 
@@ -22,7 +18,6 @@
     <string name="app_peti_only_nmnl_description">「ラブライブ！ School idol project」ジャンル</string>
     <string name="app_peti_only_omufes_name">おむ☆フェス</string>
     <string name="app_peti_only_omufes_description">おむつっ娘メイン</string>
-
 
     <string name="app_enjoy_creation_label">サンクリを楽しもう！</string>
     <string name="app_enjoy_creation_peti_only_label">プチオンリー</string>
@@ -42,6 +37,6 @@
     <string name="app_pref_app_storage_is_initialize">pref_app_storage_is_initialize</string>
 
     <!-- Fragment -->
-    <string name="fragment_tag_data_initialize">fragment_tag_data_initialize</string>
+    <string name="app_fragment_tag_data_initialize">fragment_tag_data_initialize</string>
 
 </resources>

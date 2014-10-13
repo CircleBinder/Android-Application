@@ -21,9 +21,12 @@ import java.io.IOException;
 import circlebinder.common.app.ActivityTripActionProvider;
 
 import circlebinder.common.Legacy;
-import circlebinder.creation.app.BaseActivity;
+import circlebinder.common.app.BaseActivity;
 import circlebinder.R;
-import circlebinder.creation.app.BroadcastEvent;
+import circlebinder.common.app.BroadcastEvent;
+import circlebinder.common.app.phone.AboutActivity;
+import circlebinder.common.app.phone.ContactActivity;
+import circlebinder.common.app.phone.EnjoyCreationActivity;
 
 /**
  * 通常起動時のファーストビュー
@@ -39,7 +42,7 @@ public final class HomeActivity extends BaseActivity implements Legacy {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.creation_activity_home);
         getActionBar().setDisplayShowTitleEnabled(false);
         orientationConfig(getResources().getConfiguration());
 
@@ -47,7 +50,7 @@ public final class HomeActivity extends BaseActivity implements Legacy {
             @Override
             public void onReceive(Context context, Intent intent) {
                 ContentReloader reloader = (ContentReloader) getFragmentManager()
-                        .findFragmentById(R.id.activity_home_fragment_content);
+                        .findFragmentById(R.id.creation_activity_home_fragment_content);
                 reloader.reload();
             }
         };
@@ -64,10 +67,10 @@ public final class HomeActivity extends BaseActivity implements Legacy {
         ActionBar actionBar = getActionBar();
         if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             actionBar.setDisplayShowTitleEnabled(true);
-            findViewById(R.id.activity_home_header_event_name).setVisibility(View.GONE);
+            findViewById(R.id.creation_activity_home_header_event_name).setVisibility(View.GONE);
         } else {
             actionBar.setDisplayShowTitleEnabled(false);
-            findViewById(R.id.activity_home_header_event_name).setVisibility(View.VISIBLE);
+            findViewById(R.id.creation_activity_home_header_event_name).setVisibility(View.VISIBLE);
         }
     }
 

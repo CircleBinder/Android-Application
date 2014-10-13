@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <color name="app_theme_base">#70b025</color>
+
     <color name="common_card_item_background">#ffffff</color>
     <color name="common_card_container_background">#e0e0e0</color>
     <color name="common_card_container_background_selector">#40eeeeee</color>

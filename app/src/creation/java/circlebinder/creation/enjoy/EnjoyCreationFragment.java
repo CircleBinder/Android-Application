@@ -9,13 +9,13 @@ import android.widget.TextView;
 import net.ichigotake.common.widget.TextViewUtil;
 
 import circlebinder.R;
-import circlebinder.creation.app.BaseFragment;
+import circlebinder.common.app.BaseFragment;
 
 public final class EnjoyCreationFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_enjoy_creation, parent, false);
+        View view = inflater.inflate(R.layout.creation_fragment_enjoy_creation, parent, false);
         TextView aboutCatalogLink = (TextView) view.findViewById(R.id.fragment_enjoy_creation_about_catalog_link);
         TextViewUtil.hyperLinkDecoration(aboutCatalogLink);
         new PetiOnlyContainer(view.findViewById(R.id.fragment_enjoy_creation_peti_only)).render();

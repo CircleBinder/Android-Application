@@ -18,9 +18,11 @@ import circlebinder.common.event.CircleBuilder;
 import circlebinder.common.event.Space;
 import circlebinder.common.event.SpaceFactory;
 import circlebinder.R;
-import circlebinder.creation.event.EventBlockTable;
-import circlebinder.creation.event.EventBlockType;
-import circlebinder.creation.event.EventCircleTable;
+import circlebinder.common.table.EventBlockTable;
+import circlebinder.common.event.EventBlockType;
+import circlebinder.common.table.EventBlockTableForInsert;
+import circlebinder.common.table.EventCircleTable;
+import circlebinder.common.table.EventCircleTableForInsert;
 
 abstract class CreationDatabaseInitialize implements Runnable, Legacy {
 
@@ -65,10 +67,11 @@ abstract class CreationDatabaseInitialize implements Runnable, Legacy {
                     continue;
                 }
 
-                EventBlockTable blockTable = new EventBlockTable();
-                blockTable.blockName = space.get("block");
-                blockTable.blockTypeId = EventBlockType.一般的なスタイル.getTypeId();
-                blockTable.save();
+                EventBlockTableForInsert block = new EventBlockTableForInsert.Builder()
+                        .setName(space.get("block"))
+                        .setType(EventBlockType.一般的なスタイル)
+                        .build();
+                EventBlockTable.insert(block);
             }
         } finally {
             if (reader != null) {
@@ -94,15 +97,17 @@ abstract class CreationDatabaseInitialize implements Runnable, Legacy {
                 builder.clear();
 
                 Space space = spaceFactory.from(circle.get("space"));
-                EventCircleTable circleTable = new EventCircleTable();
-                circleTable.blockId = EventBlockTable.get(space.getBlockName()).getId();
-                circleTable.checklistId = 0;
-                circleTable.circleName = circleName;
-                circleTable.penName = circle.get("pen_name");
-                circleTable.homepage = circle.get("circle_url");
-                circleTable.spaceNo = space.getNo();
-                circleTable.spaceNoSub = "a".equals(space.getNoSub()) ? 0 : 1;
-                circleTable.save();
+
+                EventCircleTableForInsert insertCircle = new EventCircleTableForInsert.Builder()
+                        .setBlockId(EventBlockTable.get(space.getBlockName()).getId())
+                        .setChecklistId(0)
+                        .setCircleName(circleName)
+                        .setPenName(circle.get("pen_name"))
+                        .setHomepage(circle.get("circle_url"))
+                        .setSpaceNo(space.getNo())
+                        .setSpaceNoSub("a".equals(space.getNoSub()) ? 0 : 1)
+                        .build();
+                EventCircleTable.insert(insertCircle);
             }
         } finally {
             if (reader != null) {

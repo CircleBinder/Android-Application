@@ -14,7 +14,7 @@ import net.ichigotake.common.worker.ActivityJob;
 import net.ichigotake.common.worker.ActivityJobWorker;
 
 import circlebinder.common.Legacy;
-import circlebinder.creation.app.BaseActivity;
+import circlebinder.common.app.BaseActivity;
 import circlebinder.R;
 import circlebinder.creation.initialize.DatabaseInitializeService;
 import circlebinder.creation.initialize.IInitializeBindService;
@@ -36,7 +36,7 @@ public final class DatabaseInitializeActivity extends BaseActivity implements Le
                 @Override
                 public void run(Activity value) {
                     Fragment callback1 = value.getFragmentManager()
-                            .findFragmentByTag(getString(R.string.fragment_tag_data_initialize));
+                            .findFragmentByTag(getString(R.string.app_fragment_tag_data_initialize));
                     if (callback1 instanceof IInitializeServiceCallback) {
                         try {
                             ((IInitializeServiceCallback) callback1).initializeCompleted();
@@ -71,7 +71,7 @@ public final class DatabaseInitializeActivity extends BaseActivity implements Le
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_database_initialize);
+        setContentView(R.layout.creation_activity_database_initialize);
         worker.setActivity(this);
         serviceBind = true;
         bindService(new Intent(this, DatabaseInitializeService.class), serviceConnection, 0);

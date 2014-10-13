@@ -7,8 +7,12 @@ import android.view.MenuItem;
 
 import net.ichigotake.common.app.ActivityNavigation;
 
-import circlebinder.creation.app.BaseActivity;
+import java.io.IOException;
+
+import circlebinder.common.app.BaseActivity;
 import circlebinder.R;
+import circlebinder.common.system.ChangeLogLoader;
+import circlebinder.common.system.ChangeLogView;
 
 public final class ChangeLogActivity extends BaseActivity {
 
@@ -19,8 +23,14 @@ public final class ChangeLogActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_change_log);
+        setContentView(R.layout.creation_activity_change_log);
         getActionBar().setDisplayHomeAsUpEnabled(true);
+        ChangeLogView changeLogView = (ChangeLogView) findViewById(R.id.creation_activity_change_log);
+        try {
+            changeLogView.addChangeLogFeedList(new ChangeLogLoader(this).load());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -1,11 +1,10 @@
 package circlebinder.common.circle;
 
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import circlebinder.R;
-import circlebinder.creation.checklist.ChecklistSelectorView;
+import circlebinder.common.checklist.ChecklistSelectorView;
 
 public final class CircleViewHolder {
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="circlebinder.creation.app.phone.DatabaseInitializeActivity"
+    >
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="circlebinder.creation.initialize.DatabaseInitializeFragment"
+        android:tag="@string/app_fragment_tag_data_initialize"
+        tools:layout="@layout/creation_fragment_database_initialize"
+        />
+
+</LinearLayout>

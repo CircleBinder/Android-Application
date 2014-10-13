@@ -17,7 +17,7 @@ import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.OnClickToTrip;
 
 import circlebinder.common.Legacy;
-import circlebinder.creation.app.BaseFragment;
+import circlebinder.common.app.BaseFragment;
 import circlebinder.R;
 import circlebinder.creation.app.phone.HomeActivity;
 
@@ -31,7 +31,7 @@ public final class DatabaseInitializeFragment extends BaseFragment
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_database_initialize, parent, false);
+        return inflater.inflate(R.layout.creation_fragment_database_initialize, parent, false);
     }
 
     @Override
@@ -40,7 +40,7 @@ public final class DatabaseInitializeFragment extends BaseFragment
         View view = getView();
 
         TextView twitterHashTagView = (TextView) view.findViewById(
-                R.id.twitter_official_hash_tag_name
+                R.id.common_fragment_contact_twitter_official_hash_tag
         );
         String twitterHashTagUrl = getString(R.string.common_twitter_official_hash_tag_url);
         twitterHashTagView.setText(Html.fromHtml(
@@ -55,7 +55,7 @@ public final class DatabaseInitializeFragment extends BaseFragment
         ));
 
         TextView twitterScreenNameView = (TextView) view.findViewById(
-                R.id.twitter_official_account_screen_name
+                R.id.common_fragment_contact_twitter_official_account_screen_name
         );
         String twitterScreenNameUrl = getString(R.string.common_twitter_official_account_url);
         twitterScreenNameView.setText(Html.fromHtml(
@@ -69,12 +69,12 @@ public final class DatabaseInitializeFragment extends BaseFragment
                         IntentUtils.openLink(twitterScreenNameUrl))
         ));
 
-        View finishedView = view.findViewById(R.id.fragment_initialize_finished);
+        View finishedView = view.findViewById(R.id.creation_fragment_initialize_finished);
         finishedView.setOnClickListener(new OnClickToTrip(
                 new ActivityTripper(getActivity(), HomeActivity.createIntent(getActivity())).withFinish()
         ));
         handler = new InitializeHandler(
-                view.findViewById(R.id.fragment_initialize_progress),
+                view.findViewById(R.id.creation_fragment_initialize_progress),
                 finishedView
         );
 

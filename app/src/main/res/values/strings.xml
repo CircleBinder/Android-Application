@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="app_name">CircleBinder</string>
+    <string name="app_label_empty"> </string>
+    <string name="app_event_name">イベント</string>
+
+    <string name="app_circle_search_keyword_hint">サークル名 or ペンネーム</string>
+    <string name="app_circle_search_navigation_back">前に戻る</string>
+    <string name="app_circle_search_navigation_forward">次へ進む</string>
+
     <string name="common_app_name">CircleBinder</string>
     <string name="common_action_open_browser">WEBブラウザで開く</string>
+    <string name="common_action_reload">更新</string>
     <string name="common_action_share">シェアする</string>
     <string name="common_enjoy_event">イベントを楽しむ</string>
     <string name="common_open_event_map">会場周辺のマップ</string>
