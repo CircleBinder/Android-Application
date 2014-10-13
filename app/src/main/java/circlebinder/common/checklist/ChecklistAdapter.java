@@ -1,4 +1,4 @@
-package circlebinder.creation.checklist;
+package circlebinder.common.checklist;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -19,7 +19,7 @@ public final class ChecklistAdapter extends ArrayAdapter<Checklist, ChecklistIte
 
     @Override
     public View generateView(int position, Checklist item, LayoutInflater inflater, ViewGroup parent) {
-        return inflater.inflate(R.layout.checklist_item, parent, false);
+        return inflater.inflate(R.layout.common_checklist_item, parent, false);
     }
 
     @Override

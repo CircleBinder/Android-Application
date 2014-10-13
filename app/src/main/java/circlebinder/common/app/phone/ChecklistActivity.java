@@ -35,7 +35,7 @@ public final class ChecklistActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.acticity_checklist);
+        setContentView(R.layout.common_acticity_checklist);
         worker.setActivity(this);
         checklistColor = (ChecklistColor) BundleMerger.merge(getIntent(), savedInstanceState)
                 .getSerializable(KEY_CHECKLIST_COLOR);
@@ -45,7 +45,7 @@ public final class ChecklistActivity extends BaseActivity {
                 .setChecklist(checklistColor).build();
 
         FragmentTripper.firstTrip(getFragmentManager(), CircleSearchFragment.factory(searchOption))
-                .setLayoutId(R.id.activity_checklist_container)
+                .setLayoutId(R.id.common_activity_checklist_container)
                 .trip();
     }
 

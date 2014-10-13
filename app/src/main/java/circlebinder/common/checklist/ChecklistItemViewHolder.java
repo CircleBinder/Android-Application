@@ -1,4 +1,4 @@
-package circlebinder.creation.checklist;
+package circlebinder.common.checklist;
 
 import android.view.View;
 import android.widget.TextView;
@@ -14,20 +14,20 @@ public final class ChecklistItemViewHolder {
     private final List<TextView> circles;
 
     public ChecklistItemViewHolder(View convertView) {
-        labelName = (TextView) convertView.findViewById(R.id.checklist_item_label_name);
+        labelName = (TextView) convertView.findViewById(R.id.common_checklist_item_label_name);
         circles = new CopyOnWriteArrayList<>();
-        int circleItemLabelId = R.id.checklist_item_circle_label;
+        int circleItemLabelId = R.id.common_checklist_item_circle_label;
         circles.add((TextView)
-                convertView.findViewById(R.id.checklist_item_circle_label1).findViewById(circleItemLabelId)
+                convertView.findViewById(R.id.common_checklist_item_circle_label1).findViewById(circleItemLabelId)
         );
         circles.add((TextView)
-                convertView.findViewById(R.id.checklist_item_circle_label2).findViewById(circleItemLabelId)
+                convertView.findViewById(R.id.common_checklist_item_circle_label2).findViewById(circleItemLabelId)
         );
         circles.add((TextView)
-                convertView.findViewById(R.id.checklist_item_circle_label3).findViewById(circleItemLabelId)
+                convertView.findViewById(R.id.common_checklist_item_circle_label3).findViewById(circleItemLabelId)
         );
         circles.add((TextView)
-                convertView.findViewById(R.id.checklist_item_circle_label4).findViewById(circleItemLabelId)
+                convertView.findViewById(R.id.common_checklist_item_circle_label4).findViewById(circleItemLabelId)
         );
     }
 

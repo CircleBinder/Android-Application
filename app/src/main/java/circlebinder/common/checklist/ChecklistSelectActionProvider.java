@@ -1,4 +1,4 @@
-package circlebinder.creation.checklist;
+package circlebinder.common.checklist;
 
 import android.content.Context;
 import android.view.ActionProvider;

@@ -1,4 +1,4 @@
-package circlebinder.creation.checklist;
+package circlebinder.common.checklist;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -16,7 +16,6 @@ import net.ichigotake.common.widget.OnItemClickListener;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import circlebinder.common.checklist.ChecklistColor;
 import circlebinder.common.event.Circle;
 import circlebinder.common.search.CircleSearchOptionBuilder;
 import circlebinder.common.app.BaseFragment;
@@ -38,17 +37,17 @@ public final class ChecklistListFragment extends BaseFragment implements Content
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_checklist_list, parent, false);
+        View view = inflater.inflate(R.layout.common_fragment_checklist_list, parent, false);
         View headerView = inflater.inflate(R.layout.enjoy_creation_search_guidance, parent, false);
         headerView.setOnClickListener(OnClickToTrip.activityTrip(
                 getActivity(), CircleSearchActivity.createIntent(getActivity())
         ));
-        ListView checklistsView = (ListView) view.findViewById(R.id.fragment_checklist_list);
+        ListView checklistsView = (ListView) view.findViewById(R.id.common_fragment_checklist_list);
         adapter = new ChecklistAdapter(getActivity());
         adapter.addAll(getChecklist());
         checklistsView.addHeaderView(headerView);
         checklistsView.setAdapter(adapter);
-        View emptyView = view.findViewById(R.id.fragment_checklist_empty);
+        View emptyView = view.findViewById(R.id.common_fragment_checklist_empty);
         emptyView.setOnClickListener(OnClickToTrip.activityTrip(
                 getActivity(), EnjoyCreationActivity.createIntent(getActivity())
         ));

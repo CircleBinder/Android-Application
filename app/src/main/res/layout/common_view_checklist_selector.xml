@@ -6,7 +6,7 @@
     >
 
     <TextView
-        android:id="@+id/view_checklist_selector_label"
+        android:id="@+id/common_view_checklist_selector_label"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:maxWidth="40dp"

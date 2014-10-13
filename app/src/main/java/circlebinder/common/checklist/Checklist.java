@@ -1,4 +1,4 @@
-package circlebinder.creation.checklist;
+package circlebinder.common.checklist;
 
 import java.util.List;
 

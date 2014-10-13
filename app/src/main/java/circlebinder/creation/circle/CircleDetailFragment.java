@@ -26,7 +26,7 @@ import net.ichigotake.common.view.ReloadActionProvider;
 
 import circlebinder.common.app.BaseFragment;
 import circlebinder.R;
-import circlebinder.creation.checklist.ChecklistSelectActionProvider;
+import circlebinder.common.checklist.ChecklistSelectActionProvider;
 
 public final class CircleDetailFragment extends BaseFragment implements Legacy {
 

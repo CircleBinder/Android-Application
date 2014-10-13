@@ -7,7 +7,7 @@
     tools:ignore="MergeRootFrame">
 
     <TextView
-        android:id="@+id/checklist_item_circle_label"
+        android:id="@+id/common_checklist_item_circle_label"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingLeft="@dimen/common_baseline_padding"

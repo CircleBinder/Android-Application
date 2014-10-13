@@ -15,7 +15,7 @@
         >
 
         <TextView
-            android:id="@+id/checklist_item_label_name"
+            android:id="@+id/common_checklist_item_label_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -31,36 +31,36 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/checklist_item_circle_container"
+        android:id="@+id/common_checklist_item_circle_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
 
         <include
-            layout="@layout/checklist_item_circle_label"
-            android:id="@+id/checklist_item_circle_label1"
+            layout="@layout/common_checklist_item_circle_label"
+            android:id="@+id/common_checklist_item_circle_label1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
 
         <include
-            layout="@layout/checklist_item_circle_label"
-            android:id="@+id/checklist_item_circle_label2"
+            layout="@layout/common_checklist_item_circle_label"
+            android:id="@+id/common_checklist_item_circle_label2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
 
         <include
-            layout="@layout/checklist_item_circle_label"
-            android:id="@+id/checklist_item_circle_label3"
+            layout="@layout/common_checklist_item_circle_label"
+            android:id="@+id/common_checklist_item_circle_label3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
 
         <include
-            layout="@layout/checklist_item_circle_label"
-            android:id="@+id/checklist_item_circle_label4"
+            layout="@layout/common_checklist_item_circle_label"
+            android:id="@+id/common_checklist_item_circle_label4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
