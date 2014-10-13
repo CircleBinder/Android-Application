@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- -->
     <string name="app_name">CreationBinder</string>
     <string name="app_event_name">サンシャインクリエイション65</string>
     <string name="app_this_is_un_official_application">当アプリは「クリエイション事務局」公式のアプリではありません。</string>

@@ -2,12 +2,18 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="android:Theme.Holo.Light">
-        <item name="android:actionBarStyle">@style/CircleBinderActionBar</item>
+        <item name="android:actionBarStyle">@style/AppActionBar</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="AppNoActionBarTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="AppActionBar" parent="android:Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/app_theme_base</item>
+        <item name="android:backgroundSplit">@color/app_theme_base</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="CommonSectionHeaderLabel">
@@ -28,25 +34,15 @@
         <item name="android:paddingLeft">@dimen/common_spacer_x_small</item>
     </style>
 
-    <style name="CircleBinderActionBar" parent="android:Widget.Holo.Light.ActionBar.Solid.Inverse">
-        <item name="android:background">@color/app_theme_base</item>
-        <item name="android:backgroundSplit">@color/app_theme_base</item>
-        <item name="android:windowContentOverlay">@null</item>
-    </style>
-
-    <style name="AppCircleDetailHeader">
+    <style name="CommonCircleDetailHeader">
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingLeft">@dimen/common_baseline_padding</item>
         <item name="android:paddingRight">@dimen/common_baseline_padding</item>
         <item name="android:background">@color/app_theme_base</item>
     </style>
 
-    <style name="AppChecklistList">
+    <style name="CommonChecklistList">
         <item name="android:background">@color/common_card_container_background</item>
-    </style>
-
-    <style name="AppCarouselIndicator">
-        <item name="android:background">#66ffffff</item>
     </style>
 
     <style name="CommonSubSectionHeader">
