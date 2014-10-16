@@ -1,4 +1,4 @@
-package circlebinder.common.app.phone;
+package circlebinder.creation.app.phone;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,7 @@ import net.ichigotake.common.app.ActivityNavigation;
 import circlebinder.R;
 import circlebinder.common.app.ActivityTripActionProvider;
 import circlebinder.common.app.BaseActivity;
+import circlebinder.common.app.phone.WebViewActivity;
 
 public final class EnjoyCreationActivity extends BaseActivity {
 

@@ -10,6 +10,7 @@
     <string name="app_circle_search_navigation_forward">次へ進む</string>
 
     <string name="common_app_name">CircleBinder</string>
+    <string name="common_action_checklist">チェックリスト</string>
     <string name="common_action_open_browser">WEBブラウザで開く</string>
     <string name="common_action_reload">更新</string>
     <string name="common_action_share">シェアする</string>

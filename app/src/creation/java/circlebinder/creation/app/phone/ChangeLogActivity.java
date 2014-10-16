@@ -27,7 +27,7 @@ public final class ChangeLogActivity extends BaseActivity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
         ChangeLogView changeLogView = (ChangeLogView) findViewById(R.id.creation_activity_change_log);
         try {
-            changeLogView.addChangeLogFeedList(new ChangeLogLoader(this).load());
+            changeLogView.addChangeLogFeedList(new ChangeLogLoader(this).load(R.raw.change_log_ltsv));
         } catch (IOException e) {
             e.printStackTrace();
         }
