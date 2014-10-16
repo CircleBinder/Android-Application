@@ -13,7 +13,6 @@ import android.view.View;
 
 import com.dmitriy.tarasov.android.intents.IntentUtils;
 
-import net.ichigotake.common.content.ContentReloader;
 import net.ichigotake.common.content.RawResources;
 
 import java.io.IOException;
@@ -26,7 +25,7 @@ import circlebinder.R;
 import circlebinder.common.app.BroadcastEvent;
 import circlebinder.common.app.phone.AboutActivity;
 import circlebinder.common.app.phone.ContactActivity;
-import circlebinder.common.app.phone.EnjoyCreationActivity;
+import circlebinder.creation.checklist.ChecklistListView;
 
 /**
  * 通常起動時のファーストビュー
@@ -38,6 +37,7 @@ public final class HomeActivity extends BaseActivity implements Legacy {
     }
 
     private BroadcastReceiver broadcastReceiver;
+    private ChecklistListView checklistListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +46,11 @@ public final class HomeActivity extends BaseActivity implements Legacy {
         getActionBar().setDisplayShowTitleEnabled(false);
         orientationConfig(getResources().getConfiguration());
 
+        checklistListView = (ChecklistListView) findViewById(R.id.creation_activity_home_fragment_content);
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                ContentReloader reloader = (ContentReloader) getFragmentManager()
-                        .findFragmentById(R.id.creation_activity_home_fragment_content);
-                reloader.reload();
+                checklistListView.reload();
             }
         };
         registerReceiver(broadcastReceiver, BroadcastEvent.createIntentFilter());
