@@ -22,6 +22,7 @@ import circlebinder.common.web.WebViewContainer;
 import circlebinder.common.event.Circle;
 
 import net.ichigotake.common.view.ActionProvider;
+import net.ichigotake.common.view.MenuPresenter;
 import net.ichigotake.common.view.ReloadActionProvider;
 
 import circlebinder.common.app.BaseFragment;
@@ -85,36 +86,32 @@ public final class CircleDetailFragment extends BaseFragment implements Legacy {
         return view;
     }
 
-    //TODO: Activityに移したい
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.share, menu);
-        inflater.inflate(R.menu.open_browser, menu);
-        MenuItem shareItem = menu.findItem(R.id.menu_share);
-        shareItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
-        shareItem.setActionProvider(new ActionProvider(getActivity(), new ActionProvider.OnClickListener() {
-            @Override
-            public void onClick() {
-                new ActivityTripper(
-                        getActivity(),
-                        IntentUtils.shareText(circle.getName(), currentUrl)
-                ).trip();
-            }
-        }));
-        MenuItem openBrowserItem = menu.findItem(R.id.menu_open_browser);
-        openBrowserItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
-        openBrowserItem.setActionProvider(new ActionProvider(getActivity(), new ActionProvider.OnClickListener() {
-            @Override
-            public void onClick() {
-                new ActivityTripper(getActivity(), IntentUtils.openLink(currentUrl)).trip();
-            }
-        }));
-        inflater.inflate(R.menu.reload, menu);
-        MenuItem reloadItem = menu.findItem(R.id.menu_reload);
-        reloadItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
-        reloadItem.setActionProvider(new ReloadActionProvider(getActivity(), webContainer));
-        inflater.inflate(R.menu.checklist_selector, menu);
-        menu.findItem(R.id.menu_checklist_selector)
+        MenuPresenter presenter = new MenuPresenter(menu, inflater);
+        presenter.inflate(R.menu.share, R.id.menu_share)
+                .setActionProvider(new ActionProvider(getActivity(), new ActionProvider.OnClickListener() {
+                    @Override
+                    public void onClick() {
+                        new ActivityTripper(
+                                getActivity(),
+                                IntentUtils.shareText(circle.getName(), currentUrl)
+                        ).trip();
+                    }
+                }))
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+        presenter.inflate(R.menu.open_browser, R.id.menu_open_browser)
+                .setActionProvider(new ActionProvider(getActivity(), new ActionProvider.OnClickListener() {
+                    @Override
+                    public void onClick() {
+                        new ActivityTripper(getActivity(), IntentUtils.openLink(currentUrl)).trip();
+                    }
+                }))
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+        presenter.inflate(R.menu.reload, R.id.menu_reload)
+                .setActionProvider(new ReloadActionProvider(getActivity(), webContainer))
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+        presenter.inflate(R.menu.checklist_selector, R.id.menu_checklist_selector)
                 .setActionProvider(new ChecklistSelectActionProvider(getActivity(), circle));
     }
 

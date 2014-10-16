@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
@@ -12,6 +13,7 @@ import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.content.OnAfterLoadingListener;
 import net.ichigotake.common.content.OnBeforeLoadingListener;
 import net.ichigotake.common.os.BundleMerger;
+import net.ichigotake.common.view.MenuPresenter;
 import net.ichigotake.common.view.ReloadActionProvider;
 
 import circlebinder.common.app.BaseFragment;
@@ -77,10 +79,11 @@ public final class WebViewFragment extends BaseFragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.app_web_view_progress_bar, menu);
-        progressMenuItemHelper = new ProgressMenuItemHelper(menu, R.id.app_web_view_progress_bar);
-        inflater.inflate(R.menu.reload, menu);
-        menu.findItem(R.id.menu_reload)
+        MenuPresenter presenter = new MenuPresenter(menu, inflater);
+        MenuItem progressItem = presenter
+                .inflate(R.menu.app_web_view_progress_bar, R.id.app_web_view_progress_bar);
+        progressMenuItemHelper = new ProgressMenuItemHelper(progressItem);
+        presenter.inflate(R.menu.reload, R.id.menu_reload)
                 .setActionProvider(new ReloadActionProvider(getActivity(), container));
     }
 
