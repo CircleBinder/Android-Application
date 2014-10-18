@@ -7,7 +7,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 
 import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.content.OnAfterLoadingListener;
@@ -41,7 +40,7 @@ public final class WebViewFragment extends BaseFragment {
 
     private static final String KEY_URL = "url";
     private String url;
-    private WebViewContainer container;
+    private WebView webView;
     private ProgressMenuItemHelper progressMenuItemHelper;
 
     @Override
@@ -54,7 +53,7 @@ public final class WebViewFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.common_fragment_web_view, parent, false);
-        WebView webView = (WebView)view.findViewById(R.id.fragment_web_view);
+        webView = (WebView)view.findViewById(R.id.common_fragment_web_view);
         WebViewClient webViewClient = new WebViewClient(webView);
         webViewClient.setOnBeforeLoadingListener(new OnBeforeLoadingListener() {
             @Override
@@ -73,7 +72,6 @@ public final class WebViewFragment extends BaseFragment {
             }
         });
         webView.setWebViewClient(webViewClient);
-        container = new WebViewContainer(webView);
         return view;
     }
 
@@ -84,20 +82,13 @@ public final class WebViewFragment extends BaseFragment {
                 .inflate(R.menu.app_web_view_progress_bar, R.id.app_web_view_progress_bar);
         progressMenuItemHelper = new ProgressMenuItemHelper(progressItem);
         presenter.inflate(R.menu.reload, R.id.menu_reload)
-                .setActionProvider(new ReloadActionProvider(getActivity(), container));
+                .setActionProvider(new ReloadActionProvider(getActivity(), webView));
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        container.load(url);
+        webView.loadUrl(url);
     }
 
-    @Override
-    public void onDestroy() {
-        if (container != null) {
-            container.onDestroy();
-        }
-        super.onDestroy();
-    }
 }

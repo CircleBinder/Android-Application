@@ -7,7 +7,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 
 import com.dmitriy.tarasov.android.intents.IntentUtils;
 
@@ -18,7 +17,6 @@ import net.ichigotake.common.os.BundleMerger;
 
 import circlebinder.common.Legacy;
 import circlebinder.common.web.WebViewClient;
-import circlebinder.common.web.WebViewContainer;
 import circlebinder.common.event.Circle;
 
 import net.ichigotake.common.view.ActionProvider;
@@ -59,7 +57,7 @@ public final class CircleDetailFragment extends BaseFragment implements Legacy {
 
     private static final String KEY_CIRCLE = "circle";
     private Circle circle;
-    private WebViewContainer webContainer;
+    private CircleWebView webView;
     private String currentUrl;
 
     @Override
@@ -72,7 +70,7 @@ public final class CircleDetailFragment extends BaseFragment implements Legacy {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.common_circle_detail, parent, false);
-        WebView webView = (WebView)view.findViewById(R.id.common_circle_detail_web_view);
+        webView = (CircleWebView)view.findViewById(R.id.common_circle_detail_web_view);
         WebViewClient client = new WebViewClient(webView);
         client.setOnBeforeLoadingListener(new OnBeforeLoadingListener() {
             @Override
@@ -82,7 +80,6 @@ public final class CircleDetailFragment extends BaseFragment implements Legacy {
             }
         });
         webView.setWebViewClient(client);
-        webContainer = new WebViewContainer(webView);
         return view;
     }
 
@@ -109,7 +106,7 @@ public final class CircleDetailFragment extends BaseFragment implements Legacy {
                 }))
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
         presenter.inflate(R.menu.reload, R.id.menu_reload)
-                .setActionProvider(new ReloadActionProvider(getActivity(), webContainer))
+                .setActionProvider(new ReloadActionProvider(getActivity(), webView))
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
         presenter.inflate(R.menu.checklist_selector, R.id.menu_checklist_selector)
                 .setActionProvider(new ChecklistSelectActionProvider(getActivity(), circle));
@@ -118,18 +115,8 @@ public final class CircleDetailFragment extends BaseFragment implements Legacy {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        webContainer.load(getLink(circle));
+        webView.setCircle(circle);
         postEvent();
-    }
-
-    private String getLink(Circle circle) {
-        if (circle.getLinks().isEmpty()) {
-            return "https://google.co.jp/search?q="
-                    + "\"" + circle.getPenName() + "\""
-                    + "%20"
-                    + "\"" + circle.getName() + "\"";
-        }
-        return circle.getLinks().get(0).getUri().toString();
     }
 
     @Override
@@ -146,14 +133,6 @@ public final class CircleDetailFragment extends BaseFragment implements Legacy {
         if (getActivity() instanceof OnCirclePageChangeListener) {
             ((OnCirclePageChangeListener)getActivity()).onCirclePageChanged(circle);
         }
-    }
-
-    @Override
-    public void onDestroy() {
-        if (webContainer != null) {
-            webContainer.onDestroy();
-        }
-        super.onDestroy();
     }
 
 }
