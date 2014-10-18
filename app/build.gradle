@@ -83,6 +83,7 @@ dependencies {
     compile 'se.emilsjolander:stickylistheaders:2.5.0'
 }
 
+apply from: 'gradle/compile.gradle'
 
 android.applicationVariants.all { variant ->
     def resourceDir = new File("app/src/${variant.buildType.name}/res/values")
