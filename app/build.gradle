@@ -30,7 +30,9 @@ android {
         creation {
             applicationId 'circlebinder.creation'
         }
-        catalog {}
+        playground {
+            applicationId 'circlebinder.playground'
+        }
     }
 
     defaultConfig {
