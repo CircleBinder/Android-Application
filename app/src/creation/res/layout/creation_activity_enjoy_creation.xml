@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="circlebinder.common.app.phone.EnjoyCreationActivity"
+    tools:context="circlebinder.creation.app.phone.EnjoyCreationActivity"
     >
 
     <fragment

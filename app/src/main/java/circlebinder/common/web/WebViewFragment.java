@@ -4,14 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 
 import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.content.OnAfterLoadingListener;
 import net.ichigotake.common.content.OnBeforeLoadingListener;
 import net.ichigotake.common.os.BundleMerger;
+import net.ichigotake.common.view.MenuPresenter;
 import net.ichigotake.common.view.ReloadActionProvider;
 
 import circlebinder.common.app.BaseFragment;
@@ -39,7 +40,7 @@ public final class WebViewFragment extends BaseFragment {
 
     private static final String KEY_URL = "url";
     private String url;
-    private WebViewContainer container;
+    private WebView webView;
     private ProgressMenuItemHelper progressMenuItemHelper;
 
     @Override
@@ -52,7 +53,7 @@ public final class WebViewFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.common_fragment_web_view, parent, false);
-        WebView webView = (WebView)view.findViewById(R.id.fragment_web_view);
+        webView = (WebView)view.findViewById(R.id.common_fragment_web_view);
         WebViewClient webViewClient = new WebViewClient(webView);
         webViewClient.setOnBeforeLoadingListener(new OnBeforeLoadingListener() {
             @Override
@@ -71,30 +72,23 @@ public final class WebViewFragment extends BaseFragment {
             }
         });
         webView.setWebViewClient(webViewClient);
-        container = new WebViewContainer(webView);
         return view;
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.app_web_view_progress_bar, menu);
-        progressMenuItemHelper = new ProgressMenuItemHelper(menu, R.id.app_web_view_progress_bar);
-        inflater.inflate(R.menu.reload, menu);
-        menu.findItem(R.id.menu_reload)
-                .setActionProvider(new ReloadActionProvider(getActivity(), container));
+        MenuPresenter presenter = new MenuPresenter(menu, inflater);
+        MenuItem progressItem = presenter
+                .inflate(R.menu.app_web_view_progress_bar, R.id.app_web_view_progress_bar);
+        progressMenuItemHelper = new ProgressMenuItemHelper(progressItem);
+        presenter.inflate(R.menu.reload, R.id.menu_reload)
+                .setActionProvider(new ReloadActionProvider(getActivity(), webView));
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        container.load(url);
+        webView.loadUrl(url);
     }
 
-    @Override
-    public void onDestroy() {
-        if (container != null) {
-            container.onDestroy();
-        }
-        super.onDestroy();
-    }
 }

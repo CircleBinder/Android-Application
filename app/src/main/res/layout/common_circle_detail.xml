@@ -7,7 +7,7 @@
     tools:context="circlebinder.common.circle.CircleDetailFragment"
     >
 
-    <WebView
+    <circlebinder.common.circle.CircleWebView
         android:id="@+id/common_circle_detail_web_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

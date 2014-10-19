@@ -17,7 +17,6 @@ import am.ik.ltsv4j.LTSV;
 import circlebinder.common.changelog.PublishDate;
 import circlebinder.common.changelog.ChangeLogFeed;
 import circlebinder.common.changelog.ChangeLogFeedType;
-import circlebinder.R;
 
 public final class ChangeLogLoader {
 
@@ -27,12 +26,12 @@ public final class ChangeLogLoader {
         this.resources = context.getResources();
     }
 
-    public List<ChangeLogFeed> load() throws IOException {
+    public List<ChangeLogFeed> load(int rawResource) throws IOException {
         List<ChangeLogFeed> changeLogFeeds = new CopyOnWriteArrayList<>();
         InputStream inputStream = null;
         BufferedReader reader = null;
         try {
-            inputStream = resources.openRawResource(R.raw.change_log_ltsv);
+            inputStream = resources.openRawResource(rawResource);
             reader = new BufferedReader(new InputStreamReader(inputStream));
             String line;
             while ((line = reader.readLine()) != null) {

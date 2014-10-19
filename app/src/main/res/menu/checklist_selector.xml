@@ -5,7 +5,7 @@
 
     <item
         android:id="@+id/menu_checklist_selector"
-        android:title="@string/app_tutorial_welcome_add_checklist"
+        android:title="@string/common_action_checklist"
         android:orderInCategory="10"
         android:showAsAction="ifRoom"
         tools:ignore="AppCompatResource"

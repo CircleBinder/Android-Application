@@ -1,4 +1,4 @@
-package circlebinder.common.app.phone;
+package circlebinder.creation.app.phone;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,10 +7,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import net.ichigotake.common.app.ActivityNavigation;
+import net.ichigotake.common.view.MenuPresenter;
 
 import circlebinder.R;
 import circlebinder.common.app.ActivityTripActionProvider;
 import circlebinder.common.app.BaseActivity;
+import circlebinder.common.app.phone.WebViewActivity;
 
 public final class EnjoyCreationActivity extends BaseActivity {
 
@@ -27,13 +29,11 @@ public final class EnjoyCreationActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.open_browser, menu);
-        MenuItem openWebBrowserItem = menu.findItem(R.id.menu_open_browser);
-        openWebBrowserItem.setActionProvider(
-                new ActivityTripActionProvider(
+        MenuPresenter presenter = new MenuPresenter(menu, getMenuInflater());
+        presenter.inflate(R.menu.open_browser, R.id.menu_open_browser)
+                .setActionProvider(new ActivityTripActionProvider(
                         this, WebViewActivity.createIntent(this, getString(R.string.app_creation_homepage_top))
-                )
-        );
+                ));
         return super.onCreateOptionsMenu(menu);
     }
 

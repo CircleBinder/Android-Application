@@ -7,14 +7,13 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.dmitriy.tarasov.android.intents.IntentUtils;
 
-import net.ichigotake.common.content.ContentReloader;
 import net.ichigotake.common.content.RawResources;
+import net.ichigotake.common.view.MenuPresenter;
 
 import java.io.IOException;
 
@@ -26,7 +25,7 @@ import circlebinder.R;
 import circlebinder.common.app.BroadcastEvent;
 import circlebinder.common.app.phone.AboutActivity;
 import circlebinder.common.app.phone.ContactActivity;
-import circlebinder.common.app.phone.EnjoyCreationActivity;
+import circlebinder.creation.checklist.ChecklistListView;
 
 /**
  * 通常起動時のファーストビュー
@@ -38,6 +37,7 @@ public final class HomeActivity extends BaseActivity implements Legacy {
     }
 
     private BroadcastReceiver broadcastReceiver;
+    private ChecklistListView checklistListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +46,11 @@ public final class HomeActivity extends BaseActivity implements Legacy {
         getActionBar().setDisplayShowTitleEnabled(false);
         orientationConfig(getResources().getConfiguration());
 
+        checklistListView = (ChecklistListView) findViewById(R.id.creation_activity_home_fragment_content);
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                ContentReloader reloader = (ContentReloader) getFragmentManager()
-                        .findFragmentById(R.id.creation_activity_home_fragment_content);
-                reloader.reload();
+                checklistListView.reload();
             }
         };
         registerReceiver(broadcastReceiver, BroadcastEvent.createIntentFilter());
@@ -76,39 +75,32 @@ public final class HomeActivity extends BaseActivity implements Legacy {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.event_description, menu);
-        MenuItem openWebBrowserItem = menu.findItem(R.id.menu_event_description);
-        openWebBrowserItem.setActionProvider(
-                new ActivityTripActionProvider(
+        MenuPresenter presenter = new MenuPresenter(menu, getMenuInflater());
+        presenter.inflate(R.menu.event_description, R.id.menu_event_description)
+                .setActionProvider(new ActivityTripActionProvider(
                         this, EnjoyCreationActivity.createIntent(this)
-                )
-        );
+                ));
         try {
-            getMenuInflater().inflate(R.menu.event_map, menu);
             String eventMapGeoUrl = new RawResources(getResources()).getText(R.raw.event_map_geo_url).get(0);
-            MenuItem openMapItem = menu.findItem(R.id.menu_event_map);
-            openMapItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
-            openMapItem.setActionProvider(
-                    new ActivityTripActionProvider(this, IntentUtils.openLink(eventMapGeoUrl)));
+            presenter.inflate(R.menu.event_map, R.id.menu_event_map)
+                    .setActionProvider(
+                            new ActivityTripActionProvider(this, IntentUtils.openLink(eventMapGeoUrl)))
+                    .setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        inflater.inflate(R.menu.wish_me_luck, menu);
-        MenuItem contactItem = menu.findItem(R.id.menu_wish_me_luck);
-        contactItem.setActionProvider(
-                new ActivityTripActionProvider(this, ContactActivity.createIntent(this))
-        );
-        inflater.inflate(R.menu.change_log, menu);
-        MenuItem changeLogItem = menu.findItem(R.id.menu_change_log);
-        changeLogItem.setActionProvider(
-                new ActivityTripActionProvider(this, ChangeLogActivity.createIntent(this))
-        );
-        inflater.inflate(R.menu.about_application, menu);
-        MenuItem aboutForApplicationItem = menu.findItem(R.id.menu_about_application);
-        aboutForApplicationItem.setActionProvider(
-                new ActivityTripActionProvider(this, AboutActivity.createIntent(this))
-        );
+        presenter.inflate(R.menu.wish_me_luck, R.id.menu_wish_me_luck)
+                .setActionProvider(
+                        new ActivityTripActionProvider(this, ContactActivity.createIntent(this))
+                );
+        presenter.inflate(R.menu.change_log, R.id.menu_change_log)
+                .setActionProvider(
+                        new ActivityTripActionProvider(this, ChangeLogActivity.createIntent(this))
+                );
+        presenter.inflate(R.menu.about_application, R.id.menu_about_application)
+                .setActionProvider(
+                        new ActivityTripActionProvider(this, AboutActivity.createIntent(this))
+                );
         return super.onCreateOptionsMenu(menu);
     }
 

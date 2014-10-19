@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -15,6 +14,7 @@ import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.content.ContentReloader;
 import net.ichigotake.common.os.BundleMerger;
 import net.ichigotake.common.view.ActionProvider;
+import net.ichigotake.common.view.MenuPresenter;
 import net.ichigotake.common.widget.OnItemSelectedEventListener;
 import net.ichigotake.common.worker.ActivityJobWorker;
 
@@ -104,18 +104,15 @@ public final class CircleSearchActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.search, menu);
-        MenuItem searchItem = menu.findItem(R.id.menu_search)
+        MenuPresenter presenter = new MenuPresenter(menu, getMenuInflater());
+        MenuItem searchItem = presenter.inflate(R.menu.search, R.id.menu_search)
                 .setActionProvider(new ActionProvider(getApplicationContext(), new ActionProvider.OnClickListener() {
                     @Override
                     public void onClick() {
                         showForm();
                     }
                 }));
-        inflater.inflate(R.menu.clear, menu);
-        MenuItem hiddenItem = menu.findItem(R.id.menu_cancel)
+        MenuItem hiddenItem = presenter.inflate(R.menu.clear, R.id.menu_cancel)
                 .setActionProvider(new ActionProvider(getApplicationContext(), new ActionProvider.OnClickListener() {
                     @Override
                     public void onClick() {
@@ -131,7 +128,7 @@ public final class CircleSearchActivity extends BaseActivity {
             hiddenItem.setVisible(false);
             inputKeywordView.clearFocus();
         }
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

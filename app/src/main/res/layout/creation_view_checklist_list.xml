@@ -10,7 +10,7 @@
 
     <ListView
         style="@style/CommonCardList"
-        android:id="@+id/common_fragment_checklist_list"
+        android:id="@+id/create_view_checklist_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
