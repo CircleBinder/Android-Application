@@ -15,8 +15,11 @@ import net.ichigotake.common.widget.SectionHeaderViewHolder;
 
 public final class CircleAdapter extends CursorAdapter<Circle, CircleViewHolder, SectionHeaderViewHolder> {
 
+    private final Context context;
+
     public CircleAdapter(Context context, CursorItemConverter<Circle> converter) {
         super(context, null, converter);
+        this.context = context;
     }
 
     @Override
@@ -36,7 +39,9 @@ public final class CircleAdapter extends CursorAdapter<Circle, CircleViewHolder,
 
     @Override
     protected void bindHeaderView(int position, Circle circle, SectionHeaderViewHolder holder) {
-        holder.getLabel().setText(circle.getSpace().getBlockName());
+        holder.getLabel().setText(context.getString(
+                R.string.common_event_block_label, circle.getSpace().getBlockName()
+        ));
     }
 
     @Override
