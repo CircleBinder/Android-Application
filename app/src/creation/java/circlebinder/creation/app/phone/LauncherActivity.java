@@ -12,7 +12,6 @@ public final class LauncherActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         Intent launchActivity;
         if (new LegacyAppStorage(getApplicationContext()).isInitialized()) {
             launchActivity = HomeActivity.createIntent(this);
@@ -22,5 +21,6 @@ public final class LauncherActivity extends BaseActivity {
         new ActivityTripper(this, launchActivity)
                 .withFinish()
                 .trip();
+        super.onCreate(savedInstanceState);
     }
 }

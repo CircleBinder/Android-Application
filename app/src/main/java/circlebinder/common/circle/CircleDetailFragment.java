@@ -86,8 +86,8 @@ public final class CircleDetailFragment extends BaseFragment implements Legacy {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         MenuPresenter presenter = new MenuPresenter(menu, inflater);
-        presenter.inflate(R.menu.share, R.id.menu_share)
-                .setActionProvider(new ActionProvider(getActivity(), new ActionProvider.OnClickListener() {
+        MenuItem shareItem = presenter.inflate(R.menu.share, R.id.menu_share);
+        presenter.setActionProvider(shareItem, new ActionProvider(getActivity(), new ActionProvider.OnClickListener() {
                     @Override
                     public void onClick() {
                         new ActivityTripper(
@@ -95,21 +95,21 @@ public final class CircleDetailFragment extends BaseFragment implements Legacy {
                                 IntentUtils.shareText(circle.getName(), currentUrl)
                         ).trip();
                     }
-                }))
-                .setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
-        presenter.inflate(R.menu.open_browser, R.id.menu_open_browser)
-                .setActionProvider(new ActionProvider(getActivity(), new ActionProvider.OnClickListener() {
+                }));
+        presenter.setShowAsAction(shareItem, MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+        MenuItem openBrowserItem = presenter.inflate(R.menu.open_browser, R.id.menu_open_browser);
+        presenter.setActionProvider(openBrowserItem, new ActionProvider(getActivity(), new ActionProvider.OnClickListener() {
                     @Override
                     public void onClick() {
                         new ActivityTripper(getActivity(), IntentUtils.openLink(currentUrl)).trip();
                     }
-                }))
-                .setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
-        presenter.inflate(R.menu.reload, R.id.menu_reload)
-                .setActionProvider(new ReloadActionProvider(getActivity(), webView))
-                .setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
-        presenter.inflate(R.menu.checklist_selector, R.id.menu_checklist_selector)
-                .setActionProvider(new ChecklistSelectActionProvider(getActivity(), circle));
+                }));
+        presenter.setShowAsAction(openBrowserItem, MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+        MenuItem reloadItem = presenter.inflate(R.menu.reload, R.id.menu_reload);
+        presenter.setActionProvider(reloadItem, new ReloadActionProvider(getActivity(), webView));
+        presenter.setShowAsAction(reloadItem, MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+        MenuItem selectorItem = presenter.inflate(R.menu.checklist_selector, R.id.menu_checklist_selector);
+        presenter.setActionProvider(selectorItem, new ChecklistSelectActionProvider(getActivity(), circle));
     }
 
     @Override

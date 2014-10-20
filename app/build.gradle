@@ -76,6 +76,8 @@ android {
 dependencies {
     compile fileTree(dir: 'src/libs/', include: '*.jar')
     compile 'am.ik.ltsv4j:ltsv4j:0.9.0'
+    compile 'com.android.support:appcompat-v7:21.0.0'
+    compile 'com.android.support:palette-v7:21.0.0'
     compile 'com.dmitriy-tarasov:android-intents:1.1.0'
     compile 'com.github.hotchemi:ProgressMenuItem:0.3.3'
     compile 'com.netflix.rxjava:rxjava-android:0.20.6'
@@ -120,8 +122,9 @@ android.applicationVariants.all { variant ->
 
 // 起動の速い環境を利用するために、実装中は Chrome 上でアプリを起動出来るようにする
 // https://gist.github.com/ichigotake/6f6c21c26971c4248d6d
-task runChromeAppDebug(type: Exec, dependsOn: assembleDebug) {
+task runChromeAppDebug(type: Exec) {
     executable "bash"
-    args "--login", "-c", "chromeos-apk '${buildDir}/outputs/apk/app-creation-debug.apk' " \
-            + "&& /Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --load-and-launch-app=${projectDir}/circlebinder.creation.debug.android/"
+    args "--login", "-c", "chromeos-apk '${buildDir}/outputs/apk/app-playground-debug.apk' " \
+            + "&& /Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --load-and-launch-app=${projectDir}/circlebinder.playground.debug.android/"
 }
+runChromeAppDebug.dependsOn "assemblePlaygroundDebug"

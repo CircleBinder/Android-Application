@@ -1,7 +1,7 @@
 package circlebinder.common.system;
 
-import android.app.ActionBar;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.dmitriy.tarasov.android.intents.IntentUtils;
 
+import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.app.OnClickToTrip;
 import net.ichigotake.common.widget.TextViewUtil;
 
@@ -67,7 +68,7 @@ public final class ContactFragment extends BaseFragment implements Legacy {
     }
 
     private void restoreActionBar() {
-        ActionBar actionBar = getActivity().getActionBar();
+        ActionBar actionBar = ActivityNavigation.getSupportActionBar(getActivity());
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(R.string.common_send_feedback_wish_me_luck);
     }

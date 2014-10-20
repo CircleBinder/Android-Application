@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.content.RawResources;
 
@@ -57,7 +58,6 @@ public final class OpenSourceLicenseCreditFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        getActivity().getActionBar().setTitle(
-                R.string.common_open_source_license);
+        ActivityNavigation.getSupportActionBar(getActivity()).setTitle(R.string.common_open_source_license);
     }
 }

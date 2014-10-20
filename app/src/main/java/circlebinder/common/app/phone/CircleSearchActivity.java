@@ -1,11 +1,11 @@
 package circlebinder.common.app.phone;
 
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -49,7 +49,7 @@ public final class CircleSearchActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.common_activity_circle_search);
         worker.setActivity(this);
-        ActionBar actionBar = getActionBar();
+        ActionBar actionBar = ActivityNavigation.getSupportActionBar(this);
         actionBar.setDisplayHomeAsUpEnabled(true);
         searchOptionBuilder = BundleMerger.merge(getIntent(), savedInstanceState)
                 .getParcelable(EXTRA_CIRCLE_SEARCH_BUILDER);
@@ -105,15 +105,17 @@ public final class CircleSearchActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuPresenter presenter = new MenuPresenter(menu, getMenuInflater());
-        MenuItem searchItem = presenter.inflate(R.menu.search, R.id.menu_search)
-                .setActionProvider(new ActionProvider(getApplicationContext(), new ActionProvider.OnClickListener() {
+        MenuItem searchItem = presenter.inflate(R.menu.search, R.id.menu_search);
+        presenter.setActionProvider(
+                searchItem,
+                new ActionProvider(getApplicationContext(), new ActionProvider.OnClickListener() {
                     @Override
                     public void onClick() {
                         showForm();
                     }
                 }));
-        MenuItem hiddenItem = presenter.inflate(R.menu.clear, R.id.menu_cancel)
-                .setActionProvider(new ActionProvider(getApplicationContext(), new ActionProvider.OnClickListener() {
+        MenuItem hiddenItem = presenter.inflate(R.menu.clear, R.id.menu_cancel);
+        presenter.setActionProvider(hiddenItem, new ActionProvider(getApplicationContext(), new ActionProvider.OnClickListener() {
                     @Override
                     public void onClick() {
                         hideForm();

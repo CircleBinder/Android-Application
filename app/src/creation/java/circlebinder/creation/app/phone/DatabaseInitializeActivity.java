@@ -1,7 +1,6 @@
 package circlebinder.creation.app.phone;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +8,8 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
 
 import net.ichigotake.common.worker.ActivityJob;
 import net.ichigotake.common.worker.ActivityJobWorker;
@@ -34,8 +35,8 @@ public final class DatabaseInitializeActivity extends BaseActivity implements Le
         public void initializeCompleted() throws RemoteException {
             worker.enqueueActivityJob(new ActivityJob() {
                 @Override
-                public void run(Activity value) {
-                    Fragment callback1 = value.getFragmentManager()
+                public void run(ActionBarActivity value) {
+                    Fragment callback1 = value.getSupportFragmentManager()
                             .findFragmentByTag(getString(R.string.app_fragment_tag_data_initialize));
                     if (callback1 instanceof IInitializeServiceCallback) {
                         try {

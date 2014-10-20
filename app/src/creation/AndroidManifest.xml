@@ -18,7 +18,6 @@
 
         <activity
             android:name="circlebinder.creation.app.phone.LauncherActivity"
-            android:theme="@android:style/Theme.NoDisplay"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

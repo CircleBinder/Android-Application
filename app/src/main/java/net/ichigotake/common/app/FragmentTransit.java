@@ -1,10 +1,8 @@
 package net.ichigotake.common.app;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-
-import circlebinder.R;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 
 public final class FragmentTransit implements Tripper {
 
@@ -41,12 +39,6 @@ public final class FragmentTransit implements Tripper {
         final Fragment nextFragment = mNextFragment;
 
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
-        transaction.setCustomAnimations(
-                R.animator.common_slide_in,
-                R.animator.common_slide_out,
-                R.animator.common_slide_in,
-                R.animator.common_slide_out
-        );
         transaction.replace(targetViewId, nextFragment, mTag);
         if (mAddBackStack) {
             transaction.addToBackStack(null);

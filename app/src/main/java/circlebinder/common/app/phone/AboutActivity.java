@@ -23,7 +23,7 @@ public final class AboutActivity extends BaseActivity implements ActivityJobWork
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        ActivityNavigation.setDisplayHomeAsUpEnabled(this);
         worker.setActivity(this);
         setContentView(R.layout.common_activity_about);
     }

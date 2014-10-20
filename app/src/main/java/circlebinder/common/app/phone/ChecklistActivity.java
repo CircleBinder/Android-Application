@@ -43,12 +43,12 @@ public final class ChecklistActivity extends BaseActivity {
         worker.setActivity(this);
         checklistColor = (ChecklistColor) BundleMerger.merge(getIntent(), savedInstanceState)
                 .getSerializable(KEY_CHECKLIST_COLOR);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setTitle(checklistColor.getName());
+        ActivityNavigation.setDisplayHomeAsUpEnabled(this);
+        ActivityNavigation.getSupportActionBar(this).setTitle(checklistColor.getName());
         CircleSearchOption searchOption = new CircleSearchOptionBuilder()
                 .setChecklist(checklistColor).build();
 
-        FragmentTripper.firstTrip(getFragmentManager(), CircleSearchFragment.factory(searchOption))
+        FragmentTripper.firstTrip(getSupportFragmentManager(), CircleSearchFragment.factory(searchOption))
                 .setLayoutId(R.id.common_activity_checklist_container)
                 .trip();
 

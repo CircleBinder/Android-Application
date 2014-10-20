@@ -1,7 +1,7 @@
 package net.ichigotake.common.worker;
 
-import android.app.Activity;
 import android.os.Message;
+import android.support.v7.app.ActionBarActivity;
 
 /**
  * TODO: {@link #enqueueActivityJob} 以外のメソッドを持たないインターフェースを用意する
@@ -16,7 +16,7 @@ public final class ActivityJobWorker {
         handler.sendMessage(message);
     }
 
-    public void setActivity(Activity activity) {
+    public void setActivity(ActionBarActivity activity) {
         this.handler.setActivity(activity);
     }
 

@@ -2,11 +2,13 @@ package circlebinder.common.system;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.app.Tripper;
 import net.ichigotake.common.widget.SingleLineTextTripAdapter;
 import net.ichigotake.common.worker.ActivityJob;
@@ -43,9 +45,9 @@ public final class AboutFragment extends BaseFragment implements Legacy {
                     public void trip() {
                         worker.enqueueActivityJob(new ActivityJob() {
                             @Override
-                            public void run(Activity value) {
+                            public void run(ActionBarActivity value) {
                                 new FragmentTripper(
-                                        value.getFragmentManager(),
+                                        value.getSupportFragmentManager(),
                                         OpenSourceLicenseCreditFragment.factory()
                                 ).trip();                            }
                         });
@@ -58,7 +60,7 @@ public final class AboutFragment extends BaseFragment implements Legacy {
     @Override
     public void onResume() {
         super.onResume();
-        getActivity().getActionBar().setTitle(R.string.common_about);
+        ActivityNavigation.getSupportActionBar(getActivity()).setTitle(R.string.common_about);
     }
 
     @Override

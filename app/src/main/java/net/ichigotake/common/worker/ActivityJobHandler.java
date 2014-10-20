@@ -2,6 +2,7 @@ package net.ichigotake.common.worker;
 
 import android.app.Activity;
 import android.os.Message;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 
 import java.lang.ref.WeakReference;
@@ -13,9 +14,9 @@ import java.lang.ref.WeakReference;
  */
 class ActivityJobHandler extends AbstractJobHandler {
 
-    private WeakReference<Activity> activity;
+    private WeakReference<ActionBarActivity> activity;
 
-    public void setActivity(Activity activity) {
+    public void setActivity(ActionBarActivity activity) {
         this.activity = new WeakReference<>(activity);
     }
 

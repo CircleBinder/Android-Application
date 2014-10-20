@@ -1,6 +1,6 @@
 package circlebinder.common.app;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 
 import net.ichigotake.common.view.inputmethod.SoftInput;
 

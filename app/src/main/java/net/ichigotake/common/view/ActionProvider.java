@@ -3,7 +3,7 @@ package net.ichigotake.common.view;
 import android.content.Context;
 import android.view.View;
 
-public final class ActionProvider extends android.view.ActionProvider {
+public final class ActionProvider extends android.support.v4.view.ActionProvider {
 
     public static interface OnClickListener {
         void onClick();

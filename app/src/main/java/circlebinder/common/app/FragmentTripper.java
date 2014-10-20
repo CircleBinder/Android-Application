@@ -1,6 +1,6 @@
 package circlebinder.common.app;
 
-import android.app.FragmentManager;
+import android.support.v4.app.FragmentManager;
 
 import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.app.FragmentTransit;

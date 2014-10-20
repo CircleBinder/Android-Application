@@ -1,19 +1,22 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Holo.Light">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/AppActionBar</item>
         <item name="android:windowContentOverlay">@null</item>
+        <item name="actionBarStyle">@style/AppActionBar</item>
     </style>
 
-    <style name="AppNoActionBarTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <style name="AppNoActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
     </style>
 
-    <style name="AppActionBar" parent="android:Widget.Holo.Light.ActionBar.Solid.Inverse">
+    <style name="AppActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@color/app_theme_base</item>
         <item name="android:backgroundSplit">@color/app_theme_base</item>
         <item name="android:windowContentOverlay">@null</item>
+        <item name="background">@color/app_theme_base</item>
+        <item name="backgroundSplit">@color/app_theme_base</item>
     </style>
 
     <style name="CommonSectionHeaderLabel">

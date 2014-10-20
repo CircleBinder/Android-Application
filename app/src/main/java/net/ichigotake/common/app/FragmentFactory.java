@@ -1,6 +1,6 @@
 package net.ichigotake.common.app;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 
 public interface FragmentFactory<T extends Fragment> {
 

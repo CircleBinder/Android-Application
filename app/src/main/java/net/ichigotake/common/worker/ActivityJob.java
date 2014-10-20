@@ -1,7 +1,7 @@
 package net.ichigotake.common.worker;
 
-import android.app.Activity;
+import android.support.v7.app.ActionBarActivity;
 
-public interface ActivityJob extends Job<Activity> {
+public interface ActivityJob extends Job<ActionBarActivity> {
 
 }

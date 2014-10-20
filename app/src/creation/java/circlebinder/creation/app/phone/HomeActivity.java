@@ -1,17 +1,18 @@
 package circlebinder.creation.app.phone;
 
-import android.app.ActionBar;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.dmitriy.tarasov.android.intents.IntentUtils;
 
+import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.content.RawResources;
 import net.ichigotake.common.view.MenuPresenter;
 
@@ -43,7 +44,7 @@ public final class HomeActivity extends BaseActivity implements Legacy {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.creation_activity_home);
-        getActionBar().setDisplayShowTitleEnabled(false);
+        ActivityNavigation.getSupportActionBar(this).setDisplayShowTitleEnabled(false);
         orientationConfig(getResources().getConfiguration());
 
         checklistListView = (ChecklistListView) findViewById(R.id.creation_activity_home_fragment_content);
@@ -63,7 +64,7 @@ public final class HomeActivity extends BaseActivity implements Legacy {
     }
 
     private void orientationConfig(Configuration configuration) {
-        ActionBar actionBar = getActionBar();
+        ActionBar actionBar = ActivityNavigation.getSupportActionBar(this);
         if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             actionBar.setDisplayShowTitleEnabled(true);
             findViewById(R.id.creation_activity_home_header_event_name).setVisibility(View.GONE);
@@ -76,31 +77,32 @@ public final class HomeActivity extends BaseActivity implements Legacy {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuPresenter presenter = new MenuPresenter(menu, getMenuInflater());
-        presenter.inflate(R.menu.event_description, R.id.menu_event_description)
-                .setActionProvider(new ActivityTripActionProvider(
+        MenuItem descriptionItem = presenter.inflate(R.menu.event_description, R.id.menu_event_description);
+        presenter.setActionProvider(descriptionItem, new ActivityTripActionProvider(
                         this, EnjoyCreationActivity.createIntent(this)
                 ));
         try {
             String eventMapGeoUrl = new RawResources(getResources()).getText(R.raw.event_map_geo_url).get(0);
-            presenter.inflate(R.menu.event_map, R.id.menu_event_map)
-                    .setActionProvider(
-                            new ActivityTripActionProvider(this, IntentUtils.openLink(eventMapGeoUrl)))
-                    .setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+            MenuItem mapItem = presenter.inflate(R.menu.event_map, R.id.menu_event_map);
+            presenter.setActionProvider(
+                    mapItem,
+                    new ActivityTripActionProvider(this, IntentUtils.openLink(eventMapGeoUrl)));
+            presenter.setShowAsAction(mapItem, MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        presenter.inflate(R.menu.wish_me_luck, R.id.menu_wish_me_luck)
-                .setActionProvider(
-                        new ActivityTripActionProvider(this, ContactActivity.createIntent(this))
-                );
-        presenter.inflate(R.menu.change_log, R.id.menu_change_log)
-                .setActionProvider(
-                        new ActivityTripActionProvider(this, ChangeLogActivity.createIntent(this))
-                );
-        presenter.inflate(R.menu.about_application, R.id.menu_about_application)
-                .setActionProvider(
-                        new ActivityTripActionProvider(this, AboutActivity.createIntent(this))
-                );
+        MenuItem feedbackItem = presenter.inflate(R.menu.wish_me_luck, R.id.menu_wish_me_luck);
+        presenter.setActionProvider(
+                feedbackItem,
+                new ActivityTripActionProvider(this, ContactActivity.createIntent(this)));
+        MenuItem changeLogItem = presenter.inflate(R.menu.change_log, R.id.menu_change_log);
+        presenter.setActionProvider(
+                changeLogItem,
+                new ActivityTripActionProvider(this, ChangeLogActivity.createIntent(this)));
+        MenuItem aboutApplicationItem = presenter.inflate(R.menu.about_application, R.id.menu_about_application);
+        presenter.setActionProvider(
+                aboutApplicationItem,
+                new ActivityTripActionProvider(this, AboutActivity.createIntent(this)));
         return super.onCreateOptionsMenu(menu);
     }
 

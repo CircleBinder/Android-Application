@@ -1,6 +1,5 @@
 package circlebinder.common.app.phone;
 
-import android.app.ActionBar;
 import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +9,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -51,8 +51,7 @@ public final class CircleDetailActivity extends BaseActivity
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActionBar actionBar = getActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        ActionBar actionBar = ActivityNavigation.getSupportActivity(this).getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -99,11 +98,14 @@ public final class CircleDetailActivity extends BaseActivity
     }
 
     private void orientationConfig(Configuration configuration) {
+        ActionBar actionBar = ActivityNavigation.getSupportActionBar(this);
         if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            getActionBar().setDisplayShowCustomEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowCustomEnabled(true);
             inlineHeaderViewHolder.setVisibility(View.GONE);
         } else {
-            getActionBar().setDisplayShowCustomEnabled(false);
+            actionBar.setDisplayHomeAsUpEnabled(false);
+            actionBar.setDisplayShowCustomEnabled(false);
             inlineHeaderViewHolder.setVisibility(View.VISIBLE);
         }
     }
@@ -120,7 +122,7 @@ public final class CircleDetailActivity extends BaseActivity
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                new FragmentTripper(getFragmentManager(), CircleDetailFragment.factory(circle))
+                new FragmentTripper(getSupportFragmentManager(), CircleDetailFragment.factory(circle))
                         .setAddBackStack(false)
                         .setLayoutId(R.id.common_activity_circle_detail_item)
                         .trip();

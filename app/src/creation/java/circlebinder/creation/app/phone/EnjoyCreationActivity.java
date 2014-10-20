@@ -23,15 +23,15 @@ public final class EnjoyCreationActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        ActivityNavigation.setDisplayHomeAsUpEnabled(this);
         setContentView(R.layout.creation_activity_enjoy_creation);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuPresenter presenter = new MenuPresenter(menu, getMenuInflater());
-        presenter.inflate(R.menu.open_browser, R.id.menu_open_browser)
-                .setActionProvider(new ActivityTripActionProvider(
+        MenuItem openBrowserItem = presenter.inflate(R.menu.open_browser, R.id.menu_open_browser);
+        presenter.setActionProvider(openBrowserItem, new ActivityTripActionProvider(
                         this, WebViewActivity.createIntent(this, getString(R.string.app_creation_homepage_top))
                 ));
         return super.onCreateOptionsMenu(menu);
