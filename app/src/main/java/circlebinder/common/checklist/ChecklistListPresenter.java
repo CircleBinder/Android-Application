@@ -7,7 +7,6 @@ import android.widget.ListView;
 import net.ichigotake.common.app.ActivityTripper;
 
 import circlebinder.common.app.phone.ChecklistActivity;
-import circlebinder.common.app.phone.CircleSearchActivity;
 import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -26,10 +25,6 @@ public final class ChecklistListPresenter {
 
     public void listViewAttached(ListView listVIew) {
         listVIew.setAdapter(this.adapter);
-    }
-
-    public void headerClicked() {
-        new ActivityTripper(context, CircleSearchActivity.createIntent(context)).trip();
     }
 
     public void itemClicked(Checklist item) {

@@ -12,19 +12,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="48dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         >
+         <ImageView
+            android:id="@+id/common_checklist_item_label_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="8dp"
+            android:layout_marginRight="@dimen/common_spacer_middle"
+            tools:src="@drawable/common_ic_checklist_blue"
+            />
 
         <TextView
             android:id="@+id/common_checklist_item_label_name"
+            android:layout_toRightOf="@+id/common_checklist_item_label_icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:padding="16dp"
+            android:layout_centerVertical="true"
             android:textSize="@dimen/common_font_subhead"
             android:ellipsize="end"
             android:maxLines="1"
-            android:drawablePadding="@dimen/common_spacer_x_small"
-            android:drawableLeft="@drawable/common_ic_checklist_blue"
             tools:text="お気に入り"
             />
 

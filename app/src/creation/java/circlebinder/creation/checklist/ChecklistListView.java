@@ -40,15 +40,9 @@ public final class ChecklistListView extends FrameLayout {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View container = inflater.inflate(R.layout.creation_view_checklist_list, this, true);
         View headerView = inflater.inflate(R.layout.creation_enjoy_creation_search_guidance, this, false);
-        headerView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                presenter.headerClicked();
-            }
-        });
         ListView checklistsView = (ListView) container.findViewById(R.id.create_view_checklist_list);
         presenter.listViewAttached(checklistsView);
-        checklistsView.addHeaderView(headerView);
+        checklistsView.addHeaderView(headerView, null, false);
         checklistsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

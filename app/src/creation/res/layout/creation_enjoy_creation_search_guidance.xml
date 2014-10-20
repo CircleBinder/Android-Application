@@ -4,17 +4,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="12dp"
-    android:paddingRight="12dp"
+    android:paddingLeft="72dp"
     >
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="72dp"
+        android:layout_height="48dp"
         android:gravity="center_vertical"
-        android:drawablePadding="@dimen/common_spacer_xx_small"
-        android:drawableLeft="@drawable/ic_action_dark_search"
-        android:text="@string/common_circle_search"
+        android:text="お気に入り"
         />
 
 </LinearLayout>

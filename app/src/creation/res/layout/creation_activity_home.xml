@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/creation_activity_home_header_event_name"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="72dp"
         android:paddingLeft="@dimen/common_baseline_padding"
         android:paddingRight="@dimen/common_baseline_padding"
         android:background="@color/app_theme_base"
@@ -23,6 +23,14 @@
         android:layout_below="@+id/creation_activity_home_header_event_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        />
+
+    <net.ichigotake.common.view.FloatingActionButton
+        android:id="@+id/creation_activity_home_search"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginLeft="16dp"
         />
 
 </RelativeLayout>

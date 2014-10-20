@@ -25,9 +25,7 @@ public final class ChecklistAdapter extends ArrayAdapter<Checklist, ChecklistIte
     @Override
     public void bindView(int position, Checklist item, ChecklistItemViewHolder holder) {
         holder.getLabelName().setText(item.getName());
-        holder.getLabelName().setCompoundDrawablesWithIntrinsicBounds(
-                item.getChecklistColor().getDrawableResource(), 0, 0, 0
-        );
+        holder.getChecklist().setImageResource(item.getChecklistColor().getDrawableResource());
 
         int circleSize = item.getCircleOverview().size();
         for (int i=0, size=holder.getCircles().size(); i<size; i++) {

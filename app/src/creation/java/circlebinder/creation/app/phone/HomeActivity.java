@@ -1,5 +1,6 @@
 package circlebinder.creation.app.phone;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +14,9 @@ import android.view.View;
 import com.dmitriy.tarasov.android.intents.IntentUtils;
 
 import net.ichigotake.common.app.ActivityNavigation;
+import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.content.RawResources;
+import net.ichigotake.common.view.FloatingActionButton;
 import net.ichigotake.common.view.MenuPresenter;
 
 import java.io.IOException;
@@ -25,6 +28,7 @@ import circlebinder.common.app.BaseActivity;
 import circlebinder.R;
 import circlebinder.common.app.BroadcastEvent;
 import circlebinder.common.app.phone.AboutActivity;
+import circlebinder.common.app.phone.CircleSearchActivity;
 import circlebinder.common.app.phone.ContactActivity;
 import circlebinder.creation.checklist.ChecklistListView;
 
@@ -44,9 +48,17 @@ public final class HomeActivity extends BaseActivity implements Legacy {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.creation_activity_home);
-        ActivityNavigation.getSupportActionBar(this).setDisplayShowTitleEnabled(false);
         orientationConfig(getResources().getConfiguration());
 
+        FloatingActionButton searchView = (FloatingActionButton) findViewById(R.id.creation_activity_home_search);
+        searchView.setImageResource(R.drawable.ic_action_dark_search);
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Activity activity = HomeActivity.this;
+                new ActivityTripper(activity, CircleSearchActivity.createIntent(activity)).trip();
+            }
+        });
         checklistListView = (ChecklistListView) findViewById(R.id.creation_activity_home_fragment_content);
         broadcastReceiver = new BroadcastReceiver() {
             @Override
