@@ -8,8 +8,8 @@ import android.widget.TextView;
 
 import net.ichigotake.common.widget.ArrayAdapter;
 
-import circlebinder.common.event.Circle;
 import circlebinder.R;
+import circlebinder.common.event.Circle;
 
 public final class ChecklistAdapter extends ArrayAdapter<Checklist, ChecklistItemViewHolder> {
 

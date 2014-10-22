@@ -1,12 +1,15 @@
 package circlebinder.common.checklist;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.ListView;
+import android.view.View;
+import android.widget.AbsListView;
 
 import net.ichigotake.common.app.ActivityTripper;
 
 import circlebinder.common.app.phone.ChecklistActivity;
+import circlebinder.common.app.phone.CircleSearchActivity;
 import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -23,7 +26,7 @@ public final class ChecklistListPresenter {
         this.adapter = new ChecklistAdapter(context);
     }
 
-    public void listViewAttached(ListView listVIew) {
+    public void listViewAttached(AbsListView listVIew) {
         listVIew.setAdapter(this.adapter);
     }
 
@@ -46,4 +49,7 @@ public final class ChecklistListPresenter {
         }
     }
 
+    public void headerClicked() {
+        new ActivityTripper(context, CircleSearchActivity.createIntent(context)).trip();
+    }
 }

@@ -4,9 +4,11 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
-import android.widget.ListView;
+
+import com.felipecsl.abslistviewhelper.library.AbsListViewHelper;
 
 import circlebinder.R;
 import circlebinder.common.checklist.Checklist;
@@ -39,10 +41,17 @@ public final class ChecklistListView extends FrameLayout {
         super.onFinishInflate();
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View container = inflater.inflate(R.layout.creation_view_checklist_list, this, true);
-        View headerView = inflater.inflate(R.layout.creation_enjoy_creation_search_guidance, this, false);
-        ListView checklistsView = (ListView) container.findViewById(R.id.create_view_checklist_list);
+        View headerView = container.findViewById(R.id.creation_view_checklist_list_header);
+        headerView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.headerClicked();
+            }
+        });
+        AbsListView checklistsView = (AbsListView) container.findViewById(R.id.create_view_checklist_list);
         presenter.listViewAttached(checklistsView);
-        checklistsView.addHeaderView(headerView, null, false);
+        new AbsListViewHelper(checklistsView)
+                .setHeaderView(headerView);
         checklistsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
