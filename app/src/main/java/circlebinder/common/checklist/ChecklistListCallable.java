@@ -26,16 +26,11 @@ final class ChecklistListCallable implements Callable<List<Checklist>> {
                             .build()
             );
             cursor.moveToFirst();
-            for (int i=0; i<4; i++) {
-                if (cursor.move(i)) {
-                    circleList.add(converter.create(cursor));
-                } else {
-                    break;
-                }
+            if (cursor.getCount() > 0) {
+                circleList.add(converter.create(cursor));
             }
-            if (!circleList.isEmpty()) {
-                checklistList.add(new Checklist(circleList, checklistColor));
-            }
+            cursor.close();
+            checklistList.add(new Checklist(circleList, checklistColor));
         }
 
         return new CopyOnWriteArrayList<>(checklistList);

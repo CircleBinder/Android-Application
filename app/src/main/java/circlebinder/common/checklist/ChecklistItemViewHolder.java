@@ -11,11 +11,13 @@ import circlebinder.R;
 
 public final class ChecklistItemViewHolder {
 
+    private final View container;
     private final TextView labelName;
     private final ImageView checklist;
     private final List<TextView> circles;
 
     public ChecklistItemViewHolder(View convertView) {
+        container = convertView;
         labelName = (TextView) convertView.findViewById(R.id.common_checklist_item_label_name);
         checklist = (ImageView) convertView.findViewById(R.id.common_checklist_item_label_icon);
         circles = new CopyOnWriteArrayList<>();
@@ -23,15 +25,10 @@ public final class ChecklistItemViewHolder {
         circles.add((TextView)
                 convertView.findViewById(R.id.common_checklist_item_circle_label1).findViewById(circleItemLabelId)
         );
-        circles.add((TextView)
-                convertView.findViewById(R.id.common_checklist_item_circle_label2).findViewById(circleItemLabelId)
-        );
-        circles.add((TextView)
-                convertView.findViewById(R.id.common_checklist_item_circle_label3).findViewById(circleItemLabelId)
-        );
-        circles.add((TextView)
-                convertView.findViewById(R.id.common_checklist_item_circle_label4).findViewById(circleItemLabelId)
-        );
+    }
+
+    public View getContainer() {
+        return container;
     }
 
     public TextView getLabelName() {

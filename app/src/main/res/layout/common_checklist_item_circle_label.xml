@@ -9,13 +9,11 @@
     <TextView
         android:id="@+id/common_checklist_item_circle_label"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        android:textSize="@dimen/common_font_body"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/common_font_caption"
+        android:textColor="#ffffff"
         android:ellipsize="end"
         android:maxLines="1"
-        android:alpha="0.5"
         tools:text="あ-01a"
         />
 
