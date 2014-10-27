@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import net.ichigotake.common.view.inputmethod.SoftInput;
 import net.ichigotake.common.widget.OnItemClickEventListener;
@@ -16,7 +17,7 @@ import circlebinder.common.table.EventCircleTable;
 
 public class ChecklistSelectorView extends FrameLayout {
 
-    private View checklistColorView;
+    private TextView checklistColorView;
     private ChecklistPopupSelector selector;
     private View anchor;
     private Circle circle;
@@ -50,13 +51,13 @@ public class ChecklistSelectorView extends FrameLayout {
             return;
         }
         View view = LayoutInflater.from(getContext()).inflate(R.layout.common_view_checklist_selector, this, true);
-        this.checklistColorView = view.findViewById(R.id.common_view_checklist_selector_label);
+        this.checklistColorView = (TextView) view.findViewById(R.id.common_view_checklist_selector_label);
         this.selector = new ChecklistPopupSelector(getContext());
         this.anchor = checklistColorView;
         checklistColorView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (selector.isShowing()) {
+                if (circle == null || selector.isShowing()) {
                     selector.dismiss();
                 } else {
                     selector.show(anchor);
@@ -66,7 +67,7 @@ public class ChecklistSelectorView extends FrameLayout {
         selector.setOnItemClickListener(new OnItemClickEventListener<ChecklistColor>() {
             @Override
             public void onItemClick(ChecklistColor item) {
-                updateChecklistColor(circle, item);
+                updateChecklistColor(item, circle);
                 EventCircleTable.setChecklist(circle, item);
                 getContext().sendBroadcast(BroadcastEvent.createIntent());
                 selector.dismiss();
@@ -80,14 +81,24 @@ public class ChecklistSelectorView extends FrameLayout {
 
     public void setCircle(Circle circle) {
         this.circle = circle;
-        updateChecklistColor(circle, circle.getChecklistColor());
+        updateChecklistColor(circle.getChecklistColor(), circle);
     }
 
-    private void updateChecklistColor(Circle circle, ChecklistColor checklistColor) {
+    public void setChecklist(ChecklistColor color) {
+        checklistColorView.setBackgroundResource(color.getDrawableResource());
+        checklistColorView.setText("" + color.getId());
+    }
+
+    private void updateChecklistColor(ChecklistColor checklistColor, Circle circle) {
+        setChecklist(checklistColor);
         if (circle == null) {
             return;
         }
-        checklistColorView.setBackgroundResource(checklistColor.getDrawableResource());
+        if (ChecklistColor.isChecklist(checklistColor)) {
+            checklistColorView.setText("" + checklistColor.getId());
+        } else {
+            checklistColorView.setText("");
+        }
     }
 
     public void showPopup() {

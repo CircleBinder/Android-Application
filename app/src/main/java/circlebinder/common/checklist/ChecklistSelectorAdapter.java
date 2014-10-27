@@ -10,26 +10,26 @@ import net.ichigotake.common.widget.ArrayAdapter;
 import circlebinder.R;
 
 
-final class ChecklistSelectorAdapter extends ArrayAdapter<ChecklistColor, SelectorViewHolder> {
+final class ChecklistSelectorAdapter extends ArrayAdapter<ChecklistColor, ChecklistSelectorViewHolder> {
 
     public ChecklistSelectorAdapter(Context context) {
         super(context);
     }
 
     @Override
-    public SelectorViewHolder generateTag(int position, ChecklistColor item, View convertView) {
-        return new SelectorViewHolder(convertView);
+    public ChecklistSelectorViewHolder generateTag(int position, ChecklistColor item, View convertView) {
+        return new ChecklistSelectorViewHolder(convertView);
     }
 
     @Override
     public View generateView(int position, ChecklistColor item, LayoutInflater inflater, ViewGroup parent) {
-        return inflater.inflate(R.layout.common_spinner_dropdown_item, parent, false);
+        return inflater.inflate(R.layout.common_checklist_selector_dropdown_item, parent, false);
     }
 
     @Override
-    public void bindView(int position, View convertView, ChecklistColor item, SelectorViewHolder tag) {
-        tag.getName().setText(item.getName());
-        tag.getIcon().setImageResource(item.getDrawableResource());
+    public void bindView(int position, View convertView, ChecklistColor item, ChecklistSelectorViewHolder tag) {
+        tag.getName().setText(item.getId() + " " + item.getName());
+        tag.getIcon().setChecklist(item);
     }
 
 }
