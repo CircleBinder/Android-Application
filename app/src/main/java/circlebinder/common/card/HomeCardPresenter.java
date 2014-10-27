@@ -5,6 +5,9 @@ import android.widget.AbsListView;
 
 import net.ichigotake.common.app.ActivityTripper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import circlebinder.common.app.phone.CircleSearchActivity;
 import rx.Observable;
 import rx.Subscription;
@@ -15,11 +18,13 @@ public final class HomeCardPresenter {
 
     private final Context context;
     private final HomeCardAdapter adapter;
+    private final List<HomeCard> cards;
     private Subscription subscriptions;
 
     public HomeCardPresenter(Context context) {
         this.context = context;
         this.adapter = new HomeCardAdapter(context);
+        this.cards = new ArrayList<>();
     }
 
     public void listViewAttached(AbsListView listVIew) {
@@ -32,19 +37,24 @@ public final class HomeCardPresenter {
 
     public void reload() {
         destroy();
-        subscriptions = Observable.create(new HomeCardSubscriber())
+        subscriptions = Observable.create(new HomeCardSubscriber(cards))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new HomeCardObserver(adapter));
     }
 
     public void destroy() {
-        if (subscriptions != null && subscriptions.isUnsubscribed()) {
+        if (subscriptions != null && !subscriptions.isUnsubscribed()) {
             subscriptions.unsubscribe();
         }
     }
 
     public void headerClicked() {
         new ActivityTripper(context, CircleSearchActivity.createIntent(context)).trip();
+    }
+
+    public void addItem(HomeCard item) {
+        cards.add(item);
+        adapter.notifyDataSetChanged();
     }
 }

@@ -4,6 +4,7 @@
     <color name="app_theme_base">#70b025</color>
 
     <color name="common_card_item_background">#ffffff</color>
+    <color name="common_card_twitter_background">#55ACEE</color>
     <color name="common_card_container_background">#e0e0e0</color>
     <color name="common_card_container_background_selector">#40eeeeee</color>
 

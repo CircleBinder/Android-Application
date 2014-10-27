@@ -59,6 +59,10 @@ public final class HomeCardListView extends FrameLayout {
         reload();
     }
 
+    public void addItem(HomeCard item) {
+        presenter.addItem(item);
+    }
+
     public void reload() {
         presenter.reload();
     }

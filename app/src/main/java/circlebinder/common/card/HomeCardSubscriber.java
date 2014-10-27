@@ -7,11 +7,17 @@ import rx.Subscriber;
 
 final class HomeCardSubscriber implements Observable.OnSubscribe<List<HomeCard>> {
 
+    private final List<HomeCard> cards;
+
+    HomeCardSubscriber(List<HomeCard> cards) {
+        this.cards = cards;
+    }
+
     @Override
     public void call(Subscriber<? super List<HomeCard>> subscriber) {
         try {
-            List<HomeCard> checklists = new ChecklistCardCallable().call();
-            subscriber.onNext(checklists);
+            cards.addAll(0, new ChecklistCardCallable().call());
+            subscriber.onNext(cards);
             subscriber.onCompleted();
         } catch (Exception e) {
             subscriber.onError(e);

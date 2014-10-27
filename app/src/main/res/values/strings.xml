@@ -15,7 +15,8 @@
     <string name="common_action_reload">更新</string>
     <string name="common_action_share">シェアする</string>
     <string name="common_enjoy_event">イベントを楽しむ</string>
-    <string name="common_open_event_map">会場周辺のマップ</string>
+    <string name="common_open_event_location">会場周辺マップ</string>
+    <string name="common_event_official_site">公式サイト</string>
     <string name="common_event_block_label">%s ブロック</string>
     <string name="common_circle_search">出展サークルを探す</string>
     <string name="common_circle_link_homepage">ホームページ</string>
