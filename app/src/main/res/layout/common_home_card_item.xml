@@ -12,31 +12,11 @@
     tools:background="@color/common_checklist_blue"
     >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        android:gravity="center_horizontal"
-        android:visibility="gone"
-        >
-         <ImageView
-            android:id="@+id/common_checklist_item_label_icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:padding="8dp"
-            android:visibility="gone"
-            tools:src="@drawable/common_ic_checklist_blue"
-            />
-
-    </RelativeLayout>
-
     <TextView
-        android:id="@+id/common_checklist_item_label_name"
-        android:layout_toRightOf="@+id/common_checklist_item_label_icon"
+        android:id="@+id/common_home_card_item_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:layout_centerVertical="true"
         android:textColor="#ffffff"
         android:textSize="@dimen/common_font_caption"
         android:textStyle="bold"
@@ -55,11 +35,15 @@
         android:background="#ffffff"
         />
 
-    <include
-        layout="@layout/common_checklist_item_circle_label"
-        android:id="@+id/common_checklist_item_circle_label1"
+    <TextView
+        android:id="@+id/common_home_card_item_caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/common_font_caption"
+        android:textColor="#ffffff"
+        android:ellipsize="end"
+        android:maxLines="1"
+        tools:text="あ-01a ハローコトリン"
         />
 
  </LinearLayout>

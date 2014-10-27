@@ -27,7 +27,7 @@ final class ChecklistSelectorAdapter extends ArrayAdapter<ChecklistColor, Select
     }
 
     @Override
-    public void bindView(int position, ChecklistColor item, SelectorViewHolder tag) {
+    public void bindView(int position, View convertView, ChecklistColor item, SelectorViewHolder tag) {
         tag.getName().setText(item.getName());
         tag.getIcon().setImageResource(item.getDrawableResource());
     }

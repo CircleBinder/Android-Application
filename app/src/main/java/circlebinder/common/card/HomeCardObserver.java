@@ -1,14 +1,14 @@
-package circlebinder.common.checklist;
+package circlebinder.common.card;
 
 import java.util.List;
 
 import rx.Observer;
 
-final class ChecklistListObserver implements Observer<List<Checklist>> {
+final class HomeCardObserver implements Observer<List<HomeCard>> {
 
-    private final ChecklistAdapter adapter;
+    private final HomeCardAdapter adapter;
 
-    public ChecklistListObserver(ChecklistAdapter adapter) {
+    public HomeCardObserver(HomeCardAdapter adapter) {
         this.adapter = adapter;
     }
 
@@ -23,7 +23,7 @@ final class ChecklistListObserver implements Observer<List<Checklist>> {
     }
 
     @Override
-    public void onNext(List<Checklist> checklists) {
+    public void onNext(List<HomeCard> checklists) {
         adapter.clear();
         adapter.addAll(checklists);
     }

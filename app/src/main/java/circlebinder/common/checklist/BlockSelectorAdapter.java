@@ -27,7 +27,7 @@ public final class BlockSelectorAdapter extends ArrayAdapter<Block, SelectorView
     }
 
     @Override
-    public void bindView(int position, Block item, SelectorViewHolder tag) {
+    public void bindView(int position, View convertView, Block item, SelectorViewHolder tag) {
         tag.getName().setText(item.getName());
         tag.getIcon().setVisibility(View.GONE);
     }

@@ -1,46 +1,41 @@
-package circlebinder.common.checklist;
+package circlebinder.common.card;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.view.View;
 import android.widget.AbsListView;
 
 import net.ichigotake.common.app.ActivityTripper;
 
-import circlebinder.common.app.phone.ChecklistActivity;
 import circlebinder.common.app.phone.CircleSearchActivity;
 import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public final class ChecklistListPresenter {
+public final class HomeCardPresenter {
 
     private final Context context;
-    private final ChecklistAdapter adapter;
+    private final HomeCardAdapter adapter;
     private Subscription subscriptions;
 
-    public ChecklistListPresenter(Context context) {
+    public HomeCardPresenter(Context context) {
         this.context = context;
-        this.adapter = new ChecklistAdapter(context);
+        this.adapter = new HomeCardAdapter(context);
     }
 
     public void listViewAttached(AbsListView listVIew) {
         listVIew.setAdapter(this.adapter);
     }
 
-    public void itemClicked(Checklist item) {
-        Intent nextIntent = ChecklistActivity.createIntent(context, item.getChecklistColor());
-        new ActivityTripper(context, nextIntent).trip();
+    public void itemClicked(HomeCard item) {
+        new ActivityTripper(context, item.createTransitIntent(context)).trip();
     }
 
     public void reload() {
         destroy();
-        subscriptions = Observable.create(new ChecklistListSubscriber())
+        subscriptions = Observable.create(new HomeCardSubscriber())
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ChecklistListObserver(adapter));
+                .subscribe(new HomeCardObserver(adapter));
     }
 
     public void destroy() {

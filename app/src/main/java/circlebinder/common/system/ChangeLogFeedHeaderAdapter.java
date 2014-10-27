@@ -48,7 +48,7 @@ public final class ChangeLogFeedHeaderAdapter
     }
 
     @Override
-    protected void bindView(int position, ChangeLogFeed item, ChangeLogFeedViewHolder tag) {
+    protected void bindView(int position, View convertView, ChangeLogFeed item, ChangeLogFeedViewHolder tag) {
         tag.getLabel().setText(item.getTitle());
     }
 

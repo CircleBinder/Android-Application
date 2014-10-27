@@ -22,7 +22,7 @@ public final class OpenSourceLicenseCreditAdapter
     }
 
     @Override
-    protected void bindView(int position, OpenSourceLicenseCredit item, OpenSourceLicenseCreditViewHolder tag) {
+    protected void bindView(int position, View convertView, OpenSourceLicenseCredit item, OpenSourceLicenseCreditViewHolder tag) {
         tag.getName().setText(item.getName());
         tag.getCopyright().setText("Copyright " + item.getSince() + " " + item.getAuthor());
         tag.getLicenseBody().setText(item.getLicenseBody());

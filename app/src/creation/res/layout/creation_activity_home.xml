@@ -18,7 +18,7 @@
         android:gravity="center_vertical"
         />
 
-    <circlebinder.creation.checklist.ChecklistListView
+    <circlebinder.common.card.HomeCardListView
         android:id="@+id/creation_activity_home_fragment_content"
         android:layout_below="@+id/creation_activity_home_header_event_name"
         android:layout_width="match_parent"

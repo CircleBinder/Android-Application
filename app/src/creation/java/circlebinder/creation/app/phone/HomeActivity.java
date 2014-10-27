@@ -26,7 +26,7 @@ import circlebinder.R;
 import circlebinder.common.app.BroadcastEvent;
 import circlebinder.common.app.phone.AboutActivity;
 import circlebinder.common.app.phone.ContactActivity;
-import circlebinder.creation.checklist.ChecklistListView;
+import circlebinder.common.card.HomeCardListView;
 
 /**
  * 通常起動時のファーストビュー
@@ -38,7 +38,7 @@ public final class HomeActivity extends BaseActivity implements Legacy {
     }
 
     private BroadcastReceiver broadcastReceiver;
-    private ChecklistListView checklistListView;
+    private HomeCardListView homeCardListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +46,11 @@ public final class HomeActivity extends BaseActivity implements Legacy {
         setContentView(R.layout.creation_activity_home);
         orientationConfig(getResources().getConfiguration());
 
-        checklistListView = (ChecklistListView) findViewById(R.id.creation_activity_home_fragment_content);
+        homeCardListView = (HomeCardListView) findViewById(R.id.creation_activity_home_fragment_content);
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                checklistListView.reload();
+                homeCardListView.reload();
             }
         };
         registerReceiver(broadcastReceiver, BroadcastEvent.createIntentFilter());

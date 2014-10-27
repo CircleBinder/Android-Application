@@ -1,4 +1,4 @@
-package circlebinder.creation.checklist;
+package circlebinder.common.card;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -11,29 +11,27 @@ import android.widget.FrameLayout;
 import com.felipecsl.abslistviewhelper.library.AbsListViewHelper;
 
 import circlebinder.R;
-import circlebinder.common.checklist.Checklist;
-import circlebinder.common.checklist.ChecklistListPresenter;
 
-public final class ChecklistListView extends FrameLayout {
+public final class HomeCardListView extends FrameLayout {
 
-    private final ChecklistListPresenter presenter;
+    private final HomeCardPresenter presenter;
 
     @SuppressWarnings("unused") // Public API
-    public ChecklistListView(Context context) {
+    public HomeCardListView(Context context) {
         super(context);
-        this.presenter = new ChecklistListPresenter(getContext());
+        this.presenter = new HomeCardPresenter(getContext());
     }
 
     @SuppressWarnings("unused") // Public API
-    public ChecklistListView(Context context, AttributeSet attrs) {
+    public HomeCardListView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.presenter = new ChecklistListPresenter(getContext());
+        this.presenter = new HomeCardPresenter(getContext());
     }
 
     @SuppressWarnings("unused") // Public API
-    public ChecklistListView(Context context, AttributeSet attrs, int defStyle) {
+    public HomeCardListView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        this.presenter = new ChecklistListPresenter(getContext());
+        this.presenter = new HomeCardPresenter(getContext());
     }
 
     @Override
@@ -55,7 +53,7 @@ public final class ChecklistListView extends FrameLayout {
         checklistsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                presenter.itemClicked((Checklist) parent.getItemAtPosition(position));
+                presenter.itemClicked((HomeCard) parent.getItemAtPosition(position));
             }
         });
         reload();
