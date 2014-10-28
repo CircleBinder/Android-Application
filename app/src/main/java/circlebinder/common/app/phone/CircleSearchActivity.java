@@ -1,10 +1,10 @@
 package circlebinder.common.app.phone;
 
-import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -92,7 +92,7 @@ public final class CircleSearchActivity extends BaseActivity {
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                ContentReloader reloader = (ContentReloader) getFragmentManager()
+                ContentReloader reloader = (ContentReloader) getSupportFragmentManager()
                         .findFragmentById(R.id.common_activity_circle_search_circles_container);
                 if (reloader != null) {
                     reloader.reload();
@@ -166,10 +166,8 @@ public final class CircleSearchActivity extends BaseActivity {
     }
 
     private void setSearchOption(CircleSearchOption searchOption) {
-        Fragment fragment = getFragmentManager().findFragmentById(R.id.common_activity_circle_search_circles_container);
-        if (fragment != null && fragment.isResumed() && fragment instanceof OnCircleSearchOptionListener) {
-            ((OnCircleSearchOptionListener)fragment).setSearchOption(searchOption);
-        }
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.common_activity_circle_search_circles_container);
+        ((OnCircleSearchOptionListener)fragment).setSearchOption(searchOption);
     }
 
     private void showForm() {

@@ -55,7 +55,7 @@ public final class ChecklistActivity extends BaseActivity {
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                ContentReloader reloader = (ContentReloader) getFragmentManager()
+                ContentReloader reloader = (ContentReloader) getSupportFragmentManager()
                         .findFragmentById(R.id.common_activity_checklist_container);
                 if (reloader != null) {
                     reloader.reload();
