@@ -1,5 +1,5 @@
 /build
 /DEPLOYGATE
 /src/*/**/_*.xml
-/circlebinder.creation.debug.android
+/circlebinder.*.android
 
