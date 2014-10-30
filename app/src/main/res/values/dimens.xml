@@ -12,6 +12,7 @@
     <dimen name="common_spacer_xxx_large" tools:ignore="UnusedResources">32dp</dimen>
     <dimen name="common_divider_height" tools:ignore="UnusedResources">1dp</dimen>
 
+    <dimen name="common_home_card_header_height">184dp</dimen>
     <dimen name="common_card_container_divider_height" tools:ignore="UnusedResources">1dp</dimen>
 
     <!-- SEE ALSO: http://www.google.com/design/spec/style/typography.html -->

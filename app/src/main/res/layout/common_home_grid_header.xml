@@ -7,7 +7,7 @@
     <FrameLayout
         android:layout_gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="108dp"
+        android:layout_height="@dimen/common_home_card_header_height"
         android:background="@color/app_color_primary"
         >
 
