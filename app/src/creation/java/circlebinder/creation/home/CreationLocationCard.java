@@ -34,7 +34,7 @@ public final class CreationLocationCard implements HomeCard{
 
     @Override
     public int getBackgroundResource() {
-        return R.color.app_theme_base;
+        return R.color.app_color_primary;
     }
 
     @Override
