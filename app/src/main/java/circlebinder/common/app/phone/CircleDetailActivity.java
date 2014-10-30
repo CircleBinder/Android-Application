@@ -4,14 +4,12 @@ import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
-import android.content.res.Configuration;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
-import android.view.View;
 
 import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.os.BundleMerger;
@@ -45,20 +43,17 @@ public final class CircleDetailActivity extends BaseActivity
 
     private CircleSearchOption searchOption;
     private int currentPosition;
-    private CircleDetailHeaderView inlineHeaderViewHolder;
     private CircleDetailHeaderView actionBarHeaderView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActionBar actionBar = ActivityNavigation.getSupportActivity(this).getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.common_activity_circle_detail);
 
-        inlineHeaderViewHolder =
-                (CircleDetailHeaderView) findViewById(R.id.common_activity_circle_detail_header);
         actionBarHeaderView = new CircleDetailHeaderView(this);
         actionBar.setCustomView(actionBarHeaderView);
 
@@ -66,7 +61,6 @@ public final class CircleDetailActivity extends BaseActivity
         searchOption = bundle.getParcelable(EXTRA_KEY_SEARCH_OPTION);
         currentPosition = bundle.getInt(EXTRA_KEY_POSITION);
 
-        orientationConfig(getResources().getConfiguration());
         getLoaderManager().initLoader(0, bundle, this);
     }
 
@@ -84,30 +78,9 @@ public final class CircleDetailActivity extends BaseActivity
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        orientationConfig(newConfig);
-    }
-
-    @Override
     public void onCirclePageChanged(Circle circle) {
         this.actionBarHeaderView.setCircle(circle);
-        this.inlineHeaderViewHolder.setCircle(circle);
-        orientationConfig(getResources().getConfiguration());
         invalidateOptionsMenu();
-    }
-
-    private void orientationConfig(Configuration configuration) {
-        ActionBar actionBar = ActivityNavigation.getSupportActionBar(this);
-        if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setDisplayShowCustomEnabled(true);
-            inlineHeaderViewHolder.setVisibility(View.GONE);
-        } else {
-            actionBar.setDisplayHomeAsUpEnabled(false);
-            actionBar.setDisplayShowCustomEnabled(false);
-            inlineHeaderViewHolder.setVisibility(View.VISIBLE);
-        }
     }
 
     @Override
