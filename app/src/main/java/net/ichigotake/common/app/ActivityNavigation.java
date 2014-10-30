@@ -15,6 +15,9 @@ public final class ActivityNavigation {
     }
 
     public static ActionBar getSupportActionBar(Activity activity) {
+        if (activity == null) {
+            return null;
+        }
         return getSupportActivity(activity).getSupportActionBar();
     }
 

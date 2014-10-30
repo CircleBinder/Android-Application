@@ -1,6 +1,7 @@
 package circlebinder.common.circle;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.dmitriy.tarasov.android.intents.IntentUtils;
 
+import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.FragmentFactory;
 import net.ichigotake.common.content.OnBeforeLoadingListener;
@@ -76,7 +78,10 @@ public final class CircleDetailFragment extends BaseFragment implements Legacy {
             @Override
             public void onBeforeLoading(String url) {
                 currentUrl = url;
-                getActivity().invalidateOptionsMenu();
+                ActionBar actionBar = ActivityNavigation.getSupportActionBar(getActivity());
+                if (actionBar != null) {
+                    actionBar.invalidateOptionsMenu();
+                }
             }
         });
         webView.setWebViewClient(client);

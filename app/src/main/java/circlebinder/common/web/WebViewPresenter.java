@@ -27,14 +27,6 @@ public final class WebViewPresenter {
         webView.setOnKeyListener(new OnBackKeyListener(webView));
     }
 
-    public WebViewState onRestoreInstanceState(Parcelable state) {
-        return (WebViewState)state;
-    }
-
-    public Parcelable onSaveInstanceState() {
-        return new WebViewState(webView);
-    }
-
     public void webViewDetached() {
         webView.clearCache(true);
         webView.stopLoading();

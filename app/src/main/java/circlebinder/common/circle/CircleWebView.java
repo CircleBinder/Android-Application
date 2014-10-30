@@ -7,12 +7,10 @@ import android.util.AttributeSet;
 import circlebinder.common.event.Circle;
 import circlebinder.common.web.WebView;
 import circlebinder.common.web.WebViewPresenter;
-import circlebinder.common.web.WebViewState;
 
 public class CircleWebView extends WebView {
 
     private final WebViewPresenter presenter;
-    private WebViewState state;
 
     @SuppressWarnings("unused") // Public API
     public CircleWebView(Context context) {
@@ -47,30 +45,15 @@ public class CircleWebView extends WebView {
     }
 
     @Override
-    protected void onRestoreInstanceState(Parcelable state) {
-        super.onRestoreInstanceState(state);
-        this.state = presenter.onRestoreInstanceState(state);
-    }
-
-    @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
         presenter.webViewAttached();
-        if (state != null) {
-            presenter.loadUrl(state.getUrl());
-        }
     }
 
     @Override
     public void destroy() {
         presenter.webViewDetached();
         super.destroy();
-    }
-
-    @Override
-    protected Parcelable onSaveInstanceState() {
-        super.onSaveInstanceState();
-        return presenter.onSaveInstanceState();
     }
 
 }
