@@ -80,6 +80,7 @@ public final class WebViewFragment extends BaseFragment {
         MenuPresenter presenter = new MenuPresenter(menu, inflater);
         MenuItem progressItem = presenter
                 .inflate(R.menu.app_web_view_progress_bar, R.id.app_web_view_progress_bar);
+        progressItem.setVisible(false);
         progressMenuItemHelper = new ProgressMenuItemHelper(progressItem);
         MenuItem reloadItem = presenter.inflate(R.menu.reload, R.id.menu_reload);
         presenter.setActionProvider(reloadItem, new ReloadActionProvider(getActivity(), webView));
