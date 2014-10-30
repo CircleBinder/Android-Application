@@ -65,3 +65,6 @@
 
 # For picasso
 -dontwarn com.squareup.okhttp.**
+
+# For RxJava
+-dontwarn rx.internal.util.**
