@@ -75,7 +75,6 @@
         <item name="android:paddingBottom">@dimen/common_card_container_divider_height</item>
         <item name="android:fadingEdge">none</item>
         <item name="android:drawSelectorOnTop">true</item>
-        <item name="android:listSelector">@drawable/common_card_item_selector</item>
     </style>
 
     <style name="CommonCardItem">
