@@ -9,5 +9,5 @@ storeAlias=__your_value__
 storePassword=your_value__
 keyPassword=__your_value__
 
-org.gradle.daemon=true
-
+org.gradle.parallel=true
+org.gradle.parallel.threads=8
