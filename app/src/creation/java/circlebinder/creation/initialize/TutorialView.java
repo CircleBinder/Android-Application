@@ -37,7 +37,7 @@ public final class TutorialView extends CardView {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View view = inflater.inflate(R.layout.creation_fragment_database_initialize_content, this, true);
         TextView twitterHashTagView = (TextView) view.findViewById(
-                R.id.common_fragment_contact_twitter_official_hash_tag
+                R.id.common_view_contact_twitter_official_hash_tag
         );
         String twitterHashTagUrl = getContext().getString(R.string.common_twitter_official_hash_tag_url);
         twitterHashTagView.setText(Html.fromHtml(
@@ -52,7 +52,7 @@ public final class TutorialView extends CardView {
         ));
 
         TextView twitterScreenNameView = (TextView) view.findViewById(
-                R.id.common_fragment_contact_twitter_official_account_screen_name
+                R.id.common_view_contact_twitter_official_account_screen_name
         );
         String twitterScreenNameUrl = getContext().getString(R.string.common_twitter_official_account_url);
         twitterScreenNameView.setText(Html.fromHtml(

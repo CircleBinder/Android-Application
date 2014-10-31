@@ -7,7 +7,7 @@
     >
 
     <Button
-        android:id="@+id/common_fragment_contact_send"
+        android:id="@+id/common_view_contact_send"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:minWidth="240dp"
@@ -50,7 +50,7 @@
             />
 
         <TextView
-            android:id="@+id/common_fragment_contact_twitter_official_account_screen_name"
+            android:id="@+id/common_view_contact_twitter_official_account_screen_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/common_twitter_official_account_screen_name"
@@ -74,7 +74,7 @@
             />
 
         <TextView
-            android:id="@+id/common_fragment_contact_twitter_official_hash_tag"
+            android:id="@+id/common_view_contact_twitter_official_hash_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/common_twitter_official_hash_tag_name"
