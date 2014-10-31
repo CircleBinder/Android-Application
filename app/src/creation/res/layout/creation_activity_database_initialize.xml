@@ -1,19 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="circlebinder.creation.app.phone.DatabaseInitializeActivity"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
     >
 
-    <fragment
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="circlebinder.creation.initialize.DatabaseInitializeFragment"
-        android:tag="@string/app_fragment_tag_data_initialize"
-        tools:layout="@layout/creation_fragment_database_initialize"
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
         />
 
-</LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="96dp"
+        android:paddingBottom="16dp"
+        android:scrollbarStyle="outsideOverlay"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:layout_above="@+id/creation_fragment_database_initialize_progress"
+        >
+
+        <circlebinder.creation.initialize.TutorialView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            />
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/creation_fragment_database_initialize_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/common_spacer_x_small"
+        android:paddingRight="@dimen/common_spacer_x_small"
+        android:background="@color/app_color_primary_dark"
+        >
+
+        <RelativeLayout
+            android:id="@+id/creation_fragment_initialize_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            >
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/common_spacer_x_small"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="#ffffff"
+                android:text="@string/app_tutorial_initialize_progress"
+                android:textSize="18sp"
+                />
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/creation_fragment_initialize_finished"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/common_spacer_middle"
+            android:layout_marginRight="@dimen/common_spacer_middle"
+            android:text="@string/app_tutorial_initialize_complete"
+            android:visibility="gone"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

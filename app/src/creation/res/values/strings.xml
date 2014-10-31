@@ -29,7 +29,4 @@
     <string name="app_pref_app_storage">pref_app_storage</string>
     <string name="app_pref_app_storage_is_initialize">pref_app_storage_is_initialize</string>
 
-    <!-- Fragment -->
-    <string name="app_fragment_tag_data_initialize">fragment_tag_data_initialize</string>
-
 </resources>

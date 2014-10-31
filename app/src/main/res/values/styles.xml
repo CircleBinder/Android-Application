@@ -12,14 +12,16 @@
 
     <style name="AppNoActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
+        <item name="colorPrimary">@color/app_color_primary</item>
+        <item name="colorPrimaryDark">@color/app_color_primary_dark</item>
+        <item name="colorAccent">@color/app_color_accent</item>
     </style>
 
     <style name="AppActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">
-        <item name="android:background">@color/app_color_primary</item>
-        <item name="android:backgroundSplit">@color/app_color_primary</item>
         <item name="android:windowContentOverlay">@null</item>
-        <item name="background">@color/app_color_primary</item>
-        <item name="backgroundSplit">@color/app_color_primary</item>
+        <item name="colorPrimary">@color/app_color_primary</item>
+        <item name="colorPrimaryDark">@color/app_color_primary_dark</item>
+        <item name="colorAccent">@color/app_color_accent</item>
     </style>
 
     <style name="CommonSectionHeaderLabel">
