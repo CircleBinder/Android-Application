@@ -25,10 +25,10 @@ public final class ChecklistPopupSelector {
 
     public void show(View anchor) {
         ChecklistSelectorAdapter adapter = new ChecklistSelectorAdapter(context);
-        adapter.add(ChecklistColor.NONE);
         for (ChecklistColor item : ChecklistColor.checklists()) {
             adapter.add(item);
         }
+        adapter.add(ChecklistColor.NONE);
         popupWindow.setAdapter(adapter);
         popupWindow.setAnchorView(anchor);
         popupWindow.setModal(true);
