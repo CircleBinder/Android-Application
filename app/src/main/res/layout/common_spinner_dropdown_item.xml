@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:minWidth="48dp"
-    android:minHeight="32dp"
+    android:minWidth="108dp"
+    android:minHeight="40dp"
     >
 
     <ImageView
