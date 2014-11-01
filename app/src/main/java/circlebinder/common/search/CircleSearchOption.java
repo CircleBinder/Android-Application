@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import circlebinder.common.checklist.ChecklistColor;
 import circlebinder.common.event.Block;
 
-public class CircleSearchOption implements Parcelable {
+public final class CircleSearchOption implements Parcelable {
     private final String keyword;
     private final Order order;
     private final Block block;

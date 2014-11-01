@@ -4,21 +4,20 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.MenuItem;
 
 import net.ichigotake.common.app.ActivityNavigation;
-import net.ichigotake.common.content.ContentReloader;
 import net.ichigotake.common.os.BundleMerger;
-import net.ichigotake.common.worker.ActivityJobWorker;
 
 import circlebinder.R;
 import circlebinder.common.app.BaseActivity;
 import circlebinder.common.app.BroadcastEvent;
-import circlebinder.common.app.FragmentTripper;
 import circlebinder.common.checklist.ChecklistColor;
-import circlebinder.common.search.CircleSearchFragment;
 import circlebinder.common.search.CircleSearchOption;
 import circlebinder.common.search.CircleSearchOptionBuilder;
+import circlebinder.common.search.CircleSearchView;
 
 public final class ChecklistActivity extends BaseActivity {
 
@@ -32,33 +31,32 @@ public final class ChecklistActivity extends BaseActivity {
         return intent;
     }
 
-    private ActivityJobWorker worker = new ActivityJobWorker();
     private ChecklistColor checklistColor;
     private BroadcastReceiver broadcastReceiver;
+    private CircleSearchView checklistView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.common_acticity_checklist);
-        worker.setActivity(this);
         checklistColor = (ChecklistColor) BundleMerger.merge(getIntent(), savedInstanceState)
                 .getSerializable(KEY_CHECKLIST_COLOR);
         ActivityNavigation.setDisplayHomeAsUpEnabled(this);
         ActivityNavigation.getSupportActionBar(this).setTitle(checklistColor.getName());
+        checklistView = (CircleSearchView) findViewById(R.id.common_activity_checklist);
         CircleSearchOption searchOption = new CircleSearchOptionBuilder()
                 .setChecklist(checklistColor).build();
-
-        FragmentTripper.firstTrip(getSupportFragmentManager(), CircleSearchFragment.factory(searchOption))
-                .setLayoutId(R.id.common_activity_checklist_container)
-                .trip();
-
+        checklistView.setFilter(searchOption);
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                ContentReloader reloader = (ContentReloader) getSupportFragmentManager()
-                        .findFragmentById(R.id.common_activity_checklist_container);
-                if (reloader != null) {
-                    reloader.reload();
+                if (checklistView != null) {
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            checklistView.reload();
+                        }
+                    });
                 }
             }
         };
@@ -75,18 +73,6 @@ public final class ChecklistActivity extends BaseActivity {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable(KEY_CHECKLIST_COLOR, checklistColor);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        worker.resume();
-    }
-
-    @Override
-    public void onPause() {
-        worker.pause();
-        super.onPause();
     }
 
     @Override

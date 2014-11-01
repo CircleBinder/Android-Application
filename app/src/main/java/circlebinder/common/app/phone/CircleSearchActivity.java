@@ -4,27 +4,25 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import net.ichigotake.common.app.ActivityNavigation;
-import net.ichigotake.common.content.ContentReloader;
-import net.ichigotake.common.os.BundleMerger;
 import net.ichigotake.common.view.ActionProvider;
 import net.ichigotake.common.view.MenuPresenter;
 import net.ichigotake.common.widget.OnItemSelectedEventListener;
-import net.ichigotake.common.worker.ActivityJobWorker;
 
 import circlebinder.common.app.BroadcastEvent;
 import circlebinder.common.checklist.EventBlockSelectorView;
 import circlebinder.common.event.Block;
 import circlebinder.common.search.CircleSearchOption;
 import circlebinder.common.search.CircleSearchOptionBuilder;
+import circlebinder.common.search.CircleSearchView;
 import circlebinder.common.search.InputKeywordView;
-import circlebinder.common.search.OnCircleSearchOptionListener;
 import circlebinder.common.app.BaseActivity;
 import circlebinder.R;
 import circlebinder.common.search.OnInputTextListener;
@@ -37,9 +35,8 @@ public final class CircleSearchActivity extends BaseActivity {
         return new Intent(context, CircleSearchActivity.class);
     }
 
-    private final ActivityJobWorker worker = new ActivityJobWorker();
-    private final String EXTRA_CIRCLE_SEARCH_BUILDER = "circle_search_builder";
-    private CircleSearchOptionBuilder searchOptionBuilder;
+    private CircleSearchOptionBuilder searchOptionBuilder = new CircleSearchOptionBuilder();
+    private CircleSearchView circlesView;
     private SearchFormStore searchFormStore;
     private InputKeywordView inputKeywordView;
     private BroadcastReceiver broadcastReceiver;
@@ -48,14 +45,9 @@ public final class CircleSearchActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.common_activity_circle_search);
-        worker.setActivity(this);
         ActionBar actionBar = ActivityNavigation.getSupportActionBar(this);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        searchOptionBuilder = BundleMerger.merge(getIntent(), savedInstanceState)
-                .getParcelable(EXTRA_CIRCLE_SEARCH_BUILDER);
-        if (searchOptionBuilder == null) {
-            searchOptionBuilder = new CircleSearchOptionBuilder();
-        }
+        circlesView = (CircleSearchView) findViewById(R.id.common_activity_circle_search_circles);
 
         inputKeywordView = (InputKeywordView) findViewById(R.id.common_activity_circle_search_option_keyword);
         inputKeywordView.setOnInputTextListener(new OnInputTextListener() {
@@ -92,10 +84,13 @@ public final class CircleSearchActivity extends BaseActivity {
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                ContentReloader reloader = (ContentReloader) getSupportFragmentManager()
-                        .findFragmentById(R.id.common_activity_circle_search_circles_container);
-                if (reloader != null) {
-                    reloader.reload();
+                if (circlesView != null) {
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            circlesView.reload();
+                        }
+                    });
                 }
             }
         };
@@ -140,24 +135,6 @@ public final class CircleSearchActivity extends BaseActivity {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        worker.resume();
-    }
-
-    @Override
-    public void onPause() {
-        worker.pause();
-        super.onPause();
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putParcelable(EXTRA_CIRCLE_SEARCH_BUILDER, searchOptionBuilder);
-    }
-
-    @Override
     public void onDestroy() {
         if (broadcastReceiver != null) {
             unregisterReceiver(broadcastReceiver);
@@ -166,8 +143,7 @@ public final class CircleSearchActivity extends BaseActivity {
     }
 
     private void setSearchOption(CircleSearchOption searchOption) {
-        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.common_activity_circle_search_circles_container);
-        ((OnCircleSearchOptionListener)fragment).setSearchOption(searchOption);
+        circlesView.setFilter(searchOption);
     }
 
     private void showForm() {
