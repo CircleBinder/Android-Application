@@ -16,7 +16,7 @@ CreationBinder
 開発環境
 ------------
 
-- AndroidStudio v0.8.+
+- AndroidStudio v0.9.+
 - JDK 7
 
 関連リンク
