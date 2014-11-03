@@ -1,17 +1,18 @@
-CreationBinder
+CircleBinder
 ============
 
-サンシャインクリエイションのチェックリストを作成するAndroidアプリ
+同人イベントのチェックリストを作成するAndroidアプリ
 
 
-このアプリについて
+公開中のアプリ
 ------------
 
-**当プロジェクトは「クリエイション事務局」とは一切関係ありません。**
+[![Android app on Google Play](/art/banner_play_store.png)](https//play.google.com/store/search?q=pub:ichigotake)
 
-当アプリに関するお問い合わせは「クリエイション事務局」へは送らないようご協力お願いします。
+**当プロジェクトは各種イベントの非公式アプリです。**
 
-アプリ内の出展サークル情報は[公式サイト](http://www.creation.gr.jp/)で公開されているものを元に作成しております。
+当アプリに関するお問い合わせは各種イベントへ送らないようお願い致します。
+
 
 開発環境
 ------------
@@ -19,9 +20,9 @@ CreationBinder
 - AndroidStudio v0.9.+
 - JDK 7
 
+
 関連リンク
 ------------
 
-- [クリエイション公式Web](http://www.creation.gr.jp/)
 - [CircleBinder 公式ブログ](http://circlebinder.blog.jp/)
 - [CircleBinder/CircleBinder](https://github.com/CircleBinder/CircleBinder)
