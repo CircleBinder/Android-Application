@@ -15,7 +15,7 @@ import circlebinder.common.Legacy;
 import circlebinder.common.app.BaseActivity;
 import circlebinder.R;
 import circlebinder.common.app.BroadcastEvent;
-import circlebinder.common.app.phone.AboutActivity;
+import circlebinder.common.app.phone.AboutApplicationActivity;
 import circlebinder.common.app.phone.ContactActivity;
 import circlebinder.common.card.HomeCardListView;
 import circlebinder.creation.home.CreationHomepageCard;
@@ -68,7 +68,7 @@ public final class HomeActivity extends BaseActivity implements Legacy {
         MenuItem aboutApplicationItem = presenter.inflate(R.menu.about_application, R.id.menu_about_application);
         presenter.setActionProvider(
                 aboutApplicationItem,
-                new ActivityTripActionProvider(this, AboutActivity.createIntent(this)));
+                new ActivityTripActionProvider(this, AboutApplicationActivity.createIntent(this)));
         return super.onCreateOptionsMenu(menu);
     }
 

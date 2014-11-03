@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     >
 
-    <ListView
+    <circlebinder.common.system.OpenSourceLicenseCreditListView
         style="@style/CommonCardList"
         android:id="@+id/fragment_open_source_license_list"
         android:layout_width="match_parent"
