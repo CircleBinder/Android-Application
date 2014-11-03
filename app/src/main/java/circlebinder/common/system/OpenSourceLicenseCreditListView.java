@@ -43,12 +43,14 @@ public final class OpenSourceLicenseCreditListView extends ListView {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        adapter.add(new OpenSourceLicenseCredit("AbsListViewHelper", "Felipe Lima", 2011, licenseBody));
         adapter.add(new OpenSourceLicenseCredit("ActiveAndroid", "Michael Pardo", 2010, licenseBody));
         adapter.add(new OpenSourceLicenseCredit("android-intents", "Dmitriy Tarasov ", 2013, licenseBody));
         adapter.add(new OpenSourceLicenseCredit("ltsv4j", "making", 2013, licenseBody));
         adapter.add(new OpenSourceLicenseCredit("flow", "Square, Inc.", 2013, licenseBody));
         adapter.add(new OpenSourceLicenseCredit("Picasso", "Square, Inc", 2013, licenseBody));
         adapter.add(new OpenSourceLicenseCredit("ProgressMenuItem", "Shintaro Katafuchi", 2014, licenseBody));
+        adapter.add(new OpenSourceLicenseCredit("RxAndroid", "Ben Christensen", 2014, licenseBody));
         adapter.add(new OpenSourceLicenseCredit("StickyListHeaders", "Emil Sjolander", 2013, licenseBody));
 
         setAdapter(adapter);
