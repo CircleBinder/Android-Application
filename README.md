@@ -7,7 +7,7 @@ CircleBinder
 公開中のアプリ
 ------------
 
-[![Android app on Google Play](/art/banner_play_store.png)](https//play.google.com/store/search?q=pub:ichigotake)
+[![Android app on Google Play](/art/banner_play_store.png)](https://play.google.com/store/search?q=pub:ichigotake)
 
 **当プロジェクトは各種イベントの非公式アプリです。**
 
