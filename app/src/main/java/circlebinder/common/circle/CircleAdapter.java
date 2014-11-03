@@ -7,16 +7,20 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import net.ichigotake.common.widget.CursorAdapter;
-import net.ichigotake.common.widget.CursorItemConverter;
 
 import circlebinder.common.event.Circle;
 import circlebinder.R;
+import circlebinder.common.search.CircleCursorConverter;
+
 import net.ichigotake.common.widget.SectionHeaderViewHolder;
 
 public final class CircleAdapter extends CursorAdapter<Circle, CircleViewHolder, SectionHeaderViewHolder> {
 
-    public CircleAdapter(Context context, CursorItemConverter<Circle> converter) {
-        super(context, null, converter);
+    private final Context context;
+
+    public CircleAdapter(Context context) {
+        super(context, null, new CircleCursorConverter());
+        this.context = context;
     }
 
     @Override
@@ -36,7 +40,9 @@ public final class CircleAdapter extends CursorAdapter<Circle, CircleViewHolder,
 
     @Override
     protected void bindHeaderView(int position, Circle circle, SectionHeaderViewHolder holder) {
-        holder.getLabel().setText(circle.getSpace().getBlockName());
+        holder.getLabel().setText(context.getString(
+                R.string.common_event_block_label, circle.getSpace().getBlockName()
+        ));
     }
 
     @Override

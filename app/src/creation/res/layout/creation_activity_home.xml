@@ -5,22 +5,8 @@
     tools:context="circlebinder.creation.app.phone.HomeActivity"
     >
 
-    <TextView
-        android:id="@+id/creation_activity_home_header_event_name"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:paddingLeft="@dimen/common_baseline_padding"
-        android:paddingRight="@dimen/common_baseline_padding"
-        android:background="@color/app_theme_base"
-        android:text="@string/app_event_name"
-        android:textColor="#ffffff"
-        android:textSize="@dimen/common_font_title"
-        android:gravity="center_vertical"
-        />
-
-    <circlebinder.creation.checklist.ChecklistListView
-        android:id="@+id/creation_activity_home_fragment_content"
-        android:layout_below="@+id/creation_activity_home_header_event_name"
+    <circlebinder.common.card.HomeCardListView
+        android:id="@+id/creation_activity_home_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />

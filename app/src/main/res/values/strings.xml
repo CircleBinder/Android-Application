@@ -15,7 +15,9 @@
     <string name="common_action_reload">更新</string>
     <string name="common_action_share">シェアする</string>
     <string name="common_enjoy_event">イベントを楽しむ</string>
-    <string name="common_open_event_map">会場周辺のマップ</string>
+    <string name="common_open_event_location">会場周辺マップ</string>
+    <string name="common_event_official_site">公式サイト</string>
+    <string name="common_event_block_label">%s ブロック</string>
     <string name="common_circle_search">出展サークルを探す</string>
     <string name="common_circle_link_homepage">ホームページ</string>
     <string name="common_circle_link_pixiv">pixiv</string>
@@ -29,7 +31,7 @@
     <string name="common_change_log_publish_date_format">%1$s バージョン%2$s</string>
     <string name="common_open_source_license">オープンソースライセンス</string>
     <string name="common_send_feedback_by_mail">メールで意見を送る！</string>
-    <string name="common_send_feedback_wish_me_luck">応援する</string>
+    <string name="common_send_feedback">作者へ連絡</string>
     <string name="common_send_feedback_description">メールアプリからご意見,ご感想,不具合報告など、お気軽にお寄せください。
 今後のアップデートの参考にさせていただきます！</string>
     <string name="common_twitter_official_account_label">Twitter公式アカウント</string>

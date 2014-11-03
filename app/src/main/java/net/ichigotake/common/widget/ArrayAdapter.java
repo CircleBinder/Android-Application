@@ -35,7 +35,7 @@ public abstract class ArrayAdapter<I, T> extends android.widget.ArrayAdapter<I> 
             tag = (T)convertView.getTag();
         }
 
-        bindView(position, item, tag);
+        bindView(position, convertView, item, tag);
 
         return convertView;
     }
@@ -46,7 +46,7 @@ public abstract class ArrayAdapter<I, T> extends android.widget.ArrayAdapter<I> 
 
     abstract protected View generateView(int position, I item, LayoutInflater inflater, ViewGroup parent);
 
-    abstract protected void bindView(int position, I item, T tag);
+    abstract protected void bindView(int position, View convertView, I item, T tag);
 
     abstract protected T generateTag(int position, I item, View convertView);
 

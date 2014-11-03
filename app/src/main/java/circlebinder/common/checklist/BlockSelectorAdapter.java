@@ -10,15 +10,15 @@ import net.ichigotake.common.widget.ArrayAdapter;
 import circlebinder.common.event.Block;
 import circlebinder.R;
 
-public final class BlockSelectorAdapter extends ArrayAdapter<Block, SelectorViewHolder> {
+public final class BlockSelectorAdapter extends ArrayAdapter<Block, BlockSelectorViewHolder> {
 
     public BlockSelectorAdapter(Context context) {
         super(context);
     }
 
     @Override
-    public SelectorViewHolder generateTag(int position, Block item, View convertView) {
-        return new SelectorViewHolder(convertView);
+    public BlockSelectorViewHolder generateTag(int position, Block item, View convertView) {
+        return new BlockSelectorViewHolder(convertView);
     }
 
     @Override
@@ -27,7 +27,7 @@ public final class BlockSelectorAdapter extends ArrayAdapter<Block, SelectorView
     }
 
     @Override
-    public void bindView(int position, Block item, SelectorViewHolder tag) {
+    public void bindView(int position, View convertView, Block item, BlockSelectorViewHolder tag) {
         tag.getName().setText(item.getName());
         tag.getIcon().setVisibility(View.GONE);
     }

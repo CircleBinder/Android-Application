@@ -65,6 +65,7 @@ target/
 .gradle/
 build/
 gradle.properties
+/reports
 
 
 ###IntelliJ###

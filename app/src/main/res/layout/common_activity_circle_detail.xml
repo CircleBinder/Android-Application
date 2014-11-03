@@ -6,18 +6,11 @@
     android:layout_height="match_parent"
     >
 
-    <circlebinder.common.circle.CircleDetailHeaderView
-        android:id="@+id/common_activity_circle_detail_header"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:gravity="center_vertical"
-        />
-
-    <FrameLayout
-        android:id="@+id/common_activity_circle_detail_item"
-        android:layout_below="@+id/common_activity_circle_detail_header"
+    <circlebinder.common.circle.CircleWebView
+        android:id="@+id/common_activity_circle_detail_web_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
+
 
 </RelativeLayout>

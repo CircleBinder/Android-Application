@@ -29,7 +29,7 @@ public final class SingleLineTextTripAdapter extends ArrayAdapter<ListItemTrip<S
     }
 
     @Override
-    protected void bindView(int position, ListItemTrip<String> item, SingleLineTextViewHolder tag) {
+    protected void bindView(int position, View convertView, ListItemTrip<String> item, SingleLineTextViewHolder tag) {
         this.binder.bindView(position, item.getItem(), tag);
         tag.getTextView().setOnClickListener(new OnClickToTrip(item.getTripper()));
     }

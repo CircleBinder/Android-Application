@@ -5,17 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_vertical|center_horizontal"
-    tools:context="circlebinder.common.checklist.ChecklistListFragment"
+    tools:context="circlebinder.creation.app.phone.HomeActivity"
     >
 
-    <ListView
+    <GridView
         style="@style/CommonCardList"
         android:id="@+id/create_view_checklist_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
+        android:clipToPadding="true"
+        android:numColumns="3"
+        android:horizontalSpacing="@dimen/common_spacer_xx_small"
+        android:verticalSpacing="@dimen/common_spacer_xx_small"
+        android:layout_marginTop="@dimen/common_spacer_xx_small"
+        android:padding="@dimen/common_spacer_xx_small"
         tools:listheader="@layout/enjoy_creation_search_guidance"
-        tools:listitem="@layout/checklist_item"
+        tools:listitem="@layout/common_home_card_item"
+        />
+
+    <include
+        layout="@layout/common_home_grid_header"
+        android:id="@+id/creation_view_checklist_list_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/common_spacer_xx_small"
         />
 
 </FrameLayout>

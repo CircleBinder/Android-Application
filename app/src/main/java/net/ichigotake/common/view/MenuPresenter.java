@@ -1,5 +1,6 @@
 package net.ichigotake.common.view;
 
+import android.support.v4.view.*;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,4 +24,11 @@ public final class MenuPresenter {
         return item;
     }
 
+    public void setActionProvider(MenuItem item, android.support.v4.view.ActionProvider actionProvider) {
+        MenuItemCompat.setActionProvider(item, actionProvider);
+    }
+
+    public void setShowAsAction(MenuItem item, int showAsActionCollapseActionView) {
+        MenuItemCompat.setShowAsAction(item, showAsActionCollapseActionView);
+    }
 }

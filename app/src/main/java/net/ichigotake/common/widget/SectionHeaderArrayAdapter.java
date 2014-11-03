@@ -51,7 +51,7 @@ public abstract class SectionHeaderArrayAdapter<ITEM, ITEM_TAG, HEADER_TAG>
         } else {
             headerView.setVisibility(View.GONE);
         }
-        bindView(position, item, itemTag);
+        bindView(position, view, item, itemTag);
         return view;
     }
 

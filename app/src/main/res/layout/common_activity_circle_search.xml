@@ -12,6 +12,8 @@
         android:id="@+id/common_activity_circle_search_option_keyword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/common_spacer_x_small"
+        android:layout_marginRight="@dimen/common_spacer_x_small"
         />
 
     <View
@@ -21,12 +23,10 @@
         />
 
 
-    <fragment
-        android:id="@+id/common_activity_circle_search_circles_container"
+    <circlebinder.common.search.CircleSearchView
+        android:id="@+id/common_activity_circle_search_circles"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="circlebinder.common.search.CircleSearchFragment"
-        tools:layout="@layout/common_fragment_circle_search"
         />
 
 </LinearLayout>

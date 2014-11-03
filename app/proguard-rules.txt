@@ -2,15 +2,8 @@
 -keep public class javax.** { *; }
 -keepattributes *Annotations*
 -keepattributes Signature
-#-optimizationpasses 5
-#-dontusemixedcaseclassnames
-#-dontskipnonpubliclibraryclasses
-#-dontpreverify
-#-verbose
-#-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
--dontoptimize
+-optimizationpasses 5
 
--keepclassmembers class java.lang.** { *; }
 -keepclassmembers class javax.** { *; }
 -keepclasseswithmembernames class * {
     native <methods>;
@@ -65,3 +58,6 @@
 
 # For picasso
 -dontwarn com.squareup.okhttp.**
+
+# For RxJava
+-dontwarn rx.internal.util.**

@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="circlebinder.common.search.CircleSearchFragment"
+    tools:context="circlebinder.common.app.phone.ChecklistActivity"
     >
 
-    <FrameLayout
-        android:id="@+id/common_activity_checklist_container"
+    <circlebinder.common.search.CircleSearchView
+        android:id="@+id/common_activity_checklist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />

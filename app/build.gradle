@@ -47,12 +47,12 @@ android {
     buildTypes {
         release {
             debuggable false
-            runProguard true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
             signingConfig signingConfigs.release
             applicationIdSuffix ''
             versionNameSuffix ''
-            zipAlign true
+            zipAlignEnabled true
         }
 
         debug {
@@ -73,17 +73,24 @@ android {
     }
 }
 
+repositories {
+    maven { url 'https://github.com/felipecsl/m2repository/raw/master/' }
+    mavenCentral()
+}
+
 dependencies {
     compile fileTree(dir: 'src/libs/', include: '*.jar')
     compile 'am.ik.ltsv4j:ltsv4j:0.9.0'
+    compile 'com.android.support:appcompat-v7:21.0.0'
+    compile 'com.android.support:cardview-v7:21.0.0'
     compile 'com.dmitriy-tarasov:android-intents:1.1.0'
+    compile 'com.felipecsl:abslistviewhelper:1.0.+'
     compile 'com.github.hotchemi:ProgressMenuItem:0.3.3'
+    compile 'com.nineoldandroids:library:2.4.+'
     compile 'com.netflix.rxjava:rxjava-android:0.20.6'
-    compile 'com.squareup.picasso:picasso:2.3.3'
+    compile 'com.squareup.flow:flow:0.8'
     compile 'se.emilsjolander:stickylistheaders:2.5.0'
 }
-
-apply from: 'gradle/compile.gradle'
 
 android.applicationVariants.all { variant ->
     def resourceDir = new File("app/src/${variant.buildType.name}/res/values")
@@ -118,10 +125,4 @@ android.applicationVariants.all { variant ->
     }
 }
 
-// 起動の速い環境を利用するために、実装中は Chrome 上でアプリを起動出来るようにする
-// https://gist.github.com/ichigotake/6f6c21c26971c4248d6d
-task runChromeAppDebug(type: Exec, dependsOn: assembleDebug) {
-    executable "bash"
-    args "--login", "-c", "chromeos-apk '${buildDir}/outputs/apk/app-creation-debug.apk' " \
-            + "&& /Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --load-and-launch-app=${projectDir}/circlebinder.creation.debug.android/"
-}
+apply from: 'gradle/experimental-build.gradle'

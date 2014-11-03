@@ -2,7 +2,7 @@ package circlebinder.common.app;
 
 import android.content.Context;
 import android.content.Intent;
-import android.view.ActionProvider;
+import android.support.v4.view.ActionProvider;
 import android.view.View;
 
 import net.ichigotake.common.app.ActivityTripper;

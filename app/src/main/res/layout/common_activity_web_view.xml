@@ -7,8 +7,8 @@
     tools:context="circlebinder.common.app.phone.WebViewActivity"
     >
 
-    <FrameLayout
-        android:id="@+id/common_activity_web_view_container"
+    <circlebinder.common.web.WebView
+        android:id="@+id/common_activity_web_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
