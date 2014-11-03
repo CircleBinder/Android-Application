@@ -51,7 +51,7 @@
 
         <activity
             android:name="circlebinder.common.app.phone.ContactActivity"
-            android:label="@string/common_send_feedback_wish_me_luck"
+            android:label="@string/common_send_feedback"
             android:configChanges="orientation|screenSize"
             />
 

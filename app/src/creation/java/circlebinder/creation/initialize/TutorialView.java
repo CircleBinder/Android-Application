@@ -35,7 +35,7 @@ public final class TutorialView extends CardView {
     @Override
     protected void onFinishInflate() {
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        View view = inflater.inflate(R.layout.creation_fragment_database_initialize_content, this, true);
+        View view = inflater.inflate(R.layout.creation_tutorial, this, true);
         TextView twitterHashTagView = (TextView) view.findViewById(
                 R.id.common_view_contact_twitter_official_hash_tag
         );

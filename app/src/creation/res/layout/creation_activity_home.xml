@@ -6,7 +6,7 @@
     >
 
     <circlebinder.common.card.HomeCardListView
-        android:id="@+id/creation_activity_home_fragment_content"
+        android:id="@+id/creation_activity_home_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />

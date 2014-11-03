@@ -40,7 +40,7 @@ public final class HomeActivity extends BaseActivity implements Legacy {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.creation_activity_home);
 
-        homeCardListView = (HomeCardListView) findViewById(R.id.creation_activity_home_fragment_content);
+        homeCardListView = (HomeCardListView) findViewById(R.id.creation_activity_home_content);
         homeCardListView.addItem(new CreationHomepageCard(this));
         homeCardListView.addItem(new CreationLocationCard(this));
         homeCardListView.addItem(new CreationOfficialTwitterCard(this));

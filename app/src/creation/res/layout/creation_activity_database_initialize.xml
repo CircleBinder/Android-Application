@@ -22,7 +22,7 @@
         android:scrollbarStyle="outsideOverlay"
         android:clipToPadding="false"
         android:fillViewport="true"
-        android:layout_above="@+id/creation_fragment_database_initialize_progress"
+        android:layout_above="@+id/creation_activity_initialize_progress_container"
         >
 
         <circlebinder.creation.initialize.TutorialView
@@ -35,7 +35,7 @@
     </ScrollView>
 
     <LinearLayout
-        android:id="@+id/creation_fragment_database_initialize_progress"
+        android:id="@+id/creation_activity_initialize_progress_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -47,7 +47,7 @@
         >
 
         <RelativeLayout
-            android:id="@+id/creation_fragment_initialize_progress"
+            android:id="@+id/creation_activity_initialize_progress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -72,7 +72,7 @@
         </RelativeLayout>
 
         <Button
-            android:id="@+id/creation_fragment_initialize_finished"
+            android:id="@+id/creation_activity_initialize_finished"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/common_spacer_middle"

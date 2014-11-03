@@ -43,9 +43,9 @@ public final class CircleSearchView extends FrameLayout {
     @Override
     protected void onFinishInflate() {
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        ViewGroup view = (ViewGroup)inflater.inflate(R.layout.common_fragment_circle_search, this, true);
+        ViewGroup view = (ViewGroup)inflater.inflate(R.layout.common_circle_search, this, true);
         StickyListHeadersListView circlesView = (StickyListHeadersListView)view
-                .findViewById(R.id.common_fragment_circle_search_list);
+                .findViewById(R.id.common_circle_search);
         presenter.attachedView(circlesView);
         circlesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

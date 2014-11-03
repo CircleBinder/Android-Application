@@ -6,6 +6,7 @@
     android:id="@+id/common_section_sub_header"
     android:layout_width="match_parent"
     android:layout_height="48dp"
-    tools:text="見出し"
+    android:paddingLeft="72dp"
+    tools:text="A ブロック"
     />
 

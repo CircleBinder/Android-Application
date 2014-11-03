@@ -8,7 +8,7 @@
     >
 
     <circlebinder.common.system.AboutApplicationListView
-        android:id="@+id/view_about_application_list"
+        android:id="@+id/common_screen_about_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/common_list_item" />

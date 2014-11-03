@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/menu_wish_me_luck"
-        android:title="@string/common_send_feedback_wish_me_luck"
+        android:title="@string/common_send_feedback"
         android:orderInCategory="50"
         android:icon="@drawable/ic_action_about"
         app:showAsAction="never"/>

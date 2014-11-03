@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_vertical|center_horizontal"
-    tools:context="circlebinder.common.checklist.ChecklistListFragment"
+    tools:context="circlebinder.creation.app.phone.HomeActivity"
     >
 
     <GridView

@@ -6,7 +6,7 @@ import circlebinder.R;
 
 public final class SectionHeaderViewHolder {
 
-    public static int layoutResourceId = R.layout.common_section_sub_header;
+    public static int layoutResourceId = R.layout.common_circle_section_sub_header;
 
     private final TextView label;
 

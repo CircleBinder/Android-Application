@@ -62,12 +62,12 @@ public final class DatabaseInitializeActivity extends BaseActivity
         setContentView(R.layout.creation_activity_database_initialize);
         serviceBind = true;
         bindService(new Intent(this, DatabaseInitializeService.class), serviceConnection, 0);
-        View finishedView = findViewById(R.id.creation_fragment_initialize_finished);
+        View finishedView = findViewById(R.id.creation_activity_initialize_finished);
         finishedView.setOnClickListener(new OnClickToTrip(
                 new ActivityTripper(this, HomeActivity.createIntent(this)).withFinish()
         ));
         handler = new InitializeHandler(
-                findViewById(R.id.creation_fragment_initialize_progress),
+                findViewById(R.id.creation_activity_initialize_progress),
                 finishedView
         );
         startService(new Intent(this, DatabaseInitializeService.class));
