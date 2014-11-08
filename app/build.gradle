@@ -56,11 +56,12 @@ android {
             applicationIdSuffix ''
             versionNameSuffix ''
             zipAlignEnabled true
+            shrinkResources true
         }
 
         debug {
             debuggable true
-            runProguard false
+            minifyEnabled false
             applicationIdSuffix '.debug'
             versionNameSuffix '-debug'
         }
