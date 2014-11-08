@@ -5,27 +5,35 @@ import android.widget.TextView;
 
 import circlebinder.R;
 
-public final class OpenSourceLicenseCreditViewHolder {
+final class LicenseCreditViewHolder {
+
+    final static int layoutResource = R.layout.common_license_credit_item;
 
     private final TextView name;
     private final TextView copyright;
+    private final TextView licenseName;
     private final TextView licenseBody;
 
-    public OpenSourceLicenseCreditViewHolder(View view) {
+    LicenseCreditViewHolder(View view) {
         this.name = (TextView) view.findViewById(R.id.common_license_credit_item_name);
         this.copyright = (TextView) view.findViewById(R.id.common_license_credit_item_copyright);
+        this.licenseName = (TextView) view.findViewById(R.id.common_license_credit_item_license_name);
         this.licenseBody = (TextView) view.findViewById(R.id.common_license_credit_item_license_body);
     }
 
-    public TextView getName() {
+    TextView getName() {
         return name;
     }
 
-    public TextView getCopyright() {
+    TextView getCopyright() {
         return copyright;
     }
 
-    public TextView getLicenseBody() {
+    TextView getLicenseName() {
+        return licenseName;
+    }
+
+    TextView getLicenseBody() {
         return licenseBody;
     }
 
