@@ -18,6 +18,11 @@
         <item name="colorAccent">@color/app_color_accent</item>
     </style>
 
+    <style name="AppThemeOverlay.Dark" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:height">?attr/actionBarSize</item>
+        <item name="android:background">?attr/colorPrimary</item>
+    </style>
+
     <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="colorPrimary">@color/app_color_primary</item>
@@ -30,6 +35,60 @@
         <item name="colorPrimary">@color/app_color_primary</item>
         <item name="colorPrimaryDark">@color/app_color_primary_dark</item>
         <item name="colorAccent">@color/app_color_accent</item>
+    </style>
+
+    <style name="AppTheme.LightBlue" parent="AppTheme.Light.DarkActionBar">
+        <item name="colorPrimary">@color/palette_light_blue_primary</item>
+        <item name="colorPrimaryDark">@color/palette_light_blue_primary_dark</item>
+        <item name="colorAccent">@color/palette_light_blue_accent</item>
+    </style>
+
+    <style name="AppTheme.LightGreen" parent="AppTheme.Light.DarkActionBar">
+        <item name="colorPrimary">@color/palette_light_green_primary</item>
+        <item name="colorPrimaryDark">@color/palette_light_green_primary_dark</item>
+        <item name="colorAccent">@color/palette_light_green_accent</item>
+    </style>
+
+    <style name="AppTheme.Orange" parent="AppTheme.Light.DarkActionBar">
+        <item name="colorPrimary">@color/palette_orange_primary</item>
+        <item name="colorPrimaryDark">@color/palette_orange_primary_dark</item>
+        <item name="colorAccent">@color/palette_orange_accent</item>
+    </style>
+
+    <style name="AppTheme.Pink" parent="AppTheme.Light.DarkActionBar">
+        <item name="colorPrimary">@color/palette_pink_primary</item>
+        <item name="colorPrimaryDark">@color/palette_pink_primary_dark</item>
+        <item name="colorAccent">@color/palette_pink_accent</item>
+    </style>
+
+    <style name="AppTheme.Purple" parent="AppTheme.Light.DarkActionBar">
+        <item name="colorPrimary">@color/palette_purple_primary</item>
+        <item name="colorPrimaryDark">@color/palette_purple_primary_dark</item>
+        <item name="colorAccent">@color/palette_purple_accent</item>
+    </style>
+
+    <style name="AppTheme.Red" parent="AppTheme.Light.DarkActionBar">
+        <item name="colorPrimary">@color/palette_red_primary</item>
+        <item name="colorPrimaryDark">@color/palette_red_primary_dark</item>
+        <item name="colorAccent">@color/palette_red_accent</item>
+    </style>
+
+    <style name="AppTheme.Yellow" parent="AppTheme.Light.DarkActionBar">
+        <item name="colorPrimary">@color/palette_yellow_primary</item>
+        <item name="colorPrimaryDark">@color/palette_yellow_primary_dark</item>
+        <item name="colorAccent">@color/palette_yellow_accent</item>
+    </style>
+
+    <style name="AppTheme.Green" parent="AppTheme.Light.DarkActionBar">
+        <item name="colorPrimary">@color/palette_green_primary</item>
+        <item name="colorPrimaryDark">@color/palette_green_primary_dark</item>
+        <item name="colorAccent">@color/palette_green_accent</item>
+    </style>
+
+    <style name="AppTheme.Blue" parent="AppTheme.Light.DarkActionBar">
+        <item name="colorPrimary">@color/palette_blue_primary</item>
+        <item name="colorPrimaryDark">@color/palette_blue_primary_dark</item>
+        <item name="colorAccent">@color/palette_blue_accent</item>
     </style>
 
     <style name="CommonSectionHeaderLabel">

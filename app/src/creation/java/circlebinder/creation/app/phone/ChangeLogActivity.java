@@ -24,7 +24,7 @@ public final class ChangeLogActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.creation_activity_change_log);
-        ActivityNavigation.setDisplayHomeAsUpEnabled(this);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ChangeLogView changeLogView = (ChangeLogView) findViewById(R.id.creation_activity_change_log);
         try {
             changeLogView.addChangeLogFeedList(new ChangeLogLoader(this).load(R.raw.change_log_ltsv));

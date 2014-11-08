@@ -34,7 +34,7 @@ public final class AboutApplicationActivity extends BaseActivity implements HasF
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         appFlow = flowBundler.onCreate(savedInstanceState);
-        ActivityNavigation.setDisplayHomeAsUpEnabled(this);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.common_activity_about);
         container = (FrameScreenSwitcherView) findViewById(R.id.container);
         AppFlow.loadInitialScreen(this);

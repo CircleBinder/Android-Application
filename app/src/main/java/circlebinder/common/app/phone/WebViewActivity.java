@@ -39,7 +39,7 @@ public final class WebViewActivity extends BaseActivity {
         setContentView(R.layout.common_activity_web_view);
         url = BundleMerger.merge(getIntent(), savedInstanceState).getString(KEY_URL);
 
-        ActivityNavigation.getSupportActionBar(this).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         webView = (WebView)findViewById(R.id.common_activity_web_view);
         WebViewClient webViewClient = new WebViewClient(webView);

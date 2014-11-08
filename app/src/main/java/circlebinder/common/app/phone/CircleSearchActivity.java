@@ -45,7 +45,7 @@ public final class CircleSearchActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.common_activity_circle_search);
-        ActionBar actionBar = ActivityNavigation.getSupportActionBar(this);
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         circlesView = (CircleSearchView) findViewById(R.id.common_activity_circle_search_circles);
 

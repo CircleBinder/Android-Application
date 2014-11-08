@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
 import net.ichigotake.common.app.ActivityNavigation;
@@ -37,12 +38,14 @@ public final class ChecklistActivity extends BaseActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.common_acticity_checklist);
         checklistColor = (ChecklistColor) BundleMerger.merge(getIntent(), savedInstanceState)
                 .getSerializable(KEY_CHECKLIST_COLOR);
-        ActivityNavigation.setDisplayHomeAsUpEnabled(this);
-        ActivityNavigation.getSupportActionBar(this).setTitle(checklistColor.getName());
+        setTheme(checklistColor.getStyleResource());
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.common_acticity_checklist);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(checklistColor.getName());
+        actionBar.setDisplayHomeAsUpEnabled(true);
         checklistView = (CircleSearchView) findViewById(R.id.common_activity_checklist);
         CircleSearchOption searchOption = new CircleSearchOptionBuilder()
                 .setChecklist(checklistColor).build();
