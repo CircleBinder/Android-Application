@@ -70,10 +70,9 @@ public final class CircleSearchView extends FrameLayout {
 
     @Override
     public void onRestoreInstanceState(Parcelable state){
-        Parcelable savedState = presenter.onRestoreInstanceState(state);
-        if (savedState == null) {
-            super.onRestoreInstanceState(state);
-        }
+        super.onRestoreInstanceState(state);
+        presenter.onRestoreInstanceState(state);
+        presenter.reload();
     }
 
 }

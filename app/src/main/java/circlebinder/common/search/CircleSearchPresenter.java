@@ -49,7 +49,7 @@ final class CircleSearchPresenter {
     Parcelable onSaveInstanceState(Parcelable superState) {
         SavedState state = new SavedState(superState);
         state.searchOption = searchOptionBuilder.build();
-        return state;
+        return state.getSuperState();
     }
 
     Parcelable onRestoreInstanceState(Parcelable state) {
@@ -63,7 +63,7 @@ final class CircleSearchPresenter {
         return savedState;
     }
 
-    static class SavedState extends View.BaseSavedState implements Parcelable {
+    private static class SavedState extends View.BaseSavedState implements Parcelable {
 
         private CircleSearchOption searchOption;
 
