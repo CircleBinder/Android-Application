@@ -1,6 +1,5 @@
 package circlebinder.common.card;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observable;
@@ -17,9 +16,8 @@ final class HomeCardSubscriber implements Observable.OnSubscribe<List<HomeCard>>
     @Override
     public void call(Subscriber<? super List<HomeCard>> subscriber) {
         try {
-            List<HomeCard> cards = new ArrayList<>(eventCards);
-            cards.addAll(0, new ChecklistCardCallable().call());
-            subscriber.onNext(cards);
+            eventCards.addAll(0, new ChecklistCardCallable().call());
+            subscriber.onNext(eventCards);
             subscriber.onCompleted();
         } catch (Exception e) {
             subscriber.onError(e);
