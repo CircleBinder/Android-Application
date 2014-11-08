@@ -14,7 +14,7 @@ public final class CreationHomepageCard implements HomeCard {
 
     public CreationHomepageCard(Context context) {
         this.label = context.getString(R.string.app_event_name_short);
-        this.caption = context.getString(R.string.common_event_official_site);
+        this.caption = context.getString(R.string.app_event_official_site_label);
     }
 
 
@@ -35,6 +35,6 @@ public final class CreationHomepageCard implements HomeCard {
 
     @Override
     public Intent createTransitIntent(Context context) {
-        return WebViewActivity.createIntent(context, context.getString(R.string.app_creation_homepage_top));
+        return WebViewActivity.createIntent(context, context.getString(R.string.app_event_official_site_url));
     }
 }

@@ -5,6 +5,16 @@ import android.os.Parcelable;
 
 public class Space implements Parcelable {
 
+    public static String parseNoSub(int spaceNoSub) {
+        switch (spaceNoSub) {
+            case 0:
+                return "b";
+            case 1:
+            default:
+                return "a";
+        }
+    }
+
     private final String name;
     private final String simpleName;
     private final long blockId;

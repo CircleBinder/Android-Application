@@ -16,7 +16,6 @@ import am.ik.ltsv4j.LTSV;
 import circlebinder.common.Legacy;
 import circlebinder.common.event.CircleBuilder;
 import circlebinder.common.event.Space;
-import circlebinder.common.event.SpaceFactory;
 import circlebinder.R;
 import circlebinder.common.table.EventBlockTable;
 import circlebinder.common.event.EventBlockType;
@@ -86,7 +85,7 @@ abstract class CreationDatabaseInitialize implements Runnable, Legacy {
         try {
             reader = new BufferedReader(new InputStreamReader(inputStream));
             String line;
-            SpaceFactory spaceFactory = new SpaceFactory();
+            CreationSpaceFactory creationSpaceFactory = new CreationSpaceFactory();
             while ((line = reader.readLine()) != null) {
                 Map<String, String> circle = LTSV.parser().parseLine(line);
                 String circleName = circle.get("circle_name");
@@ -96,7 +95,7 @@ abstract class CreationDatabaseInitialize implements Runnable, Legacy {
 
                 builder.clear();
 
-                Space space = spaceFactory.from(circle.get("space"));
+                Space space = creationSpaceFactory.from(circle.get("space"));
 
                 EventCircleTableForInsert insertCircle = new EventCircleTableForInsert.Builder()
                         .setBlockId(EventBlockTable.get(space.getBlockName()).getId())
