@@ -1,6 +1,7 @@
 package circlebinder.common.card;
 
 import android.content.Context;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ public final class HomeCardAdapter extends ArrayAdapter<HomeCard, HomeCardItemVi
 
     @Override
     public void bindView(int position, View convertView, HomeCard item, HomeCardItemViewHolder holder) {
+        ViewCompat.setElevation(convertView, 10);
         convertView.setBackgroundResource(item.getBackgroundResource());
         holder.getLabel().setText(item.getLabel());
         holder.getCaption().setText(item.getCaption());

@@ -78,7 +78,6 @@ android {
 }
 
 repositories {
-    maven { url 'https://github.com/felipecsl/m2repository/raw/master/' }
     mavenCentral()
 }
 
@@ -88,9 +87,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.0'
     compile 'com.android.support:cardview-v7:21.0.0'
     compile 'com.dmitriy-tarasov:android-intents:1.1.0'
-    compile 'com.felipecsl:abslistviewhelper:1.0.+'
     compile 'com.github.hotchemi:ProgressMenuItem:0.3.3'
-    compile 'com.nineoldandroids:library:2.4.+'
     compile 'com.netflix.rxjava:rxjava-android:0.20.6'
     compile 'com.squareup.flow:flow:0.8'
     compile 'se.emilsjolander:stickylistheaders:2.5.0'

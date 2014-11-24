@@ -17,11 +17,7 @@ import circlebinder.R;
 import circlebinder.common.app.BroadcastEvent;
 import circlebinder.common.app.phone.AboutApplicationActivity;
 import circlebinder.common.app.phone.ContactActivity;
-import circlebinder.common.card.HomeCardListView;
-import circlebinder.creation.home.CreationHomepageCard;
-import circlebinder.creation.home.CreationLocationCard;
-import circlebinder.creation.home.CreationOfficialTwitterCard;
-import circlebinder.creation.home.CreationTwitterHashTagCard;
+import circlebinder.creation.home.HomeCardListView;
 
 /**
  * 通常起動時のファーストビュー
@@ -41,10 +37,6 @@ public final class HomeActivity extends BaseActivity implements Legacy {
         setContentView(R.layout.creation_activity_home);
 
         homeCardListView = (HomeCardListView) findViewById(R.id.creation_activity_home_content);
-        homeCardListView.addItem(new CreationHomepageCard(this));
-        homeCardListView.addItem(new CreationLocationCard(this));
-        homeCardListView.addItem(new CreationOfficialTwitterCard(this));
-        homeCardListView.addItem(new CreationTwitterHashTagCard(this));
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {

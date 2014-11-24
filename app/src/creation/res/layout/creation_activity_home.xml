@@ -5,7 +5,7 @@
     tools:context="circlebinder.creation.app.phone.HomeActivity"
     >
 
-    <circlebinder.common.card.HomeCardListView
+    <circlebinder.creation.home.HomeCardListView
         android:id="@+id/creation_activity_home_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

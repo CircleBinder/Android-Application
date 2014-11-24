@@ -15,7 +15,7 @@ import circlebinder.common.Legacy;
 import circlebinder.common.app.BaseActivity;
 import circlebinder.R;
 import circlebinder.common.app.BroadcastEvent;
-import circlebinder.common.card.HomeCardListView;
+import circlebinder.creation.home.HomeCardListView;
 import circlebinder.reitaisai.home.EventHomepageCard;
 import circlebinder.reitaisai.home.EventLocationCard;
 import circlebinder.reitaisai.home.EventOfficialTwitterCard;

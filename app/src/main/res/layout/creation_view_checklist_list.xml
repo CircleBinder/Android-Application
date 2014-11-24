@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,27 +8,43 @@
     tools:context="circlebinder.creation.app.phone.HomeActivity"
     >
 
-    <GridView
-        style="@style/CommonCardList"
-        android:id="@+id/create_view_checklist_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="true"
-        android:numColumns="3"
-        android:horizontalSpacing="@dimen/common_spacer_xx_small"
-        android:verticalSpacing="@dimen/common_spacer_xx_small"
-        android:layout_marginTop="@dimen/common_spacer_xx_small"
-        android:padding="@dimen/common_spacer_xx_small"
-        tools:listheader="@layout/enjoy_creation_search_guidance"
-        tools:listitem="@layout/common_home_card_item"
-        />
-
-    <include
-        layout="@layout/common_home_grid_header"
-        android:id="@+id/creation_view_checklist_list_header"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/common_spacer_xx_small"
-        />
+        >
 
-</FrameLayout>
+        <include
+            layout="@layout/common_home_grid_header"
+            android:id="@+id/creation_view_checklist_list_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/common_spacer_xx_small"
+            />
+
+        <net.ichigotake.common.widget.ExpandableHeightGridView
+            style="@style/CommonCardList"
+            android:id="@+id/creation_view_checklist_list"
+            android:layout_below="@+id/creation_view_checklist_list_header"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:numColumns="3"
+            android:horizontalSpacing="@dimen/common_spacer_xx_small"
+            android:verticalSpacing="@dimen/common_spacer_xx_small"
+            android:padding="@dimen/common_spacer_xx_small"
+            tools:listheader="@layout/enjoy_creation_search_guidance"
+            tools:listitem="@layout/common_home_card_item"
+            />
+
+
+        <circlebinder.creation.home.HomeCardListFooterView
+            android:id="@+id/creation_view_checklist_list_footer"
+            android:layout_below="@+id/creation_view_checklist_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/common_spacer_middle"
+            />
+
+    </RelativeLayout>
+
+</ScrollView>

@@ -2,15 +2,15 @@ package net.ichigotake.common.widget;
 
 import android.widget.TextView;
 
-class SingleLineTextViewHolder {
+public class SingleLineTextViewHolder {
 
     private final TextView textView;
 
-    SingleLineTextViewHolder(TextView textView) {
+    public SingleLineTextViewHolder(TextView textView) {
         this.textView = textView;
     }
 
-    TextView getTextView() {
+    public TextView getTextView() {
         return textView;
     }
 

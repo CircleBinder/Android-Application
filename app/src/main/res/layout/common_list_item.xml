@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/CommonCardItem"
-    android:id="@+id/common_list_item"
-    android:orientation="vertical"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:minHeight="48dp"
-    android:paddingLeft="@dimen/common_baseline_padding"
-    android:paddingRight="@dimen/common_baseline_padding"
-    android:textSize="@dimen/common_font_list_item"
-    android:gravity="center_vertical"
-    />
+    >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            style="@style/CommonCardItem"
+            android:id="@+id/common_list_item_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="56dp"
+            android:paddingLeft="@dimen/common_baseline_padding"
+            android:paddingRight="@dimen/common_baseline_padding"
+            android:textSize="@dimen/common_font_list_item"
+            android:gravity="center_vertical"
+            />
+
+    </FrameLayout>
+
+
+</android.support.v7.widget.CardView>
