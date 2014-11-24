@@ -1,4 +1,4 @@
-package circlebinder.reitaisai.system;
+package circlebinder.creation.system;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -14,7 +14,7 @@ import net.ichigotake.common.app.ActivityTripper;
 import circlebinder.R;
 import circlebinder.common.app.phone.AboutApplicationActivity;
 import circlebinder.common.app.phone.ContactActivity;
-import circlebinder.reitaisai.app.phone.ChangeLogActivity;
+import circlebinder.creation.app.phone.ChangeLogActivity;
 
 public final class SystemMenuView extends ListView {
 

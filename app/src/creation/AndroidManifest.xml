@@ -27,6 +27,7 @@
 
         <activity
             android:name="circlebinder.creation.app.phone.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:label="@string/app_event_name"
             />
 

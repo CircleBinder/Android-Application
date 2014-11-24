@@ -80,15 +80,6 @@ public final class HomeActivity extends BaseActivity implements Legacy {
     }
 
     @Override
-    public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(drawerView)) {
-            drawerLayout.closeDrawer(drawerView);
-            return;
-        }
-        super.onBackPressed();
-    }
-
-    @Override
     public void onDestroy() {
         if (broadcastReceiver != null) {
             unregisterReceiver(broadcastReceiver);

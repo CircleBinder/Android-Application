@@ -3,21 +3,18 @@ package circlebinder.creation.app.phone;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.view.Menu;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-
-import net.ichigotake.common.view.MenuPresenter;
-
-import circlebinder.common.app.ActivityTripActionProvider;
 
 import circlebinder.common.Legacy;
 import circlebinder.common.app.BaseActivity;
 import circlebinder.R;
 import circlebinder.common.app.BroadcastEvent;
-import circlebinder.common.app.phone.AboutApplicationActivity;
-import circlebinder.common.app.phone.ContactActivity;
 import circlebinder.creation.home.HomeCardListView;
+import circlebinder.creation.system.NavigationDrawerRenderer;
 
 /**
  * 通常起動時のファーストビュー
@@ -30,13 +27,21 @@ public final class HomeActivity extends BaseActivity implements Legacy {
 
     private BroadcastReceiver broadcastReceiver;
     private HomeCardListView homeCardListView;
+    private NavigationDrawerRenderer drawerRenderer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.creation_activity_home);
-
-        homeCardListView = (HomeCardListView) findViewById(R.id.creation_activity_home_content);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.creation_activity_home_toolbar);
+        setSupportActionBar(toolbar);
+        drawerRenderer = new NavigationDrawerRenderer(
+                this,
+                toolbar,
+                (DrawerLayout) findViewById(R.id.creation_activity_home_container),
+                findViewById(R.id.creation_activity_home_system_menu)
+        );
+        homeCardListView = (HomeCardListView) findViewById(R.id.creation_activity_home_checklist_list);
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -47,21 +52,28 @@ public final class HomeActivity extends BaseActivity implements Legacy {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuPresenter presenter = new MenuPresenter(menu, getMenuInflater());
-        MenuItem feedbackItem = presenter.inflate(R.menu.wish_me_luck, R.id.menu_wish_me_luck);
-        presenter.setActionProvider(
-                feedbackItem,
-                new ActivityTripActionProvider(this, ContactActivity.createIntent(this)));
-        MenuItem changeLogItem = presenter.inflate(R.menu.change_log, R.id.menu_change_log);
-        presenter.setActionProvider(
-                changeLogItem,
-                new ActivityTripActionProvider(this, ChangeLogActivity.createIntent(this)));
-        MenuItem aboutApplicationItem = presenter.inflate(R.menu.about_application, R.id.menu_about_application);
-        presenter.setActionProvider(
-                aboutApplicationItem,
-                new ActivityTripActionProvider(this, AboutApplicationActivity.createIntent(this)));
-        return super.onCreateOptionsMenu(menu);
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        drawerRenderer.onPostCreate();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        drawerRenderer.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return drawerRenderer.onOptionsItemSelected(item)
+                || super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!drawerRenderer.onBackPressed()) {
+            super.onBackPressed();
+        }
     }
 
     @Override

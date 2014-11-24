@@ -11,7 +11,7 @@ public class SingleLineTextViewBinder implements ViewBinder<String, SingleLineTe
 
     @Override
     public SingleLineTextViewHolder generateTag(int position, String item, View convertView) {
-        return new SingleLineTextViewHolder((TextView) convertView);
+        return new SingleLineTextViewHolder((TextView) convertView.findViewById(R.id.common_list_item_label));
     }
 
     @Override
