@@ -15,7 +15,7 @@ final class ChecklistCard implements HomeCard {
 
     ChecklistCard(Circle circle) {
         this.color = circle.getChecklistColor();
-        this.label = circle.getChecklistColor().getId() + " " + circle.getChecklistColor().getName();
+        this.label = circle.getChecklistColor().getName();
         this.caption = circle.getSpace().getSimpleName() + " " + circle.getName();
     }
 
@@ -31,7 +31,7 @@ final class ChecklistCard implements HomeCard {
 
     @Override
     public int getBackgroundResource() {
-        return color.getColorResource();
+        return color.getDrawableResource();
     }
 
     @Override

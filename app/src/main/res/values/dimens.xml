@@ -13,6 +13,7 @@
     <dimen name="common_divider_height" tools:ignore="UnusedResources">1dp</dimen>
 
     <dimen name="common_home_card_header_height">184dp</dimen>
+    <dimen name="common_home_card_item_height">108dp</dimen>
     <dimen name="common_card_container_divider_height" tools:ignore="UnusedResources">1dp</dimen>
 
     <!-- SEE ALSO: http://www.google.com/design/spec/style/typography.html -->

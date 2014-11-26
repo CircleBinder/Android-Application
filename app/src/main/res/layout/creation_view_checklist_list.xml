@@ -29,8 +29,8 @@
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:numColumns="3"
-            android:horizontalSpacing="@dimen/common_spacer_xx_small"
-            android:verticalSpacing="@dimen/common_spacer_xx_small"
+            android:horizontalSpacing="@dimen/common_spacer_x_small"
+            android:verticalSpacing="@dimen/common_spacer_x_small"
             android:padding="@dimen/common_spacer_xx_small"
             tools:listheader="@layout/enjoy_creation_search_guidance"
             tools:listitem="@layout/common_home_card_item"
@@ -42,7 +42,7 @@
             android:layout_below="@+id/creation_view_checklist_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/common_spacer_middle"
+            android:layout_marginBottom="56dp"
             />
 
     </RelativeLayout>
