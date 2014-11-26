@@ -17,19 +17,19 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
         android:paddingTop="96dp"
+        android:paddingRight="16dp"
         android:paddingBottom="16dp"
         android:scrollbarStyle="outsideOverlay"
         android:clipToPadding="false"
         android:fillViewport="true"
-        android:layout_above="@+id/creation_activity_initialize_progress_container"
+        android:layout_marginBottom="56dp"
         >
 
         <circlebinder.creation.initialize.TutorialView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
             />
 
     </ScrollView>
