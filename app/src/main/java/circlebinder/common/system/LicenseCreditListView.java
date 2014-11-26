@@ -44,7 +44,6 @@ public final class LicenseCreditListView extends ListView {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        adapter.add(new LicenseCredit("AbsListViewHelper", "Felipe Lima", 2011, licenseName, licenseBody));
         adapter.add(new LicenseCredit("ActiveAndroid", "Michael Pardo", 2010, licenseName, licenseBody));
         adapter.add(new LicenseCredit("android-intents", "Dmitriy Tarasov ", 2013, licenseName, licenseBody));
         adapter.add(new LicenseCredit("ltsv4j", "making", 2013, licenseName, licenseBody));
