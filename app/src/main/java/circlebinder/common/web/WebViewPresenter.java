@@ -28,6 +28,8 @@ public final class WebViewPresenter {
     }
 
     public void webViewDetached() {
+        webView.getSettings().setSaveFormData(false);
+        webView.clearHistory();
         webView.clearCache(true);
         webView.stopLoading();
         webView.setWebChromeClient(null);
