@@ -30,9 +30,6 @@ android {
         creation {
             applicationId 'circlebinder.creation'
         }
-        reitaisai {
-            applicationId 'circlebinder.reitaisai'
-        }
         playground {
             applicationId 'circlebinder.playground'
         }

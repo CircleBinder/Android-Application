@@ -1,1 +1,0 @@
-versionName:0.10	versionCode:13	type:feature	title:2014年秋の例大祭に対応しました！	publishDate:1415026800000
