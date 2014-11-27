@@ -5,13 +5,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import net.ichigotake.common.util.Finders;
+
 import circlebinder.R;
 
 public class SingleLineTextViewBinder implements ViewBinder<String, SingleLineTextViewHolder> {
 
     @Override
     public SingleLineTextViewHolder generateTag(int position, String item, View convertView) {
-        return new SingleLineTextViewHolder((TextView) convertView.findViewById(R.id.common_list_item_label));
+        return new SingleLineTextViewHolder(Finders.from(convertView).find(R.id.common_list_item_label));
     }
 
     @Override

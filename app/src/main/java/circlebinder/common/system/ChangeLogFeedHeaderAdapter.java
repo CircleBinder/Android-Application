@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import net.ichigotake.common.util.Finders;
 import net.ichigotake.common.widget.SectionHeaderArrayAdapter;
 import net.ichigotake.common.widget.SectionHeaderViewHolder;
 
@@ -22,7 +23,7 @@ public final class ChangeLogFeedHeaderAdapter
 
     @Override
     protected SectionHeaderViewHolder generateHeaderTag(int position, ChangeLogFeed item, View convertView) {
-        return new SectionHeaderViewHolder((TextView) convertView.findViewById(R.id.common_section_sub_header));
+        return new SectionHeaderViewHolder(Finders.from(convertView).find(R.id.common_section_sub_header));
     }
 
     @Override

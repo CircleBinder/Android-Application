@@ -10,6 +10,9 @@ import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 
+import net.ichigotake.common.util.Finders;
+import net.ichigotake.common.util.ViewFinder;
+
 import circlebinder.R;
 import circlebinder.common.card.HomeCard;
 import circlebinder.common.card.HomeCardPresenter;
@@ -40,8 +43,10 @@ public final class HomeCardListView extends FrameLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        View container = inflater.inflate(R.layout.creation_view_checklist_list, this, true);
-        View headerView = container.findViewById(R.id.creation_view_checklist_list_header);
+        ViewFinder finder = Finders.from(
+                inflater.inflate(R.layout.creation_view_checklist_list, this, true)
+        );
+        View headerView = finder.find(R.id.creation_view_checklist_list_header);
         headerView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,7 +57,7 @@ public final class HomeCardListView extends FrameLayout {
             headerView.setBackgroundResource(R.drawable.common_ripple);
             ViewCompat.setElevation(headerView, 10);
         }
-        GridView checklistsView = (GridView)container.findViewById(R.id.creation_view_checklist_list);
+        GridView checklistsView = finder.find(R.id.creation_view_checklist_list);
         checklistsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

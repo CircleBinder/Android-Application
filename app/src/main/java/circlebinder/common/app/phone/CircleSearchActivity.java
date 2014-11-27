@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 import net.ichigotake.common.app.ActivityNavigation;
+import net.ichigotake.common.util.ActivityViewFinder;
+import net.ichigotake.common.util.Finders;
 import net.ichigotake.common.view.ActionProvider;
 import net.ichigotake.common.view.MenuPresenter;
 import net.ichigotake.common.widget.OnItemSelectedEventListener;
@@ -47,9 +49,10 @@ public final class CircleSearchActivity extends BaseActivity {
         setContentView(R.layout.common_activity_circle_search);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        circlesView = (CircleSearchView) findViewById(R.id.common_activity_circle_search_circles);
+        ActivityViewFinder finder = Finders.from(this);
+        circlesView = finder.find(R.id.common_activity_circle_search_circles);
 
-        inputKeywordView = (InputKeywordView) findViewById(R.id.common_activity_circle_search_option_keyword);
+        inputKeywordView = finder.find(R.id.common_activity_circle_search_option_keyword);
         inputKeywordView.setOnInputTextListener(new OnInputTextListener() {
             @Override
             public void onTextChange(String keyword) {
@@ -66,8 +69,8 @@ public final class CircleSearchActivity extends BaseActivity {
         }
 
         View actionBarView = getLayoutInflater().inflate(R.layout.common_action_bar_circle_search_option, null);
-        EventBlockSelectorView blockSelectorView = (EventBlockSelectorView) actionBarView
-                .findViewById(R.id.common_action_bar_circle_search_option);
+        EventBlockSelectorView blockSelectorView = Finders.from(actionBarView)
+                .find(R.id.common_action_bar_circle_search_option);
         blockSelectorView.setBlockList(EventBlockTable.getAll());
         blockSelectorView.addOnItemSelectedListener(new OnItemSelectedEventListener<Block>() {
             @Override

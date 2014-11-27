@@ -3,9 +3,11 @@ package circlebinder.common.system;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+
+import net.ichigotake.common.util.Finders;
+import net.ichigotake.common.util.ViewFinder;
 
 import java.util.List;
 
@@ -35,9 +37,10 @@ public final class ChangeLogView extends FrameLayout {
     }
 
     private void initialize() {
-        View view = LayoutInflater.from(getContext())
-                .inflate(R.layout.common_view_change_log, this, true);
-        ListView changeLogsView = (ListView)view.findViewById(R.id.common_view_change_log_list);
+        ViewFinder finder = Finders.from(
+                LayoutInflater.from(getContext()).inflate(R.layout.common_view_change_log, this, true)
+        );
+        ListView changeLogsView = finder.find(R.id.common_view_change_log_list);
         this.adapter = new ChangeLogFeedHeaderAdapter(getContext());
         changeLogsView.setAdapter(adapter);
     }

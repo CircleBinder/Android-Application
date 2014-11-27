@@ -3,6 +3,9 @@ package circlebinder.common.system;
 import android.view.View;
 import android.widget.TextView;
 
+import net.ichigotake.common.util.Finders;
+import net.ichigotake.common.util.ViewFinder;
+
 import circlebinder.R;
 
 final class LicenseCreditViewHolder {
@@ -15,10 +18,11 @@ final class LicenseCreditViewHolder {
     private final TextView licenseBody;
 
     LicenseCreditViewHolder(View view) {
-        this.name = (TextView) view.findViewById(R.id.common_license_credit_item_name);
-        this.copyright = (TextView) view.findViewById(R.id.common_license_credit_item_copyright);
-        this.licenseName = (TextView) view.findViewById(R.id.common_license_credit_item_license_name);
-        this.licenseBody = (TextView) view.findViewById(R.id.common_license_credit_item_license_body);
+        ViewFinder finder = Finders.from(view);
+        this.name = finder.find(R.id.common_license_credit_item_name);
+        this.copyright = finder.find(R.id.common_license_credit_item_copyright);
+        this.licenseName = finder.find(R.id.common_license_credit_item_license_name);
+        this.licenseBody = finder.find(R.id.common_license_credit_item_license_body);
     }
 
     TextView getName() {

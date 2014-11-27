@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.os.BundleMerger;
+import net.ichigotake.common.util.Finders;
 
 import circlebinder.R;
 import circlebinder.common.app.BaseActivity;
@@ -46,7 +47,7 @@ public final class ChecklistActivity extends BaseActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(checklistColor.getName());
         actionBar.setDisplayHomeAsUpEnabled(true);
-        checklistView = (CircleSearchView) findViewById(R.id.common_activity_checklist);
+        checklistView = Finders.from(this).find(R.id.common_activity_checklist);
         CircleSearchOption searchOption = new CircleSearchOptionBuilder()
                 .setChecklist(checklistColor).build();
         checklistView.setFilter(searchOption);

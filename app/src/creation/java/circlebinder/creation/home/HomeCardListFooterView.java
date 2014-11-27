@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import net.ichigotake.common.app.ActivityTripper;
+import net.ichigotake.common.util.Finders;
+import net.ichigotake.common.util.ViewFinder;
 
 import circlebinder.R;
 import circlebinder.common.card.HomeCard;
@@ -43,10 +45,10 @@ public class HomeCardListFooterView extends LinearLayout {
         adapter.add(new CreationTwitterHashTagCard(getContext()));
         for (int i=0,size=adapter.getCount(); i<size; i++) {
             View itemView = adapter.getView(i, null, this);
+            ViewFinder finder = Finders.from(itemView);
             itemView.setOnClickListener(new OnItemClickListener(adapter.getItem(i)));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                itemView.findViewById(R.id.common_list_item_label)
-                        .setBackgroundResource(R.drawable.common_ripple);
+                finder.find(R.id.common_list_item_label).setBackgroundResource(R.drawable.common_ripple);
             }
             addView(itemView);
         }

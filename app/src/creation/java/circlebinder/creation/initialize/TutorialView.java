@@ -5,13 +5,14 @@ import android.support.v7.widget.CardView;
 import android.text.Html;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.TextView;
 
 import com.dmitriy.tarasov.android.intents.IntentUtils;
 
 import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.OnClickToTrip;
+import net.ichigotake.common.util.Finders;
+import net.ichigotake.common.util.ViewFinder;
 
 import circlebinder.R;
 
@@ -35,10 +36,8 @@ public final class TutorialView extends CardView {
     @Override
     protected void onFinishInflate() {
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        View view = inflater.inflate(R.layout.creation_tutorial, this, true);
-        TextView twitterHashTagView = (TextView) view.findViewById(
-                R.id.common_view_contact_twitter_official_hash_tag
-        );
+        ViewFinder finder = Finders.from(inflater.inflate(R.layout.creation_tutorial, this, true));
+        TextView twitterHashTagView = finder.find(R.id.common_view_contact_twitter_official_hash_tag);
         String twitterHashTagUrl = getContext().getString(R.string.common_twitter_official_hash_tag_url);
         twitterHashTagView.setText(Html.fromHtml(
                 "<a href=\"" + twitterHashTagUrl + "\">" +
@@ -51,9 +50,8 @@ public final class TutorialView extends CardView {
                         IntentUtils.openLink(twitterHashTagUrl))
         ));
 
-        TextView twitterScreenNameView = (TextView) view.findViewById(
-                R.id.common_view_contact_twitter_official_account_screen_name
-        );
+        TextView twitterScreenNameView = finder
+                .find(R.id.common_view_contact_twitter_official_account_screen_name);
         String twitterScreenNameUrl = getContext().getString(R.string.common_twitter_official_account_url);
         twitterScreenNameView.setText(Html.fromHtml(
                 "<a href=\"" + twitterScreenNameUrl + "\">" +

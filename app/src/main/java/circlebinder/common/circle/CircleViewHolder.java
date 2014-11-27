@@ -3,6 +3,9 @@ package circlebinder.common.circle;
 import android.view.View;
 import android.widget.TextView;
 
+import net.ichigotake.common.util.Finders;
+import net.ichigotake.common.util.ViewFinder;
+
 import circlebinder.R;
 import circlebinder.common.checklist.ChecklistSelectorView;
 
@@ -16,12 +19,13 @@ public final class CircleViewHolder {
     private final View spaceContainer;
 
     public CircleViewHolder(View container) {
-        this.circleName = (TextView)container.findViewById(R.id.common_circle_list_item_name);
-        this.penName = (TextView)container.findViewById(R.id.common_circle_list_item_pen_name);
-        this.genre = (TextView)container.findViewById(R.id.common_circle_list_item_genre);
-        this.checklistSelector = (ChecklistSelectorView) container.findViewById(R.id.common_circle_list_checklist);
-        this.space = (TextView)container.findViewById(R.id.common_circle_list_item_space);
-        this.spaceContainer = container.findViewById(R.id.common_circle_list_item_space_container);
+        ViewFinder finder = Finders.from(container);
+        this.circleName = finder.find(R.id.common_circle_list_item_name);
+        this.penName = finder.find(R.id.common_circle_list_item_pen_name);
+        this.genre = finder.find(R.id.common_circle_list_item_genre);
+        this.checklistSelector = finder.find(R.id.common_circle_list_checklist);
+        this.space = finder.find(R.id.common_circle_list_item_space);
+        this.spaceContainer = finder.find(R.id.common_circle_list_item_space_container);
     }
 
     public TextView getCircleName() {

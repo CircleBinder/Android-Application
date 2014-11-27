@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+
+import net.ichigotake.common.util.ActivityViewFinder;
+import net.ichigotake.common.util.Finders;
 
 import circlebinder.common.Legacy;
 import circlebinder.common.app.BaseActivity;
@@ -33,15 +35,16 @@ public final class HomeActivity extends BaseActivity implements Legacy {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.creation_activity_home);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.creation_activity_home_toolbar);
+        ActivityViewFinder finder = Finders.from(this);
+        Toolbar toolbar = finder.find(R.id.creation_activity_home_toolbar);
         setSupportActionBar(toolbar);
         drawerRenderer = new NavigationDrawerRenderer(
                 this,
                 toolbar,
-                (DrawerLayout) findViewById(R.id.creation_activity_home_container),
-                findViewById(R.id.creation_activity_home_system_menu)
+                finder.find(R.id.creation_activity_home_container),
+                finder.find(R.id.creation_activity_home_system_menu)
         );
-        homeCardListView = (HomeCardListView) findViewById(R.id.creation_activity_home_checklist_list);
+        homeCardListView = finder.find(R.id.creation_activity_home_checklist_list);
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {

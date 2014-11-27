@@ -18,6 +18,7 @@ import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.content.OnBeforeLoadingListener;
 import net.ichigotake.common.os.BundleMerger;
+import net.ichigotake.common.util.Finders;
 import net.ichigotake.common.view.ActionProvider;
 import net.ichigotake.common.view.MenuPresenter;
 import net.ichigotake.common.view.ReloadActionProvider;
@@ -72,7 +73,7 @@ public final class CircleDetailActivity extends BaseActivity
         searchOption = bundle.getParcelable(EXTRA_KEY_SEARCH_OPTION);
         currentPosition = bundle.getInt(EXTRA_KEY_POSITION);
 
-        webView = (CircleWebView)findViewById(R.id.common_activity_circle_detail_web_view);
+        webView = Finders.from(this).find(R.id.common_activity_circle_detail_web_view);
         WebViewClient client = new WebViewClient(webView);
         client.setOnBeforeLoadingListener(new OnBeforeLoadingListener() {
             @Override

@@ -3,9 +3,11 @@ package circlebinder.common.circle;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import net.ichigotake.common.util.Finders;
+import net.ichigotake.common.util.ViewFinder;
 
 import circlebinder.R;
 import circlebinder.common.event.Circle;
@@ -34,10 +36,12 @@ public class CircleDetailHeaderView extends LinearLayout {
     }
 
     private void initialize() {
-        View view = LayoutInflater.from(getContext())
-                .inflate(R.layout.common_view_circle_detail_header, this, true);
-        this.circleNameLabel = (TextView) view.findViewById(R.id.common_view_circle_detail_header_name);
-        this.circleSpaceLabel = (TextView) view.findViewById(R.id.common_view_circle_detail_header_space);
+        ViewFinder finder = Finders.from(
+                LayoutInflater.from(getContext())
+                        .inflate(R.layout.common_view_circle_detail_header, this, true)
+        );
+        this.circleNameLabel = finder.find(R.id.common_view_circle_detail_header_name);
+        this.circleSpaceLabel = finder.find(R.id.common_view_circle_detail_header_space);
     }
 
     public void setCircle(Circle circle) {

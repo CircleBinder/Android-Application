@@ -4,8 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
+import net.ichigotake.common.util.Finders;
 import net.ichigotake.common.widget.SectionHeaderArrayAdapter;
 import net.ichigotake.common.widget.SectionHeaderViewHolder;
 import net.ichigotake.common.widget.SingleLineTextViewHolder;
@@ -52,6 +52,6 @@ public class HomeCardFooterAdapter
 
     @Override
     protected SingleLineTextViewHolder generateTag(int position, HomeCard item, View convertView) {
-        return new SingleLineTextViewHolder((TextView) convertView.findViewById(R.id.common_list_item_label));
+        return new SingleLineTextViewHolder(Finders.from(convertView).find(R.id.common_list_item_label));
     }
 }
