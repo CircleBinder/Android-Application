@@ -37,7 +37,7 @@ public final class AboutApplicationActivity extends BaseActivity implements HasF
         appFlow = flowBundler.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.common_activity_about);
-        container = Finders.from(this).find(R.id.container);
+        container = Finders.from(this).findOrNull(R.id.container);
         AppFlow.loadInitialScreen(this);
     }
 

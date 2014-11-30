@@ -43,7 +43,7 @@ public final class InputKeywordView extends FrameLayout {
         ViewFinder finder = Finders.from(
                 LayoutInflater.from(getContext()).inflate(R.layout.common_view_input_keyword, this, true)
         );
-        editText = finder.find(R.id.common_view_input_keyword_edit_text);
+        editText = finder.findOrNull(R.id.common_view_input_keyword_edit_text);
         editText.setOnFocusChangeListener(new OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {

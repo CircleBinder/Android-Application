@@ -32,18 +32,18 @@ public abstract class SectionHeaderArrayAdapter<ITEM, ITEM_TAG, HEADER_TAG>
             headerView = generateHeaderView(position, item, getLayoutInflater(), parent);
             headerTag = generateHeaderTag(position, item, headerView);
             headerView.setTag(headerTag);
-            ((ViewGroup)finder.find(R.id.common_section_item_with_header_label)).addView(headerView);
+            ((ViewGroup)finder.findOrNull(R.id.common_section_item_with_header_label)).addView(headerView);
 
             itemView = generateView(position, item, getLayoutInflater(), (ViewGroup) view);
             itemTag = generateTag(position, item, itemView);
             itemView.setTag(itemTag);
-            ((ViewGroup)finder.find(R.id.common_section_item_with_header_item)).addView(itemView);
+            ((ViewGroup)finder.findOrNull(R.id.common_section_item_with_header_item)).addView(itemView);
         } else {
             ViewFinder finder = Finders.from(view);
-            headerView = ((ViewGroup)finder.find(R.id.common_section_item_with_header_label)).getChildAt(0);
+            headerView = ((ViewGroup)finder.findOrNull(R.id.common_section_item_with_header_label)).getChildAt(0);
             //noinspection unchecked
             headerTag = (HEADER_TAG) headerView.getTag();
-            itemTag = (ITEM_TAG)((ViewGroup)finder.find(R.id.common_section_item_with_header_item))
+            itemTag = (ITEM_TAG)((ViewGroup)finder.findOrNull(R.id.common_section_item_with_header_item))
                     .getChildAt(0).getTag();
         }
 

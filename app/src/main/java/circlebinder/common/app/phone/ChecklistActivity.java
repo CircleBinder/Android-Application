@@ -47,7 +47,7 @@ public final class ChecklistActivity extends BaseActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(checklistColor.getName());
         actionBar.setDisplayHomeAsUpEnabled(true);
-        checklistView = Finders.from(this).find(R.id.common_activity_checklist);
+        checklistView = Finders.from(this).findOrNull(R.id.common_activity_checklist);
         CircleSearchOption searchOption = new CircleSearchOptionBuilder()
                 .setChecklist(checklistColor).build();
         checklistView.setFilter(searchOption);

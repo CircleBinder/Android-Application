@@ -2,6 +2,8 @@ package net.ichigotake.common.widget;
 
 import android.widget.TextView;
 
+import net.ichigotake.common.util.ViewFinder;
+
 import circlebinder.R;
 
 public final class SectionHeaderViewHolder {
@@ -10,8 +12,8 @@ public final class SectionHeaderViewHolder {
 
     private final TextView label;
 
-    public SectionHeaderViewHolder(TextView label) {
-        this.label = label;
+    public SectionHeaderViewHolder(ViewFinder finder) {
+        this.label = finder.findOrNull(R.id.common_section_sub_header);
     }
 
     public TextView getLabel() {

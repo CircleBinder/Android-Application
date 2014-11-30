@@ -26,7 +26,7 @@ public final class ChangeLogActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.creation_activity_change_log);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ChangeLogView changeLogView = Finders.from(this).find(R.id.creation_activity_change_log);
+        ChangeLogView changeLogView = Finders.from(this).findOrNull(R.id.creation_activity_change_log);
         try {
             changeLogView.addChangeLogFeedList(new ChangeLogLoader(this).load(R.raw.change_log_ltsv));
         } catch (IOException e) {

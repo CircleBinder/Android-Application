@@ -56,7 +56,7 @@ public class ChecklistSelectorView extends FrameLayout {
                 LayoutInflater.from(getContext())
                         .inflate(R.layout.common_view_checklist_selector, this, true)
         );
-        this.checklistColorView = finder.find(R.id.common_view_checklist_selector_label);
+        this.checklistColorView = finder.findOrNull(R.id.common_view_checklist_selector_label);
         this.selector = new ChecklistPopupSelector(getContext());
         this.anchor = checklistColorView;
         checklistColorView.setOnClickListener(new OnClickListener() {

@@ -10,7 +10,13 @@ public class ViewFinder {
         this.view = view;
     }
 
-    public <V extends View> V find(int id) {
+    @SuppressWarnings("unchecked")
+    public <V extends View> Optional<V> find(int id) {
+        return Optional.fromNullable((V) view.findViewById(id));
+    }
+
+    @SuppressWarnings("unchecked")
+    public <V extends View> V findOrNull(int id) {
         return (V) view.findViewById(id);
     }
 

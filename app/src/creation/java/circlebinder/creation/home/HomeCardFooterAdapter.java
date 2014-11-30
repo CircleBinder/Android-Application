@@ -22,7 +22,7 @@ public class HomeCardFooterAdapter
 
     @Override
     protected SectionHeaderViewHolder generateHeaderTag(int position, HomeCard homeCard, View convertView) {
-        return new SectionHeaderViewHolder((android.widget.TextView) convertView);
+        return new SectionHeaderViewHolder(Finders.from(convertView));
     }
 
     @Override
@@ -52,6 +52,6 @@ public class HomeCardFooterAdapter
 
     @Override
     protected SingleLineTextViewHolder generateTag(int position, HomeCard item, View convertView) {
-        return new SingleLineTextViewHolder(Finders.from(convertView).find(R.id.common_list_item_label));
+        return new SingleLineTextViewHolder(Finders.from(convertView));
     }
 }

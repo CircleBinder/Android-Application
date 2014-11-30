@@ -40,7 +40,7 @@ public final class ChangeLogView extends FrameLayout {
         ViewFinder finder = Finders.from(
                 LayoutInflater.from(getContext()).inflate(R.layout.common_view_change_log, this, true)
         );
-        ListView changeLogsView = finder.find(R.id.common_view_change_log_list);
+        ListView changeLogsView = finder.findOrNull(R.id.common_view_change_log_list);
         this.adapter = new ChangeLogFeedHeaderAdapter(getContext());
         changeLogsView.setAdapter(adapter);
     }

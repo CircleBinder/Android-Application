@@ -48,7 +48,7 @@ public class HomeCardListFooterView extends LinearLayout {
             ViewFinder finder = Finders.from(itemView);
             itemView.setOnClickListener(new OnItemClickListener(adapter.getItem(i)));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                finder.find(R.id.common_list_item_label).setBackgroundResource(R.drawable.common_ripple);
+                finder.findOrNull(R.id.common_list_item_label).setBackgroundResource(R.drawable.common_ripple);
             }
             addView(itemView);
         }

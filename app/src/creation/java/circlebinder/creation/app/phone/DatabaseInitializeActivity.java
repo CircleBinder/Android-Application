@@ -65,12 +65,12 @@ public final class DatabaseInitializeActivity extends BaseActivity
         serviceBind = true;
         bindService(new Intent(this, DatabaseInitializeService.class), serviceConnection, 0);
         ActivityViewFinder finder = Finders.from(this);
-        View finishedView = finder.find(R.id.creation_activity_initialize_finished);
+        View finishedView = finder.findOrNull(R.id.creation_activity_initialize_finished);
         finishedView.setOnClickListener(new OnClickToTrip(
                 new ActivityTripper(this, HomeActivity.createIntent(this)).withFinish()
         ));
         handler = new InitializeHandler(
-                finder.find(R.id.creation_activity_initialize_progress),
+                finder.findOrNull(R.id.creation_activity_initialize_progress),
                 finishedView
         );
         startService(new Intent(this, DatabaseInitializeService.class));

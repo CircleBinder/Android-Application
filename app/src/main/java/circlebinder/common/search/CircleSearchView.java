@@ -46,7 +46,7 @@ public final class CircleSearchView extends FrameLayout {
     protected void onFinishInflate() {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         ViewGroup view = (ViewGroup)inflater.inflate(R.layout.common_circle_search, this, true);
-        StickyListHeadersListView circlesView = Finders.from(view).find(R.id.common_circle_search);
+        StickyListHeadersListView circlesView = Finders.from(view).findOrNull(R.id.common_circle_search);
         presenter.attachedView(circlesView);
         circlesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

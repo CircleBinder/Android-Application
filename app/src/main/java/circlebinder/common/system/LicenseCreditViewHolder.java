@@ -19,10 +19,10 @@ final class LicenseCreditViewHolder {
 
     LicenseCreditViewHolder(View view) {
         ViewFinder finder = Finders.from(view);
-        this.name = finder.find(R.id.common_license_credit_item_name);
-        this.copyright = finder.find(R.id.common_license_credit_item_copyright);
-        this.licenseName = finder.find(R.id.common_license_credit_item_license_name);
-        this.licenseBody = finder.find(R.id.common_license_credit_item_license_body);
+        this.name = finder.findOrNull(R.id.common_license_credit_item_name);
+        this.copyright = finder.findOrNull(R.id.common_license_credit_item_copyright);
+        this.licenseName = finder.findOrNull(R.id.common_license_credit_item_license_name);
+        this.licenseBody = finder.findOrNull(R.id.common_license_credit_item_license_body);
     }
 
     TextView getName() {

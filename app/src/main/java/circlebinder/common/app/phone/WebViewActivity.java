@@ -42,7 +42,7 @@ public final class WebViewActivity extends BaseActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        webView = Finders.from(this).find(R.id.common_activity_web_view);
+        webView = Finders.from(this).findOrNull(R.id.common_activity_web_view);
         WebViewClient webViewClient = new WebViewClient(webView);
         webViewClient.setOnBeforeLoadingListener(new OnBeforeLoadingListener() {
             @Override

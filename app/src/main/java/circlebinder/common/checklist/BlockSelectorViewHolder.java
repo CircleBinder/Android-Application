@@ -16,8 +16,8 @@ public final class BlockSelectorViewHolder {
 
     public BlockSelectorViewHolder(View container) {
         ViewFinder finder = Finders.from(container);
-        name = finder.find(R.id.common_spinner_dropdown_item_name);
-        icon = finder.find(R.id.common_spinner_dropdown_item_icon);
+        name = finder.findOrNull(R.id.common_spinner_dropdown_item_name);
+        icon = finder.findOrNull(R.id.common_spinner_dropdown_item_icon);
     }
 
     public TextView getName() {

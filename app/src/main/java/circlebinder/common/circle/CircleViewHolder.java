@@ -20,12 +20,12 @@ public final class CircleViewHolder {
 
     public CircleViewHolder(View container) {
         ViewFinder finder = Finders.from(container);
-        this.circleName = finder.find(R.id.common_circle_list_item_name);
-        this.penName = finder.find(R.id.common_circle_list_item_pen_name);
-        this.genre = finder.find(R.id.common_circle_list_item_genre);
-        this.checklistSelector = finder.find(R.id.common_circle_list_checklist);
-        this.space = finder.find(R.id.common_circle_list_item_space);
-        this.spaceContainer = finder.find(R.id.common_circle_list_item_space_container);
+        this.circleName = finder.findOrNull(R.id.common_circle_list_item_name);
+        this.penName = finder.findOrNull(R.id.common_circle_list_item_pen_name);
+        this.genre = finder.findOrNull(R.id.common_circle_list_item_genre);
+        this.checklistSelector = finder.findOrNull(R.id.common_circle_list_checklist);
+        this.space = finder.findOrNull(R.id.common_circle_list_item_space);
+        this.spaceContainer = finder.findOrNull(R.id.common_circle_list_item_space_container);
     }
 
     public TextView getCircleName() {

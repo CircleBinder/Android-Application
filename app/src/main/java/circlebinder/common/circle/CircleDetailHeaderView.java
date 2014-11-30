@@ -40,8 +40,8 @@ public class CircleDetailHeaderView extends LinearLayout {
                 LayoutInflater.from(getContext())
                         .inflate(R.layout.common_view_circle_detail_header, this, true)
         );
-        this.circleNameLabel = finder.find(R.id.common_view_circle_detail_header_name);
-        this.circleSpaceLabel = finder.find(R.id.common_view_circle_detail_header_space);
+        this.circleNameLabel = finder.findOrNull(R.id.common_view_circle_detail_header_name);
+        this.circleSpaceLabel = finder.findOrNull(R.id.common_view_circle_detail_header_space);
     }
 
     public void setCircle(Circle circle) {

@@ -47,7 +47,7 @@ public final class EventBlockSelectorView extends FrameLayout {
                 LayoutInflater.from(getContext()).inflate(R.layout.common_event_block_selector, this, true)
         );
         this.onItemSelectedListener = new OnItemSelectedListener<>();
-        this.selector = finder.find(R.id.common_view_event_block_selector);
+        this.selector = finder.findOrNull(R.id.common_view_event_block_selector);
         this.adapter = new BlockSelectorAdapter(getContext());
         this.selector.setAdapter(adapter);
         this.selector.setOnItemSelectedListener(onItemSelectedListener);

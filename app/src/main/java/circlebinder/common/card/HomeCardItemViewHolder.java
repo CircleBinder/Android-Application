@@ -15,8 +15,8 @@ public final class HomeCardItemViewHolder {
 
     public HomeCardItemViewHolder(View container) {
         ViewFinder finder = Finders.from(container);
-        labelName = finder.find(R.id.common_home_card_item_label);
-        caption = finder.find(R.id.common_home_card_item_caption);
+        labelName = finder.findOrNull(R.id.common_home_card_item_label);
+        caption = finder.findOrNull(R.id.common_home_card_item_caption);
     }
 
     public TextView getLabel() {

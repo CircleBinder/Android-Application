@@ -15,8 +15,8 @@ public final class ChecklistSelectorViewHolder {
 
     public ChecklistSelectorViewHolder(View container) {
         ViewFinder finder = Finders.from(container);
-        name = finder.find(R.id.common_checklist_selector_dropdown_item_name);
-        icon = finder.find(R.id.common_checklist_selector_dropdown_item_icon);
+        name = finder.findOrNull(R.id.common_checklist_selector_dropdown_item_name);
+        icon = finder.findOrNull(R.id.common_checklist_selector_dropdown_item_icon);
     }
 
     public TextView getName() {

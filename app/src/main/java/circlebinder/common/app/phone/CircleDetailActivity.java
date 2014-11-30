@@ -73,7 +73,7 @@ public final class CircleDetailActivity extends BaseActivity
         searchOption = bundle.getParcelable(EXTRA_KEY_SEARCH_OPTION);
         currentPosition = bundle.getInt(EXTRA_KEY_POSITION);
 
-        webView = Finders.from(this).find(R.id.common_activity_circle_detail_web_view);
+        webView = Finders.from(this).findOrNull(R.id.common_activity_circle_detail_web_view);
         WebViewClient client = new WebViewClient(webView);
         client.setOnBeforeLoadingListener(new OnBeforeLoadingListener() {
             @Override

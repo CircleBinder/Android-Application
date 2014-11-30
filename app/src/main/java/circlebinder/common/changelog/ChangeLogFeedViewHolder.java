@@ -14,7 +14,7 @@ public final class ChangeLogFeedViewHolder {
 
     public ChangeLogFeedViewHolder(View container) {
         ViewFinder finder = Finders.from(container);
-        title = finder.find(R.id.common_list_item_label);
+        title = finder.findOrNull(R.id.common_list_item_label);
     }
 
     public TextView getLabel() {

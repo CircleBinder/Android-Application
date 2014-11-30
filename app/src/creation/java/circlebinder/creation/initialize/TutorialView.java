@@ -37,7 +37,7 @@ public final class TutorialView extends CardView {
     protected void onFinishInflate() {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         ViewFinder finder = Finders.from(inflater.inflate(R.layout.creation_tutorial, this, true));
-        TextView twitterHashTagView = finder.find(R.id.common_view_contact_twitter_official_hash_tag);
+        TextView twitterHashTagView = finder.findOrNull(R.id.common_view_contact_twitter_official_hash_tag);
         String twitterHashTagUrl = getContext().getString(R.string.common_twitter_official_hash_tag_url);
         twitterHashTagView.setText(Html.fromHtml(
                 "<a href=\"" + twitterHashTagUrl + "\">" +
@@ -51,7 +51,7 @@ public final class TutorialView extends CardView {
         ));
 
         TextView twitterScreenNameView = finder
-                .find(R.id.common_view_contact_twitter_official_account_screen_name);
+                .findOrNull(R.id.common_view_contact_twitter_official_account_screen_name);
         String twitterScreenNameUrl = getContext().getString(R.string.common_twitter_official_account_url);
         twitterScreenNameView.setText(Html.fromHtml(
                 "<a href=\"" + twitterScreenNameUrl + "\">" +

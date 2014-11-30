@@ -50,9 +50,9 @@ public final class CircleSearchActivity extends BaseActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         ActivityViewFinder finder = Finders.from(this);
-        circlesView = finder.find(R.id.common_activity_circle_search_circles);
+        circlesView = finder.findOrNull(R.id.common_activity_circle_search_circles);
 
-        inputKeywordView = finder.find(R.id.common_activity_circle_search_option_keyword);
+        inputKeywordView = finder.findOrNull(R.id.common_activity_circle_search_option_keyword);
         inputKeywordView.setOnInputTextListener(new OnInputTextListener() {
             @Override
             public void onTextChange(String keyword) {
@@ -70,7 +70,7 @@ public final class CircleSearchActivity extends BaseActivity {
 
         View actionBarView = getLayoutInflater().inflate(R.layout.common_action_bar_circle_search_option, null);
         EventBlockSelectorView blockSelectorView = Finders.from(actionBarView)
-                .find(R.id.common_action_bar_circle_search_option);
+                .findOrNull(R.id.common_action_bar_circle_search_option);
         blockSelectorView.setBlockList(EventBlockTable.getAll());
         blockSelectorView.addOnItemSelectedListener(new OnItemSelectedEventListener<Block>() {
             @Override

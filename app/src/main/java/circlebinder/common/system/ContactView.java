@@ -44,11 +44,11 @@ public class ContactView extends LinearLayout {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View view = inflater.inflate(R.layout.common_view_contact, this, true);
         ViewFinder finder = Finders.from(view);
-        finder.find(R.id.common_view_contact_send).setOnClickListener(
+        finder.findOrNull(R.id.common_view_contact_send).setOnClickListener(
                 new OnClickToTrip(new ContactTripper(getContext(), getContext().getString(R.string.app_name)))
         );
 
-        TextView twitterHashTagView = finder.find(R.id.common_view_contact_twitter_official_hash_tag);
+        TextView twitterHashTagView = finder.findOrNull(R.id.common_view_contact_twitter_official_hash_tag);
         String twitterHashTagUrl = getContext().getString(R.string.common_twitter_official_hash_tag_url);
         twitterHashTagView.setText(getContext().getString(R.string.common_twitter_official_hash_tag_name));
         TextViewUtil.hyperLinkDecoration(twitterHashTagView, twitterHashTagUrl);
@@ -57,7 +57,7 @@ public class ContactView extends LinearLayout {
         );
 
         TextView twitterScreenNameView = finder
-                .find(R.id.common_view_contact_twitter_official_account_screen_name);
+                .findOrNull(R.id.common_view_contact_twitter_official_account_screen_name);
         String twitterScreenNameUrl = getContext().getString(R.string.common_twitter_official_account_url);
         twitterScreenNameView.setText(getContext().getString(R.string.common_twitter_official_account_screen_name));
         TextViewUtil.hyperLinkDecoration(twitterScreenNameView, twitterScreenNameUrl);

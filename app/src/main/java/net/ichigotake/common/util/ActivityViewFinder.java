@@ -11,7 +11,13 @@ public class ActivityViewFinder {
         this.activity = activity;
     }
 
-    public <V extends View> V find(int id) {
+    @SuppressWarnings("unchecked")
+    public <V extends View> Optional<V> find(int id) {
+        return Optional.fromNullable((V)activity.findViewById(id));
+    }
+
+    @SuppressWarnings("unchecked")
+    public <V extends View> V findOrNull(int id) {
         return (V)activity.findViewById(id);
     }
 

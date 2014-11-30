@@ -46,7 +46,7 @@ public final class HomeCardListView extends FrameLayout {
         ViewFinder finder = Finders.from(
                 inflater.inflate(R.layout.creation_view_checklist_list, this, true)
         );
-        View headerView = finder.find(R.id.creation_view_checklist_list_header);
+        View headerView = finder.findOrNull(R.id.creation_view_checklist_list_header);
         headerView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +57,7 @@ public final class HomeCardListView extends FrameLayout {
             headerView.setBackgroundResource(R.drawable.common_ripple);
             ViewCompat.setElevation(headerView, 10);
         }
-        GridView checklistsView = finder.find(R.id.creation_view_checklist_list);
+        GridView checklistsView = finder.findOrNull(R.id.creation_view_checklist_list);
         checklistsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
