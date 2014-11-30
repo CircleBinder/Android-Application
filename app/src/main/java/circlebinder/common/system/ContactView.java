@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.dmitriy.tarasov.android.intents.IntentUtils;
 
 import net.ichigotake.common.app.OnClickToTrip;
+import net.ichigotake.common.util.Finders;
+import net.ichigotake.common.util.ViewFinder;
 import net.ichigotake.common.widget.TextViewUtil;
 
 import circlebinder.R;
@@ -41,13 +43,12 @@ public class ContactView extends LinearLayout {
     protected void onFinishInflate() {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View view = inflater.inflate(R.layout.common_view_contact, this, true);
-        view.findViewById(R.id.common_view_contact_send).setOnClickListener(
+        ViewFinder finder = Finders.from(view);
+        finder.findOrNull(R.id.common_view_contact_send).setOnClickListener(
                 new OnClickToTrip(new ContactTripper(getContext(), getContext().getString(R.string.app_name)))
         );
 
-        TextView twitterHashTagView = (TextView) view.findViewById(
-                R.id.common_view_contact_twitter_official_hash_tag
-        );
+        TextView twitterHashTagView = finder.findOrNull(R.id.common_view_contact_twitter_official_hash_tag);
         String twitterHashTagUrl = getContext().getString(R.string.common_twitter_official_hash_tag_url);
         twitterHashTagView.setText(getContext().getString(R.string.common_twitter_official_hash_tag_name));
         TextViewUtil.hyperLinkDecoration(twitterHashTagView, twitterHashTagUrl);
@@ -55,9 +56,8 @@ public class ContactView extends LinearLayout {
                 OnClickToTrip.activityTrip(getContext(), IntentUtils.openLink(twitterHashTagUrl))
         );
 
-        TextView twitterScreenNameView = (TextView) view.findViewById(
-                R.id.common_view_contact_twitter_official_account_screen_name
-        );
+        TextView twitterScreenNameView = finder
+                .findOrNull(R.id.common_view_contact_twitter_official_account_screen_name);
         String twitterScreenNameUrl = getContext().getString(R.string.common_twitter_official_account_url);
         twitterScreenNameView.setText(getContext().getString(R.string.common_twitter_official_account_screen_name));
         TextViewUtil.hyperLinkDecoration(twitterScreenNameView, twitterScreenNameUrl);

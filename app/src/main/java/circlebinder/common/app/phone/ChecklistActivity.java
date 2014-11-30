@@ -6,10 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
 import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.os.BundleMerger;
+import net.ichigotake.common.util.Finders;
+import net.ichigotake.common.util.Optional;
 
 import circlebinder.R;
 import circlebinder.common.app.BaseActivity;
@@ -32,22 +35,24 @@ public final class ChecklistActivity extends BaseActivity {
     }
 
     private ChecklistColor checklistColor;
-    private BroadcastReceiver broadcastReceiver;
     private CircleSearchView checklistView;
+    private Optional<BroadcastReceiver> broadcastReceiver = Optional.empty();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.common_acticity_checklist);
         checklistColor = (ChecklistColor) BundleMerger.merge(getIntent(), savedInstanceState)
                 .getSerializable(KEY_CHECKLIST_COLOR);
-        ActivityNavigation.setDisplayHomeAsUpEnabled(this);
-        ActivityNavigation.getSupportActionBar(this).setTitle(checklistColor.getName());
-        checklistView = (CircleSearchView) findViewById(R.id.common_activity_checklist);
+        setTheme(checklistColor.getStyleResource());
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.common_acticity_checklist);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(checklistColor.getName());
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        checklistView = Finders.from(this).findOrNull(R.id.common_activity_checklist);
         CircleSearchOption searchOption = new CircleSearchOptionBuilder()
                 .setChecklist(checklistColor).build();
         checklistView.setFilter(searchOption);
-        broadcastReceiver = new BroadcastReceiver() {
+        broadcastReceiver = Optional.<BroadcastReceiver>of(new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 if (checklistView != null) {
@@ -59,8 +64,8 @@ public final class ChecklistActivity extends BaseActivity {
                     });
                 }
             }
-        };
-        registerReceiver(broadcastReceiver, BroadcastEvent.createIntentFilter());
+        });
+        registerReceiver(broadcastReceiver.get(), BroadcastEvent.createIntentFilter());
     }
 
     @Override
@@ -77,8 +82,8 @@ public final class ChecklistActivity extends BaseActivity {
 
     @Override
     public void onDestroy() {
-        if (broadcastReceiver != null) {
-            unregisterReceiver(broadcastReceiver);
+        for (BroadcastReceiver registeredReceiver : broadcastReceiver.asSet()) {
+            unregisterReceiver(registeredReceiver);
         }
         super.onDestroy();
     }

@@ -14,8 +14,8 @@ public final class CreationOfficialTwitterCard implements HomeCard {
     private final CharSequence caption;
 
     public CreationOfficialTwitterCard(Context context) {
-        this.label = context.getString(R.string.app_creation_twitter_label);
-        this.caption = context.getString(R.string.app_creation_twitter_account_label);
+        this.label = context.getString(R.string.app_event_twitter_label);
+        this.caption = context.getString(R.string.app_event_twitter_account_label);
     }
 
     @Override
@@ -35,6 +35,6 @@ public final class CreationOfficialTwitterCard implements HomeCard {
 
     @Override
     public Intent createTransitIntent(Context context) {
-        return IntentUtils.openLink(context.getString(R.string.app_creation_twitter_account_url));
+        return IntentUtils.openLink(context.getString(R.string.app_event_twitter_account_url));
     }
 }

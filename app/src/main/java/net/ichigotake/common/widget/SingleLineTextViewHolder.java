@@ -2,15 +2,19 @@ package net.ichigotake.common.widget;
 
 import android.widget.TextView;
 
-class SingleLineTextViewHolder {
+import net.ichigotake.common.util.ViewFinder;
+
+import circlebinder.R;
+
+public class SingleLineTextViewHolder {
 
     private final TextView textView;
 
-    SingleLineTextViewHolder(TextView textView) {
-        this.textView = textView;
+    public SingleLineTextViewHolder(ViewFinder finder) {
+        this.textView = finder.findOrNull(R.id.common_list_item_label);
     }
 
-    TextView getTextView() {
+    public TextView getTextView() {
         return textView;
     }
 

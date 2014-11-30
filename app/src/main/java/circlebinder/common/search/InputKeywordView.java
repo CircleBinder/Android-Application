@@ -9,11 +9,14 @@ import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import net.ichigotake.common.util.Finders;
+import net.ichigotake.common.util.ViewFinder;
 import net.ichigotake.common.view.inputmethod.SoftInput;
 
 import circlebinder.R;
@@ -37,8 +40,10 @@ public final class InputKeywordView extends FrameLayout {
 
     @Override
     protected void onFinishInflate() {
-        inflate(getContext(), R.layout.common_view_input_keyword, this);
-        editText = (EditText)findViewById(R.id.common_view_input_keyword_edit_text);
+        ViewFinder finder = Finders.from(
+                LayoutInflater.from(getContext()).inflate(R.layout.common_view_input_keyword, this, true)
+        );
+        editText = finder.findOrNull(R.id.common_view_input_keyword_edit_text);
         editText.setOnFocusChangeListener(new OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {

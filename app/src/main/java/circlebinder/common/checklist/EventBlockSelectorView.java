@@ -3,10 +3,11 @@ package circlebinder.common.checklist;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
 
+import net.ichigotake.common.util.Finders;
+import net.ichigotake.common.util.ViewFinder;
 import net.ichigotake.common.widget.OnItemSelectedEventListener;
 import net.ichigotake.common.widget.OnItemSelectedListener;
 
@@ -42,10 +43,11 @@ public final class EventBlockSelectorView extends FrameLayout {
     }
 
     private void initialize() {
-        View view = LayoutInflater.from(getContext())
-                .inflate(R.layout.common_event_block_selector, this, true);
+        ViewFinder finder = Finders.from(
+                LayoutInflater.from(getContext()).inflate(R.layout.common_event_block_selector, this, true)
+        );
         this.onItemSelectedListener = new OnItemSelectedListener<>();
-        this.selector = (Spinner) view.findViewById(R.id.common_view_event_block_selector);
+        this.selector = finder.findOrNull(R.id.common_view_event_block_selector);
         this.adapter = new BlockSelectorAdapter(getContext());
         this.selector.setAdapter(adapter);
         this.selector.setOnItemSelectedListener(onItemSelectedListener);

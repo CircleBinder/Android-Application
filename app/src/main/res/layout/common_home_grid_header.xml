@@ -8,18 +8,16 @@
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_home_card_header_height"
-        android:background="@color/app_color_primary"
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal|center_vertical"
-            android:drawableLeft="@drawable/ic_action_light_search"
+            android:drawableLeft="@drawable/ic_action_dark_search"
             android:drawablePadding="@dimen/common_spacer_x_small"
             android:gravity="center_vertical|center_horizontal"
             android:text="@string/common_circle_search"
-            android:textColor="#ffffff"
             android:textSize="@dimen/common_font_headline"
             />
     </FrameLayout>

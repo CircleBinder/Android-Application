@@ -10,6 +10,7 @@ import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.content.OnAfterLoadingListener;
 import net.ichigotake.common.content.OnBeforeLoadingListener;
 import net.ichigotake.common.os.BundleMerger;
+import net.ichigotake.common.util.Finders;
 import net.ichigotake.common.view.MenuPresenter;
 import net.ichigotake.common.view.ReloadActionProvider;
 
@@ -39,9 +40,9 @@ public final class WebViewActivity extends BaseActivity {
         setContentView(R.layout.common_activity_web_view);
         url = BundleMerger.merge(getIntent(), savedInstanceState).getString(KEY_URL);
 
-        ActivityNavigation.getSupportActionBar(this).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        webView = (WebView)findViewById(R.id.common_activity_web_view);
+        webView = Finders.from(this).findOrNull(R.id.common_activity_web_view);
         WebViewClient webViewClient = new WebViewClient(webView);
         webViewClient.setOnBeforeLoadingListener(new OnBeforeLoadingListener() {
             @Override

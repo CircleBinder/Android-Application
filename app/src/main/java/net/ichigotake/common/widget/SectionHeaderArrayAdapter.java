@@ -5,6 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import net.ichigotake.common.util.Finders;
+import net.ichigotake.common.util.ViewFinder;
+
 import circlebinder.R;
 
 public abstract class SectionHeaderArrayAdapter<ITEM, ITEM_TAG, HEADER_TAG>
@@ -25,23 +28,22 @@ public abstract class SectionHeaderArrayAdapter<ITEM, ITEM_TAG, HEADER_TAG>
         if (view == null) {
             view = getLayoutInflater()
                     .inflate(R.layout.common_section_item_with_header, parent, false);
+            ViewFinder finder = Finders.from(view);
             headerView = generateHeaderView(position, item, getLayoutInflater(), parent);
             headerTag = generateHeaderTag(position, item, headerView);
             headerView.setTag(headerTag);
-            ((ViewGroup)view.findViewById(R.id.common_section_item_with_header_label))
-                    .addView(headerView);
+            ((ViewGroup)finder.findOrNull(R.id.common_section_item_with_header_label)).addView(headerView);
 
             itemView = generateView(position, item, getLayoutInflater(), (ViewGroup) view);
             itemTag = generateTag(position, item, itemView);
             itemView.setTag(itemTag);
-            ((ViewGroup)view.findViewById(R.id.common_section_item_with_header_item))
-                    .addView(itemView);
+            ((ViewGroup)finder.findOrNull(R.id.common_section_item_with_header_item)).addView(itemView);
         } else {
-            headerView = ((ViewGroup)view.findViewById(R.id.common_section_item_with_header_label))
-                    .getChildAt(0);
+            ViewFinder finder = Finders.from(view);
+            headerView = ((ViewGroup)finder.findOrNull(R.id.common_section_item_with_header_label)).getChildAt(0);
             //noinspection unchecked
             headerTag = (HEADER_TAG) headerView.getTag();
-            itemTag = (ITEM_TAG)((ViewGroup)view.findViewById(R.id.common_section_item_with_header_item))
+            itemTag = (ITEM_TAG)((ViewGroup)finder.findOrNull(R.id.common_section_item_with_header_item))
                     .getChildAt(0).getTag();
         }
 

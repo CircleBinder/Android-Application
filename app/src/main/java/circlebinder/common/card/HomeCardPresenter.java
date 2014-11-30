@@ -4,9 +4,8 @@ import android.content.Context;
 import android.widget.AbsListView;
 
 import net.ichigotake.common.app.ActivityTripper;
-
-import java.util.ArrayList;
-import java.util.List;
+import net.ichigotake.common.rx.content.ObservableBinder;
+import net.ichigotake.common.util.Optional;
 
 import circlebinder.common.app.phone.CircleSearchActivity;
 import rx.Observable;
@@ -18,13 +17,11 @@ public final class HomeCardPresenter {
 
     private final Context context;
     private final HomeCardAdapter adapter;
-    private final List<HomeCard> cards;
-    private Subscription subscriptions;
+    private Optional<Subscription> subscription = Optional.empty();
 
     public HomeCardPresenter(Context context) {
         this.context = context;
         this.adapter = new HomeCardAdapter(context);
-        this.cards = new ArrayList<>();
     }
 
     public void listViewAttached(AbsListView listVIew) {
@@ -37,15 +34,18 @@ public final class HomeCardPresenter {
 
     public void reload() {
         destroy();
-        subscriptions = Observable.create(new HomeCardSubscriber(cards))
+        subscription = Optional.of(ObservableBinder.maybeBind(context, Observable.create(new HomeCardSubscriber()))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new HomeCardObserver(adapter));
+                .subscribe(new HomeCardObserver(adapter))
+        );
     }
 
     public void destroy() {
-        if (subscriptions != null && !subscriptions.isUnsubscribed()) {
-            subscriptions.unsubscribe();
+        for (Subscription subscribedTask : subscription.asSet()) {
+            if (!subscribedTask.isUnsubscribed()) {
+                subscribedTask.unsubscribe();
+            }
         }
     }
 
@@ -53,8 +53,4 @@ public final class HomeCardPresenter {
         new ActivityTripper(context, CircleSearchActivity.createIntent(context)).trip();
     }
 
-    public void addItem(HomeCard item) {
-        cards.add(item);
-        adapter.notifyDataSetChanged();
-    }
 }

@@ -13,6 +13,8 @@ import android.view.View;
 
 import net.ichigotake.common.app.ActivityTripper;
 import net.ichigotake.common.app.OnClickToTrip;
+import net.ichigotake.common.util.ActivityViewFinder;
+import net.ichigotake.common.util.Finders;
 
 import circlebinder.common.Legacy;
 import circlebinder.common.app.BaseActivity;
@@ -62,12 +64,13 @@ public final class DatabaseInitializeActivity extends BaseActivity
         setContentView(R.layout.creation_activity_database_initialize);
         serviceBind = true;
         bindService(new Intent(this, DatabaseInitializeService.class), serviceConnection, 0);
-        View finishedView = findViewById(R.id.creation_activity_initialize_finished);
+        ActivityViewFinder finder = Finders.from(this);
+        View finishedView = finder.findOrNull(R.id.creation_activity_initialize_finished);
         finishedView.setOnClickListener(new OnClickToTrip(
                 new ActivityTripper(this, HomeActivity.createIntent(this)).withFinish()
         ));
         handler = new InitializeHandler(
-                findViewById(R.id.creation_activity_initialize_progress),
+                finder.findOrNull(R.id.creation_activity_initialize_progress),
                 finishedView
         );
         startService(new Intent(this, DatabaseInitializeService.class));

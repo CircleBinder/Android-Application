@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     >
 
-    <circlebinder.common.system.OpenSourceLicenseCreditListView
+    <circlebinder.common.system.LicenseCreditListView
         style="@style/CommonCardList"
         android:id="@+id/common_screen_open_source_license_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:dividerHeight="@dimen/common_spacer_x_small"
+        android:dividerHeight="@dimen/common_spacer_xx_small"
         />
 
 </LinearLayout>

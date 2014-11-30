@@ -17,7 +17,7 @@ CircleBinder
 開発環境
 ------------
 
-- AndroidStudio v0.9.+
+- AndroidStudio 1.+
 - JDK 7
 
 

@@ -1,9 +1,12 @@
-package circlebinder.common.event;
+package circlebinder.creation.initialize;
 
-public final class SpaceFactory {
+import circlebinder.common.event.Space;
+import circlebinder.common.event.SpaceBuilder;
+
+public final class CreationSpaceFactory {
 
     /**
-     * "あ01a" のような文字列から {@link Space} を生成する
+     * "あ01a" のような文字列から {@link circlebinder.common.event.Space} を生成する
      */
     public Space from(String name) {
         String blockName = name.substring(0, 1);

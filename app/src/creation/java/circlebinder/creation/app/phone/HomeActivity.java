@@ -3,25 +3,22 @@ package circlebinder.creation.app.phone;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.view.Menu;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import net.ichigotake.common.view.MenuPresenter;
-
-import circlebinder.common.app.ActivityTripActionProvider;
+import net.ichigotake.common.util.ActivityViewFinder;
+import net.ichigotake.common.util.Finders;
+import net.ichigotake.common.util.Optional;
 
 import circlebinder.common.Legacy;
 import circlebinder.common.app.BaseActivity;
 import circlebinder.R;
 import circlebinder.common.app.BroadcastEvent;
-import circlebinder.common.app.phone.AboutApplicationActivity;
-import circlebinder.common.app.phone.ContactActivity;
-import circlebinder.common.card.HomeCardListView;
-import circlebinder.creation.home.CreationHomepageCard;
-import circlebinder.creation.home.CreationLocationCard;
-import circlebinder.creation.home.CreationOfficialTwitterCard;
-import circlebinder.creation.home.CreationTwitterHashTagCard;
+import circlebinder.creation.home.HomeCardListView;
+import circlebinder.creation.system.NavigationDrawerRenderer;
 
 /**
  * 通常起動時のファーストビュー
@@ -32,50 +29,62 @@ public final class HomeActivity extends BaseActivity implements Legacy {
         return new Intent(context, HomeActivity.class);
     }
 
-    private BroadcastReceiver broadcastReceiver;
+    private Optional<BroadcastReceiver> broadcastReceiver = Optional.empty();
     private HomeCardListView homeCardListView;
+    private NavigationDrawerRenderer drawerRenderer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.creation_activity_home);
-
-        homeCardListView = (HomeCardListView) findViewById(R.id.creation_activity_home_content);
-        homeCardListView.addItem(new CreationHomepageCard(this));
-        homeCardListView.addItem(new CreationLocationCard(this));
-        homeCardListView.addItem(new CreationOfficialTwitterCard(this));
-        homeCardListView.addItem(new CreationTwitterHashTagCard(this));
-        broadcastReceiver = new BroadcastReceiver() {
+        ActivityViewFinder finder = Finders.from(this);
+        Toolbar toolbar = finder.findOrNull(R.id.creation_activity_home_toolbar);
+        setSupportActionBar(toolbar);
+        drawerRenderer = new NavigationDrawerRenderer(
+                this,
+                toolbar,
+                finder.<DrawerLayout>findOrNull(R.id.creation_activity_home_container),
+                finder.findOrNull(R.id.creation_activity_home_system_menu)
+        );
+        homeCardListView = finder.findOrNull(R.id.creation_activity_home_checklist_list);
+        broadcastReceiver = Optional.<BroadcastReceiver>of(new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 homeCardListView.reload();
             }
-        };
-        registerReceiver(broadcastReceiver, BroadcastEvent.createIntentFilter());
+        });
+        registerReceiver(broadcastReceiver.get(), BroadcastEvent.createIntentFilter());
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuPresenter presenter = new MenuPresenter(menu, getMenuInflater());
-        MenuItem feedbackItem = presenter.inflate(R.menu.wish_me_luck, R.id.menu_wish_me_luck);
-        presenter.setActionProvider(
-                feedbackItem,
-                new ActivityTripActionProvider(this, ContactActivity.createIntent(this)));
-        MenuItem changeLogItem = presenter.inflate(R.menu.change_log, R.id.menu_change_log);
-        presenter.setActionProvider(
-                changeLogItem,
-                new ActivityTripActionProvider(this, ChangeLogActivity.createIntent(this)));
-        MenuItem aboutApplicationItem = presenter.inflate(R.menu.about_application, R.id.menu_about_application);
-        presenter.setActionProvider(
-                aboutApplicationItem,
-                new ActivityTripActionProvider(this, AboutApplicationActivity.createIntent(this)));
-        return super.onCreateOptionsMenu(menu);
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        drawerRenderer.onPostCreate();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        drawerRenderer.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return drawerRenderer.onOptionsItemSelected(item)
+                || super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!drawerRenderer.onBackPressed()) {
+            super.onBackPressed();
+        }
     }
 
     @Override
     public void onDestroy() {
-        if (broadcastReceiver != null) {
-            unregisterReceiver(broadcastReceiver);
+        for (BroadcastReceiver registeredReceiver : broadcastReceiver.asSet()) {
+            unregisterReceiver(registeredReceiver);
         }
         super.onDestroy();
     }

@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 
+import net.ichigotake.common.util.Finders;
+
 import circlebinder.R;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
@@ -44,8 +46,7 @@ public final class CircleSearchView extends FrameLayout {
     protected void onFinishInflate() {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         ViewGroup view = (ViewGroup)inflater.inflate(R.layout.common_circle_search, this, true);
-        StickyListHeadersListView circlesView = (StickyListHeadersListView)view
-                .findViewById(R.id.common_circle_search);
+        StickyListHeadersListView circlesView = Finders.from(view).findOrNull(R.id.common_circle_search);
         presenter.attachedView(circlesView);
         circlesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -70,10 +71,9 @@ public final class CircleSearchView extends FrameLayout {
 
     @Override
     public void onRestoreInstanceState(Parcelable state){
-        Parcelable savedState = presenter.onRestoreInstanceState(state);
-        if (savedState == null) {
-            super.onRestoreInstanceState(state);
-        }
+        super.onRestoreInstanceState(state);
+        presenter.onRestoreInstanceState(state);
+        presenter.reload();
     }
 
 }

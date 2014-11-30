@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import net.ichigotake.common.app.ActivityNavigation;
+import net.ichigotake.common.util.Finders;
 
 import java.io.IOException;
 
@@ -24,8 +25,8 @@ public final class ChangeLogActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.creation_activity_change_log);
-        ActivityNavigation.setDisplayHomeAsUpEnabled(this);
-        ChangeLogView changeLogView = (ChangeLogView) findViewById(R.id.creation_activity_change_log);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ChangeLogView changeLogView = Finders.from(this).findOrNull(R.id.creation_activity_change_log);
         try {
             changeLogView.addChangeLogFeedList(new ChangeLogLoader(this).load(R.raw.change_log_ltsv));
         } catch (IOException e) {

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import net.ichigotake.common.app.ActivityNavigation;
+import net.ichigotake.common.util.Finders;
 
 import circlebinder.common.app.BaseActivity;
 import circlebinder.R;
@@ -34,9 +35,9 @@ public final class AboutApplicationActivity extends BaseActivity implements HasF
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         appFlow = flowBundler.onCreate(savedInstanceState);
-        ActivityNavigation.setDisplayHomeAsUpEnabled(this);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.common_activity_about);
-        container = (FrameScreenSwitcherView) findViewById(R.id.container);
+        container = Finders.from(this).findOrNull(R.id.container);
         AppFlow.loadInitialScreen(this);
     }
 

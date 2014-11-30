@@ -3,7 +3,8 @@ package net.ichigotake.common.widget;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
+import net.ichigotake.common.util.Finders;
 
 import circlebinder.R;
 
@@ -11,7 +12,7 @@ public class SingleLineTextViewBinder implements ViewBinder<String, SingleLineTe
 
     @Override
     public SingleLineTextViewHolder generateTag(int position, String item, View convertView) {
-        return new SingleLineTextViewHolder((TextView) convertView);
+        return new SingleLineTextViewHolder(Finders.from(convertView));
     }
 
     @Override

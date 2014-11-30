@@ -4,8 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
+import net.ichigotake.common.util.Finders;
 import net.ichigotake.common.widget.CursorAdapter;
 
 import circlebinder.common.event.Circle;
@@ -30,7 +30,7 @@ public final class CircleAdapter extends CursorAdapter<Circle, CircleViewHolder,
 
     @Override
     protected SectionHeaderViewHolder generateHeaderTag(int position, Circle circle, View convertView) {
-        return new SectionHeaderViewHolder((TextView)convertView);
+        return new SectionHeaderViewHolder(Finders.from(convertView));
     }
 
     @Override

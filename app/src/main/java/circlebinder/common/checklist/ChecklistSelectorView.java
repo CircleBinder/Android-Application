@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import net.ichigotake.common.util.Finders;
+import net.ichigotake.common.util.ViewFinder;
 import net.ichigotake.common.view.inputmethod.SoftInput;
 import net.ichigotake.common.widget.OnItemClickEventListener;
 
@@ -50,8 +52,11 @@ public class ChecklistSelectorView extends FrameLayout {
         if (isInEditMode()) {
             return;
         }
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.common_view_checklist_selector, this, true);
-        this.checklistColorView = (TextView) view.findViewById(R.id.common_view_checklist_selector_label);
+        ViewFinder finder = Finders.from(
+                LayoutInflater.from(getContext())
+                        .inflate(R.layout.common_view_checklist_selector, this, true)
+        );
+        this.checklistColorView = finder.findOrNull(R.id.common_view_checklist_selector_label);
         this.selector = new ChecklistPopupSelector(getContext());
         this.anchor = checklistColorView;
         checklistColorView.setOnClickListener(new OnClickListener() {
