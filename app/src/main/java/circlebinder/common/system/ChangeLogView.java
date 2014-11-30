@@ -16,23 +16,12 @@ import circlebinder.common.changelog.ChangeLogFeed;
 
 public final class ChangeLogView extends FrameLayout {
 
-    private ChangeLogFeedHeaderAdapter adapter;
-
-    @SuppressWarnings("unused") // Public API
-    public ChangeLogView(Context context) {
-        super(context);
-        initialize();
-    }
+    private final ChangeLogFeedHeaderAdapter adapter;
 
     @SuppressWarnings("unused") // Public API
     public ChangeLogView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        initialize();
-    }
-
-    @SuppressWarnings("unused") // Public API
-    public ChangeLogView(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+        this.adapter = new ChangeLogFeedHeaderAdapter(getContext());
         initialize();
     }
 
@@ -41,7 +30,6 @@ public final class ChangeLogView extends FrameLayout {
                 LayoutInflater.from(getContext()).inflate(R.layout.common_view_change_log, this, true)
         );
         ListView changeLogsView = finder.findOrNull(R.id.common_view_change_log_list);
-        this.adapter = new ChangeLogFeedHeaderAdapter(getContext());
         changeLogsView.setAdapter(adapter);
     }
 

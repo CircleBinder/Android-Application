@@ -14,6 +14,7 @@ import android.view.View;
 import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.util.ActivityViewFinder;
 import net.ichigotake.common.util.Finders;
+import net.ichigotake.common.util.Optional;
 import net.ichigotake.common.view.ActionProvider;
 import net.ichigotake.common.view.MenuPresenter;
 import net.ichigotake.common.widget.OnItemSelectedEventListener;
@@ -41,7 +42,7 @@ public final class CircleSearchActivity extends BaseActivity {
     private CircleSearchView circlesView;
     private SearchFormStore searchFormStore;
     private InputKeywordView inputKeywordView;
-    private BroadcastReceiver broadcastReceiver;
+    private Optional<BroadcastReceiver> broadcastReceiver = Optional.empty();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -84,7 +85,7 @@ public final class CircleSearchActivity extends BaseActivity {
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setCustomView(actionBarView);
 
-        broadcastReceiver = new BroadcastReceiver() {
+        broadcastReceiver = Optional.<BroadcastReceiver>of(new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 if (circlesView != null) {
@@ -96,8 +97,8 @@ public final class CircleSearchActivity extends BaseActivity {
                     });
                 }
             }
-        };
-        registerReceiver(broadcastReceiver, BroadcastEvent.createIntentFilter());
+        });
+        registerReceiver(broadcastReceiver.get(), BroadcastEvent.createIntentFilter());
     }
 
     @Override
@@ -139,8 +140,8 @@ public final class CircleSearchActivity extends BaseActivity {
 
     @Override
     public void onDestroy() {
-        if (broadcastReceiver != null) {
-            unregisterReceiver(broadcastReceiver);
+        for (BroadcastReceiver registeredReceiver : broadcastReceiver.asSet()) {
+            unregisterReceiver(registeredReceiver);
         }
         super.onDestroy();
     }

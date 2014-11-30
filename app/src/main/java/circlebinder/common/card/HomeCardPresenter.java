@@ -4,6 +4,8 @@ import android.content.Context;
 import android.widget.AbsListView;
 
 import net.ichigotake.common.app.ActivityTripper;
+import net.ichigotake.common.rx.content.ObservableBinder;
+import net.ichigotake.common.util.Optional;
 
 import circlebinder.common.app.phone.CircleSearchActivity;
 import rx.Observable;
@@ -15,7 +17,7 @@ public final class HomeCardPresenter {
 
     private final Context context;
     private final HomeCardAdapter adapter;
-    private Subscription subscriptions;
+    private Optional<Subscription> subscription = Optional.empty();
 
     public HomeCardPresenter(Context context) {
         this.context = context;
@@ -32,15 +34,18 @@ public final class HomeCardPresenter {
 
     public void reload() {
         destroy();
-        subscriptions = Observable.create(new HomeCardSubscriber())
+        subscription = Optional.of(ObservableBinder.maybeBind(context, Observable.create(new HomeCardSubscriber()))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new HomeCardObserver(adapter));
+                .subscribe(new HomeCardObserver(adapter))
+        );
     }
 
     public void destroy() {
-        if (subscriptions != null && !subscriptions.isUnsubscribed()) {
-            subscriptions.unsubscribe();
+        for (Subscription subscribedTask : subscription.asSet()) {
+            if (!subscribedTask.isUnsubscribed()) {
+                subscribedTask.unsubscribe();
+            }
         }
     }
 

@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import net.ichigotake.common.app.ActivityNavigation;
 import net.ichigotake.common.os.BundleMerger;
 import net.ichigotake.common.util.Finders;
+import net.ichigotake.common.util.Optional;
 
 import circlebinder.R;
 import circlebinder.common.app.BaseActivity;
@@ -34,8 +35,8 @@ public final class ChecklistActivity extends BaseActivity {
     }
 
     private ChecklistColor checklistColor;
-    private BroadcastReceiver broadcastReceiver;
     private CircleSearchView checklistView;
+    private Optional<BroadcastReceiver> broadcastReceiver = Optional.empty();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,7 @@ public final class ChecklistActivity extends BaseActivity {
         CircleSearchOption searchOption = new CircleSearchOptionBuilder()
                 .setChecklist(checklistColor).build();
         checklistView.setFilter(searchOption);
-        broadcastReceiver = new BroadcastReceiver() {
+        broadcastReceiver = Optional.<BroadcastReceiver>of(new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 if (checklistView != null) {
@@ -63,8 +64,8 @@ public final class ChecklistActivity extends BaseActivity {
                     });
                 }
             }
-        };
-        registerReceiver(broadcastReceiver, BroadcastEvent.createIntentFilter());
+        });
+        registerReceiver(broadcastReceiver.get(), BroadcastEvent.createIntentFilter());
     }
 
     @Override
@@ -81,8 +82,8 @@ public final class ChecklistActivity extends BaseActivity {
 
     @Override
     public void onDestroy() {
-        if (broadcastReceiver != null) {
-            unregisterReceiver(broadcastReceiver);
+        for (BroadcastReceiver registeredReceiver : broadcastReceiver.asSet()) {
+            unregisterReceiver(registeredReceiver);
         }
         super.onDestroy();
     }

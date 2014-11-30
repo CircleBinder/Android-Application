@@ -22,20 +22,8 @@ public final class HomeCardListView extends FrameLayout {
     private final HomeCardPresenter presenter;
 
     @SuppressWarnings("unused") // Public API
-    public HomeCardListView(Context context) {
-        super(context);
-        this.presenter = new HomeCardPresenter(getContext());
-    }
-
-    @SuppressWarnings("unused") // Public API
     public HomeCardListView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.presenter = new HomeCardPresenter(getContext());
-    }
-
-    @SuppressWarnings("unused") // Public API
-    public HomeCardListView(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
         this.presenter = new HomeCardPresenter(getContext());
     }
 

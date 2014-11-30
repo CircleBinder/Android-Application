@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 import net.ichigotake.common.util.ActivityViewFinder;
 import net.ichigotake.common.util.Finders;
+import net.ichigotake.common.util.Optional;
 
 import circlebinder.common.Legacy;
 import circlebinder.common.app.BaseActivity;
@@ -28,7 +29,7 @@ public final class HomeActivity extends BaseActivity implements Legacy {
         return new Intent(context, HomeActivity.class);
     }
 
-    private BroadcastReceiver broadcastReceiver;
+    private Optional<BroadcastReceiver> broadcastReceiver = Optional.empty();
     private HomeCardListView homeCardListView;
     private NavigationDrawerRenderer drawerRenderer;
 
@@ -46,13 +47,13 @@ public final class HomeActivity extends BaseActivity implements Legacy {
                 finder.findOrNull(R.id.creation_activity_home_system_menu)
         );
         homeCardListView = finder.findOrNull(R.id.creation_activity_home_checklist_list);
-        broadcastReceiver = new BroadcastReceiver() {
+        broadcastReceiver = Optional.<BroadcastReceiver>of(new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 homeCardListView.reload();
             }
-        };
-        registerReceiver(broadcastReceiver, BroadcastEvent.createIntentFilter());
+        });
+        registerReceiver(broadcastReceiver.get(), BroadcastEvent.createIntentFilter());
     }
 
     @Override
@@ -82,8 +83,8 @@ public final class HomeActivity extends BaseActivity implements Legacy {
 
     @Override
     public void onDestroy() {
-        if (broadcastReceiver != null) {
-            unregisterReceiver(broadcastReceiver);
+        for (BroadcastReceiver registeredReceiver : broadcastReceiver.asSet()) {
+            unregisterReceiver(registeredReceiver);
         }
         super.onDestroy();
     }
