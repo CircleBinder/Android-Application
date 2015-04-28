@@ -3,4 +3,9 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="new_events">開催が近いイベント</string>
+    <string name="circle_detail">サークル名</string>
+    <string name="event_name">イベント名</string>
+
 </resources>

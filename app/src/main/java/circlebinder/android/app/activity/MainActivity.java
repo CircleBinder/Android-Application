@@ -1,12 +1,14 @@
-package circlebinder.android.app;
+package circlebinder.android.app.activity;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import circlebinder.android.app.R;
+import circlebinder.android.app.lifecycle.BaseActivity;
 
-public class MainActivity extends ActionBarActivity {
+
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

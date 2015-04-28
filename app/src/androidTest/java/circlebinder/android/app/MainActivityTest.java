@@ -3,6 +3,8 @@ package circlebinder.android.app;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.TextView;
 
+import circlebinder.android.app.activity.MainActivity;
+
 public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActivity> {
 
     public MainActivityTest() {
