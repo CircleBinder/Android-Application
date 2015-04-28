@@ -4,6 +4,7 @@ machine:
 
 dependencies:
     override:
+        - docker pull ichigotake/docker-android-base:latest
         - docker build -t circlebinder/android-application --no-cache=true .
 
 test:
