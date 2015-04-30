@@ -1,0 +1,70 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/as_mock"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/activity_main_hello_world"
+        android:text="@string/hello_world"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:gravity="center_vertical"
+        android:textSize="16sp"
+        android:background="@color/app_theme_light_green_500"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <include
+            layout="@layout/events_item"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:text="サンシャインクリエイション 2015 Summer"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:gravity="center_vertical"
+        android:textSize="16sp"
+        android:background="@color/app_theme_light_green_500"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <include
+            layout="@layout/events_item"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:text="更新履歴"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:gravity="center_vertical"
+        android:textSize="16sp"
+        />
+
+    <include
+        layout="@layout/change_log_item"
+        />
+
+</LinearLayout>
