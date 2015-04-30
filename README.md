@@ -1,5 +1,8 @@
 # CircleBinder for Android [![Circle CI](https://circleci.com/gh/CircleBinder/Android-Application.svg?style=svg)](https://circleci.com/gh/CircleBinder/Android-Application)
 
+[Work in progress](https://github.com/CircleBinder/Android-Application/pulls)
+
+
 ## Libraries Used
 
 - Application
