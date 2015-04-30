@@ -1,36 +1,10 @@
 <resources>
 
-    <style name="CommonSubSectionHeader">
-        <item name="android:background">@color/common_card_container_background</item>
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:clickable">true</item>
-        <item name="android:paddingRight">@dimen/common_baseline_padding</item>
-        <item name="android:paddingLeft">@dimen/common_baseline_padding</item>
-    </style>
-
-    <style name="CommonCircleListItemName">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:maxLines">1</item>
-        <item name="android:ellipsize">end</item>
-        <item name="android:textSize">16sp</item>
-    </style>
-
-    <style name="CommonCardList">
-        <item name="android:divider">@color/common_card_container_background</item>
-        <item name="android:dividerHeight">@dimen/common_card_container_divider_height</item>
-        <item name="android:scrollbarStyle">outsideOverlay</item>
-        <item name="android:textFilterEnabled">true</item>
-        <item name="android:clipToPadding">false</item>
-        <item name="android:paddingTop">@dimen/common_card_container_divider_height</item>
-        <item name="android:paddingBottom">@dimen/common_card_container_divider_height</item>
-        <item name="android:fadingEdge">none</item>
-        <item name="android:drawSelectorOnTop">true</item>
-        <item name="android:listSelector">@drawable/common_card_item_selector</item>
-    </style>
-
-    <style name="CommonCardItem">
-        <item name="android:background">@color/common_card_item_background</item>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/app_primary</item>
+        <item name="colorPrimaryDark">@color/app_primary_dark</item>
+        <item name="colorAccent">@color/app_accent</item>
     </style>
 
 </resources>

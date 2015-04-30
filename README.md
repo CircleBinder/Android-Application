@@ -1,28 +1,36 @@
-CreationBinder
-============
+# CircleBinder for Android [![Circle CI](https://circleci.com/gh/CircleBinder/Android-Application.svg?style=svg)](https://circleci.com/gh/CircleBinder/Android-Application)
 
-サンシャインクリエイションのチェックリストを作成するAndroidアプリ
+[Work in progress](https://github.com/CircleBinder/Android-Application/pulls)
 
 
-このアプリについて
-------------
+## Libraries Used
 
-**当プロジェクトは「クリエイション事務局」とは一切関係ありません。**
+- Application
+    - Butter Knife
+    - RxAndroid
+- Testing
+    - Espresso
+    - Robolectric
 
-当アプリに関するお問い合わせは「クリエイション事務局」へは送らないようご協力お願いします。
+## Build
 
-アプリ内の出展サークル情報は[公式サイト](http://www.creation.gr.jp/)で公開されているものを元に作成しております。
+In your local machine:
 
-開発環境
-------------
+``` sh
+# make and apk and install it to the connected device
+./gradlew installDebug
+```
 
-- AndroidStudio v0.8.+
-- Java 8 ( [retrolambda](https://github.com/orfjackal/retrolambda) を利用しているため )
+To test it with Docker (what circleci.yml does):
 
-関連リンク
-------------
+``` sh
+docker build -t circlebinder/android-application .
+docker run -it circlebinder/android-application
+```
 
-- [クリエイション公式Web](http://www.creation.gr.jp/)
-- [CircleBinder 公式ブログ](http://circlebinder.blog.jp/)
-- [CircleBinder/CircleBinder](https://github.com/CircleBinder/CircleBinder)
+## License
+
+This application is free software; you can redistribute it and/or modify it under the ters of the Apache License 2.0.
+
+- http://www.apache.org/licenses/LICENSE-2.0
 

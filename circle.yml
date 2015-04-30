@@ -1,0 +1,13 @@
+machine:
+    services:
+        - docker
+
+dependencies:
+    override:
+        - docker pull ichigotake/docker-android-base
+        - docker build -t circlebinder/android-application --no-cache=true .
+
+test:
+    override:
+        - docker run circlebinder/android-application
+
