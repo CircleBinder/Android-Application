@@ -17,4 +17,9 @@
         android:layout_marginBottom="8dp"
         />
 
+    <include
+        layout="@layout/circle_item"
+        android:id="@+id/activity_circlebinder_circle_item"
+        />
+
 </LinearLayout>

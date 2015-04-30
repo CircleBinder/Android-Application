@@ -3,6 +3,7 @@ package circlebinder.android.app.activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import circlebinder.android.app.R;
 import circlebinder.android.app.lifecycle.RxActivity;
@@ -14,6 +15,13 @@ public class MainActivity extends RxActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        findViewById(R.id.as_mock)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(CircleBinderActivity.from().createIntent(v.getContext()));
+                    }
+                });
     }
 
     @Override

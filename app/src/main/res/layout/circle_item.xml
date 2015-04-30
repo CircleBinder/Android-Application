@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="72dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:background="#ffffff"
+                android:gravity="center_vertical"
+    >
+
+    <TextView
+        android:id="@+id/circle_item_circle_space"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="center_horizontal"
+        android:text="あ\n01a"
+        />
+
+    <TextView
+        android:id="@+id/circle_item_circle_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/circle_item_circle_space"
+        android:textSize="18sp"
+        android:text="サークル名"
+        />
+
+    <TextView
+        android:id="@+id/circle_item_pen_name"
+        android:layout_toRightOf="@+id/circle_item_circle_space"
+        android:layout_below="@+id/circle_item_circle_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="ペンネーム"
+        />
+
+
+</RelativeLayout>

@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
             android:textSize="16sp"
-            tools:text="4/16(日) 11:00 - 15:30"
+            android:text="4/16(日) 11:00 - 15:30"
             />
 
         <TextView
@@ -25,14 +25,14 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
             android:textSize="12sp"
-            tools:text="開催まであと64日!"
+            android:text="開催まであと64日!"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
-            tools:text="2000sp"
+            android:text="2000sp"
             />
 
         <TextView
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:textSize="14sp"
-            tools:text="池袋サンシャインシティ"
+            android:text="池袋サンシャインシティ"
             />
 
     </LinearLayout>

@@ -13,7 +13,7 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:gravity="center_vertical"
-        tools:text="2015-04-04 v1.0\nあんな機能やこんな機能を追加しました！"
+        android:text="2015-04-04 v1.0\nあんな機能やこんな機能を追加しました！"
         />
 
 </LinearLayout>
