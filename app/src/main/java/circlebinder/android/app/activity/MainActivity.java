@@ -5,10 +5,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import circlebinder.android.app.R;
-import circlebinder.android.app.lifecycle.BaseActivity;
+import circlebinder.android.app.lifecycle.RxActivity;
 
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends RxActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

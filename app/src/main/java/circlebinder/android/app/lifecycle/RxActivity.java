@@ -10,7 +10,7 @@ import rx.Observable;
 import rx.android.lifecycle.LifecycleEvent;
 import rx.subjects.BehaviorSubject;
 
-public class BaseActivity extends AppCompatActivity {
+public class RxActivity extends AppCompatActivity {
 
     private final BehaviorSubject<LifecycleEvent> lifecycleSubject = BehaviorSubject.create();
 
