@@ -26,6 +26,10 @@
             android:name=".activity.CircleDetailActivity"
             android:label="@string/circle_detail"
             />
+
+        <service
+            android:name=".lifecycle.RxBackgroundService"
+            />
     </application>
 
 </manifest>
