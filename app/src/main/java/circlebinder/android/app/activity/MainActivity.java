@@ -19,7 +19,7 @@ public class MainActivity extends RxActivity {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(CircleBinderActivity.from().createIntent(v.getContext()));
+                        startActivity(CircleBinderActivity.createIntent(v.getContext()));
                     }
                 });
     }

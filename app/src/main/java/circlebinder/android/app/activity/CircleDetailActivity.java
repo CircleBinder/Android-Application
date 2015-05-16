@@ -8,18 +8,12 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import circlebinder.android.app.R;
-import circlebinder.android.app.ActivityIntentFactory;
 import circlebinder.android.app.lifecycle.RxActivity;
 
 public class CircleDetailActivity extends RxActivity {
 
-    public static ActivityIntentFactory from() {
-        return new ActivityIntentFactory() {
-            @Override
-            public Intent createIntent(Context context) {
-                return new Intent(context, CircleDetailActivity.class);
-            }
-        };
+    public static Intent createIntent(Context context) {
+        return new Intent(context, CircleDetailActivity.class);
     }
 
     @Override

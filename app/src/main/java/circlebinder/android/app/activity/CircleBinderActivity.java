@@ -7,18 +7,12 @@ import android.view.MenuItem;
 import android.view.View;
 
 import circlebinder.android.app.R;
-import circlebinder.android.app.ActivityIntentFactory;
 import circlebinder.android.app.lifecycle.RxActivity;
 
 public class CircleBinderActivity extends RxActivity {
 
-    public static ActivityIntentFactory from() {
-        return new ActivityIntentFactory() {
-            @Override
-            public Intent createIntent(Context context) {
-                return new Intent(context, CircleBinderActivity.class);
-            }
-        };
+    public static Intent createIntent(Context context) {
+        return new Intent(context, CircleBinderActivity.class);
     }
 
     @Override
@@ -29,7 +23,7 @@ public class CircleBinderActivity extends RxActivity {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(CircleDetailActivity.from().createIntent(v.getContext()));
+                        startActivity(CircleDetailActivity.createIntent(v.getContext()));
                     }
                 });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
