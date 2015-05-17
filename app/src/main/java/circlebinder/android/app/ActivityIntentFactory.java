@@ -1,4 +1,4 @@
-package circlebinder.android.app.app;
+package circlebinder.android.app;
 
 import android.content.Context;
 import android.content.Intent;

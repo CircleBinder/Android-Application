@@ -44,7 +44,16 @@ dependencies {
     // For UI test
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.0'
     androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
+    androidTestCompile 'com.squareup.spoon:spoon-client:1.1.9'
 
     // For JUnit test
     testCompile "org.robolectric:robolectric:${robolectricVersion}"
 }
+
+apply plugin: 'spoon'
+
+spoon {
+    // for debug output
+    debug = true
+}
+

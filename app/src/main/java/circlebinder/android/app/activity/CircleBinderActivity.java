@@ -7,7 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import circlebinder.android.app.R;
-import circlebinder.android.app.app.ActivityIntentFactory;
+import circlebinder.android.app.ActivityIntentFactory;
 import circlebinder.android.app.lifecycle.RxActivity;
 
 public class CircleBinderActivity extends RxActivity {

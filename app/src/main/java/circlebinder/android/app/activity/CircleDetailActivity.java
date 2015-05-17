@@ -8,7 +8,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import circlebinder.android.app.R;
-import circlebinder.android.app.app.ActivityIntentFactory;
+import circlebinder.android.app.ActivityIntentFactory;
 import circlebinder.android.app.lifecycle.RxActivity;
 
 public class CircleDetailActivity extends RxActivity {
