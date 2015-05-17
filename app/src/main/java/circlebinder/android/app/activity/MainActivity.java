@@ -5,11 +5,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import circlebinder.android.app.Logger;
 import circlebinder.android.app.R;
-import circlebinder.android.app.lifecycle.RxActivity;
+import circlebinder.android.app.install.InstallObservableFactory;
+import circlebinder.android.app.lifecycle.RxServiceBoundActivity;
+import circlebinder.android.app.service.IServiceCompleted;
+import circlebinder.android.app.service.BackgroundServiceCommand;
+import rx.Observable;
 
+public class MainActivity extends RxServiceBoundActivity {
 
-public class MainActivity extends RxActivity {
+    private final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,4 +51,20 @@ public class MainActivity extends RxActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onBackgroundServiceCompleted(IServiceCompleted event) {
+        Logger.debug(TAG, "onBackgroundServiceCompleted (IServiceCallbackEvent=" + event + ")");
+    }
+
+    @Override
+    protected BackgroundServiceCommand createCommand() {
+        return new BackgroundServiceCommand() {
+            @Override
+            public Observable<IServiceCompleted> createObservable() {
+                return new InstallObservableFactory(getResources()).createObservable();
+            }
+        };
+    }
+
 }
